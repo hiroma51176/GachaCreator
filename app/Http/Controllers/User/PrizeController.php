@@ -9,7 +9,7 @@ class PrizeController extends Controller
 {
     public function index()
     {
-        return view('user.gacha.prize');
+        return view('user.gacha.prize.list');
     }
     
     public function add()

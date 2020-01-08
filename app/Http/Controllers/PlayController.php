@@ -6,43 +6,48 @@ use Illuminate\Http\Request;
 
 class PlayController extends Controller
 {
+    public function top()
+    {
+        return view('layouts.top');
+    }
+    
     public function index()
     {
-        return view('gacha');
+        return view('gacha.list');
     }
     
     public function play()
     {
-        return view('gacha/play');
+        return view('gacha.play');
     }
     
     public function playOneShot()
     {
-        return view('gahca/play');
+        return view('gahca.play');
     }
     
     public function playTenShot()
     {
-        return view('gacha/play');
+        return view('gacha.play');
     }
     
     public function viewSimulation()
     {
-        return view('gacha/simulation');
+        return view('gacha.simulation');
     }
     
     public function runSimulation()
     {
-        return view('gacha/simulation');
+        return view('gacha.simulation');
     }
     
     public function viewCalculation()
     {
-        return view('gacha/calculation');
+        return view('gacha.calculation');
     }
     
     public function runCalculation()
     {
-        return view('gacha/calculation');
+        return view('gacha.calculation');
     }
 }

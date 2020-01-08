@@ -17,8 +17,8 @@ Route::get('/', function () {
 
 Route::group(['prefix => gacha'], function(){
     // ガチャで遊ぶ関係
-    Route::get('gacha', 'PlayController@index');
-    Route::get('gacha/play', 'PlayController@play');
+    Route::get('list', 'PlayController@index');
+    Route::get('play', 'PlayController@play');
     Route::get('play/result_OneShot', 'PlayController@playOneShot');
     Route::get('play/result_TenShot', 'PlayController@playTenShot');
     
@@ -34,7 +34,7 @@ Route::group(['prefix => gacha'], function(){
 
 Route::group(['prefix' => 'user'], function(){
     // ガチャ作成関係
-    Route::get('gacha', 'User\GachaController@index');
+    Route::get('gacha/list', 'User\GachaController@index');
     
     Route::get('gacha/create', 'User\GachaController@add');
     Route::post('gacha/create', 'User\GachaController@create');
@@ -45,7 +45,7 @@ Route::group(['prefix' => 'user'], function(){
     Route::get('gacha/delete', 'User\GachaController@delete');
     
     // ガチャのプライズ作成関係
-    Route::get('gacha/prize', 'User\PrizeController@index');
+    Route::get('gacha/prize/list', 'User\PrizeController@index');
     
     Route::get('gacha/prize/create', 'User\PrizeController@add');
     Route::post('gacha/prize/create', 'User\PrizeController@create');
@@ -55,3 +55,5 @@ Route::group(['prefix' => 'user'], function(){
     
     Route::get('gacha/prize/delete', 'User\PrizeController@delete');
 });
+
+Route::get('/', 'PlayController@top');

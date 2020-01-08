@@ -9,7 +9,7 @@ class GachaController extends Controller
 {
     public function index()
     {
-        return view('user.gacha');
+        return view('user.gacha.list');
     }
     
     public function add()
