@@ -13,20 +13,20 @@
             </div>
         </div>
         <div class="gacha-play content">
-            <a class="content-title btn btn-primary" role="button" href="">ガチャを引く</a>
+            <a class="content-title btn btn-primary" role="button" href="{{ action('PlayController@index') }}">ガチャを引く</a>
             <p>作成されたガチャを引くことができます。</p>
         </div>
         <div class="gacha-create content">
-            <a class="content-title btn btn-primary" role="button" href="">ガチャを作成する</a>
+            <a class="content-title btn btn-primary" role="button" href="{{ action('User\GachaController@add') }}">ガチャを作成する</a>
             <p>オリジナルのガチャを作成することが出来ます。</p>
             <p>※アカウントの登録が必要です。</p>
         </div>
         <div class="gacha-simulation content">
-            <a class="content-title btn btn-primary" role="button"  href="">ガチャのシミュレーションを行う</a>
+            <a class="content-title btn btn-primary" role="button"  href="{{ action('PlayController@viewSimulation') }}">ガチャのシミュレーションを行う</a>
             <p>ガチャのシミュレーションができます。</p>
         </div>
         <div class="gacha-calculation content">
-            <a class="content-title btn btn-primary" role="button"  href="">期待値の計算を行う</a>
+            <a class="content-title btn btn-primary" role="button"  href="{{ action('PlayController@viewCalculation') }}">期待値の計算を行う</a>
             <p>ガチャの期待値の計算ができます。</p>
         </div>
     </div>

@@ -15,7 +15,7 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::group(['prefix => gacha'], function(){
+Route::group(['prefix' => 'gacha'], function(){
     // ガチャで遊ぶ関係
     Route::get('list', 'PlayController@index');
     Route::get('play', 'PlayController@play');

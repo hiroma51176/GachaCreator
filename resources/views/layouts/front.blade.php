@@ -64,6 +64,10 @@
                                         </a>
                                         
                                         {{-- Authを実装したらformと@csrfを追加 --}}
+                                        {{-- Authを実装したら括弧外す <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;"> --}}
+                                            {{-- Authを実装したら括弧外す @csrf --}}
+                                        {{--  Authを実装したら括弧外す </form> --}}
+                                        
                                         
                                     </div>
                                 </li>
@@ -74,11 +78,11 @@
                                 </a>
                                 
                                 <div class="dropdown-menu" aria-labeledby="navbarDropdown">
-                                    <a class="dropdown-item" href="">ガチャを引く</a>
-                                    <a class="dropdown-item" href="">ガチャを作成する</a>
-                                    <a class="dropdown-item" href="">作成したガチャを確認</a>
-                                    <a class="dropdown-item" href="">シミュレーションを行う</a>
-                                    <a class="dropdown-item" href="">期待値の計算を行う</a>
+                                    <a class="dropdown-item" href="{{ action('PlayController@index') }}">ガチャを引く</a>
+                                    <a class="dropdown-item" href="{{ action('User\GachaController@add') }}">ガチャを作成する</a>
+                                    <a class="dropdown-item" href="{{ action('User\GachaController@index') }}">作成したガチャを確認</a>
+                                    <a class="dropdown-item" href="{{ action('PlayController@viewSimulation') }}">シミュレーションを行う</a>
+                                    <a class="dropdown-item" href="{{ action('PlayController@viewCalculation') }}">期待値の計算を行う</a>
                                 </div>
                             </li>
                         </ul>

@@ -15,6 +15,8 @@ body {
 
 .nav-link {
     color: #fff !important;
+    margin-left: 10px;
+    margin-right: 10px;
 }
 
 .table-dark {
@@ -33,6 +35,19 @@ body {
 .login-body {
     background-color: rgba(0, 0, 0, 0.25);
 }
+
+footer {
+    background-color: #000;
+    height: 50px;
+    line-height: 50px;
+}
+
+footer li {
+    font-size: 14px;
+    color: #fff;
+    text-align: center;
+}
+
 
 
 .main {
@@ -59,15 +74,3 @@ body {
     margin-bottom: 40px;
 }
 
-footer {
-    background-color: #000;
-    height: 50px;
-    line-height: 50px;
-}
-
-
-footer li {
-    font-size: 14px;
-    color: #fff;
-    text-align: center;
-}

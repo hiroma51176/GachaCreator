@@ -11,8 +11,18 @@ class PlayController extends Controller
         return view('layouts.top');
     }
     
-    public function index()
+    public function index(Request $request)
     {
+        // Modelを実装したらコメントアウトをやめる
+        //$cond_gacha_name = $request->cond_gacha_name;
+        //if($cond_gacha_name != ""){
+            // 入力された値を検索 部分一致
+            //$gachas = Gacha::where('gacha_name', 'LIKE', "%{$cond_gacha_name}%")->get();
+        //}else{
+            //$gachas = Gacha::all();
+        //}
+        
+        // Modelを実装したら追加 , ['gachas' => $gachas, 'cond_gacha_name' => $cond_gacha_name']
         return view('gacha.list');
     }
     

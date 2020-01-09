@@ -25,7 +25,7 @@
     <body>
         <div id="app">
             {{-- ナビゲーションバー --}}
-            <nav class="navbar navbar-expand-md navbar-dark navbar-laravel">
+            <nav class="navbar sticky-top navbar-expand-md navbar-dark navbar-laravel">
                 <div class="container">
                     <a class="navbar-brand" href="{{ url('/') }}">
                         ガチャクリエイター
@@ -42,7 +42,49 @@
                         
                         <!-- Right Side Of Navbar -->
                         <ul class="navbar-nav ml-auto">
-                            
+                            {{-- ログインしていなかったらログイン画面へのリンクを表示 --}}
+                            {{-- Authを実装したら括弧外したりリンクするようにする @guest --}}
+                                <li><a class="nav-link" href="">アカウント登録</a></li>
+                                <li><a class="nav-link" href="">{{ __('messages.Login') }}</a></li>
+                                
+                            {{-- ログインしていたらユーザー名とログアウトボタンを表示 --}}
+                            {{-- Authを実装したら括弧外したりリンクするようにする @else --}}
+                                <li class="nav-item dropdown">
+                                    <a id="navbarDropdown" class="nav-link dropdown-toggle" href="" role="button" data-toggle="dropdown" aria-haspopup="true" ariaexpanded="false" v-pre>
+                                    {{-- Authを実装したら括弧外す {{ Auth::user()->name }} --}}
+                                    ユーザー名
+                                        <span class="caret"></span>
+                                    </a>
+                                    
+                                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                        <a class="dropdown-item" href=""
+                                        onclick="event.preventDefault();
+                                            document.getElementById('logout-form').submit();">
+                                            {{__('messages.Logout') }}
+                                        </a>
+                                        
+                                        {{-- Authを実装したらformと@csrfを追加 --}}
+                                        {{-- Authを実装したら括弧外す <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;"> --}}
+                                            {{-- Authを実装したら括弧外す @csrf --}}
+                                        {{--  Authを実装したら括弧外す </form> --}}
+                                        
+                                        
+                                    </div>
+                                </li>
+                            {{-- Authを実装したら括弧外す @endguest --}}
+                            <li class="nav-item dropdown">
+                                <a id="navbarDropdown" class="nav-link dropdown-toggle" href="" role="button" data-toggle="dropdown" aria-haspopup="true" ariaexpanded="false" v-pre>
+                                    メニュー<span class="caret"></span>
+                                </a>
+                                
+                                <div class="dropdown-menu" aria-labeledby="navbarDropdown">
+                                    <a class="dropdown-item" href="{{ action('PlayController@index') }}">ガチャを引く</a>
+                                    <a class="dropdown-item" href="{{ action('User\GachaController@add') }}">ガチャを作成する</a>
+                                    <a class="dropdown-item" href="{{ action('User\GachaController@index') }}">作成したガチャを確認</a>
+                                    <a class="dropdown-item" href="{{ action('PlayController@viewSimulation') }}">シミュレーションを行う</a>
+                                    <a class="dropdown-item" href="{{ action('PlayController@viewCalculation') }}">期待値の計算を行う</a>
+                                </div>
+                            </li>
                         </ul>
                     </div>
                 </div>
@@ -52,6 +94,17 @@
             <main class="py-4">
                 @yield('content')
             </main>
+            
+            <footer class="footer">
+                <div class="container">
+                    <ul class="list-group list-group-horizontal">
+                        <li class="list-inline-item flex-fill"><a class="text-reset" href="">ガチャを引く</a></li>
+                        <li class="list-inline-item flex-fill"><a class="text-reset" href="">ガチャを作成する</a></li>
+                        <li class="list-inline-item flex-fill"><a class="text-reset" href="">ガチャのシミュレーションを行う</a></li>
+                        <li class="list-inline-item flex-fill"><a class="text-reset" href="">期待値の計算を行う</a></li>
+                    </ul>
+                </div>
+            </footer>
         </div>
     </body>
 </html>
