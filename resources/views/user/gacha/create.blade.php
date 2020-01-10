@@ -1,6 +1,6 @@
 @extends('layouts.common')
 
-@section('title', 'ガチャの新規作成')
+@section('title', 'ガチャ新規作成')
 
 @section('content')
     <div class="container">

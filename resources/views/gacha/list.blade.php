@@ -22,8 +22,8 @@
                 <div class="col-md-6 ml-auto">
                     <form action="{{ action('PlayController@index') }}" method="get">
                         <div class="form-group row">
-                            <label class="col-md-4 text-right">ガチャ名で検索</label>
-                            <div class="col-md-6">
+                            <label class="col-md-3 text-right d-flex align-items-end">ガチャ名で検索</label>
+                            <div class="col-md-7">
                                 {{-- アクションを実装したらinputのvalueに挿入 {{ $cond_gacha_name }} --}}
                                 <input type="text" class="form-control" name="cond_gacha_name" value="">
                             </div>
@@ -46,21 +46,25 @@
                                     <th width="15%">作成者</th>
                                     <th width="25%">説明</th>
                                     <th width="20%">画像</th>
-                                    <th width="15%">プライズ総数</th>
+                                    <th width="15%">プライズ内訳</th>
                                     <th width="10%">操作</th>
                                 </tr>
                             </thead>
                             <tbody>
                                 {{-- @foreach($gachas as $gacha) --}}
                                     <tr>
-                                        <td>ガチャ名を読み込みます</td>
-                                        <td>作成者を読み込みます</td>
-                                        <td>説明を読み込みます</td>
-                                        <td>画像を読み込みます</td>
+                                        <td>ガチャ名を読み込みます{{-- $gacha->gacha_name --}}</td>
+                                        <td>作成者を読み込みます{{-- str_limit($gacha->user->name, 50) --}}</td>
+                                        <td>説明を読み込みます{{-- str_limit($gacha_description, 200) --}}</td>
+                                        <td>画像を読み込みます
+                                            {{-- @if ($gacha->image_path) --}}
+                                            {{-- <img src="{{ asset('storage/image/' . $gacha->image_path) }}"></img> --}}
+                                            {{-- @endif --}}
+                                        </td>
                                         <td>
-                                            <p>大当たり〇体</p>
-                                            <p>当たり〇体</p>
-                                            <p>はずれ〇体</p>
+                                            <p class="mb-0">大当たり〇{{-- 条件に当てはまるものを探してカウントする？ --}}体</p>
+                                            <p class="mb-0">当たり〇体{{-- 同上 --}}</p>
+                                            <p class="mb-0">はずれ〇体{{-- 同上 --}}</p>
                                         </td>
                                         <td class="align-middle"><a class="btn btn-success" href="{{ action('PlayController@play') }}">ガチャを引く</a></td>
                                     </tr>

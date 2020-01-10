@@ -22,7 +22,7 @@ class PlayController extends Controller
             //$gachas = Gacha::all();
         //}
         
-        // Modelを実装したら追加 , ['gachas' => $gachas, 'cond_gacha_name' => $cond_gacha_name']
+        // Modelを実装したらview()内に追加 , ['gachas' => $gachas, 'cond_gacha_name' => $cond_gacha_name']
         return view('gacha.list');
     }
     
