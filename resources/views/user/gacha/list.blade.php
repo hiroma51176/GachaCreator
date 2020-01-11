@@ -46,26 +46,30 @@
                                         <th width="15%">ガチャ名</th>
                                         <th width="30%">説明</th>
                                         <th width="20%">画像</th>
-                                        <th width="15%">プライズ総数</th>
+                                        <th width="15%">排出率とプライズ内訳</th>
                                         <th width="10%">操作</th>
-                                        <th width="10%">削除</th>
+                                        <th width="5%">天井</th>
+                                        <th width="5%">削除</th>
                                     </tr>
                                 </thead>
                                 <tbody>
                                     {{-- @foreach($gachas as $gacha) --}}
                                         <tr>
-                                            <td>ガチャ名を読み込みます{{-- $gacha->gacha_name --}}</td>
+                                            <td><a href="{{ action('User\GachaController@edit') }}">ガチャ名を読み込みます{{-- $gacha->gacha_name --}}</a></td>
                                             <td>説明を読み込みます{{-- str_limit($gacha->user->name, 50) --}}</td>
                                             <td>画像を読み込みます
                                                 {{-- @if ($gacha->image_path) --}}
-                                                {{-- <img src="{{ asset('storage/image/' . $gacha->image_path) }}"></img> --}}
+                                                    {{-- <img src="{{ asset('storage/image/' . $gacha->image_path) }}"></img> --}}
                                                 {{-- @endif --}}
                                             </td>
                                             <td>
-                                                <p class="mb-0">〇体</p>
+                                                <p class="mb-0">大当たり：〇％ 〇体{{-- 条件に当てはまるものを探してカウントする？ --}}</p>
+                                                <p class="mb-0">当たり：〇％ 〇体{{-- 同上 --}}</p>
+                                                <p class="mb-0">はずれ：〇％ 〇体{{-- 同上 --}}</p>
                                                 <a href="{{ action('User\PrizeController@index') }}">確認する</a>
                                             </td>
                                             <td class="align-middle"><a class="btn btn-success" href="{{ action('PlayController@play') }}">ガチャを引く</a></td>
+                                            <td>有無{{-- $gacha->ceiling --}}</td>
                                             <td class="align-middle text-center"><input class="checkbox" type="checkbox" name="delete_gacha_id[]" value="{{-- {{ $gacha->id }} --}}"></td>
                                         </tr>
                                     {{-- @endforeach --}}

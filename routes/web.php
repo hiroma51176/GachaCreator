@@ -31,7 +31,7 @@ Route::group(['prefix' => 'gacha'], function(){
     Route::get('calculation/result', 'PlayController@runCalculation');
 });
 
-
+// まとめて'middleware' => 'auth' にする
 Route::group(['prefix' => 'user'], function(){
     // ガチャ作成関係
     Route::get('gacha/list', 'User\GachaController@index');

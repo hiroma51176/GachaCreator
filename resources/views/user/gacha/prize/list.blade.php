@@ -52,7 +52,7 @@
                                 <tbody>
                                     {{-- @foreach($prizes as $prize) --}}
                                         <tr>
-                                            <td>プライズ名を読み込みます{{-- $prize->gacha_name --}}</td>
+                                            <td><a href="{{ action('User\PrizeController@edit') }}">プライズ名を読み込みます{{-- $prize->gacha_name --}}</a></td>
                                             <td>レアリティを読み込みます{{-- str_limit($prize->rarity->rarity_name, 50) --}}</td>
                                             <td>画像を読み込みます
                                                 {{-- @if ($gacha->image_path) --}}

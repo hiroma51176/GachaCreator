@@ -98,10 +98,10 @@
             <footer class="footer">
                 <div class="container">
                     <ul class="list-group list-group-horizontal">
-                        <li class="list-inline-item flex-fill"><a class="text-reset" href="">ガチャを引く</a></li>
-                        <li class="list-inline-item flex-fill"><a class="text-reset" href="">ガチャを作成する</a></li>
-                        <li class="list-inline-item flex-fill"><a class="text-reset" href="">ガチャのシミュレーションを行う</a></li>
-                        <li class="list-inline-item flex-fill"><a class="text-reset" href="">期待値の計算を行う</a></li>
+                        <li class="list-inline-item flex-fill"><a class="text-reset" href="{{ action('PlayController@index') }}">ガチャを引く</a></li>
+                        <li class="list-inline-item flex-fill"><a class="text-reset" href="{{ action('User\GachaController@add') }}">ガチャを作成する</a></li>
+                        <li class="list-inline-item flex-fill"><a class="text-reset" href="{{ action('PlayController@viewSimulation') }}">ガチャのシミュレーションを行う</a></li>
+                        <li class="list-inline-item flex-fill"><a class="text-reset" href="{{ action('PlayController@viewCalculation') }}">期待値の計算を行う</a></li>
                     </ul>
                 </div>
             </footer>
