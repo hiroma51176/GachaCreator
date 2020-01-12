@@ -82,7 +82,7 @@
                                     <a class="dropdown-item" href="{{ action('User\GachaController@add') }}">ガチャを作成する</a>
                                     <a class="dropdown-item" href="{{ action('User\GachaController@index') }}">作成したガチャを確認</a>
                                     <a class="dropdown-item" href="{{ action('PlayController@viewSimulation') }}">シミュレーションを行う</a>
-                                    <a class="dropdown-item" href="{{ action('PlayController@viewCalculation') }}">期待値の計算を行う</a>
+                                    {{-- いずれ追加<a class="dropdown-item" href="{{ action('PlayController@viewCalculation') }}">期待値の計算を行う</a> --}}
                                 </div>
                             </li>
                         </ul>
@@ -101,7 +101,7 @@
                         <li class="list-inline-item flex-fill"><a class="text-reset" href="{{ action('PlayController@index') }}">ガチャを引く</a></li>
                         <li class="list-inline-item flex-fill"><a class="text-reset" href="{{ action('User\GachaController@add') }}">ガチャを作成する</a></li>
                         <li class="list-inline-item flex-fill"><a class="text-reset" href="{{ action('PlayController@viewSimulation') }}">ガチャのシミュレーションを行う</a></li>
-                        <li class="list-inline-item flex-fill"><a class="text-reset" href="{{ action('PlayController@viewCalculation') }}">期待値の計算を行う</a></li>
+                        {{-- いずれ追加 <li class="list-inline-item flex-fill"><a class="text-reset" href="{{ action('PlayController@viewCalculation') }}">期待値の計算を行う</a></li> --}}
                     </ul>
                 </div>
             </footer>

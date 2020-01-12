@@ -43,12 +43,42 @@ class PlayController extends Controller
     
     public function viewSimulation()
     {
-        return view('gacha.simulation');
+        $result = null;
+        return view('gacha.simulation', ['result' => $result]);
     }
     
-    public function runSimulation()
+    public function runSimulation(Request $request)
     {
-        return view('gacha.simulation');
+        // バリデーションを設定
+        $this->validate($request,[
+            'play_price' => 'required | integer | between: 1, 1000',
+            'jackpot_rate' => 'required | integer | between: 1, 100',
+            'max_play_count' => 'required | integer | between: 1, 1000',
+        ]);
+        
+        // 入力された最大試行回数まで繰り返す
+        for($i = 1; $i <= $request->max_play_count; $i++){
+            // 1～100の数値を一つランダムで取得
+            $gacha = mt_rand(1, 100);
+            
+            if($gacha <= $request->jackpot_rate){
+                $play_count = $i;
+                $i = $request->max_play_count;
+            }else{
+                $play_count = $request->max_play_count;
+            }
+        }
+        
+        $result['total_play_count'] = $play_count;
+        $result['total_price'] = $play_count * $request->play_price;
+        
+        if($play_count == $request->max_play_count){
+            $result['real_rate'] = 0.00;
+        }else{
+            $result['real_rate'] = round(1 / $play_count * 100, 2);
+        }
+        
+        return view('gacha.simulation', ['result' => $result]);
     }
     
     public function viewCalculation()

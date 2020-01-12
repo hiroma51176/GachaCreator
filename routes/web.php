@@ -24,11 +24,11 @@ Route::group(['prefix' => 'gacha'], function(){
     
     // シミュレーション関係
     Route::get('simulation', 'PlayController@viewSimulation');
-    Route::get('simulation/result', 'PlayController@runSimulation');
+    Route::post('simulation/result', 'PlayController@runSimulation');
     
     // 期待値計算関係
     Route::get('calculation', 'PlayController@viewCalculation');
-    Route::get('calculation/result', 'PlayController@runCalculation');
+    Route::post('calculation/result', 'PlayController@runCalculation');
 });
 
 // まとめて'middleware' => 'auth' にする

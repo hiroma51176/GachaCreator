@@ -4,11 +4,9 @@
 
 @section('content')
     <div class="container">
-        <div class="row">
-            <div class="main-title">
-                <h2>ガチャを作成する</h2>
-                <p>ガチャを作成します</p>
-            </div>
+        <div class="main-title">
+            <h1>ガチャを作成する</h1>
+            <p>ガチャを作成します</p>
         </div>
         
         <div class="content">
@@ -41,7 +39,7 @@
                                 <input type="file" class="form-control-file" name="image">
                             </div>
                         </div>
-                        <div class="col-md-9 ml-auto">
+                        <div class="col-md-9 ml-auto mb-5">
                         <p>著作権を侵害するような画像は控えてください。過度に性的、または暴力的な表現を含む場合、削除する場合があります。ご了承ください。</p>
                         </div>
                         
@@ -51,10 +49,10 @@
                             <div class="col-md-9">
                                 <select name="templete">
                                     <option value="">選択してください</option>
-                                    <option value="">使用しない</option>
-                                    <option value="">テンプレートを使用する</option>
+                                    <option value="0">使用しない</option>
+                                    <option value="1">テンプレートを使用する</option>
                                     {{-- ユーザーが作成したガチャを使えるようにしたい --}}
-                                    <option value="">作成済の〇〇を使用する</option>
+                                    {{-- いずれ追加 <option value="">作成済の〇〇を使用する</option> --}}
                                 </select>
                             </div>
                         </div>
