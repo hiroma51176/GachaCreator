@@ -146,7 +146,7 @@ return [
     */
 
     'attributes' => [
-        'play_price' => '「一回引く」の金額設定',
+        'play_price' => '１回あたりの設定金額',
         'jackpot_rate' => '排出率',
         'max_play_count' => '最大試行回数'
         ],

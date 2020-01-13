@@ -26,8 +26,27 @@ class PlayController extends Controller
         return view('gacha.list');
     }
     
-    public function play()
+    public function viewPlay()
     {
+        return view('gacha.play');
+    }
+    
+    // 「１回引く」と「１０回引く」で処理を分岐させる
+    public function runPlay()
+    {
+        // 「１回引く」
+        if(isset($request->one_shot)){
+            $this->playOneShot();
+            
+        // 「１０回引く」
+        }elseif(isset($request->ten_shot)){
+            $this->playTenShot();
+            
+        // 「それ以外（ＵＲＬで直接とんできたとか？）」
+        }else{
+            return view('gacha.list');
+        }
+        
         return view('gacha.play');
     }
     
@@ -49,36 +68,42 @@ class PlayController extends Controller
     
     public function runSimulation(Request $request)
     {
-        // バリデーションを設定
-        $this->validate($request,[
-            'play_price' => 'required | integer | between: 1, 1000',
-            'jackpot_rate' => 'required | integer | between: 1, 100',
-            'max_play_count' => 'required | integer | between: 1, 1000',
-        ]);
+            
+            // バリデーションを設定
+            $this->validate($request,[
+                'play_price' => 'required | integer | between: 1, 1000',
+                'jackpot_rate' => 'required | integer | between: 1, 100',
+                'max_play_count' => 'required | integer | between: 1, 1000',
+            ]);
+            
+            $play_price = $request->play_price;
+            $jackpot_rate = $request->jackpot_rate;
+            $max_play_count = $request->max_play_count;
+        
         
         // 入力された最大試行回数まで繰り返す
-        for($i = 1; $i <= $request->max_play_count; $i++){
+        for($i = 1; $i <= $max_play_count; $i++){
             // 1～100の数値を一つランダムで取得
             $gacha = mt_rand(1, 100);
             
-            if($gacha <= $request->jackpot_rate){
+            if($gacha <= $jackpot_rate){
                 $play_count = $i;
-                $i = $request->max_play_count;
+                $i = $max_play_count;
             }else{
-                $play_count = $request->max_play_count;
+                $play_count = $max_play_count;
             }
         }
         
         $result['total_play_count'] = $play_count;
-        $result['total_price'] = $play_count * $request->play_price;
+        $result['total_price'] = $play_count * $play_price;
         
-        if($play_count == $request->max_play_count){
+        if($play_count == $max_play_count){
             $result['real_rate'] = 0.00;
         }else{
             $result['real_rate'] = round(1 / $play_count * 100, 2);
         }
         
-        return view('gacha.simulation', ['result' => $result]);
+        return view('gacha.simulation', ['result' => $result, 'play_price' => $play_price, 'jackpot_rate' => $jackpot_rate, 'max_play_count' => $max_play_count]);
     }
     
     public function viewCalculation()

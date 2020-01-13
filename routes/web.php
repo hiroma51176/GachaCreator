@@ -18,7 +18,8 @@ Route::get('/', function () {
 Route::group(['prefix' => 'gacha'], function(){
     // ガチャで遊ぶ関係
     Route::get('list', 'PlayController@index');
-    Route::get('play', 'PlayController@play');
+    Route::get('play', 'PlayController@viewPlay');
+    Route::get('play/run','PlayController@runPlay');
     Route::get('play/result_OneShot', 'PlayController@playOneShot');
     Route::get('play/result_TenShot', 'PlayController@playTenShot');
     

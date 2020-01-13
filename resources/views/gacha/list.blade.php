@@ -15,10 +15,10 @@
                     <h2>作成されたガチャ一覧</h2>
                 </div>
             </div>
-                <div class="row">
-                    <div class="col-md-2">
-                        <a href="{{ action('User\GachaController@add') }}" role="button" class="btn btn-primary">ガチャを作成する</a>
-                    </div>
+            <div class="row">
+                <div class="col-md-2">
+                    <a href="{{ action('User\GachaController@add') }}" role="button" class="btn btn-primary">ガチャを作成する</a>
+                </div>
                 <div class="col-md-6 ml-auto">
                     <form action="{{ action('PlayController@index') }}" method="get">
                         <div class="form-group row">
@@ -66,7 +66,13 @@
                                             <p class="mb-0">当たり〇体{{-- 同上 --}}</p>
                                             <p class="mb-0">はずれ〇体{{-- 同上 --}}</p>
                                         </td>
-                                        <td class="align-middle"><a class="btn btn-success" href="{{ action('PlayController@play') }}">ガチャを引く</a></td>
+                                        <td class="align-middle">
+                                            <form action="{{ action('PlayController@play') }}" method="post">
+                                                {{ csrf_field() }}
+                                                <input type="hidden" name="gacha" value="{{-- {{ $gacha }} --}}">
+                                                <input type="submit" class="btn btn-success" value="ガチャを引く">
+                                            </form>
+                                        </td>
                                     </tr>
                                 {{-- @endforeach --}}
                             </tbody>
