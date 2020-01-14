@@ -44,20 +44,20 @@
                         <ul class="navbar-nav ml-auto">
                             {{-- ログインしていなかったらログイン画面へのリンクを表示 --}}
                             {{-- Authを実装したら括弧外したりリンクするようにする @guest --}}
-                                <li><a class="nav-link" href="">アカウント登録</a></li>
-                                <li><a class="nav-link" href="">{{ __('messages.Login') }}</a></li>
+                                <li><a class="nav-link" href="{{ route('register') }}">ユーザー登録</a></li>
+                                <li><a class="nav-link" href="{{ route('login') }}">{{ __('messages.Login') }}</a></li>
                                 
                             {{-- ログインしていたらユーザー名とログアウトボタンを表示 --}}
                             {{-- Authを実装したら括弧外したりリンクするようにする @else --}}
                                 <li class="nav-item dropdown">
-                                    <a id="navbarDropdown" class="nav-link dropdown-toggle" href="" role="button" data-toggle="dropdown" aria-haspopup="true" ariaexpanded="false" v-pre>
+                                    <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" ariaexpanded="false" v-pre>
                                     {{-- Authを実装したら括弧外す {{ Auth::user()->name }} --}}
                                     ユーザー名
                                         <span class="caret"></span>
                                     </a>
                                     
                                     <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                        <a class="dropdown-item" href=""
+                                        <a class="dropdown-item" href="#"
                                         onclick="event.preventDefault();
                                             document.getElementById('logout-form').submit();">
                                             {{__('messages.Logout') }}
@@ -73,7 +73,7 @@
                                 </li>
                             {{-- Authを実装したら括弧外す @endguest --}}
                             <li class="nav-item dropdown">
-                                <a id="navbarDropdown" class="nav-link dropdown-toggle" href="" role="button" data-toggle="dropdown" aria-haspopup="true" ariaexpanded="false" v-pre>
+                                <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" ariaexpanded="false" v-pre>
                                     メニュー<span class="caret"></span>
                                 </a>
                                 
@@ -82,7 +82,7 @@
                                     <a class="dropdown-item" href="{{ action('User\GachaController@add') }}">ガチャを作成する</a>
                                     <a class="dropdown-item" href="{{ action('User\GachaController@index') }}">作成したガチャを確認</a>
                                     <a class="dropdown-item" href="{{ action('PlayController@viewSimulation') }}">シミュレーションを行う</a>
-                                    <a class="dropdown-item" href="{{ action('PlayController@viewCalculation') }}">期待値の計算を行う</a>
+                                    {{-- いずれ追加<a class="dropdown-item" href="{{ action('PlayController@viewCalculation') }}">期待値の計算を行う</a> --}}
                                 </div>
                             </li>
                         </ul>
@@ -101,7 +101,7 @@
                         <li class="list-inline-item flex-fill"><a class="text-reset" href="">ガチャを引く</a></li>
                         <li class="list-inline-item flex-fill"><a class="text-reset" href="">ガチャを作成する</a></li>
                         <li class="list-inline-item flex-fill"><a class="text-reset" href="">ガチャのシミュレーションを行う</a></li>
-                        <li class="list-inline-item flex-fill"><a class="text-reset" href="">期待値の計算を行う</a></li>
+                        {{-- <li class="list-inline-item flex-fill"><a class="text-reset" href="">期待値の計算を行う</a></li> --}}
                     </ul>
                 </div>
             </footer>

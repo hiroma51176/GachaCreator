@@ -32,7 +32,7 @@ class PlayController extends Controller
     }
     
     // 「１回引く」と「１０回引く」で処理を分岐させる
-    public function runPlay()
+    public function runPlay(Request $request)
     {
         // 「１回引く」
         if(isset($request->one_shot)){
@@ -50,11 +50,12 @@ class PlayController extends Controller
         return view('gacha.play');
     }
     
+    // 「１回引く」
     public function playOneShot()
     {
-        return view('gahca.play');
+        return view('gacha.play');
     }
-    
+    // 「１０回引く」
     public function playTenShot()
     {
         return view('gacha.play');

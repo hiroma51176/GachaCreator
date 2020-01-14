@@ -25,9 +25,9 @@
             <a class="content-title btn btn-primary" role="button"  href="{{ action('PlayController@viewSimulation') }}">ガチャのシミュレーションを行う</a>
             <p>ガチャのシミュレーションができます。</p>
         </div>
-        <div class="gacha-calculation content">
-            <a class="content-title btn btn-primary" role="button"  href="{{ action('PlayController@viewCalculation') }}">期待値の計算を行う</a>
-            <p>ガチャの期待値の計算ができます。</p>
-        </div>
+        {{-- いずれ追加<div class="gacha-calculation content"> --}}
+            {{-- いずれ追加<a class="content-title btn btn-primary" role="button"  href="{{ action('PlayController@viewCalculation') }}">期待値の計算を行う</a> --}}
+            {{-- いずれ追加<p>ガチャの期待値の計算ができます。</p> --}}
+        {{-- いずれ追加</div> --}}
     </div>
 @endsection

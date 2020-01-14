@@ -18,24 +18,25 @@ Route::get('/', function () {
 Route::group(['prefix' => 'gacha'], function(){
     // ガチャで遊ぶ関係
     Route::get('list', 'PlayController@index');
-    Route::get('play', 'PlayController@viewPlay');
-    Route::get('play/run','PlayController@runPlay');
-    Route::get('play/result_OneShot', 'PlayController@playOneShot');
-    Route::get('play/result_TenShot', 'PlayController@playTenShot');
+    Route::post('play', 'PlayController@viewPlay');
+    Route::post('play/result','PlayController@runPlay');
+    //Route::get('play/result_OneShot', 'PlayController@playOneShot');
+    //Route::get('play/result_TenShot', 'PlayController@playTenShot');
     
     // シミュレーション関係
     Route::get('simulation', 'PlayController@viewSimulation');
-    Route::post('simulation/result', 'PlayController@runSimulation');
+    Route::post('simulation', 'PlayController@runSimulation');
     
     // 期待値計算関係
-    Route::get('calculation', 'PlayController@viewCalculation');
-    Route::post('calculation/result', 'PlayController@runCalculation');
+    // Route::get('calculation', 'PlayController@viewCalculation');
+    // Route::post('calculation', 'PlayController@runCalculation');
 });
 
 // まとめて'middleware' => 'auth' にする
 Route::group(['prefix' => 'user'], function(){
     // ガチャ作成関係
     Route::get('gacha/list', 'User\GachaController@index');
+    Route::post('gacha/list', 'User\GachaController@brunch');
     
     Route::get('gacha/create', 'User\GachaController@add');
     Route::post('gacha/create', 'User\GachaController@create');
@@ -58,3 +59,6 @@ Route::group(['prefix' => 'user'], function(){
 });
 
 Route::get('/', 'PlayController@top');
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');

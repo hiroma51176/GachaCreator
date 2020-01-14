@@ -19,7 +19,7 @@ class PrizeController extends Controller
     
     public function create()
     {
-        return redirect('user/gacha/prize');
+        return redirect('user/gacha/prize/list');
     }
     
     public function edit()
@@ -29,11 +29,11 @@ class PrizeController extends Controller
     
     public function update()
     {
-        return redirect('user/gacha/prize');
+        return redirect('user/gacha/prize/list');
     }
     
     public function delete()
     {
-        return redirect('user/gacha/prize');
+        return redirect('user/gacha/prize/list');
     }
 }

@@ -12,6 +12,24 @@ class GachaController extends Controller
         return view('user.gacha.list');
     }
     
+    public function brunch(Request $request)
+    {
+        // プライズリストへ
+        if(isset($request->gacha_prize)){
+            return view('user.gacha.prize.list');
+            
+        // ガチャを引くページへ
+        }elseif(isset($request->gacha_play)){
+            return view('gacha.play');
+            
+            
+        // ガチャを削除する場合
+        }elseif(isset($request->delete_gacha_id)){
+            $this->delete();
+        }
+        return view('user.gacha.list');
+    }
+    
     public function add()
     {
         return view('user.gacha.create');
@@ -19,7 +37,7 @@ class GachaController extends Controller
     
     public function create()
     {
-        return redirect('user/gacha');
+        return redirect('user/gacha/list');
     }
     
     public function edit()
@@ -29,11 +47,11 @@ class GachaController extends Controller
     
     public function update()
     {
-        return redirect('user/gacha');
+        return redirect('user/gacha/list');
     }
     
     public function delete()
     {
-        return redirect('user/gacha'); 
+        return redirect('user/gacha/list'); 
     }
 }

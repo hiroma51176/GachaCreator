@@ -38,7 +38,8 @@
             
             <div class="row">
                 <div class="list col-md-12 mx-auto">
-                    <form action="{{ action('User\GachaController@delete') }}" method="post">
+                    <form action="{{ action('User\GachaController@brunch') }}" method="post">
+                        {{ csrf_field() }}
                         <div class="row">
                             <table class="table table-bordered table-success">
                                 <thead>
@@ -48,7 +49,7 @@
                                         <th width="20%">画像</th>
                                         <th width="15%">排出率とプライズ内訳</th>
                                         <th width="10%">操作</th>
-                                        <th width="5%">天井</th>
+                                        {{-- いずれ追加<th width="5%">天井</th> --}}
                                         <th width="5%">削除</th>
                                     </tr>
                                 </thead>
@@ -66,11 +67,21 @@
                                                 <p class="mb-0">大当たり：〇％ 〇体{{-- 条件に当てはまるものを探してカウントする？ --}}</p>
                                                 <p class="mb-0">当たり：〇％ 〇体{{-- 同上 --}}</p>
                                                 <p class="mb-0">はずれ：〇％ 〇体{{-- 同上 --}}</p>
-                                                <a href="{{ action('User\PrizeController@index') }}">確認する</a>
+                                                
+                                                <input type="hidden" name="gacha_prize" value="1{{-- {{ $gacha->id }} --}}">
+                                                <input type="submit" class="btn btn-info" value="プライズを確認">
+                                               
                                             </td>
-                                            <td class="align-middle"><a class="btn btn-success" href="{{ action('PlayController@play') }}">ガチャを引く</a></td>
-                                            <td>有無{{-- $gacha->ceiling --}}</td>
-                                            <td class="align-middle text-center"><input class="checkbox" type="checkbox" name="delete_gacha_id[]" value="{{-- {{ $gacha->id }} --}}"></td>
+                                            <td class="align-middle">
+                                               
+                                                <input type="hidden" name="gacha_play" value="2{{-- {{ $gacha->id }} --}}">
+                                                <input type="submit" class="btn btn-success" value="ガチャを引く">
+                                               
+                                            </td>
+                                            {{-- <td>有無{{-- $gacha->ceiling --}}</td> --}}
+                                            <td class="align-middle text-center">
+                                                <input class="checkbox" type="checkbox" name="delete_gacha_id[]" value="{{-- {{ $gacha->id }} --}}">
+                                            </td>
                                         </tr>
                                     {{-- @endforeach --}}
                                 </tbody>
@@ -78,7 +89,6 @@
                         </div>
                         <div class="row">
                             <div class="col-md-4 ml-auto text-right">
-                                {{ csrf_field() }}
                                 <input type="submit" class="btn btn-danger" value="チェックしたガチャを削除">
                             </div>
                         </div>

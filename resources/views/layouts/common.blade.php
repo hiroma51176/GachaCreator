@@ -44,21 +44,20 @@
                         <ul class="navbar-nav ml-auto">
                             {{-- ログインしていなかったらログイン画面へのリンクを表示 --}}
                             {{-- Authを実装したら括弧外したりリンクするようにする @guest --}}
-                                <li><a class="nav-link" href="">アカウント登録</a></li>
-                                <li><a class="nav-link" href="">{{ __('messages.Login') }}</a></li>
+                                <li><a class="nav-link" href="{{ route('register') }}">ユーザー登録</a></li>
+                                <li><a class="nav-link" href="{{ route('login') }}">{{ __('messages.Login') }}</a></li>
                                 
                             {{-- ログインしていたらユーザー名とログアウトボタンを表示 --}}
                             {{-- Authを実装したら括弧外したりリンクするようにする @else --}}
                                 <li class="nav-item dropdown">
-                                    <a id="navbarDropdown" class="nav-link dropdown-toggle" href="" role="button" data-toggle="dropdown" aria-haspopup="true" ariaexpanded="false" v-pre>
+                                    <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" ariaexpanded="false" v-pre>
                                     {{-- Authを実装したら括弧外す {{ Auth::user()->name }} --}}
                                     ユーザー名
                                         <span class="caret"></span>
                                     </a>
                                     
                                     <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                        <a class="dropdown-item" href=""
-                                        onclick="event.preventDefault();
+                                        <a class="dropdown-item" href="#" onclick="event.preventDefault();
                                             document.getElementById('logout-form').submit();">
                                             {{__('messages.Logout') }}
                                         </a>
@@ -73,7 +72,7 @@
                                 </li>
                             {{-- Authを実装したら括弧外す @endguest --}}
                             <li class="nav-item dropdown">
-                                <a id="navbarDropdown" class="nav-link dropdown-toggle" href="" role="button" data-toggle="dropdown" aria-haspopup="true" ariaexpanded="false" v-pre>
+                                <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" ariaexpanded="false" v-pre>
                                     メニュー<span class="caret"></span>
                                 </a>
                                 

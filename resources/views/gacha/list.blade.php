@@ -58,7 +58,7 @@
                                         <td>説明を読み込みます{{-- str_limit($gacha_description, 200) --}}</td>
                                         <td>画像を読み込みます
                                             {{-- @if ($gacha->image_path) --}}
-                                            {{-- <img src="{{ asset('storage/image/' . $gacha->image_path) }}"></img> --}}
+                                                {{-- <img src="{{ asset('storage/image/' . $gacha->image_path) }}"></img> --}}
                                             {{-- @endif --}}
                                         </td>
                                         <td>
@@ -67,9 +67,9 @@
                                             <p class="mb-0">はずれ〇体{{-- 同上 --}}</p>
                                         </td>
                                         <td class="align-middle">
-                                            <form action="{{ action('PlayController@play') }}" method="post">
+                                            <form action="{{ action('PlayController@viewPlay') }}" method="post">
                                                 {{ csrf_field() }}
-                                                <input type="hidden" name="gacha" value="{{-- {{ $gacha }} --}}">
+                                                <input type="hidden" name="gacha" value="{{-- {{ $gacha->id }} --}}">
                                                 <input type="submit" class="btn btn-success" value="ガチャを引く">
                                             </form>
                                         </td>

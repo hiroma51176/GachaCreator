@@ -40,7 +40,7 @@
                                         <td>説明を読み込みます{{-- str_limit($gacha->gacha_description, 200) --}}</td>
                                         <td>画像を読み込みます
                                             {{-- @if ($gacha->image_path) --}}
-                                            {{-- <img src="{{ asset('storage/image/' . $gacha->image_path) }}"></img> --}}
+                                                {{-- <img src="{{ asset('storage/image/' . $gacha->image_path) }}"></img> --}}
                                             {{-- @endif --}}
                                         </td>
                                         {{-- <td>設定金額を読み込みます{{-- $gacha->play_price --}}</td> --}}
@@ -75,15 +75,15 @@
                             <p>〇〇ガチャを１回引きました。</p>
                             {{-- <p>使用金額：〇円</p> --}}
                             <p>レアリティ〇〇の〇〇が出ました！</p>
-                            {{-- @if (image_path) --}}
-                                <img src="{{-- {{ asset('storage/image/' . $result->image_path) }} --}}"></img>
+                            {{-- @if ($result_one_shot->image_path) --}}
+                                <img src="{{-- {{ asset('storage/image/' . $result_one_shot->image_path) }} --}}"></img>
                             {{-- @endif --}}
                         </div>
                     </div>
                 {{-- @endif --}}
                 
                 {{-- 「１０回引く」の場合 --}}
-                {{-- @if (!is_null($results_one_shot)) --}}
+                {{-- @if (!is_null($results_ten_shot)) --}}
                     <div class="row">
                         <div class="col-md-12 text-center">
                             <h2>結果</h2>
