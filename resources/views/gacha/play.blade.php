@@ -80,10 +80,10 @@
                             {{-- @endif --}}
                         </div>
                     </div>
-                {{-- @endif --}}
+                
                 
                 {{-- 「１０回引く」の場合 --}}
-                {{-- @if (!is_null($results_ten_shot)) --}}
+                {{-- @elseif (!is_null($results_ten_shot)) --}}
                     <div class="row">
                         <div class="col-md-12 text-center">
                             <h2>結果</h2>

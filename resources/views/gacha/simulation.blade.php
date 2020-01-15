@@ -39,7 +39,7 @@
                             <label class="col-md-5 pt-2 font-weight-bold">最大試行回数</label>
                             <div class="col-md-2">
                                 @if (isset($max_play_count))
-                                    <input type="text" class="form-control" name="play_price" value="{{ $max_play_count }}">
+                                    <input type="text" class="form-control" name="max_play_count" value="{{ $max_play_count }}">
                                 @else
                                     <input type="text" class="form-control" name="max_play_count" value="{{ old('max_play_count') }}">
                                 @endif
@@ -52,7 +52,7 @@
                             <label class="col-md-5 pt-2 font-weight-bold">排出率</label>
                             <div class="col-md-2">
                                 @if (isset($jackpot_rate))
-                                    <input type="text" class="form-control" name="play_price" value="{{ $jackpot_rate }}">
+                                    <input type="text" class="form-control" name="jackpot_rate" value="{{ $jackpot_rate }}">
                                 @else
                                     <input type="text" class="form-control" name="jackpot_rate" value="{{ old('jackpot_rate') }}">
                                 @endif
@@ -62,8 +62,8 @@
                         </div>
                         
                         {{ csrf_field() }}
-                        <div class="col-md-9 ml-auto pl-2 mb-5">
-                            <input type="submit" name="new_sim" class="btn btn-primary" value="シミュレーションを実行する">
+                        <div class="col-md-12 pl-2 mb-5">
+                            <input type="submit" name="new_sim" class="btn btn-primary w-50" value="シミュレーションを実行する">
                         </div>
                     </form>
                     
@@ -73,11 +73,11 @@
                         <div class="result pl-3">
                             <h3>シミュレーション結果</h3>
                             <p class="font-weight-bold pb-3 mt-3 mb-5">使用金額： {{ number_format($result['total_price']) }}円</p>
-                            <p class="font-weight-bold pb-1 mt-3 mb-5">引いた回数： {{ $result['total_play_count'] }}回</p>
-                            <p class="font-weight-bold pb-3 mt-3 mb-5">実際の排出率： {{ $result['real_rate'] }}％</p>
+                            <p class="font-weight-bold pb-3 mt-3 mb-5">引いた回数： {{ $result['total_play_count'] }}回</p>
+                            <p class="font-weight-bold pb-1 mt-3 mb-5">実際の排出率： {{ $result['real_rate'] }}％</p>
                         </div>
+                        
                         <form action="{{ action('PlayController@runSimulation') }}" method="post">
-                            
                             <input type="hidden" name="play_price" value="{{ $play_price }}">
                             <input type="hidden" name="jackpot_rate" value="{{ $jackpot_rate }}">
                             <input type="hidden" name="max_play_count" value="{{ $max_play_count }}">

@@ -50,9 +50,9 @@
                     
                         {{ csrf_field() }}
                         <div class="col-md-9 pl-1 ml-auto">
-                            {{-- リンク先のcreateアクションで分岐させる --}}
+                            {{-- リンク先のcreateアクションでデータ保存してから分岐させる --}}
                             <input type="submit" class="btn btn-primary mr-4" name="to_list" value="追加してプライズリストへ">
-                            <input type="submit" class="btn btn-primary ml-4" name="continue" value="続けて追加する">
+                            <input type="submit" class="btn btn-primary ml-4" name="cont" value="続けて追加する">
                         </div>
                     </form>
                 </div>

@@ -71,7 +71,7 @@ class PlayController extends Controller
     {
             
             // バリデーションを設定
-            $this->validate($request,[
+            $this->validate($request, [
                 'play_price' => 'required | integer | between: 1, 1000',
                 'jackpot_rate' => 'required | integer | between: 1, 100',
                 'max_play_count' => 'required | integer | between: 1, 1000',

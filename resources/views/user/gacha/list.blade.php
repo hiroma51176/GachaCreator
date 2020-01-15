@@ -56,7 +56,7 @@
                                 <tbody>
                                     {{-- @foreach($gachas as $gacha) --}}
                                         <tr>
-                                            <td><a href="{{ action('User\GachaController@edit') }}">ガチャ名を読み込みます{{-- $gacha->gacha_name --}}</a></td>
+                                            <td>ガチャ名を読み込みます{{-- $gacha->gacha_name --}}</td>
                                             <td>説明を読み込みます{{-- str_limit($gacha->user->name, 50) --}}</td>
                                             <td>画像を読み込みます
                                                 {{-- @if ($gacha->image_path) --}}
@@ -68,14 +68,18 @@
                                                 <p class="mb-0">当たり：〇％ 〇体{{-- 同上 --}}</p>
                                                 <p class="mb-0">はずれ：〇％ 〇体{{-- 同上 --}}</p>
                                                 
-                                                <input type="hidden" name="gacha_prize" value="1{{-- {{ $gacha->id }} --}}">
-                                                <input type="submit" class="btn btn-info" value="プライズを確認">
+                                                <input type="hidden" name="gacha_id" value="{{-- {{ $gacha->id }} --}}">
+                                                <input type="submit" name="prize" class="btn btn-info" value="プライズを確認">
+                                                {{-- 上のinputなしで下のやり方でいいかも？ --}}
+                                                {{-- <a href="{{ action('User\PrizeController@index', ['gacha_id' => $gacha->id]) }}">プライズを確認</a> --}}
                                                
                                             </td>
                                             <td class="align-middle">
-                                               
-                                                <input type="hidden" name="gacha_play" value="2{{-- {{ $gacha->id }} --}}">
-                                                <input type="submit" class="btn btn-success" value="ガチャを引く">
+                                                {{-- プライズがない場合はガチャを引くボタンを表示させないようにする？ --}}
+                                                <input type="hidden" name="gacha_id" value="{{-- {{ $gacha->id }} --}}">
+                                                <input type="submit" name="play" class="btn btn-success" value="ガチャを引く">
+                                                {{-- 上のinputなしで下のやり方でいいかも？ --}}
+                                                {{-- <a href="{{ action('PlayController@viewPlay', ['gacha_id' => $gacha->id]) }}">ガチャを引く</a> --}}
                                                
                                             </td>
                                             {{-- <td>有無{{-- $gacha->ceiling --}}</td> --}}
@@ -89,7 +93,7 @@
                         </div>
                         <div class="row">
                             <div class="col-md-4 ml-auto text-right">
-                                <input type="submit" class="btn btn-danger" value="チェックしたガチャを削除">
+                                <input type="submit" name="delete" class="btn btn-danger" value="チェックしたガチャを削除">
                             </div>
                         </div>
                     </form>

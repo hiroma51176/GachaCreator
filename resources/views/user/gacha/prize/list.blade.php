@@ -52,7 +52,7 @@
                                 <tbody>
                                     {{-- @foreach($prizes as $prize) --}}
                                         <tr>
-                                            <td><a href="{{ action('User\PrizeController@edit') }}">プライズ名を読み込みます{{-- $prize->prize_name --}}</a></td>
+                                            <td>プライズ名を読み込みます{{-- $prize->prize_name --}}</td>
                                             <td>レアリティを読み込みます{{-- str_limit($prize->rarity->rarity_name, 50) --}}</td>
                                             <td>画像を読み込みます
                                                 {{-- @if ($gacha->image_path) --}}
@@ -67,6 +67,7 @@
                         </div>
                         <div class="row">
                             <div class="col-md-4">
+                                {{-- aタグに,['id' => $gacha->id])を追加して値を渡す --}}
                                 <a href="{{ action('User\GachaController@index') }}" role="button" class="btn btn-primary">作成したガチャの確認</a>
                             </div>
                             <div class="col-md-4 ml-auto text-right">
