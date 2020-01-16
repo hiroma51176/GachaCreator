@@ -63,3 +63,10 @@ Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
 
+Route::group(['prefix' => 'admin'], function(){
+    // レアリティ関係
+    Route::get('rarity/list', 'Admin\RarityController@index');
+    Route::get('rarity/create', 'Admin\RarityController@add');
+    Route::post('rarity/create', 'Admin\RarityController@create');
+});
+

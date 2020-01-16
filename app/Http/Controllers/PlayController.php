@@ -42,7 +42,7 @@ class PlayController extends Controller
         }elseif(isset($request->ten_shot)){
             $this->playTenShot();
             
-        // 「それ以外（ＵＲＬで直接とんできたとか？）」
+        // 「それ以外（ＵＲＬ入力で直接とんできたとか？）」
         }else{
             return view('gacha.list');
         }
@@ -87,10 +87,14 @@ class PlayController extends Controller
             // 1～100の数値を一つランダムで取得
             $gacha = mt_rand(1, 100);
             
+            // 当たりを引いた場合
             if($gacha <= $jackpot_rate){
                 $play_count = $i;
+                // $iに入力された最大試行回数を代入してfor文から抜ける
                 $i = $max_play_count;
-            }else{
+                
+            // 当たりを引かなかった場合、$play_countに最大試行回数を代入
+            }elseif($i == $max_play_count){
                 $play_count = $max_play_count;
             }
         }

@@ -43,16 +43,16 @@
                         <!-- Right Side Of Navbar -->
                         <ul class="navbar-nav ml-auto">
                             {{-- ログインしていなかったらログイン画面へのリンクを表示 --}}
-                            {{-- Authを実装したら括弧外したりリンクするようにする @guest --}}
+                            @guest
                                 <li><a class="nav-link" href="{{ route('register') }}">ユーザー登録</a></li>
                                 <li><a class="nav-link" href="{{ route('login') }}">{{ __('messages.Login') }}</a></li>
                                 
                             {{-- ログインしていたらユーザー名とログアウトボタンを表示 --}}
-                            {{-- Authを実装したら括弧外したりリンクするようにする @else --}}
+                            @else
                                 <li class="nav-item dropdown">
                                     <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" ariaexpanded="false" v-pre>
-                                    {{-- Authを実装したら括弧外す {{ Auth::user()->name }} --}}
-                                    ユーザー名
+                                    {{ Auth::user()->name }}
+                                    
                                         <span class="caret"></span>
                                     </a>
                                     
@@ -62,15 +62,14 @@
                                             {{__('messages.Logout') }}
                                         </a>
                                         
-                                        {{-- Authを実装したらformと@csrfを追加 --}}
-                                        {{-- Authを実装したら括弧外す <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;"> --}}
-                                            {{-- Authを実装したら括弧外す @csrf --}}
-                                        {{--  Authを実装したら括弧外す </form> --}}
+                                        <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                                            @csrf
+                                        </form>
                                         
                                         
                                     </div>
                                 </li>
-                            {{-- Authを実装したら括弧外す @endguest --}}
+                            @endguest
                             <li class="nav-item dropdown">
                                 <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" ariaexpanded="false" v-pre>
                                     メニュー<span class="caret"></span>
