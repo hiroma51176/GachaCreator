@@ -8,7 +8,7 @@ class PlayController extends Controller
 {
     public function top()
     {
-        return view('layouts.top');
+        return view('top');
     }
     
     public function index(Request $request)
@@ -23,12 +23,12 @@ class PlayController extends Controller
         //}
         
         // Modelを実装したらview()内に追加 , ['gachas' => $gachas, 'cond_gacha_name' => $cond_gacha_name']
-        return view('gacha.list');
+        return view('gacha_play.list');
     }
     
     public function viewPlay()
     {
-        return view('gacha.play');
+        return view('gacha_play.play');
     }
     
     // 「１回引く」と「１０回引く」で処理を分岐させる
@@ -44,27 +44,27 @@ class PlayController extends Controller
             
         // 「それ以外（ＵＲＬ入力で直接とんできたとか？）」
         }else{
-            return view('gacha.list');
+            return view('gacha_play.list');
         }
         
-        return view('gacha.play');
+        return view('gacha_play.play');
     }
     
     // 「１回引く」
     public function playOneShot()
     {
-        return view('gacha.play');
+        return view('gacha_play.play');
     }
     // 「１０回引く」
     public function playTenShot()
     {
-        return view('gacha.play');
+        return view('gacha_play.play');
     }
     
     public function viewSimulation()
     {
         $result = null;
-        return view('gacha.simulation', ['result' => $result]);
+        return view('simulation.top', ['result' => $result]);
     }
     
     public function runSimulation(Request $request)
@@ -108,7 +108,7 @@ class PlayController extends Controller
             $result['real_rate'] = round(1 / $play_count * 100, 2);
         }
         
-        return view('gacha.simulation', ['result' => $result, 'play_price' => $play_price, 'jackpot_rate' => $jackpot_rate, 'max_play_count' => $max_play_count]);
+        return view('simulation.top', ['result' => $result, 'play_price' => $play_price, 'jackpot_rate' => $jackpot_rate, 'max_play_count' => $max_play_count]);
     }
     
     public function viewCalculation()

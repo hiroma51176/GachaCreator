@@ -26,7 +26,7 @@ class GachaController extends Controller
             
             // $request->gacha_idでGachaモデルを検索してそれの各パラメータを変数に入れてviewに渡す処理を書く
             
-            return view('gacha.play');
+            return view('gacha_play.play');
             
         // ガチャを削除する場合
         }elseif(isset($request->delete)){
