@@ -24,14 +24,14 @@
                         <div class="form-group row">
                             <label class="col-md-3">ガチャの名前（必須）</label>
                             <div class="col-md-9">
-                                <input type="text" class="form-control" name="gacha_name" value="{{-- {{ old('gacha_name') }} --}}">
+                                <input type="text" class="form-control" name="gacha_name" value="{{ old('gacha_name') }}">
                             </div>
                         </div>
                         
                         <div class="form-group row">
                             <label class="col-md-3">ガチャの説明</label>
                             <div class="col-md-9">
-                                <textarea class="form-control" name="gacha_description" rows="2">{{-- {{ old('gacha_description') }} --}}</textarea>
+                                <textarea class="form-control" name="gacha_description" rows="2">{{ old('gacha_description') }}</textarea>
                             </div>
                         </div>
                         
@@ -50,7 +50,7 @@
                         <div class="form-group row">
                             <label class="col-md-3">大当たり（必須）</label>
                             <div class="col-md-2">
-                                <input type="text" class="form-control" name="jackpot_rate" value="{{-- {{ old('jackpot_rate') }} --}}">
+                                <input type="text" class="form-control" name="jackpot_rate" value="{{ old('jackpot_rate') }}">
                             </div>
                             <label class="col-md-3">%</label>
                         </div>
@@ -58,7 +58,7 @@
                         <div class="form-group row">
                             <label class="col-md-3">当たり（必須）</label>
                             <div class="col-md-2">
-                                <input type="text" class="form-control" name="hit_rate" value="{{-- {{ old('hit_rate') }} --}}">
+                                <input type="text" class="form-control" name="hit_rate" value="{{ old('hit_rate') }}">
                             </div>
                             <label class="col-md-3">%</label>
                         </div>
@@ -66,7 +66,7 @@
                         <div class="form-group row">
                             <label class="col-md-3">はずれ（必須）</label>
                             <div class="col-md-2">
-                                <input type="text" class="form-control" name="miss_rate" value="{{-- {{ old('miss_rate') }} --}}">
+                                <input type="text" class="form-control" name="miss_rate" value="{{ old('miss_rate') }}">
                             </div>
                             <label class="col-md-3">%</label>
                         </div>

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Gacha;
 
 class PlayController extends Controller
 {
@@ -14,16 +15,16 @@ class PlayController extends Controller
     public function index(Request $request)
     {
         // Modelを実装したらコメントアウトをやめる
-        //$cond_gacha_name = $request->cond_gacha_name;
-        //if($cond_gacha_name != ""){
+        $cond_gacha_name = $request->cond_gacha_name;
+        if($cond_gacha_name != ""){
             // 入力された値を検索 部分一致
-            //$gachas = Gacha::where('gacha_name', 'LIKE', "%{$cond_gacha_name}%")->get();
-        //}else{
-            //$gachas = Gacha::all();
-        //}
+            $gachas = Gacha::where('gacha_name', 'LIKE', "%{$cond_gacha_name}%")->get();
+        }else{
+            $gachas = Gacha::all();
+        }
         
-        // Modelを実装したらview()内に追加 , ['gachas' => $gachas, 'cond_gacha_name' => $cond_gacha_name']
-        return view('gacha_play.list');
+        // Modelを実装したらview()内に追加 
+        return view('gacha_play.list', ['gachas' => $gachas, 'cond_gacha_name' => $cond_gacha_name]);
     }
     
     public function viewPlay()

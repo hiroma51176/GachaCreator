@@ -9,12 +9,12 @@ class PrizeController extends Controller
 {
     public function index()
     {
-        return view('user.gacha.prize.list');
+        return view('gacha_create.prize.list');
     }
     
     public function add()
     {
-        return view('user.gacha.prize.create');
+        return view('gacha_create.prize.create');
     }
     
     public function create(Request $request)
@@ -39,28 +39,28 @@ class PrizeController extends Controller
         
         // 追加してリストに戻る場合
         if(isset($request->to_list)){
-            return view('user.gacha.prize.list');
+            return view('gacha_create.prize.list');
         }
             
         // 続けて追加する場合
         elseif(isset($request->cont)){
-            return view('user.gacha.prize.create');
+            return view('gacha_create.prize.create');
         }
-        return view('user.gacha.prize.list');
+        return view('gacha_create.prize.list');
     }
     
     public function edit()
     {
-        return view('user.gacha.prize.edit');
+        return view('gacha_create.prize.edit');
     }
     
     public function update()
     {
-        return view('user.gacha.prize.list');
+        return view('gacha_create.prize.list');
     }
     
     public function delete()
     {
-        return view('user.gacha.prize.list');
+        return view('gacha_create.prize.list');
     }
 }

@@ -25,7 +25,7 @@
                             <label class="col-md-3 d-flex align-items-end">ガチャ名で検索</label>
                             <div class="col-md-7">
                                 {{-- アクションを実装したらinputのvalueに挿入 {{ $cond_gacha_name }} --}}
-                                <input type="text" class="form-control" name="cond_gacha_name" value="{{-- {{ $cond_gacha_name }} --}}">
+                                <input type="text" class="form-control" name="cond_gacha_name" value="{{ $cond_gacha_name }}">
                             </div>
                             <div class="col-md-2">
                                 {{ csrf_field() }}
@@ -54,14 +54,14 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    {{-- @foreach($gachas as $gacha) --}}
+                                    @foreach($gachas as $gacha)
                                         <tr>
-                                            <td>ガチャ名を読み込みます{{-- $gacha->gacha_name --}}</td>
-                                            <td>説明を読み込みます{{-- str_limit($gacha->user->name, 50) --}}</td>
+                                            <td>{{ $gacha->gacha_name }}</td>
+                                            <td>{{ str_limit($gacha->user->name, 50) }}</td>
                                             <td>画像を読み込みます
-                                                {{-- @if ($gacha->image_path) --}}
-                                                    {{-- <img src="{{ asset('storage/image/' . $gacha->image_path) }}"></img> --}}
-                                                {{-- @endif --}}
+                                                @if ($gacha->image_path)
+                                                    <img src="{{ asset('storage/image/' . $gacha->image_path) }}"></img>
+                                                @endif
                                             </td>
                                             <td>
                                                 <p class="mb-0">大当たり：〇％ 〇体{{-- 条件に当てはまるものを探してカウントする？ --}}</p>
@@ -87,7 +87,7 @@
                                                 <input class="checkbox" type="checkbox" name="delete_gacha_id[]" value="{{-- {{ $gacha->id }} --}}">
                                             </td>
                                         </tr>
-                                    {{-- @endforeach --}}
+                                    @endforeach
                                 </tbody>
                             </table>
                         </div>
