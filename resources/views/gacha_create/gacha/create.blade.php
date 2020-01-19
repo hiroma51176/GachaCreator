@@ -72,6 +72,8 @@
                         </div>
                         
                         <h3 class=" mt-5">ガチャのプライズ</h3>
+                        <p class="mb-0">テンプレートを使用するかどうか選択してください。</p>
+                        <p>使用しない場合は、プライズの新規作成に移ります。</p>
                         <div class="form-group row mb-5">
                             <label class="col-md-3">テンプレート使用について（必須）</label>
                             <div class="col-md-9">

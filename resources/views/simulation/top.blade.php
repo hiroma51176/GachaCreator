@@ -52,9 +52,9 @@
                             <label class="col-md-5 pt-2 font-weight-bold">排出率</label>
                             <div class="col-md-2">
                                 @if (isset($jackpot_rate))
-                                    <input type="text" class="form-control" name="jackpot_rate" value="{{ $jackpot_rate }}">
+                                    <input type="text" class="form-control" name="rate" value="{{ $rate }}">
                                 @else
-                                    <input type="text" class="form-control" name="jackpot_rate" value="{{ old('jackpot_rate') }}">
+                                    <input type="text" class="form-control" name="rate" value="{{ old('rate') }}">
                                 @endif
                             </div>
                             <label class="pt-2">%</label>
@@ -79,7 +79,7 @@
                         
                         <form action="{{ action('PlayController@runSimulation') }}" method="post">
                             <input type="hidden" name="play_price" value="{{ $play_price }}">
-                            <input type="hidden" name="jackpot_rate" value="{{ $jackpot_rate }}">
+                            <input type="hidden" name="rate" value="{{ $rate }}">
                             <input type="hidden" name="max_play_count" value="{{ $max_play_count }}">
                             {{ csrf_field() }}
                             <input type="submit" name="cont_sim" class="btn btn-primary" value="同じ条件で再度シミュレーションを行う">

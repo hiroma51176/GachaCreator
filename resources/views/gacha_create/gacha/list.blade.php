@@ -68,15 +68,15 @@
                                                 <p class="mb-0">当たり：〇％ 〇体{{-- 同上 --}}</p>
                                                 <p class="mb-0">はずれ：〇％ 〇体{{-- 同上 --}}</p>
                                                 
-                                                <input type="hidden" name="gacha_id" value="{{-- {{ $gacha->id }} --}}">
-                                                <input type="submit" name="prize" class="btn btn-info" value="プライズを確認">
+                                                {{-- <input type="hidden" name="gacha_id" value="{{-- {{ $gacha->id }} --}}"> --}}
+                                                {{-- <input type="submit" name="prize" class="btn btn-info" value="プライズを確認"> --}}
                                                 {{-- 上のinputなしで下のやり方でいいかも？ --}}
-                                                {{-- <a href="{{ action('User\PrizeController@index', ['gacha_id' => $gacha->id]) }}">プライズを確認</a> --}}
+                                                <a href="{{ action('User\PrizeController@index', ['gacha_id' => $gacha->id]) }}">プライズを確認</a>
                                                
                                             </td>
                                             <td class="align-middle">
                                                 {{-- プライズがない場合はガチャを引くボタンを表示させないようにする？ --}}
-                                                <input type="hidden" name="gacha_id" value="{{-- {{ $gacha->id }} --}}">
+                                                <input type="hidden" name="gacha_id" value="{{ $gacha->id }}">
                                                 <input type="submit" name="play" class="btn btn-success" value="ガチャを引く">
                                                 {{-- 上のinputなしで下のやり方でいいかも？ --}}
                                                 {{-- <a href="{{ action('PlayController@viewPlay', ['gacha_id' => $gacha->id]) }}">ガチャを引く</a> --}}

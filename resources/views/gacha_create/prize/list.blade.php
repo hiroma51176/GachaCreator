@@ -5,14 +5,14 @@
 @section('content')
     <div class="container">
         <div class="main-title">
-            <h1>{{-- ガチャの名前を読み込ませたい --}}〇〇ガチャのプライズリスト</h1>
-            <p>{{-- ガチャの名前を読み込ませたい --}}〇〇ガチャのプライズを確認できます。</p>
+            <h1>{{-- $gacha_name --}}〇〇ガチャのプライズリスト</h1>
+            <p>{{-- $gacha_name --}}〇〇ガチャのプライズを確認できます。</p>
         </div>
         
         <div class="content">
             <div class="row">
                 <div class="col-md-8">
-                    <h2>{{-- ガチャの名前を読み込ませたい --}}〇〇ガチャのプライズ一覧</h2>
+                    <h2>{{-- $gacha_name --}}〇〇ガチャのプライズ一覧</h2>
                 </div>
             </div>
             <div class="row">
@@ -25,7 +25,7 @@
                             <label class="col-md-4 d-flex align-items-end">プライズ名で検索</label>
                             <div class="col-md-6">
                                 {{-- アクションを実装したらinputのvalueに挿入 {{ $cond_prize_name }} --}}
-                                <input type="text" class="form-control" name="cond_prize_name" value="{{-- {{ $cond_prize_name }} --}}">
+                                <input type="text" class="form-control" name="cond_prize_name" value="{{ $cond_prize_name }}">
                             </div>
                             <div class="col-md-2">
                                 {{ csrf_field() }}
@@ -50,18 +50,18 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    {{-- @foreach($prizes as $prize) --}}
+                                    @foreach($prizes as $prize)
                                         <tr>
-                                            <td>プライズ名を読み込みます{{-- $prize->prize_name --}}</td>
-                                            <td>レアリティを読み込みます{{-- str_limit($prize->rarity->rarity_name, 50) --}}</td>
+                                            <td>{{ $prize->prize_name }}</td>
+                                            <td>{{ str_limit($prize->rarity_id, 50) }}</td>
                                             <td>画像を読み込みます
-                                                {{-- @if ($gacha->image_path) --}}
-                                                {{-- <img src="{{ asset('storage/image/' . $prize->image_path) }}"></img> --}}
-                                                {{-- @endif --}}
+                                                @if ($prize->image_path)
+                                                    <img src="{{ asset('storage/image/' . $prize->image_path) }}"></img> --}}
+                                                @endif
                                             </td>
-                                            <td class="align-middle text-center"><input class="checkbox" type="checkbox" name="delete_prize_id[]" value="{{-- {{ $prize->id }} --}}"></td>
+                                            <td class="align-middle text-center"><input class="checkbox" type="checkbox" name="delete_prize_id[]" value="{{ $prize->id }}"></td>
                                         </tr>
-                                    {{-- @endforeach --}}
+                                    @endforeach
                                 </tbody>
                             </table>
                         </div>

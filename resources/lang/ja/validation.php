@@ -147,8 +147,15 @@ return [
 
     'attributes' => [
         'play_price' => '１回あたりの設定金額',
-        'jackpot_rate' => '排出率',
-        'max_play_count' => '最大試行回数'
+        'rate' => '排出率',
+        'max_play_count' => '最大試行回数',
+        'gacha_name' => 'ガチャの名前',
+        'jackpot_rate' => '排出率の大当たり',
+        'hit_rate' => '排出率の当たり',
+        'miss_rate' => '排出率のはずれ',
+        'prize_name' => 'プライズの名前',
+        'rarity_id' => 'レアリティ',
+        'templete' => 'テンプレートの使用'
         ],
 
 ];

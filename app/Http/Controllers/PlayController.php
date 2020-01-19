@@ -14,7 +14,7 @@ class PlayController extends Controller
     
     public function index(Request $request)
     {
-        // Modelを実装したらコメントアウトをやめる
+        // 検索機能
         $cond_gacha_name = $request->cond_gacha_name;
         if($cond_gacha_name != ""){
             // 入力された値を検索 部分一致
@@ -74,12 +74,12 @@ class PlayController extends Controller
             // バリデーションを設定
             $this->validate($request, [
                 'play_price' => 'required | integer | between: 1, 1000',
-                'jackpot_rate' => 'required | integer | between: 1, 100',
+                'rate' => 'required | integer | between: 1, 100',
                 'max_play_count' => 'required | integer | between: 1, 1000',
             ]);
             
             $play_price = $request->play_price;
-            $jackpot_rate = $request->jackpot_rate;
+            $rate = $request->rate;
             $max_play_count = $request->max_play_count;
         
         
@@ -89,7 +89,7 @@ class PlayController extends Controller
             $gacha = mt_rand(1, 100);
             
             // 当たりを引いた場合
-            if($gacha <= $jackpot_rate){
+            if($gacha <= $rate){
                 $play_count = $i;
                 // $iに入力された最大試行回数を代入してfor文から抜ける
                 $i = $max_play_count;
@@ -109,7 +109,7 @@ class PlayController extends Controller
             $result['real_rate'] = round(1 / $play_count * 100, 2);
         }
         
-        return view('simulation.top', ['result' => $result, 'play_price' => $play_price, 'jackpot_rate' => $jackpot_rate, 'max_play_count' => $max_play_count]);
+        return view('simulation.top', ['result' => $result, 'play_price' => $play_price, 'rate' => $rate, 'max_play_count' => $max_play_count]);
     }
     
     public function viewCalculation()

@@ -55,7 +55,7 @@
                                     <tr>
                                         <td>{{ $gacha->gacha_name }}</td>
                                         <td>{{ str_limit($gacha->user->name, 50) }}</td>
-                                        <td>{{ str_limit($gacha_description, 200) }}</td>
+                                        <td>{{ str_limit($gacha->gacha_description, 200) }}</td>
                                         <td>
                                             @if ($gacha->image_path)
                                                 <img src="{{ asset('storage/image/' . $gacha->image_path) }}"></img>

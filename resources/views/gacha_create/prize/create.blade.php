@@ -5,8 +5,8 @@
 @section('content')
     <div class="container">
         <div class="main-title">
-            <h1>{{-- ガチャの名前を読み込ませたい --}}〇〇ガチャのプライズを追加</h1>
-            <p>あなたが作成した{{-- ガチャの名前を読み込ませたい --}}〇〇ガチャへ追加するプライズを新規作成します</p>
+            <h1>{{-- $gacha_name --}}〇〇ガチャのプライズを追加</h1>
+            <p>あなたが作成した{{-- $gacha_name --}}〇〇ガチャへ追加するプライズを新規作成します</p>
         </div>
         
         <div class="content">
@@ -24,7 +24,7 @@
                         <div class="form-group row">
                             <label class="col-md-3">プライズの名前（必須）</label>
                             <div class="col-md-9">
-                                <input type="text" class="form-control" name="prize_name" value="{{-- {{ old('prize_name') }} --}}">
+                                <input type="text" class="form-control" name="prize_name" value=" {{ old('prize_name') }}">
                             </div>
                         </div>
                         <div class="form-group row">
@@ -51,6 +51,8 @@
                         {{ csrf_field() }}
                         <div class="col-md-9 pl-1 ml-auto">
                             {{-- リンク先のcreateアクションでデータ保存してから分岐させる --}}
+                            <input type="hidden" name="gacha_id" value="{{ $gacha_id }}">
+                            <input type="hidden" name="gacha_name" value="{{ $gacha_name }}">
                             <input type="submit" class="btn btn-primary mr-4" name="to_list" value="追加してプライズリストへ">
                             <input type="submit" class="btn btn-primary ml-4" name="cont" value="続けて追加する">
                         </div>
