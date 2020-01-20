@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Gacha;
+use App\Prize;
 
 class PlayController extends Controller
 {
@@ -54,6 +55,10 @@ class PlayController extends Controller
     // 「１回引く」
     public function playOneShot()
     {
+        $rand = mt_rand(1, 100);
+        
+        
+        
         return view('gacha_play.play');
     }
     // 「１０回引く」

@@ -24,7 +24,7 @@
                         <div class="form-group row">
                             <label class="col-md-3">レアリティの名前</label>
                             <div class="col-md-9">
-                                <input type="text" class="form-control" name="rarity_name" value="{{-- {{ old('rarity_name') }} --}}">
+                                <input type="text" class="form-control" name="rarity_name" value="{{ old('rarity_name') }}">
                             </div>
                         </div>
                         

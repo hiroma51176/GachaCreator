@@ -10,5 +10,16 @@ class Prize extends Model
     
     public static $rules = array(
         'prize_name' => 'required | max: 60',
+        'rarity_id' => 'required',
         );
+        
+    public function gacha()
+    {
+        return $this->belongsTo('App\Gacha');
+    }
+    
+    public function rarity()
+    {
+        return $this->belongsTo('App\Rarity');
+    }
 }

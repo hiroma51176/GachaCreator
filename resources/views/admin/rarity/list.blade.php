@@ -27,21 +27,22 @@
                         <table class="table table-bordered table-success">
                             <thead>
                                 <tr class="text-center">
-                                    <th width="40%">レアリティID</th>
-                                    <th width="40%">レアリティ名</th>
+                                    <th width="20%">レアリティID</th>
+                                    <th width="60%">レアリティ名</th>
                                     <th width="20%">操作</th>
                                 </tr>
                             </thead>
                             <tbody>
-                                {{-- @foreach($rarities as $rarity) --}}
+                                @foreach($rarities as $rarity)
                                     <tr>
-                                        <td>レアリティIDを読み込みます{{-- $rarity->id --}}</td>
-                                        <td>レアリティ名を読み込みます{{-- $rarity->rarity->name --}}</td>
+                                        <td>{{ $rarity->id }}</td>
+                                        <td>{{ $rarity->rarity_name }}</td>
                                         <td class="text-center">
                                             <a href="#">編集</a>
+                                            <a href="#">削除</a>
                                         </td>
                                     </tr>
-                                {{-- @endforeach --}}
+                                @endforeach
                             </tbody>
                         </table>
                     </div>

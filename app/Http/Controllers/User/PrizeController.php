@@ -5,26 +5,32 @@ namespace App\Http\Controllers\User;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Prize;
+use App\Rarity;
 
 class PrizeController extends Controller
 {
     public function index(Request $request)
     {
+        $gacha_id = $request->gacha_id;
+        $gacha_name = $request->gacha_name;
         // 検索機能
         $cond_prize_name = $request->cond_prize_name;
         if($cond_prize_name != ""){
             // 入力された値を検索 部分一致
             $prizes = Prize::where('gacha_id', $request->gacha_id)->where('prize_name', 'LIKE', "%{$cond_prize_name}%")->get();
         }else{
-            $prizes = Prize::all();
+            $prizes = Prize::where('gacha_id', $request->gacha_id)->get();
         }
         
-        return view('gacha_create.prize.list', ['prizes' => $prizes, 'cond_prize_name' => $cond_prize_name]);
+        return view('gacha_create.prize.list', ['prizes' => $prizes, 'cond_prize_name' => $cond_prize_name, 'gacha_id' => $gacha_id, 'gacha_name' => $gacha_name]);
     }
     
     public function add(Request $request)
     {
-        if(empty($request->gacha_id)){
+        $gacha_id = $request->gacha_id;
+        $gacha_name = $request->gacha_name;
+        
+        if(empty($gacha_id)){
             return view('top');
         }
         return view('gacha_create.prize.create', ['gacha_id' => $gacha_id, 'gacha_name' => $gacha_name]);
@@ -59,15 +65,18 @@ class PrizeController extends Controller
         
         $prize->fill($form)->save();
         
+        $gacha_id = $prize->gacha_id;
         
         // 追加してリストに戻る場合
         if(isset($request->to_list)){
-            return view('gacha_create.prize.list', ['gacha_name' => $gacha_name]);
+            $cond_prize_name = null;
+            $prizes = Prize::where('gacha_id', $prize->gacha_id)->get();
+            return view('gacha_create.prize.list', ['gacha_id' => $gacha_id, 'gacha_name' => $gacha_name, 'cond_prize_name' => $cond_prize_name, 'prizes' => $prizes]);
         }
             
         // 続けて追加する場合
         elseif(isset($request->cont)){
-            return view('gacha_create.prize.create', ['gacha_id' => $prize->gacha_id, 'gacha_name' => $gacha_name]);
+            return view('gacha_create.prize.create', ['gacha_id' => $gacha_id, 'gacha_name' => $gacha_name]);
         }
         return view('gacha_create.prize.list');
     }

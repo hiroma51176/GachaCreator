@@ -4,19 +4,14 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Gacha extends Model
+class Rarity extends Model
 {
     protected $guarded = array('id');
     
     public static $rules = array(
-        'user_id' => 'required',
+        'rarity_name' => 'required | max: 30',
         );
         
-    public function user()
-    {
-        return $this->belongsTo('App\User');
-    }
-    
     public function prizes()
     {
         return $this->hasmany('App\Prize');

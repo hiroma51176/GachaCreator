@@ -154,7 +154,7 @@ return [
         'hit_rate' => '排出率の当たり',
         'miss_rate' => '排出率のはずれ',
         'prize_name' => 'プライズの名前',
-        'rarity_id' => 'レアリティ',
+        'rarity_id' => 'プライズのレアリティ',
         'templete' => 'テンプレートの使用'
         ],
 

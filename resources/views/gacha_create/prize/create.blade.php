@@ -5,8 +5,8 @@
 @section('content')
     <div class="container">
         <div class="main-title">
-            <h1>{{-- $gacha_name --}}〇〇ガチャのプライズを追加</h1>
-            <p>あなたが作成した{{-- $gacha_name --}}〇〇ガチャへ追加するプライズを新規作成します</p>
+            <h1>ガチャ「{{ $gacha_name }}」のプライズを追加</h1>
+            <p>あなたが作成したガチャ「{{ $gacha_name }}」へ追加するプライズを新規作成します</p>
         </div>
         
         <div class="content">

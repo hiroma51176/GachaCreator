@@ -55,16 +55,16 @@
                                     <tr>
                                         <td>{{ $gacha->gacha_name }}</td>
                                         <td>{{ str_limit($gacha->user->name, 50) }}</td>
-                                        <td>{{ str_limit($gacha->gacha_description, 200) }}</td>
+                                        <td>{{ str_limit($gacha->gacha_description, 50) }}</td>
                                         <td>
                                             @if ($gacha->image_path)
                                                 <img src="{{ asset('storage/image/' . $gacha->image_path) }}"></img>
                                             @endif
                                         </td>
                                         <td>
-                                            <p class="mb-0">大当たり〇{{-- 条件に当てはまるものを探してカウントする？ --}}体</p>
-                                            <p class="mb-0">当たり〇体{{-- 同上 --}}</p>
-                                            <p class="mb-0">はずれ〇体{{-- 同上 --}}</p>
+                                            <p class="mb-0">大当たり：{{ $gacha->jackpot_rate . '％' }}、 {{ $gacha->prizes->where('rarity_id', '3')->count() . '種'}}</p>
+                                            <p class="mb-0">当たり：{{ $gacha->hit_rate . '％' }}、 {{ $gacha->prizes->where('rarity_id', '2')->count() . '種'}}</p>
+                                            <p class="mb-0">はずれ：{{ $gacha->miss_rate . '％' }}、 {{ $gacha->prizes->where('rarity_id', '1')->count() . '種'}}</p>
                                         </td>
                                         <td class="align-middle">
                                             <form action="{{ action('PlayController@viewPlay') }}" method="post">

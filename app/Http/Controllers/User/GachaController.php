@@ -7,6 +7,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\CreateGacha;
 use App\Gacha;
 use Illuminate\Support\Facades\Auth;
+use App\Rarity;
 
 class GachaController extends Controller
 {
@@ -20,8 +21,9 @@ class GachaController extends Controller
         }else{
             $gachas = Gacha::all();
         }
+        $rarities = Rarity::all();
         
-        return view('gacha_create.gacha.list', ['gachas' => $gachas, 'cond_gacha_name' => $cond_gacha_name]);
+        return view('gacha_create.gacha.list', ['gachas' => $gachas, 'cond_gacha_name' => $cond_gacha_name, 'rarities' => $rarities]);
     }
     
     public function brunch(Request $request)

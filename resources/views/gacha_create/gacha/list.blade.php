@@ -6,13 +6,14 @@
     <div class="container">
         <div class="main-title">
             <h1>作成ガチャリスト</h1>
-            <p>あなたの作成したガチャを確認できます。</p>
+            <p>{{ Auth::user()->name }}の作成したガチャを確認できます。</p>
         </div>
         
         <div class="content">
             <div class="row">
                 <div class="col-md-8">
                     <h2>作成したガチャ一覧</h2>
+                    <p>※プライズが０種のガチャは引くことができない為、ご注意ください</p>
                 </div>
             </div>
             <div class="row">
@@ -24,7 +25,6 @@
                         <div class="form-group row">
                             <label class="col-md-3 d-flex align-items-end">ガチャ名で検索</label>
                             <div class="col-md-7">
-                                {{-- アクションを実装したらinputのvalueに挿入 {{ $cond_gacha_name }} --}}
                                 <input type="text" class="form-control" name="cond_gacha_name" value="{{ $cond_gacha_name }}">
                             </div>
                             <div class="col-md-2">
@@ -38,7 +38,7 @@
             
             <div class="row">
                 <div class="list col-md-12 mx-auto">
-                    <form action="{{ action('User\GachaController@brunch') }}" method="post">
+                    <form action="{{ action('User\GachaController@delete') }}" method="post">
                         {{ csrf_field() }}
                         <div class="row">
                             <table class="table table-bordered table-success">
@@ -49,7 +49,7 @@
                                         <th width="20%">画像</th>
                                         <th width="15%">排出率とプライズ内訳</th>
                                         <th width="10%">操作</th>
-                                        {{-- いずれ追加<th width="5%">天井</th> --}}
+                                        {{-- いずれ天井枠追加 --}}
                                         <th width="5%">削除</th>
                                     </tr>
                                 </thead>
@@ -57,34 +57,29 @@
                                     @foreach($gachas as $gacha)
                                         <tr>
                                             <td>{{ $gacha->gacha_name }}</td>
-                                            <td>{{ str_limit($gacha->user->name, 50) }}</td>
-                                            <td>画像を読み込みます
+                                            <td>{{ str_limit($gacha->gacha_description, 50) }}</td>
+                                            <td>
                                                 @if ($gacha->image_path)
                                                     <img src="{{ asset('storage/image/' . $gacha->image_path) }}"></img>
                                                 @endif
                                             </td>
                                             <td>
-                                                <p class="mb-0">大当たり：〇％ 〇体{{-- 条件に当てはまるものを探してカウントする？ --}}</p>
-                                                <p class="mb-0">当たり：〇％ 〇体{{-- 同上 --}}</p>
-                                                <p class="mb-0">はずれ：〇％ 〇体{{-- 同上 --}}</p>
-                                                
-                                                {{-- <input type="hidden" name="gacha_id" value="{{-- {{ $gacha->id }} --}}"> --}}
-                                                {{-- <input type="submit" name="prize" class="btn btn-info" value="プライズを確認"> --}}
-                                                {{-- 上のinputなしで下のやり方でいいかも？ --}}
-                                                <a href="{{ action('User\PrizeController@index', ['gacha_id' => $gacha->id]) }}">プライズを確認</a>
+                                                <p class="mb-0">{{ $rarities->where('id', '1')->first()->rarity_name }}：{{ $gacha->miss_rate . '％' }}、 {{ $gacha->prizes->where('rarity_id', '1')->count() . '種'}}</p>
+                                                <p class="mb-0">{{ $rarities->where('id', '2')->first()->rarity_name }}：{{ $gacha->hit_rate . '％' }}、 {{ $gacha->prizes->where('rarity_id', '2')->count() . '種'}}</p>
+                                                <p class="mb-0">{{ $rarities->where('id', '3')->first()->rarity_name }}：{{ $gacha->jackpot_rate . '％' }}、 {{ $gacha->prizes->where('rarity_id', '3')->count() . '種'}}</p>
+                                                <a href="{{ action('User\PrizeController@index', ['gacha_id' => $gacha->id, 'gacha_name' => $gacha->gacha_name]) }}">プライズを確認</a>
                                                
                                             </td>
                                             <td class="align-middle">
-                                                {{-- プライズがない場合はガチャを引くボタンを表示させないようにする？ --}}
-                                                <input type="hidden" name="gacha_id" value="{{ $gacha->id }}">
-                                                <input type="submit" name="play" class="btn btn-success" value="ガチャを引く">
-                                                {{-- 上のinputなしで下のやり方でいいかも？ --}}
-                                                {{-- <a href="{{ action('PlayController@viewPlay', ['gacha_id' => $gacha->id]) }}">ガチャを引く</a> --}}
-                                               
+                                                {{-- プライズがない場合はガチャを引くボタンを押しても遷移しないようにする --}}
+                                                @if ($gacha->prizes->count() != 0)
+                                                    <a class="btn btn-success" role="button" href="{{ action('PlayController@viewPlay', ['gacha_id' => $gacha->id, 'gacha_name' => $gacha->gacha_name]) }}">ガチャを引く</a>
+                                                @else
+                                                    <a class="btn btn-dark" role="button" href="#">ガチャを引く</a>
+                                                @endif
                                             </td>
-                                            {{-- <td>有無{{-- $gacha->ceiling --}}</td> --}}
                                             <td class="align-middle text-center">
-                                                <input class="checkbox" type="checkbox" name="delete_gacha_id[]" value="{{-- {{ $gacha->id }} --}}">
+                                                <input class="checkbox" type="checkbox" name="delete_gacha_id[]" value="{{ $gacha->id }}">
                                             </td>
                                         </tr>
                                     @endforeach

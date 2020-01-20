@@ -80,7 +80,7 @@
                                 <select name="templete">
                                     <option value="">選択してください</option>
                                     <option value="0">使用しない</option>
-                                    <option value="1">テンプレートを使用する</option>
+                                    {{-- いずれ追加<option value="1">テンプレートを使用する</option> --}}
                                     {{-- いずれユーザーが作成したガチャを使えるようにしたい --}}
                                     {{-- いずれ追加 <option value="">作成済の〇〇を使用する</option> --}}
                                 </select>
