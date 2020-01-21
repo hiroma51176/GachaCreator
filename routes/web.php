@@ -19,10 +19,10 @@ Route::get('/', function () {
 Route::group(['prefix' => 'gacha_play'], function(){
     
     Route::get('list', 'PlayController@index');
-    Route::post('play', 'PlayController@viewPlay');
+    Route::get('play', 'PlayController@viewPlay');
     Route::post('play/result','PlayController@runPlay');
-    //Route::get('play/result_OneShot', 'PlayController@playOneShot');
-    //Route::get('play/result_TenShot', 'PlayController@playTenShot');
+    Route::get('play/result_OneShot', 'PlayController@playOneShot');
+    Route::get('play/result_TenShot', 'PlayController@playTenShot');
 });
 
 // // シミュレーション関係

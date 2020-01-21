@@ -13,6 +13,7 @@
             <div class="row">
                 <div class="col-md-8">
                     <h2>作成されたガチャ一覧</h2>
+                    <p>※プライズが０種のガチャは引くことができない為、ご注意ください</p>
                 </div>
             </div>
             <div class="row">
@@ -62,16 +63,17 @@
                                             @endif
                                         </td>
                                         <td>
-                                            <p class="mb-0">大当たり：{{ $gacha->jackpot_rate . '％' }}、 {{ $gacha->prizes->where('rarity_id', '3')->count() . '種'}}</p>
-                                            <p class="mb-0">当たり：{{ $gacha->hit_rate . '％' }}、 {{ $gacha->prizes->where('rarity_id', '2')->count() . '種'}}</p>
-                                            <p class="mb-0">はずれ：{{ $gacha->miss_rate . '％' }}、 {{ $gacha->prizes->where('rarity_id', '1')->count() . '種'}}</p>
+                                            <p class="mb-0">{{ $rarities->find(1)->rarity_name }}：{{ $gacha->miss_rate . '％' }}、 {{ $gacha->prizes->where('rarity_id', '1')->count() . '種'}}</p>
+                                            <p class="mb-0">{{ $rarities->find(2)->rarity_name }}：{{ $gacha->hit_rate . '％' }}、 {{ $gacha->prizes->where('rarity_id', '2')->count() . '種'}}</p>
+                                            <p class="mb-0">{{ $rarities->find(3)->rarity_name }}：{{ $gacha->jackpot_rate . '％' }}、 {{ $gacha->prizes->where('rarity_id', '3')->count() . '種'}}</p>
                                         </td>
                                         <td class="align-middle">
-                                            <form action="{{ action('PlayController@viewPlay') }}" method="post">
-                                                {{ csrf_field() }}
-                                                <input type="hidden" name="gacha" value="{{-- {{ $gacha->id }} --}}">
-                                                <input type="submit" class="btn btn-success" value="ガチャを引く">
-                                            </form>
+                                            {{-- プライズがない場合はガチャを引くボタンを押しても遷移しないようにする --}}
+                                            @if ($gacha->prizes->count() != 0)
+                                                <a class="btn btn-success" role="button" href="{{ action('PlayController@viewPlay', ['gacha_id' => $gacha->id]) }}">ガチャを引く</a>
+                                            @else
+                                                <a class="btn btn-dark" role="button" href="#">ガチャを引く</a>
+                                            @endif
                                         </td>
                                     </tr>
                                 @endforeach

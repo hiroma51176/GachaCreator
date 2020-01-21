@@ -29,25 +29,23 @@
                                     <th width="15%">作成者</th>
                                     <th width="20%">説明</th>
                                     <th width="20%">画像</th>
-                                    {{-- <th width="10%">設定金額</th> --}}
                                     <th width="20%">排出率とプライズ内訳</th>
                                 </tr>
                             </thead>
                             <tbody>
                                     <tr>
-                                        <td>ガチャ名を読み込みます{{-- $gacha->gacha_name --}}</td>
-                                        <td>作成者を読み込みます{{-- str_limit($gacha->user->name, 50) --}}</td>
-                                        <td>説明を読み込みます{{-- str_limit($gacha->gacha_description, 200) --}}</td>
-                                        <td>画像を読み込みます
-                                            {{-- @if ($gacha->image_path) --}}
-                                                {{-- <img src="{{ asset('storage/image/' . $gacha->image_path) }}"></img> --}}
-                                            {{-- @endif --}}
-                                        </td>
-                                        {{-- <td>設定金額を読み込みます{{-- $gacha->play_price --}}</td> --}}
+                                        <td>{{ $gacha->gacha_name }}</td>
+                                        <td>{{ $gacha->user->name }}</td>
+                                        <td>{{ $gacha->gacha_description }}</td>
                                         <td>
-                                            <p class="mb-0">大当たり： {{-- $gacha->jackpot_rate --}}〇% 〇{{-- 条件に当てはまるものを探してカウントする？ --}}体</p>
-                                            <p class="mb-0">当たり： {{-- $gacha->hit_rate --}}〇% 〇体{{-- 同上 --}}</p>
-                                            <p class="mb-0">はずれ： {{-- $gacha->miss_rate --}}〇% 〇体{{-- 同上 --}}</p>
+                                            @if ($gacha->image_path)
+                                                <img src="{{ asset('storage/image/' . $gacha->image_path) }}"></img>
+                                            @endif
+                                        </td>
+                                        <td>
+                                            <p class="mb-0">{{ $rarities->find(1)->rarity_name }}：{{ $gacha->miss_rate . '％' }}、 {{ $gacha->prizes->where('rarity_id', '1')->count() . '種'}}</p>
+                                            <p class="mb-0">{{ $rarities->find(2)->rarity_name }}：{{ $gacha->hit_rate . '％' }}、 {{ $gacha->prizes->where('rarity_id', '2')->count() . '種'}}</p>
+                                            <p class="mb-0">{{ $rarities->find(3)->rarity_name }}：{{ $gacha->jackpot_rate . '％' }}、 {{ $gacha->prizes->where('rarity_id', '3')->count() . '種'}}</p>
                                         </td>
                                     </tr>
                             </tbody>
@@ -57,57 +55,53 @@
             </div>
             <div class="row">
                 <div class="col-md-12 text-center mb-5">
-                <form action="{{ action('PlayController@runPlay') }}" method="post">
-                    {{ csrf_field() }}
-                    <input type="hidden" name="gacha" value="{{-- {{ $gacha }} --}}">
-                    <input class="btn-lg btn-primary mx-5" type="submit" name="one_shot" value="１回引く"/>
-                    <input class="btn-lg btn-primary mx-5" type="submit" name="ten_shot" value="１０回引く">
-                </form>
+                
+                <a class="btn-lg btn-primary mx-5" role="button" href="{{ action('PlayController@playOneShot', ['gacha_id' => $gacha->id]) }}">１回引く</a>
                 </div>
             </div>
             
-            {{-- @if (!is_null($result_one_shot) || !is_null($results_ten_shot)) --}}
+            @if (!is_null($result_one_shot) || !is_null($results_ten_shot))
                 {{-- 「一回引く」の場合 --}}
-                {{-- @if (!is_null($result_one_shot)) --}}
+                @if (!is_null($result_one_shot))
                     <div class="row">
                         <div class="col-md-12 text-center">
                             <h2>結果</h2>
-                            <p>〇〇ガチャを１回引きました。</p>
-                            {{-- <p>使用金額：〇円</p> --}}
-                            <p>レアリティ〇〇の〇〇が出ました！</p>
-                            {{-- @if ($result_one_shot->image_path) --}}
-                                <img src="{{-- {{ asset('storage/image/' . $result_one_shot->image_path) }} --}}"></img>
-                            {{-- @endif --}}
+                            <p>ガチャ「{{ $gacha->gacha_name }}」を１回引きました。</p>
+                            {{-- 使用金額：〇円 --}}
+                            <p>{{ $result_one_shot->rarity->rarity_name }}の「{{ $result_one_shot->prize_name }}」が出ました！</p>
+                            @if ($result_one_shot->image_path)
+                                <img src="{{ asset('storage/image/' . $result_one_shot->image_path) }}"></img>
+                            @endif
                         </div>
                     </div>
                 
                 
                 {{-- 「１０回引く」の場合 --}}
-                {{-- @elseif (!is_null($results_ten_shot)) --}}
+                @elseif (!is_null($results_ten_shot))
                     <div class="row">
                         <div class="col-md-12 text-center">
                             <h2>結果</h2>
                             <p>〇〇ガチャを１０回引きました。</p>
-                            {{-- <p>使用金額：〇円</p> --}}
+                            {{-- 使用金額：〇円 --}}
                             
-                            {{-- <table class="table table-success"> --}}
-                                {{-- @foreach ($results_ten_shot as $items) --}}
-                                    {{-- <tr> --}}
-                                        {{-- @foreach ($items as $item) --}}
-                                            {{-- <td> --}}
-                                                {{-- <p>{{ $item[0] }}</p> --}}
-                                                {{-- @if($item[1]) --}}
-                                                    {{-- <p><img src="{{ asset('storage/image/' . $item[1]) }}"></p> --}}
-                                                {{-- @endif --}}
-                                            {{-- </td> --}}
-                                        {{-- @endforeach --}}
-                                    {{-- </tr> --}}
-                                {{-- @endforeach --}}
-                            {{-- </table> --}}
+                            <table class="table table-success">
+                                @foreach ($results_ten_shot as $items)
+                                    <tr>
+                                        @foreach ($items as $item)
+                                            <td>
+                                                <p>{{ $item[0] }}</p>
+                                                @if($item[1])
+                                                    <p><img src="{{ asset('storage/image/' . $item[1]) }}"></p>
+                                                @endif
+                                            </td>
+                                        @endforeach
+                                    </tr>
+                                @endforeach
+                            </table>
                         </div>
                     </div>
-                {{-- @endif --}}
-            {{-- @endif --}}
+                @endif
+            @endif
         </div>
     </div>
 @endsection
