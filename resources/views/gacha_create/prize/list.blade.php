@@ -60,7 +60,7 @@
                                                     <img src="{{ asset('storage/image/' . $prize->image_path) }}"></img> --}}
                                                 @endif
                                             </td>
-                                            <td class="align-middle text-center"><input class="checkbox" type="checkbox" name="delete_prize_id[]" value="{{ $prize->id }}"></td>
+                                            <td class="align-middle text-center"><input class="checkbox" type="checkbox" name="prize_id[]" value="{{ $prize->id }}"></td>
                                         </tr>
                                     @endforeach
                                 </tbody>

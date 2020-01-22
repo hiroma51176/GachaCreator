@@ -55,8 +55,8 @@
             </div>
             <div class="row">
                 <div class="col-md-12 text-center mb-5">
-                
                 <a class="btn-lg btn-primary mx-5" role="button" href="{{ action('PlayController@playOneShot', ['gacha_id' => $gacha->id]) }}">１回引く</a>
+                <a class="btn-lg btn-primary mx-5" role="button" href="{{ action('PlayController@playTenShot', ['gacha_id' => $gacha->id]) }}">１０回引く</a>
                 </div>
             </div>
             
@@ -81,17 +81,17 @@
                     <div class="row">
                         <div class="col-md-12 text-center">
                             <h2>結果</h2>
-                            <p>〇〇ガチャを１０回引きました。</p>
+                            <p>ガチャ「{{ $gacha->gacha_name }}」を１０回引きました。</p>
                             {{-- 使用金額：〇円 --}}
                             
                             <table class="table table-success">
-                                @foreach ($results_ten_shot as $items)
+                                @foreach ($results_ten_shot as $results)
                                     <tr>
-                                        @foreach ($items as $item)
+                                        @foreach ($results as $result)
                                             <td>
-                                                <p>{{ $item[0] }}</p>
-                                                @if($item[1])
-                                                    <p><img src="{{ asset('storage/image/' . $item[1]) }}"></p>
+                                                <p>{{ $result->rarity->rarity_name }}の「{{ $result->prize_name }}」が出ました！</p>
+                                                @if($result->image_path)
+                                                    <p><img src="{{ asset('storage/image/' . $result->image_path) }}"></p>
                                                 @endif
                                             </td>
                                         @endforeach

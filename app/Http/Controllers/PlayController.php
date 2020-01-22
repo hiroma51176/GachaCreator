@@ -27,7 +27,6 @@ class PlayController extends Controller
         
         $rarities = Rarity::all();
         
-        // Modelを実装したらview()内に追加 
         return view('gacha_play.list', ['gachas' => $gachas, 'cond_gacha_name' => $cond_gacha_name, 'rarities' => $rarities]);
     }
     
@@ -37,12 +36,18 @@ class PlayController extends Controller
         $gacha_id = $request->gacha_id;
         
         $gacha = Gacha::find($gacha_id);
-        // \Debugbar::info($gacha);
         
-        // ガチャidで直接飛んできて、存在しないidの場合
+        
+        // URLにガチャidを直接入力して飛んできて、存在しないidの場合はトップページに遷移させる
         if($gacha == null){
             return view('top');
         }
+        
+        // URLにガチャidを直接入力して飛んできて、プライズが０種のガチャの場合はトップページに遷移させる
+        if($gacha->prizes->isEmpty()){
+            return view('top');
+        }
+        // \Debugbar::info($prize);
         
         $rarities = Rarity::all();
         
@@ -57,7 +62,7 @@ class PlayController extends Controller
     {
         // 「１回引く」
         if(isset($request->one_shot)){
-            $this->playOneShot($request);
+            $this->playOneShot();
             
         // 「１０回引く」
         }elseif(isset($request->ten_shot)){
@@ -97,34 +102,87 @@ class PlayController extends Controller
             // $jackpotが空でない場合
             if($jackpot->isNotEmpty()){
                 $result_one_shot = $jackpot->random();
+            // 空の場合、全てのプライズから引く
+            }else{
+                $result_one_shot = $prizes->random();
             }
             
         }elseif($rand <= $gacha->hit_rate){
             if($hit->isNotEmpty()){
                 $result_one_shot = $hit->random();
+            }else{
+                $result_one_shot = $prizes->random();
             }
             
         }else{
             if($miss->isNotEmpty()){
                 $result_one_shot = $miss->random();
-                
-            // $missが空の場合はすべてのプライズからランダムに引く
             }else{
                 $result_one_shot = $prizes->random();
             }
-            
         }
-        // \Debugbar::info($result_one_shot);
+        \Debugbar::info($result_one_shot);
         
         $rarities = Rarity::all();
         
         return view('gacha_play.play', ['gacha' => $gacha, 'result_one_shot' => $result_one_shot, 'results_ten_shot' => $results_ten_shot, 'rarities' => $rarities]);
     }
+    
     // 「１０回引く」
-    public function playTenShot()
+    public function playTenShot(Request $request)
     {
-        return view('gacha_play.play');
+        $result_one_shot = null;
+        $results = null;
+        $gacha = Gacha::find($request->gacha_id);
+        
+        
+        // プライズを取り出して配列にする
+        $prizes = $gacha->prizes;
+        
+        $miss = $gacha->prizes->where('rarity_id', 1);
+        $hit = $gacha->prizes->where('rarity_id', 2);
+        $jackpot = $gacha->prizes->where('rarity_id', 3);
+        
+        // １０回繰り返す
+        for($i = 1; $i <= 10; $i++){
+            $rand = mt_rand(1, 100);
+        
+            // 大当たりの場合
+            if($rand <= $gacha->jackpot_rate){
+                // $jackpotが空でない場合
+                if($jackpot->isNotEmpty()){
+                    $results[] = $jackpot->random();
+                // 空の場合、全てのプライズから引く
+                }else{
+                    $results[] = $prizes->random();
+                }
+                
+            // 当たりの場合
+            }elseif($rand <= $gacha->hit_rate){
+                if($hit->isNotEmpty()){
+                    $results[] = $hit->random();
+                }else{
+                    $results[] = $prizes->random();
+                }
+                
+            // はずれの場合
+            }else{
+                if($miss->isNotEmpty()){
+                    $results[] = $miss->random();
+                }else{
+                    $results[] = $prizes->random();
+                }
+            }
+        }
+        // 配列$resultsを5個ずつ分割する
+        $results_ten_shot = array_chunk($results, 5);
+        // \Debugbar::info($results_ten_shot);
+        
+        $rarities = Rarity::all();
+        
+        return view('gacha_play.play', ['gacha' => $gacha, 'result_one_shot' => $result_one_shot, 'results_ten_shot' => $results_ten_shot, 'rarities' => $rarities]);
     }
+    
     
     public function viewSimulation()
     {
