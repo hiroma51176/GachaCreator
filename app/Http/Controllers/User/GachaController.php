@@ -107,8 +107,33 @@ class GachaController extends Controller
         return view('gacha_create.gacha.list');
     }
     
-    public function delete()
+    public function delete(Request $request)
     {
+        
+        $gachas_id = $request->gacha_id;
+        \Debugbar::info($gachas_id);
+        $delete_count = count($gachas_id);
+        
+        
+        // ガチャを削除する
+        for($i = 0; $i < $delete_count; $i++){
+            $gacha = Gacha::find($gachas_id[$i]);
+            $gacha->delete();
+        }
+        
+        
+        $cond_gacha_name = $request->cond_gacha_name;
+        if($cond_gacha_name != ""){
+            // 入力された値を検索 部分一致
+            $gachas = Gacha::where('user_id', Auth::id())->where('gacha_name', 'LIKE', "%{$cond_gacha_name}%")->get();
+        }else{
+            $gachas = Gacha::all();
+        }
+        $rarities = Rarity::all();
+        
+        return view('gacha_create.gacha.list', ['gachas' => $gachas, 'cond_gacha_name' => $cond_gacha_name, 'rarities' => $rarities]);
+        
+        
         return view('gacha_create.gacha.list'); 
     }
 }

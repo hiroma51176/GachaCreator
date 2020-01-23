@@ -39,7 +39,7 @@
                                         <td>{{ $gacha->gacha_description }}</td>
                                         <td>
                                             @if ($gacha->image_path)
-                                                <img src="{{ asset('storage/image/' . $gacha->image_path) }}"></img>
+                                                <img width="100px" height="100px" src="{{ asset('storage/image/' . $gacha->image_path) }}"></img>
                                             @endif
                                         </td>
                                         <td>
@@ -70,7 +70,7 @@
                             {{-- 使用金額：〇円 --}}
                             <p>{{ $result_one_shot->rarity->rarity_name }}の「{{ $result_one_shot->prize_name }}」が出ました！</p>
                             @if ($result_one_shot->image_path)
-                                <img src="{{ asset('storage/image/' . $result_one_shot->image_path) }}"></img>
+                                <img width="100px" height="100px" src="{{ asset('storage/image/' . $result_one_shot->image_path) }}"></img>
                             @endif
                         </div>
                     </div>
@@ -91,7 +91,7 @@
                                             <td>
                                                 <p>{{ $result->rarity->rarity_name }}の「{{ $result->prize_name }}」が出ました！</p>
                                                 @if($result->image_path)
-                                                    <p><img src="{{ asset('storage/image/' . $result->image_path) }}"></p>
+                                                    <p><img width="100px" height="100px" src="{{ asset('storage/image/' . $result->image_path) }}"></p>
                                                 @endif
                                             </td>
                                         @endforeach

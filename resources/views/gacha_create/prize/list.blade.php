@@ -55,12 +55,14 @@
                                         <tr>
                                             <td>{{ $prize->prize_name }}</td>
                                             <td>{{ $prize->rarity->rarity_name }}</td>
-                                            <td>画像を読み込みます
+                                            <td>
                                                 @if ($prize->image_path)
-                                                    <img src="{{ asset('storage/image/' . $prize->image_path) }}"></img> --}}
+                                                    <img width="100px" height="100px" src="{{ asset('storage/image/' . $prize->image_path) }}"></img>
                                                 @endif
                                             </td>
-                                            <td class="align-middle text-center"><input class="checkbox" type="checkbox" name="prize_id[]" value="{{ $prize->id }}"></td>
+                                            <td class="align-middle text-center">
+                                                <input id="delete-check" class="checkbox" type="checkbox" name="prize_id[]" value="{{ $prize->id }}" >
+                                            </td>
                                         </tr>
                                     @endforeach
                                 </tbody>
@@ -68,12 +70,15 @@
                         </div>
                         <div class="row">
                             <div class="col-md-4">
-                                {{-- aタグに,['id' => $gacha->id])を追加して値を渡す --}}
                                 <a href="{{ action('User\GachaController@index') }}" role="button" class="btn btn-primary">作成したガチャの確認</a>
                             </div>
                             <div class="col-md-4 ml-auto text-right">
                                 {{ csrf_field() }}
-                                <input type="submit" class="btn btn-danger" value="チェックしたプライズを削除">
+                                <input type="hidden" name="gacha_id" value="{{ $gacha_id }}">
+                                <input type="hidden" name="gacha_name" value="{{ $gacha_name }}">
+                                
+                                
+                                <input id="submit-btn" type="submit" class="btn btn-danger" value="チェックしたプライズを削除">
                             </div>
                         </div>
                     </form>

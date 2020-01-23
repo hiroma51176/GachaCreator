@@ -6,6 +6,9 @@
 
 require('./bootstrap');
 
+// チェックボックスの為、追加
+require('./sample');
+
 window.Vue = require('vue');
 
 /**

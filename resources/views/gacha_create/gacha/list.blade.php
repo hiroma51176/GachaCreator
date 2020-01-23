@@ -39,7 +39,7 @@
             <div class="row">
                 <div class="list col-md-12 mx-auto">
                     <form action="{{ action('User\GachaController@delete') }}" method="post">
-                        {{ csrf_field() }}
+                        
                         <div class="row">
                             <table class="table table-bordered table-success">
                                 <thead>
@@ -60,7 +60,7 @@
                                             <td>{{ str_limit($gacha->gacha_description, 50) }}</td>
                                             <td>
                                                 @if ($gacha->image_path)
-                                                    <img src="{{ asset('storage/image/' . $gacha->image_path) }}"></img>
+                                                    <img width="100px" height="100px" src="{{ asset('storage/image/' . $gacha->image_path) }}"></img>
                                                 @endif
                                             </td>
                                             <td>
@@ -79,7 +79,7 @@
                                                 @endif
                                             </td>
                                             <td class="align-middle text-center">
-                                                <input class="checkbox" type="checkbox" name="delete_gacha_id[]" value="{{ $gacha->id }}">
+                                                <input class="checkbox" type="checkbox" name="gacha_id[]" value="{{ $gacha->id }}">
                                             </td>
                                         </tr>
                                     @endforeach
@@ -88,6 +88,7 @@
                         </div>
                         <div class="row">
                             <div class="col-md-4 ml-auto text-right">
+                                {{ csrf_field() }}
                                 <input type="submit" name="delete" class="btn btn-danger" value="チェックしたガチャを削除">
                             </div>
                         </div>
