@@ -61,7 +61,7 @@
                                                 @endif
                                             </td>
                                             <td class="align-middle text-center">
-                                                <input id="delete-check" class="checkbox" type="checkbox" name="prize_id[]" value="{{ $prize->id }}" >
+                                                <input id="{{ $prize->id }}" class="checkbox" type="checkbox" name="prize_id[]" value="{{ $prize->id }}" >
                                             </td>
                                         </tr>
                                     @endforeach

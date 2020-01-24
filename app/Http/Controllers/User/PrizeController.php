@@ -96,26 +96,30 @@ class PrizeController extends Controller
         $gacha_id = $request->gacha_id;
         $gacha_name = $request->gacha_name;
         
-        $prizes_id = $request->prize_id;
-        
-        // $gacha_id = Prize::find($prizes_id[0])->gacha->id;
-        // $gacha_name = Prize::find($prizes_id[0])->gacha->gacha_name;
-        
-        $delete_count = count($prizes_id);
-        // \Debugbar::info($delete_count);
-        
-        // プライズを削除する
-        //for($i = 0; $i < $delete_count; $i++){
-            //$prize = Prize::find($prizes_id[$i]);
-            //$prize->delete();
-        //}
-        
         $cond_prize_name = null;
         if($cond_prize_name != ""){
             // 入力された値を検索 部分一致
             $prizes = Prize::where('gacha_id', $gacha_id)->where('prize_name', 'LIKE', "%{$cond_prize_name}%")->get();
         }else{
             $prizes = Prize::where('gacha_id', $gacha_id)->get();
+        }
+        
+        
+        // 削除機能ここから
+        $prizes_id = $request->prize_id;
+        // \Debugbar::info($prizes_id);
+        
+        // 何もチェックせずにボタンが押された場合の処理
+        if($prizes_id == null){
+            return view('gacha_create.prize.list', ['gacha_id' => $gacha_id, 'gacha_name' => $gacha_name, 'cond_prize_name' => $cond_prize_name, 'prizes' => $prizes]);
+        }
+        
+        $delete_count = count($prizes_id);
+        
+        // テーブルからプライズを削除する
+        for($i = 0; $i < $delete_count; $i++){
+            $prize = Prize::find($prizes_id[$i]);
+            $prize->delete();
         }
         
         return view('gacha_create.prize.list', ['gacha_id' => $gacha_id, 'gacha_name' => $gacha_name, 'cond_prize_name' => $cond_prize_name, 'prizes' => $prizes]);

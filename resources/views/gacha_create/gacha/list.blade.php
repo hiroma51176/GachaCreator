@@ -56,7 +56,7 @@
                                 <tbody>
                                     @foreach($gachas as $gacha)
                                         <tr>
-                                            <td>{{ $gacha->gacha_name }}</td>
+                                            <td><a href="{{ action('User\GachaController@edit', ['gacha_id' => $gacha->id, 'gacha_name' => $gacha->gacha_name]) }}">{{ $gacha->gacha_name }}</a></td>
                                             <td>{{ str_limit($gacha->gacha_description, 50) }}</td>
                                             <td>
                                                 @if ($gacha->image_path)
@@ -79,7 +79,7 @@
                                                 @endif
                                             </td>
                                             <td class="align-middle text-center">
-                                                <input class="checkbox" type="checkbox" name="gacha_id[]" value="{{ $gacha->id }}">
+                                                <input id="{{ $gacha->id }}" class="checkbox" type="checkbox" name="gacha_id[]" value="{{ $gacha->id }}">
                                             </td>
                                         </tr>
                                     @endforeach
@@ -89,7 +89,7 @@
                         <div class="row">
                             <div class="col-md-4 ml-auto text-right">
                                 {{ csrf_field() }}
-                                <input type="submit" name="delete" class="btn btn-danger" value="チェックしたガチャを削除">
+                                <input id="submit-btn" type="submit" name="delete" class="btn btn-danger" value="チェックしたガチャを削除">
                             </div>
                         </div>
                     </form>

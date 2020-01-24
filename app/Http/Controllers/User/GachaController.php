@@ -5,6 +5,7 @@ namespace App\Http\Controllers\User;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\CreateGacha;
+use App\Http\Requests\EditGacha;
 use App\Gacha;
 use Illuminate\Support\Facades\Auth;
 use App\Rarity;
@@ -19,7 +20,7 @@ class GachaController extends Controller
             // 入力された値を検索 部分一致
             $gachas = Gacha::where('user_id', Auth::id())->where('gacha_name', 'LIKE', "%{$cond_gacha_name}%")->get();
         }else{
-            $gachas = Gacha::all();
+            $gachas = Gacha::where('user_id', Auth::id())->get();
         }
         $rarities = Rarity::all();
         
@@ -97,43 +98,83 @@ class GachaController extends Controller
     }
     
     
-    public function edit()
+    public function edit(Request $request)
     {
-        return view('gacha_create.gacha.edit');
+        $gacha = Gacha::find($request->gacha_id);
+        
+        if(empty($gacha)){
+            return('top');
+        }
+        
+        return view('gacha_create.gacha.edit', ['gacha' => $gacha]);
     }
     
-    public function update()
+    public function update(EditGacha $request)
     {
-        return view('gacha_create.gacha.list');
+        // バリデーションをかける
+        $validated = $request->validated();
+        
+        $gacha = Gacha::find($request->id);
+        \Debugbar::info($gacha);
+        
+        $form = $request->all();
+        
+        if(isset($form['image'])){
+            $path = $request->file('image')->store('public/image');
+            $gacha->image_path = basename($path);
+            unset($form['image']);
+        }elseif(isset($request->remove)){
+            $gacha->image_path =null;
+            unset($form['image']);
+        }
+        unset($form['_token']);
+        
+        $gacha->fill($form)->save();
+        
+        // リストに戻るために必要なこと
+        $cond_gacha_name = $request->cond_gacha_name;
+        if($cond_gacha_name != ""){
+            // 入力された値を検索 部分一致
+            $gachas = Gacha::where('user_id', Auth::id())->where('gacha_name', 'LIKE', "%{$cond_gacha_name}%")->get();
+        }else{
+            $gachas = Gacha::where('user_id', Auth::id())->get();
+        }
+        $rarities = Rarity::all();
+        
+        return view('gacha_create.gacha.list', ['gachas' => $gachas, 'cond_gacha_name' => $cond_gacha_name, 'rarities' => $rarities]);
+        
     }
     
     public function delete(Request $request)
     {
-        
-        $gachas_id = $request->gacha_id;
-        \Debugbar::info($gachas_id);
-        $delete_count = count($gachas_id);
-        
-        
-        // ガチャを削除する
-        for($i = 0; $i < $delete_count; $i++){
-            $gacha = Gacha::find($gachas_id[$i]);
-            $gacha->delete();
-        }
-        
         
         $cond_gacha_name = $request->cond_gacha_name;
         if($cond_gacha_name != ""){
             // 入力された値を検索 部分一致
             $gachas = Gacha::where('user_id', Auth::id())->where('gacha_name', 'LIKE', "%{$cond_gacha_name}%")->get();
         }else{
-            $gachas = Gacha::all();
+            $gachas = Gacha::where('user_id', Auth::id())->get();
         }
         $rarities = Rarity::all();
         
+        
+        // 削除機能ここから
+        $gachas_id = $request->gacha_id;
+        // \Debugbar::info($gachas_id);
+        
+        //  何もチェックせずにボタンが押された場合の処理
+        if($gachas_id == null){
+            return view('gacha_create.gacha.list', ['gachas' => $gachas, 'cond_gacha_name' => $cond_gacha_name, 'rarities' => $rarities]);
+        }
+        
+        $delete_count = count($gachas_id);
+        
+        // テーブルからガチャを削除する
+        for($i = 0; $i < $delete_count; $i++){
+            $gacha = Gacha::find($gachas_id[$i]);
+            $gacha->delete();
+        }
+        
         return view('gacha_create.gacha.list', ['gachas' => $gachas, 'cond_gacha_name' => $cond_gacha_name, 'rarities' => $rarities]);
-        
-        
-        return view('gacha_create.gacha.list'); 
     }
 }
