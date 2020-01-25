@@ -20,7 +20,6 @@ Route::group(['prefix' => 'gacha_play'], function(){
     
     Route::get('list', 'PlayController@index');
     Route::get('play', 'PlayController@viewPlay');
-    Route::post('play/result','PlayController@runPlay');
     Route::get('play/result_OneShot', 'PlayController@playOneShot');
     Route::get('play/result_TenShot', 'PlayController@playTenShot');
 });
@@ -37,7 +36,6 @@ Route::post('simulation', 'PlayController@runSimulation');
 Route::group(['prefix' => 'gacha_create'], function(){
     // ガチャ作成関係
     Route::get('gacha/list', 'User\GachaController@index');
-    Route::post('gacha/list', 'User\GachaController@brunch');
     
     Route::get('gacha/create', 'User\GachaController@add');
     Route::post('gacha/create', 'User\GachaController@create');

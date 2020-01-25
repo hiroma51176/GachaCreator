@@ -81,28 +81,60 @@ class PrizeController extends Controller
         return view('gacha_create.prize.list');
     }
     
-    public function edit()
+    public function edit(Request $request)
     {
-        return view('gacha_create.prize.edit');
+        $prize= Prize::find($request->prize_id);
+        \Debugbar::info($prize);
+        
+        if(empty($prize)){
+            return('top');
+        }
+        
+        $gacha_id = $request->gacha_id;
+        $gacha_name = $request->gacha_name;
+        $rarities = Rarity::all();
+        
+        return view('gacha_create.prize.edit', ['prize' => $prize, 'gacha_id' => $gacha_id, 'gacha_name' => $gacha_name, 'rarities' => $rarities]);
     }
     
-    public function update()
+    public function update(Request $request)
     {
-        return view('gacha_create.prize.list');
+        // バリデーションをかける
+        $this->validate($request, Prize::$rules);
+        
+        $prize = Prize::find($request->id);
+        $form = $request->all();
+        
+        if(isset($form['image'])){
+            $path = $request->file('image')->store('public/image');
+            $prize->image_path = basename($path);
+            unset($form['image']);
+        }elseif(isset($request->remove)){
+            $prize->image_path =null;
+            unset($form['image']);
+        }
+        unset($form['_token']);
+        unset($form['gacha_id']);
+        unset($form['gacha_name']);
+        
+        $prize->fill($form)->save();
+        
+        // プライズリストに戻るために必要なこと
+        $gacha_id = $request->gacha_id;
+        $gacha_name = $request->gacha_name;
+        $cond_prize_name = "";
+        $prizes = Prize::where('gacha_id', $request->gacha_id)->get();
+        
+        return view('gacha_create.prize.list', ['prizes' => $prizes, 'cond_prize_name' => $cond_prize_name, 'prize' => $prize, 'gacha_id' => $gacha_id, 'gacha_name' => $gacha_name]);
     }
     
     public function delete(Request $request)
     {
+        // プライズリストに戻るために必要なこと
         $gacha_id = $request->gacha_id;
         $gacha_name = $request->gacha_name;
-        
-        $cond_prize_name = null;
-        if($cond_prize_name != ""){
-            // 入力された値を検索 部分一致
-            $prizes = Prize::where('gacha_id', $gacha_id)->where('prize_name', 'LIKE', "%{$cond_prize_name}%")->get();
-        }else{
-            $prizes = Prize::where('gacha_id', $gacha_id)->get();
-        }
+        $cond_prize_name = "";
+        $prizes = Prize::where('gacha_id', $gacha_id)->get();
         
         
         // 削除機能ここから

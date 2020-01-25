@@ -51,30 +51,9 @@ class PlayController extends Controller
         
         $rarities = Rarity::all();
         
-        $result_one_shot = null;
-        $results_ten_shot = null;
-        
-        return view('gacha_play.play', ['gacha' => $gacha, 'rarities' => $rarities, 'result_one_shot' => $result_one_shot, 'results_ten_shot' => $results_ten_shot]);
+        return view('gacha_play.play', ['gacha' => $gacha, 'rarities' => $rarities]);
     }
     
-    // 「１回引く」と「１０回引く」で処理を分岐させる
-    public function runPlay(Request $request)
-    {
-        // 「１回引く」
-        if(isset($request->one_shot)){
-            $this->playOneShot();
-            
-        // 「１０回引く」
-        }elseif(isset($request->ten_shot)){
-            $this->playTenShot();
-            
-        // 「それ以外」
-        }else{
-            return view('gacha_play.list');
-        }
-        
-        return view('gacha_play.list');
-    }
     
     // 「１回引く」
     public function playOneShot(Request $request)
@@ -121,11 +100,13 @@ class PlayController extends Controller
                 $result_one_shot = $prizes->random();
             }
         }
-        \Debugbar::info($result_one_shot);
+        $gacha->total_play_count += 1;
+        $gacha->save();
+        // \Debugbar::info($result_one_shot);
         
-        $rarities = Rarity::all();
+        // $rarities = Rarity::all();
         
-        return view('gacha_play.play', ['gacha' => $gacha, 'result_one_shot' => $result_one_shot, 'results_ten_shot' => $results_ten_shot, 'rarities' => $rarities]);
+        return view('gacha_play.result', ['gacha' => $gacha, 'result_one_shot' => $result_one_shot, 'results_ten_shot' => $results_ten_shot]);
     }
     
     // 「１０回引く」
@@ -174,13 +155,13 @@ class PlayController extends Controller
                 }
             }
         }
+        $gacha->total_play_count += 10;
+        $gacha->save();
         // 配列$resultsを5個ずつ分割する
-        $results_ten_shot = array_chunk($results, 5);
+        $results_ten_shot = array_chunk($results, 2);
         // \Debugbar::info($results_ten_shot);
         
-        $rarities = Rarity::all();
-        
-        return view('gacha_play.play', ['gacha' => $gacha, 'result_one_shot' => $result_one_shot, 'results_ten_shot' => $results_ten_shot, 'rarities' => $rarities]);
+        return view('gacha_play.result', ['gacha' => $gacha, 'result_one_shot' => $result_one_shot, 'results_ten_shot' => $results_ten_shot]);
     }
     
     

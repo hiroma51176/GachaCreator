@@ -115,7 +115,7 @@ class GachaController extends Controller
         $validated = $request->validated();
         
         $gacha = Gacha::find($request->id);
-        \Debugbar::info($gacha);
+        // \Debugbar::info($gacha);
         
         $form = $request->all();
         
@@ -131,14 +131,9 @@ class GachaController extends Controller
         
         $gacha->fill($form)->save();
         
-        // リストに戻るために必要なこと
-        $cond_gacha_name = $request->cond_gacha_name;
-        if($cond_gacha_name != ""){
-            // 入力された値を検索 部分一致
-            $gachas = Gacha::where('user_id', Auth::id())->where('gacha_name', 'LIKE', "%{$cond_gacha_name}%")->get();
-        }else{
-            $gachas = Gacha::where('user_id', Auth::id())->get();
-        }
+        // ガチャリストに戻るために必要なこと
+        $cond_gacha_name = "";
+        $gachas = Gacha::where('user_id', Auth::id())->get();
         $rarities = Rarity::all();
         
         return view('gacha_create.gacha.list', ['gachas' => $gachas, 'cond_gacha_name' => $cond_gacha_name, 'rarities' => $rarities]);
@@ -147,14 +142,9 @@ class GachaController extends Controller
     
     public function delete(Request $request)
     {
-        
-        $cond_gacha_name = $request->cond_gacha_name;
-        if($cond_gacha_name != ""){
-            // 入力された値を検索 部分一致
-            $gachas = Gacha::where('user_id', Auth::id())->where('gacha_name', 'LIKE', "%{$cond_gacha_name}%")->get();
-        }else{
-            $gachas = Gacha::where('user_id', Auth::id())->get();
-        }
+        // ガチャリストに戻るために必要なこと
+        $cond_gacha_name = "";
+        $gachas = Gacha::where('user_id', Auth::id())->get();
         $rarities = Rarity::all();
         
         

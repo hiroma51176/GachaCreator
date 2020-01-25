@@ -22,4 +22,9 @@ class Prize extends Model
     {
         return $this->belongsTo('App\Rarity');
     }
+    
+    public function gacha_histories()
+    {
+        return $this->hasmany('App\GachaHistory');
+    }
 }

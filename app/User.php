@@ -41,4 +41,9 @@ class User extends Authenticatable
     {
         return $this->hasmany('App\Gacha');
     }
+    
+    public function gacha_histories()
+    {
+        return $this->hasmany('App\GachaHistory');
+    }
 }
