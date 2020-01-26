@@ -28,7 +28,7 @@ class CreateGacha extends FormRequest
             'jackpot_rate' => 'required | max: 100',
             'hit_rate' => 'required | max: 100',
             'miss_rate' => 'required | max: 100',
-            'play_price' => 'max: 1000',
+            'play_price' => 'required | max: 1000',
             'templete' => 'required',
         ];
     }

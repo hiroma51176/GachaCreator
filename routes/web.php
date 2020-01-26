@@ -55,6 +55,8 @@ Route::group(['prefix' => 'gacha_create'], function(){
     Route::post('prize/edit', 'User\PrizeController@update');
     
     Route::post('prize/delete', 'User\PrizeController@delete');
+    
+    Route::get('history', 'User\GachaController@history');
 });
 
 Route::get('/', 'PlayController@top');

@@ -46,7 +46,7 @@
                                     <tr class="text-center">
                                         <th width="15%">ガチャ名</th>
                                         <th width="25%">説明</th>
-                                        <th width="10%">金額</th>
+                                        <th width="10%">設定金額</th>
                                         <th width="10%">画像</th>
                                         <th width="15%">排出率とプライズ内訳</th>
                                         <th width="10%">回数</th>
@@ -60,7 +60,7 @@
                                         <tr>
                                             <td><a href="{{ action('User\GachaController@edit', ['gacha_id' => $gacha->id, 'gacha_name' => $gacha->gacha_name]) }}">{{ $gacha->gacha_name }}</a></td>
                                             <td>{{ $gacha->gacha_description }}</td>
-                                            <td>{{ $gacha->play_price }}</td>
+                                            <td>{{ $gacha->play_price }}円</td>
                                             <td>
                                                 @if ($gacha->image_path)
                                                     <img width="100px" height="100px" src="{{ asset('storage/image/' . $gacha->image_path) }}"></img>
@@ -73,7 +73,7 @@
                                                 <a href="{{ action('User\PrizeController@index', ['gacha_id' => $gacha->id, 'gacha_name' => $gacha->gacha_name]) }}">プライズを確認</a>
                                                
                                             </td>
-                                            <td>{{ $gacha->total_play_count }}</td>
+                                            <td>{{ $gacha->total_play_count }}回</td>
                                             <td class="align-middle">
                                                 {{-- プライズがない場合はガチャを引くボタンを押しても遷移しないようにする --}}
                                                 @if ($gacha->prizes->count() != 0)

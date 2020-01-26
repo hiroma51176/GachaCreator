@@ -46,7 +46,7 @@
                                     <th width="12%">ガチャ名</th>
                                     <th width="12%">作成者</th>
                                     <th width="25%">説明</th>
-                                    <th width="8%">金額</th>
+                                    <th width="8%">設定金額</th>
                                     <th width="10%">画像</th>
                                     <th width="15%">プライズ内訳</th>
                                     <th width="8%">回数</th>
@@ -57,9 +57,9 @@
                                 @foreach($gachas as $gacha)
                                     <tr>
                                         <td>{{ $gacha->gacha_name }}</td>
-                                        <td>{{ str_limit($gacha->user->name, 50) }}</td>
-                                        <td>{{ str_limit($gacha->gacha_description, 50) }}</td>
-                                        <td>{{ $gacha->play_price }}</td>
+                                        <td>{{ $gacha->user->name }}</td>
+                                        <td>{{ $gacha->gacha_description }}</td>
+                                        <td>{{ $gacha->play_price }}円</td>
                                         <td>
                                             @if ($gacha->image_path)
                                                 <img width="100px" height="100px" src="{{ asset('storage/image/' . $gacha->image_path) }}"></img>
@@ -70,7 +70,7 @@
                                             <p class="mb-0">{{ $rarities->find(2)->rarity_name }}：{{ $gacha->hit_rate . '％' }}、 {{ $gacha->prizes->where('rarity_id', '2')->count() . '種'}}</p>
                                             <p class="mb-0">{{ $rarities->find(3)->rarity_name }}：{{ $gacha->jackpot_rate . '％' }}、 {{ $gacha->prizes->where('rarity_id', '3')->count() . '種'}}</p>
                                         </td>
-                                        <td>{{ $gacha->total_play_count }}</td>
+                                        <td>{{ $gacha->total_play_count }}回</td>
                                         <td class="align-middle">
                                             {{-- プライズがない場合はガチャを引くボタンを押しても遷移しないようにする --}}
                                             @if ($gacha->prizes->count() != 0)

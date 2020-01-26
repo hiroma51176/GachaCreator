@@ -146,7 +146,7 @@ return [
     */
 
     'attributes' => [
-        'play_price' => '１回あたりの設定金額',
+        'play_price' => '「１回引く」の金額設定',
         'rate' => '排出率',
         'max_play_count' => '最大試行回数',
         'gacha_name' => 'ガチャの名前',

@@ -60,7 +60,13 @@
                         <p>著作権を侵害するような画像は控えてください。過度に性的、または暴力的な表現を含む場合、削除する場合があります。ご了承ください。</p>
                         </div>
                         
-                        
+                        <div class="form-group row">
+                            <label class="col-md-3">「１回引く」の金額設定（必須）</label>
+                            <div class="col-md-2">
+                                <input type="text" class="form-control" name="play_price" value="{{ $gacha->play_price }}">
+                            </div>
+                            <label class="col-md-3">円</label>
+                        </div>
                         
                         <h3>ガチャの排出率</h3>
                         <p>大当たり、当たり、はずれで合計１００になるように、半角で整数を入力してください。</p>

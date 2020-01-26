@@ -78,9 +78,10 @@
                                 <div class="dropdown-menu" aria-labeledby="navbarDropdown">
                                     <a class="dropdown-item" href="{{ action('PlayController@index') }}">ガチャを引く</a>
                                     <a class="dropdown-item" href="{{ action('User\GachaController@add') }}">ガチャを作成する</a>
-                                    <a class="dropdown-item" href="{{ action('User\GachaController@index') }}">作成したガチャを確認</a>
+                                    <a class="dropdown-item" href="{{ action('User\GachaController@index') }}">作成したガチャを確認する</a>
                                     <a class="dropdown-item" href="{{ action('PlayController@viewSimulation') }}">シミュレーションを行う</a>
-                                    {{-- いずれ追加<a class="dropdown-item" href="{{ action('PlayController@viewCalculation') }}">期待値の計算を行う</a> --}}
+                                    <a class="dropdown-item" href="{{ action('User\GachaController@history') }}">ガチャ履歴を確認する</a>
+                                    {{-- いずれ追加したい<a class="dropdown-item" href="{{ action('PlayController@viewCalculation') }}">期待値の計算を行う</a> --}}
                                 </div>
                             </li>
                         </ul>

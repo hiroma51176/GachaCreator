@@ -6,6 +6,8 @@ use Illuminate\Http\Request;
 use App\Gacha;
 use App\Prize;
 use App\Rarity;
+use App\GachaHistory;
+use Illuminate\Support\Facades\Auth;
 
 class PlayController extends Controller
 {
@@ -102,9 +104,20 @@ class PlayController extends Controller
         }
         $gacha->total_play_count += 1;
         $gacha->save();
+        
+        // ログインしているならガチャ結果をgacha_histories tableへ保存
+        if(Auth::check()){
+            $gacha_history = new GachaHistory;
+            $gacha_history->user_id = Auth::id();
+            $gacha_history->gacha_id = $gacha->id;
+            $gacha_history->prize_id = $result_one_shot->id;
+            $gacha_history->play_count += 1;
+            $gacha_history->play_price += $gacha->play_price;
+            $gacha_history->save();
+        }
+        
         // \Debugbar::info($result_one_shot);
         
-        // $rarities = Rarity::all();
         
         return view('gacha_play.result', ['gacha' => $gacha, 'result_one_shot' => $result_one_shot, 'results_ten_shot' => $results_ten_shot]);
     }
@@ -132,29 +145,43 @@ class PlayController extends Controller
             if($rand <= $gacha->jackpot_rate){
                 // $jackpotが空でない場合
                 if($jackpot->isNotEmpty()){
-                    $results[] = $jackpot->random();
+                    $result = $jackpot->random();
                 // 空の場合、全てのプライズから引く
                 }else{
-                    $results[] = $prizes->random();
+                    $result = $prizes->random();
                 }
                 
             // 当たりの場合
             }elseif($rand <= $gacha->hit_rate){
                 if($hit->isNotEmpty()){
-                    $results[] = $hit->random();
+                    $result = $hit->random();
                 }else{
-                    $results[] = $prizes->random();
+                    $result = $prizes->random();
                 }
                 
             // はずれの場合
             }else{
                 if($miss->isNotEmpty()){
-                    $results[] = $miss->random();
+                    $result = $miss->random();
                 }else{
-                    $results[] = $prizes->random();
+                    $result = $prizes->random();
                 }
             }
+            // ログインしているならガチャ結果をgacha_histories tableへ保存
+            if(Auth::check()){
+                $gacha_history = new GachaHistory;
+                $gacha_history->user_id = Auth::id();
+                $gacha_history->gacha_id = $gacha->id;
+                $gacha_history->prize_id = $result->id;
+                $gacha_history->play_count += 1;
+                $gacha_history->play_price += $gacha->play_price;
+                $gacha_history->save();
+            }
+            
+            // 履歴に入れるためにここで結果を配列に入れる
+            $results[] = $result;
         }
+        // ガチャを引かれた回数を加算
         $gacha->total_play_count += 10;
         $gacha->save();
         // 配列$resultsを5個ずつ分割する

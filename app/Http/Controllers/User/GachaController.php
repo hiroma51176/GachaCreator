@@ -9,6 +9,7 @@ use App\Http\Requests\EditGacha;
 use App\Gacha;
 use Illuminate\Support\Facades\Auth;
 use App\Rarity;
+use App\GachaHistory;
 
 class GachaController extends Controller
 {
@@ -27,29 +28,6 @@ class GachaController extends Controller
         return view('gacha_create.gacha.list', ['gachas' => $gachas, 'cond_gacha_name' => $cond_gacha_name, 'rarities' => $rarities]);
     }
     
-    public function brunch(Request $request)
-    {
-        // プライズリストへ
-        if(isset($request->prize)){
-            
-            // $request->gacha_idと紐づくPrizeモデルのデータを検索してデータを配列に入れてviewに渡す処理を書く
-            
-            return view('gacha_create.prize.list');
-            
-        // ガチャを引くページへ
-        }elseif(isset($request->play)){
-            
-            // $request->gacha_idでGachaモデルを検索してそれの各パラメータを変数に入れてviewに渡す処理を書く
-            
-            return view('gacha_play.play');
-            
-        // ガチャを削除する場合
-        }elseif(isset($request->delete)){
-            // deleteアクションへ移動
-            $this->delete();
-        }
-        return view('gacha_create.gacha.list');
-    }
     
     public function add()
     {
@@ -166,5 +144,14 @@ class GachaController extends Controller
         }
         
         return view('gacha_create.gacha.list', ['gachas' => $gachas, 'cond_gacha_name' => $cond_gacha_name, 'rarities' => $rarities]);
+    }
+    
+    public function history()
+    {
+        $gacha_histories = GachaHistory::where('user_id', Auth::id())->latest()->limit(10)->get();
+        
+        $price_used = GachaHistory::where('user_id', Auth::id())->select('play_price')->sum('play_price');
+        \Debugbar::info($price_used);
+        return view('history', ['gacha_histories' => $gacha_histories, 'price_used' => $price_used]);
     }
 }
