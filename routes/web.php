@@ -33,7 +33,7 @@ Route::post('simulation', 'PlayController@runSimulation');
 // Route::post('calculation', 'PlayController@runCalculation');
 
 // まとめて'middleware' => 'auth' にする
-Route::group(['prefix' => 'gacha_create'], function(){
+Route::group(['prefix' => 'gacha_create', 'middleware' => 'auth'], function(){
     // ガチャ作成関係
     Route::get('gacha/list', 'User\GachaController@index');
     
@@ -64,10 +64,15 @@ Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
 
-Route::group(['prefix' => 'admin'], function(){
+Route::group(['prefix' => 'admin', 'middleware' => 'auth'], function(){
     // レアリティ関係
     Route::get('rarity/list', 'Admin\RarityController@index');
     Route::get('rarity/create', 'Admin\RarityController@add');
     Route::post('rarity/create', 'Admin\RarityController@create');
+    
+    // テンプレート関係
+    Route::get('templete/list', 'Admin\TempleteController@index');
+    Route::get('templete/create', 'Admin\TempleteController@add');
+    Route::post('templete/create', 'Admin\TempleteController@create');
 });
 

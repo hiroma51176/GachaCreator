@@ -10,6 +10,8 @@ use App\Gacha;
 use Illuminate\Support\Facades\Auth;
 use App\Rarity;
 use App\GachaHistory;
+use App\Templete;
+use App\Prize;
 
 class GachaController extends Controller
 {
@@ -31,7 +33,21 @@ class GachaController extends Controller
     
     public function add()
     {
-        return view('gacha_create.gacha.create');
+        $gacha_templetes = null;
+        $gachas = Gacha::where('user_id', Auth::id())->get();
+        
+        if($gachas != null){
+            foreach($gachas as $gacha){
+                $prizes = $gacha->prizes;
+                // \Debugbar::info($prizes);
+                if($prizes->isNotEmpty()){
+                    $gacha_templetes[] = $gacha;
+                }
+            }
+        }
+        
+        
+        return view('gacha_create.gacha.create', ['gachas' => $gacha_templetes]);
     }
     
     public function create(CreateGacha $request)
@@ -63,16 +79,53 @@ class GachaController extends Controller
         
         // テンプレートを使用しない場合はプライズ作成画面へ遷移
         if($request->templete == 0){
-            return view('gacha_create.prize.create', ['gacha_id' => $gacha_data['id'], 'gacha_name' => $gacha_data['gacha_name']]);
+            return view('gacha_create.prize.create', ['gacha_id' => $gacha_data->id, 'gacha_name' => $gacha_data->gacha_name]);
             
         // 使用する場合はテンプレートの内容をコピーしてガチャリストへ遷移
-        }elseif($request->templete == 1){
-            
+        }elseif($request->templete == -1){
             // テンプレートを呼び出してコピーする処理を書く
-            return view('gacha_create.gacha.list');
+            $templetes = Templete::all();
+            
+            // テンプレートのプライズをコピーする
+            foreach($templetes as $templete){
+                $prize = new Prize;
+                $prize->gacha_id = $gacha_data->id;
+                $prize->rarity_id = $templete->rarity_id;
+                $prize->prize_name = $templete->prize_name;
+                $prize->save();
+            }
+            
+            // ガチャリストに戻るために必要なこと
+            $cond_gacha_name = "";
+            $gachas = Gacha::where('user_id', Auth::id())->get();
+            $rarities = Rarity::all();
+            
+            return view('gacha_create.gacha.list', ['gachas' => $gachas, 'cond_gacha_name' => $cond_gacha_name, 'rarities' => $rarities]);
+            
+        }else{
+            // テンプレートとして選んだガチャのプライズを取り出す
+            $templete_gacha = Gacha::find($request->templete);
+            $templete_prizes = $templete_gacha->prizes;
+            \Debugbar::info($templete_prizes);
+            
+            // コピーする
+            foreach($templete_prizes as $templete_prize){
+                $prize = new Prize;
+                $prize->gacha_id = $gacha_data->id;
+                $prize->rarity_id = $templete_prize->rarity_id;
+                $prize->prize_name = $templete_prize->prize_name;
+                $prize->save();
+            }
+            
+            // ガチャリストに戻るために必要なこと
+            $cond_gacha_name = "";
+            $gachas = Gacha::where('user_id', Auth::id())->get();
+            $rarities = Rarity::all();
+            
+            return view('gacha_create.gacha.list', ['gachas' => $gachas, 'cond_gacha_name' => $cond_gacha_name, 'rarities' => $rarities]);
         }
         
-        return view('gacha_create.gacha.list');
+        return view('top');
     }
     
     
@@ -93,7 +146,7 @@ class GachaController extends Controller
         $validated = $request->validated();
         
         $gacha = Gacha::find($request->id);
-        // \Debugbar::info($gacha);
+        
         
         $form = $request->all();
         
@@ -151,7 +204,7 @@ class GachaController extends Controller
         $gacha_histories = GachaHistory::where('user_id', Auth::id())->latest()->limit(10)->get();
         
         $price_used = GachaHistory::where('user_id', Auth::id())->select('play_price')->sum('play_price');
-        \Debugbar::info($price_used);
+        // \Debugbar::info($price_used);
         return view('history', ['gacha_histories' => $gacha_histories, 'price_used' => $price_used]);
     }
 }

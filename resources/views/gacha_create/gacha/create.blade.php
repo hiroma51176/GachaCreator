@@ -88,9 +88,13 @@
                                 <select name="templete">
                                     <option value="">選択してください</option>
                                     <option value="0">使用しない</option>
-                                    {{-- いずれ追加<option value="1">テンプレートを使用する</option> --}}
+                                    <option value="-1">テンプレートを使用する</option>
                                     {{-- いずれユーザーが作成したガチャを使えるようにしたい --}}
-                                    {{-- いずれ追加 <option value="">作成済の〇〇を使用する</option> --}}
+                                    @if ($gachas != null)
+                                        @foreach ($gachas as $gacha)
+                                            <option value="{{ $gacha->id }}">{{ $gacha->gacha_name }}</option>
+                                        @endforeach
+                                    @endif
                                 </select>
                             </div>
                         </div>

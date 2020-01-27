@@ -16,4 +16,9 @@ class Rarity extends Model
     {
         return $this->hasmany('App\Prize');
     }
+    
+    public function templetes()
+    {
+        return $this->hasmany('App\Templete');
+    }
 }
