@@ -49605,6 +49605,7 @@ __webpack_require__.r(__webpack_exports__);
 /*! no static exports found */
 /***/ (function(module, exports) {
 
+// リストでチェックボックスにチェックした場合のみ削除ボタンを押せるようになる
 $(function () {
   deleteCheck(); //$("*[name=prize_id]").change(function(){
 
@@ -49620,7 +49621,18 @@ function deleteCheck() {
   } else {
     $('#submit-btn').prop('disabled', true);
   }
-}
+} // ガチャの作成画面で、「作成したガチャのプライズをコピーする」を選択した場合のみプルダウンを使えるようにする
+
+
+$(function () {
+  $('[name="templete"]:radio').change(function () {
+    if ($('#created').prop('checked')) {
+      $('#created_select').prop('disabled', false);
+    } else {
+      $('#created_select').prop('disabled', true);
+    }
+  });
+});
 
 /***/ }),
 

@@ -41,11 +41,11 @@
                                 <input type="file" class="form-control-file" name="image">
                             </div>
                         </div>
-                        <div class="col-md-9 ml-auto mb-5">
+                        <div class="col-md-9 ml-auto mb-3">
                         <p>著作権を侵害するような画像は控えてください。過度に性的、または暴力的な表現を含む場合、削除する場合があります。ご了承ください。</p>
                         </div>
                         
-                        <div class="form-group row">
+                        <div class="form-group row mb-5">
                             <label class="col-md-3">「１回引く」の金額設定（必須）</label>
                             <div class="col-md-2">
                                 <input type="text" class="form-control" name="play_price" value="{{ old('play_price') }}">
@@ -80,15 +80,16 @@
                         </div>
                         
                         <h3 class=" mt-5">ガチャのプライズ</h3>
-                        <p class="mb-0">テンプレートを使用するかどうか選択してください。</p>
+                        <p class="mb-1">テンプレートを使用するかどうか選択してください。また、自分が作成したガチャのプライズをコピーすることもできます。</p>
                         <p>使用しない場合は、プライズの新規作成に移ります。</p>
                         <div class="form-group row mb-5">
                             <label class="col-md-3">テンプレート使用について（必須）</label>
                             <div class="col-md-9">
-                                <select name="templete">
+                                <p><input class="mr-2" type="radio" name="templete" value="0">使用しない</p>
+                                <p><input class="mr-2" type="radio" name="templete" value="-1">テンプレートを使用する</p>
+                                <input class="mr-2" type="radio" id="created" name="templete" value="">作成したガチャのプライズをコピーする
+                                <select class="mx-2 px-2" id="created_select" name="templete" disabled>
                                     <option value="">選択してください</option>
-                                    <option value="0">使用しない</option>
-                                    <option value="-1">テンプレートを使用する</option>
                                     {{-- いずれユーザーが作成したガチャを使えるようにしたい --}}
                                     @if ($gachas != null)
                                         @foreach ($gachas as $gacha)
@@ -98,6 +99,7 @@
                                 </select>
                             </div>
                         </div>
+                        
                     
                         {{ csrf_field() }}
                         <input type="submit" class="btn-lg btn-primary w-50" value="ガチャを作成する">

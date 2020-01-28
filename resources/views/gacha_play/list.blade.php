@@ -40,7 +40,7 @@
             <div class="row">
                 <div class="list col-md-12 mx-auto">
                     <div class="row">
-                        <table class="table table-bordered table-success">
+                        <table class="table table-bordered bg-white">
                             <thead>
                                 <tr class="text-center">
                                     <th width="12%">ガチャ名</th>
@@ -86,6 +86,11 @@
                     </div>
                 </div>
             </div>
+            
+            <div class="d-flex justify-content-center">
+                {{ $gachas->links() }}
+            </div>
+            
         </div>
     </div>
 @endsection

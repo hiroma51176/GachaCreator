@@ -41,7 +41,7 @@
                 <div class="list col-md-12 mx-auto">
                     <form action="{{ action('User\PrizeController@delete') }}" method="post">
                         <div class="row">
-                            <table class="table table-bordered table-success">
+                            <table class="table table-bordered bg-white">
                                 <thead>
                                     <tr class="text-center">
                                         <th width="30%">プライズ名</th>
@@ -84,6 +84,11 @@
                     </form>
                 </div>
             </div>
+            
+            <div class="d-flex justify-content-center">
+                {{ $prizes->appends(Request::query())->links() }}
+            </div>
+            
         </div>
     </div>
 @endsection

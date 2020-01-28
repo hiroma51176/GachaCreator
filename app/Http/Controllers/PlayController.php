@@ -22,9 +22,9 @@ class PlayController extends Controller
         $cond_gacha_name = $request->cond_gacha_name;
         if($cond_gacha_name != ""){
             // 入力された値を検索 部分一致
-            $gachas = Gacha::where('gacha_name', 'LIKE', "%{$cond_gacha_name}%")->get();
+            $gachas = Gacha::where('gacha_name', 'LIKE', "%{$cond_gacha_name}%")->paginate(10);
         }else{
-            $gachas = Gacha::all();
+            $gachas = Gacha::paginate(10);
         }
         
         $rarities = Rarity::all();

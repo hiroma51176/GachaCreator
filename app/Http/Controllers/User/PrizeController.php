@@ -17,9 +17,9 @@ class PrizeController extends Controller
         $cond_prize_name = $request->cond_prize_name;
         if($cond_prize_name != ""){
             // 入力された値を検索 部分一致
-            $prizes = Prize::where('gacha_id', $request->gacha_id)->where('prize_name', 'LIKE', "%{$cond_prize_name}%")->get();
+            $prizes = Prize::where('gacha_id', $request->gacha_id)->where('prize_name', 'LIKE', "%{$cond_prize_name}%")->paginate(5);
         }else{
-            $prizes = Prize::where('gacha_id', $request->gacha_id)->get();
+            $prizes = Prize::where('gacha_id', $request->gacha_id)->paginate(5);
         }
         
         return view('gacha_create.prize.list', ['prizes' => $prizes, 'cond_prize_name' => $cond_prize_name, 'gacha_id' => $gacha_id, 'gacha_name' => $gacha_name]);
@@ -69,8 +69,9 @@ class PrizeController extends Controller
         
         // 追加してリストに戻る場合
         if(isset($request->to_list)){
+            // リストに戻るために必要なこと
             $cond_prize_name = null;
-            $prizes = Prize::where('gacha_id', $prize->gacha_id)->get();
+            $prizes = Prize::where('gacha_id', $prize->gacha_id)->paginate(10);
             return view('gacha_create.prize.list', ['gacha_id' => $gacha_id, 'gacha_name' => $gacha_name, 'cond_prize_name' => $cond_prize_name, 'prizes' => $prizes]);
         }
             
@@ -123,7 +124,7 @@ class PrizeController extends Controller
         $gacha_id = $request->gacha_id;
         $gacha_name = $request->gacha_name;
         $cond_prize_name = "";
-        $prizes = Prize::where('gacha_id', $request->gacha_id)->get();
+        $prizes = Prize::where('gacha_id', $request->gacha_id)->paginate(10);
         
         return view('gacha_create.prize.list', ['prizes' => $prizes, 'cond_prize_name' => $cond_prize_name, 'prize' => $prize, 'gacha_id' => $gacha_id, 'gacha_name' => $gacha_name]);
     }
@@ -134,7 +135,7 @@ class PrizeController extends Controller
         $gacha_id = $request->gacha_id;
         $gacha_name = $request->gacha_name;
         $cond_prize_name = "";
-        $prizes = Prize::where('gacha_id', $gacha_id)->get();
+        $prizes = Prize::where('gacha_id', $gacha_id)->paginate(10);
         
         
         // 削除機能ここから

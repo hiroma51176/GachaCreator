@@ -41,7 +41,7 @@
                     <form action="{{ action('User\GachaController@delete') }}" method="post">
                         
                         <div class="row">
-                            <table class="table table-bordered table-success">
+                            <table class="table table-bordered bg-white">
                                 <thead>
                                     <tr class="text-center">
                                         <th width="15%">ガチャ名</th>
@@ -99,6 +99,11 @@
                     </form>
                 </div>
             </div>
+            
+            <div class="d-flex justify-content-center">
+                {{ $gachas->links() }}
+            </div>
+            
         </div>
     </div>
 @endsection

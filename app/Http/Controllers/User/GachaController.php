@@ -21,9 +21,9 @@ class GachaController extends Controller
         $cond_gacha_name = $request->cond_gacha_name;
         if($cond_gacha_name != ""){
             // 入力された値を検索 部分一致
-            $gachas = Gacha::where('user_id', Auth::id())->where('gacha_name', 'LIKE', "%{$cond_gacha_name}%")->get();
+            $gachas = Gacha::where('user_id', Auth::id())->where('gacha_name', 'LIKE', "%{$cond_gacha_name}%")->paginate(10);
         }else{
-            $gachas = Gacha::where('user_id', Auth::id())->get();
+            $gachas = Gacha::where('user_id', Auth::id())->paginate(10);
         }
         $rarities = Rarity::all();
         
@@ -97,7 +97,7 @@ class GachaController extends Controller
             
             // ガチャリストに戻るために必要なこと
             $cond_gacha_name = "";
-            $gachas = Gacha::where('user_id', Auth::id())->get();
+            $gachas = Gacha::where('user_id', Auth::id())->paginate(10);
             $rarities = Rarity::all();
             
             return view('gacha_create.gacha.list', ['gachas' => $gachas, 'cond_gacha_name' => $cond_gacha_name, 'rarities' => $rarities]);
@@ -119,7 +119,7 @@ class GachaController extends Controller
             
             // ガチャリストに戻るために必要なこと
             $cond_gacha_name = "";
-            $gachas = Gacha::where('user_id', Auth::id())->get();
+            $gachas = Gacha::where('user_id', Auth::id())->paginate(10);
             $rarities = Rarity::all();
             
             return view('gacha_create.gacha.list', ['gachas' => $gachas, 'cond_gacha_name' => $cond_gacha_name, 'rarities' => $rarities]);
@@ -164,7 +164,7 @@ class GachaController extends Controller
         
         // ガチャリストに戻るために必要なこと
         $cond_gacha_name = "";
-        $gachas = Gacha::where('user_id', Auth::id())->get();
+        $gachas = Gacha::where('user_id', Auth::id())->paginate(10);
         $rarities = Rarity::all();
         
         return view('gacha_create.gacha.list', ['gachas' => $gachas, 'cond_gacha_name' => $cond_gacha_name, 'rarities' => $rarities]);
@@ -175,7 +175,7 @@ class GachaController extends Controller
     {
         // ガチャリストに戻るために必要なこと
         $cond_gacha_name = "";
-        $gachas = Gacha::where('user_id', Auth::id())->get();
+        $gachas = Gacha::where('user_id', Auth::id())->paginate(10);
         $rarities = Rarity::all();
         
         
