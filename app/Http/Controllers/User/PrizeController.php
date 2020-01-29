@@ -6,13 +6,23 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Prize;
 use App\Rarity;
+use App\Gacha;
+use Illuminate\Support\Facades\Auth;
 
 class PrizeController extends Controller
 {
     public function index(Request $request)
     {
+        
         $gacha_id = $request->gacha_id;
         $gacha_name = $request->gacha_name;
+        $gacha = Gacha::find($gacha_id);
+        
+        // 作成者以外のユーザーのプライズにアクセスできないようにする
+        if(Auth::id() != $gacha->user_id){
+            return view('top');
+        }
+        
         // 検索機能
         $cond_prize_name = $request->cond_prize_name;
         if($cond_prize_name != ""){

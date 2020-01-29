@@ -96,11 +96,11 @@ class GachaController extends Controller
             }
             
             // ガチャリストに戻るために必要なこと
-            $cond_gacha_name = "";
-            $gachas = Gacha::where('user_id', Auth::id())->paginate(10);
-            $rarities = Rarity::all();
+            // $cond_gacha_name = "";
+            // $gachas = Gacha::where('user_id', Auth::id())->paginate(10);
+            // $rarities = Rarity::all();
             
-            return view('gacha_create.gacha.list', ['gachas' => $gachas, 'cond_gacha_name' => $cond_gacha_name, 'rarities' => $rarities]);
+            // return view('gacha_create.gacha.list', ['gachas' => $gachas, 'cond_gacha_name' => $cond_gacha_name, 'rarities' => $rarities]);
             
         }else{
             // テンプレートとして選んだガチャのプライズを取り出す
@@ -118,14 +118,21 @@ class GachaController extends Controller
             }
             
             // ガチャリストに戻るために必要なこと
+            // $cond_gacha_name = "";
+            // $gachas = Gacha::where('user_id', Auth::id())->paginate(10);
+            // $rarities = Rarity::all();
+            
+            // return view('gacha_create.gacha.list', ['gachas' => $gachas, 'cond_gacha_name' => $cond_gacha_name, 'rarities' => $rarities]);
+        }
+        
+        // ガチャリストに戻るために必要なこと
             $cond_gacha_name = "";
             $gachas = Gacha::where('user_id', Auth::id())->paginate(10);
             $rarities = Rarity::all();
             
             return view('gacha_create.gacha.list', ['gachas' => $gachas, 'cond_gacha_name' => $cond_gacha_name, 'rarities' => $rarities]);
-        }
-        
-        return view('top');
+            
+        // return view('top');
     }
     
     

@@ -1,4 +1,4 @@
-@extends('layouts.common')
+@extends('layouts.result')
 
 @section('title', 'ガチャ結果')
 
@@ -8,6 +8,9 @@
             <h1>ガチャ結果</h1>
             <p>ガチャを引いた結果が表示されます</p>
         </div>
+        
+        <div id="curtainLeft"></div>
+        <div id="curtainRight"></div>
         
         @if (!is_null($result_one_shot) || !is_null($results_ten_shot))
             {{-- 「一回引く」の場合 --}}

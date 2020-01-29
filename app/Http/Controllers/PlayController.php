@@ -66,7 +66,7 @@ class PlayController extends Controller
         // \Debugbar::info($gacha);
         
         
-        // プライズを取り出して配列にする
+        // プライズを取り出す
         $prizes = $gacha->prizes;
         
         // \Debugbar::info($prizes);
@@ -130,7 +130,7 @@ class PlayController extends Controller
         $gacha = Gacha::find($request->gacha_id);
         
         
-        // プライズを取り出して配列にする
+        // プライズを取り出す
         $prizes = $gacha->prizes;
         
         $miss = $gacha->prizes->where('rarity_id', 1);

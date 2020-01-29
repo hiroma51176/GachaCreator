@@ -22,7 +22,7 @@
             <div class="row">
                 <div class="list col-md-12 mx-auto">
                     <div class="row">
-                        <table class="table table-bordered table-success">
+                        <table class="table table-bordered bg-white">
                             <thead>
                                 <tr class="text-center">
                                     <th width="15%">ガチャ名</th>
