@@ -27,6 +27,7 @@
                         <table class="table table-bordered table-success">
                             <thead>
                                 <tr class="text-center">
+                                    <th width="10%">id</th>
                                     <th width="30%">プライズ名</th>
                                     <th width="30%">レアリティ</th>
                                 </tr>
@@ -34,6 +35,7 @@
                             <tbody>
                                 @foreach($templetes as $templete)
                                     <tr>
+                                        <td>{{ $templete->id }}</td>
                                         <td>{{ $templete->prize_name }}</td>
                                         <td>{{ $templete->rarity->rarity_name }}</td>
                                     </tr>
@@ -43,6 +45,11 @@
                     </div>
                 </div>
             </div>
+            
+            <div class="d-flex justify-content-center">
+                {{ $templetes->links() }}
+            </div>
+            
         </div>
     </div>
 @endsection

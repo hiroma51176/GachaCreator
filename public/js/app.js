@@ -49458,7 +49458,7 @@ module.exports = function(module) {
 __webpack_require__(/*! ./bootstrap */ "./resources/js/bootstrap.js"); // チェックボックスの為、追加
 
 
-__webpack_require__(/*! ./sample */ "./resources/js/sample.js");
+__webpack_require__(/*! ./myFile */ "./resources/js/myFile.js");
 
 window.Vue = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.common.js");
 /**
@@ -49598,9 +49598,9 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
-/***/ "./resources/js/sample.js":
+/***/ "./resources/js/myFile.js":
 /*!********************************!*\
-  !*** ./resources/js/sample.js ***!
+  !*** ./resources/js/myFile.js ***!
   \********************************/
 /*! no static exports found */
 /***/ (function(module, exports) {
@@ -49632,7 +49632,7 @@ $(function () {
       $('#created_select').prop('disabled', true);
     }
   });
-}); // ガチャを引いた結果画面ロード時にカーテンが開くような効果をつける
+}); // ガチャを引いた結果画面をロード時に、カーテンが開くような効果をつける
 
 $(window).on('load', function () {
   // if(document.getElementById('curtainLeft') === null){

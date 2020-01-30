@@ -7,18 +7,27 @@ use App\Http\Controllers\Controller;
 use App\Templete;
 use App\Gacha;
 use App\Prize;
+use Illuminate\Support\Facades\Auth;
 
 class TempleteController extends Controller
 {
     public function index()
     {
-        $templetes = Templete::all();
+        if(Auth::id() != 1){
+            return redirect('');
+        }
+        
+        $templetes = Templete::paginate(10);
         
         return view('admin.templete.list', ['templetes' => $templetes]);
     }
     
     public function add()
     {
+        if(Auth::id() != 1){
+            return redirect('');
+        }
+        
         $gachas = Gacha::where('user_id', 1)->get();
         
         return view('admin.templete.create', ['gachas' => $gachas]);
@@ -26,6 +35,12 @@ class TempleteController extends Controller
     
     public function create(Request $request)
     {
+        if(Auth::id() != 1){
+            return redirect('');
+        }
+        
+        Templete::query()->delete();
+        
         $prizes = Prize::where('gacha_id', $request->gacha_id)->get();
         
         foreach($prizes as $prize){
@@ -35,7 +50,7 @@ class TempleteController extends Controller
             $templete->save();
         }
         
-        $templetes = Templete::all();
+        $templetes = Templete::paginate(10);
         
         return view('admin.templete.list', ['templetes' => $templetes]);
     }

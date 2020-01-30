@@ -38,8 +38,7 @@
                                         <td>{{ $rarity->id }}</td>
                                         <td>{{ $rarity->rarity_name }}</td>
                                         <td class="text-center">
-                                            <a href="#">編集</a>
-                                            <a href="#">削除</a>
+                                            <a href="{{ action('Admin\RarityController@edit', ['rarity_id' => $rarity->id]) }}">編集</a>
                                         </td>
                                     </tr>
                                 @endforeach

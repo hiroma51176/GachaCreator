@@ -95,8 +95,9 @@ class PrizeController extends Controller
     public function edit(Request $request)
     {
         $prize= Prize::find($request->prize_id);
-        \Debugbar::info($prize);
+        // \Debugbar::info($prize);
         
+        // ＵＲＬ直接入力したとき、プライズが存在しない場合
         if(empty($prize)){
             return('top');
         }

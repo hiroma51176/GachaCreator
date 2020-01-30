@@ -69,6 +69,8 @@ Route::group(['prefix' => 'admin', 'middleware' => 'auth'], function(){
     Route::get('rarity/list', 'Admin\RarityController@index');
     Route::get('rarity/create', 'Admin\RarityController@add');
     Route::post('rarity/create', 'Admin\RarityController@create');
+    Route::get('rarity/edit', 'Admin\RarityController@edit');
+    Route::post('rarity/edit', 'Admin\RarityController@update');
     
     // テンプレート関係
     Route::get('templete/list', 'Admin\TempleteController@index');
