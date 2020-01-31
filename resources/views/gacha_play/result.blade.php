@@ -21,7 +21,7 @@
                         <p>ガチャ「{{ $gacha->gacha_name }}」を１回引きました。</p>
                         {{-- 使用金額：〇円 --}}
                         <div class="result col-md-10 bg-white mx-auto py-3">
-                            <h2>{{ $result_one_shot->rarity->rarity_name }}の「{{ $result_one_shot->prize_name }}」が出ました！</h2>
+                            <h2>{{ $result_one_shot->rarity_name }}の「{{ $result_one_shot->prize_name }}」が出ました！</h2>
                             @if ($result_one_shot->image_path)
                                 <img width="100px" height="100px" src="{{ asset('storage/image/' . $result_one_shot->image_path) }}"></img>
                             @endif
@@ -43,7 +43,7 @@
                                 <tr>
                                     @foreach ($results as $result)
                                         <td>
-                                            <h5>{{ $result->rarity->rarity_name }}の「{{ $result->prize_name }}」が出ました！</h5>
+                                            <h5>{{ $result->rarity_name }}の「{{ $result->prize_name }}」が出ました！</h5>
                                             @if($result->image_path)
                                                 <p><img width="100px" height="100px" src="{{ asset('storage/image/' . $result->image_path) }}"></p>
                                             @endif

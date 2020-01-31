@@ -30,11 +30,11 @@
                         <div class="form-group row">
                             <label class="col-md-3">プライズのレアリティ</label>
                             <div class="col-md-9">
-                                <select name="rarity_id">
+                                <select name="rarity_name">
                                     <option value="">選択してください</option>
-                                    <option value="1">{{ $rarities->find(1)->rarity_name }}</option>
-                                    <option value="2">{{ $rarities->find(2)->rarity_name }}</option>
-                                    <option value="3">{{ $rarities->find(3)->rarity_name }}</option>
+                                    <option value="1">はずれ</option>
+                                    <option value="2">当たり</option>
+                                    <option value="3">大当たり</option>
                                 </select>
                             </div>
                         </div>

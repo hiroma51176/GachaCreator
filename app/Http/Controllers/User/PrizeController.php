@@ -5,7 +5,7 @@ namespace App\Http\Controllers\User;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Prize;
-use App\Rarity;
+// use App\Rarity;
 use App\Gacha;
 use Illuminate\Support\Facades\Auth;
 
@@ -53,11 +53,8 @@ class PrizeController extends Controller
         
         $prize = new Prize;
         $form = $request->all();
-        
         $gacha_name = $request->gacha_name;
-        
         $prize->gacha_id = $request->gacha_id;
-        $prize->rarity_id = $request->rarity_id;
         
         if(isset($form['image'])){
             $path = $request->file('image')->store('public/image');
@@ -72,8 +69,21 @@ class PrizeController extends Controller
         unset($form['to_list']);
         unset($form['cont']);
         
+        $prize->fill($form);
         
-        $prize->fill($form)->save();
+        switch ($request->rarity_name){
+            case 1:
+                $prize->rarity_name = "はずれ";
+                break;
+            case 2:
+                $prize->rarity_name = "当たり";
+                break;
+            case 3:
+                $prize->rarity_name = "大当たり";
+                break;
+        }
+        
+        $prize->save();
         
         $gacha_id = $prize->gacha_id;
         
@@ -104,9 +114,8 @@ class PrizeController extends Controller
         
         $gacha_id = $request->gacha_id;
         $gacha_name = $request->gacha_name;
-        $rarities = Rarity::all();
         
-        return view('gacha_create.prize.edit', ['prize' => $prize, 'gacha_id' => $gacha_id, 'gacha_name' => $gacha_name, 'rarities' => $rarities]);
+        return view('gacha_create.prize.edit', ['prize' => $prize, 'gacha_id' => $gacha_id, 'gacha_name' => $gacha_name]);
     }
     
     public function update(Request $request)
@@ -129,7 +138,21 @@ class PrizeController extends Controller
         unset($form['gacha_id']);
         unset($form['gacha_name']);
         
-        $prize->fill($form)->save();
+        $prize->fill($form);
+        
+        switch ($request->rarity_name){
+            case 1:
+                $prize->rarity_name = "はずれ";
+                break;
+            case 2:
+                $prize->rarity_name = "当たり";
+                break;
+            case 3:
+                $prize->rarity_name = "大当たり";
+                break;
+        }
+        
+        $prize->save();
         
         // プライズリストに戻るために必要なこと
         $gacha_id = $request->gacha_id;

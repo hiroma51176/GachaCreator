@@ -49635,12 +49635,6 @@ $(function () {
 }); // ガチャを引いた結果画面をロード時に、カーテンが開くような効果をつける
 
 $(window).on('load', function () {
-  // if(document.getElementById('curtainLeft') === null){
-  //     $('body').prepend('<div id="curtainLeft"></div>');
-  // }
-  // if(document.getElementById('curtainRight') === null){
-  //     $('body').prepend('<div id="curtainRight"></div>');
-  // }
   $('#curtainLeft').animate({
     width: '0',
     opacity: '0'
@@ -49652,11 +49646,8 @@ $(window).on('load', function () {
   setTimeout(function () {
     $('#curtainLeft').remove();
     $('#curtainRight').remove();
-  }, 5000); // setTimeout(Eliminate(), 5000);
-}); // function Eliminate(){
-//     $('#curtainLeft').remove();
-//     $('#curtainRight').remove();
-// }
+  }, 5000);
+});
 
 /***/ }),
 

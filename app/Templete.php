@@ -13,8 +13,8 @@ class Templete extends Model
         'prize_name' => 'required',
         );
         
-    public function rarity()
-    {
-        return $this->belongsTo('App\Rarity');
-    }
+    // public function rarity()
+    // {
+    //     return $this->belongsTo('App\Rarity');
+    // }
 }

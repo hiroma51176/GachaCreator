@@ -95,7 +95,7 @@
                 @yield('content')
             </main>
             
-            <footer class="footer">
+            <footer id="footer" class="footer">
                 <div class="container">
                     <ul class="list-group list-group-horizontal">
                         <li class="list-inline-item flex-fill"><a class="text-reset" href="">ガチャを引く</a></li>

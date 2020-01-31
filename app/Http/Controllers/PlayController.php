@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Gacha;
 use App\Prize;
-use App\Rarity;
+// use App\Rarity;
 use App\GachaHistory;
 use Illuminate\Support\Facades\Auth;
 
@@ -27,9 +27,7 @@ class PlayController extends Controller
             $gachas = Gacha::paginate(10);
         }
         
-        $rarities = Rarity::all();
-        
-        return view('gacha_play.list', ['gachas' => $gachas, 'cond_gacha_name' => $cond_gacha_name, 'rarities' => $rarities]);
+        return view('gacha_play.list', ['gachas' => $gachas, 'cond_gacha_name' => $cond_gacha_name]);
     }
     
     public function viewPlay(Request $request)
@@ -51,11 +49,8 @@ class PlayController extends Controller
         }
         // \Debugbar::info($prize);
         
-        $rarities = Rarity::all();
-        
-        return view('gacha_play.play', ['gacha' => $gacha, 'rarities' => $rarities]);
+        return view('gacha_play.play', ['gacha' => $gacha]);
     }
-    
     
     // 「１回引く」
     public function playOneShot(Request $request)
@@ -65,15 +60,12 @@ class PlayController extends Controller
         $gacha = Gacha::find($request->gacha_id);
         // \Debugbar::info($gacha);
         
-        
         // プライズを取り出す
         $prizes = $gacha->prizes;
         
-        // \Debugbar::info($prizes);
-        
-        $miss = $gacha->prizes->where('rarity_id', 1);
-        $hit = $gacha->prizes->where('rarity_id', 2);
-        $jackpot = $gacha->prizes->where('rarity_id', 3);
+        $miss = $gacha->prizes->where('rarity_name', "はずれ");
+        $hit = $gacha->prizes->where('rarity_name', "当たり");
+        $jackpot = $gacha->prizes->where('rarity_name', "大当たり");
         
         // ガチャを引く
         $rand = mt_rand(1, 100);
@@ -133,9 +125,9 @@ class PlayController extends Controller
         // プライズを取り出す
         $prizes = $gacha->prizes;
         
-        $miss = $gacha->prizes->where('rarity_id', 1);
-        $hit = $gacha->prizes->where('rarity_id', 2);
-        $jackpot = $gacha->prizes->where('rarity_id', 3);
+        $miss = $gacha->prizes->where('rarity_name', "はずれ");
+        $hit = $gacha->prizes->where('rarity_name', "当たり");
+        $jackpot = $gacha->prizes->where('rarity_name', "大当たり");
         
         // １０回繰り返す
         for($i = 1; $i <= 10; $i++){

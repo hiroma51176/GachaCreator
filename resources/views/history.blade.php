@@ -20,7 +20,7 @@
                     @endif
                 </div>
                 <div class="col-md-10 py-3 align-middle">
-                    <h4 class="mb-3">{{ $gacha_history->prize->rarity->rarity_name }}の「{{ $gacha_history->prize->prize_name }}」が出ました！</h4>
+                    <h4 class="mb-3">{{ $gacha_history->prize->rarity_name }}の「{{ $gacha_history->prize->prize_name }}」が出ました！</h4>
                     <p class="mb-0">引いたガチャ：<a href="{{ action('PlayController@viewPlay', ['gacha_id' => $gacha_history->gacha_id]) }}">「{{ $gacha_history->gacha->gacha_name }}」</a></p>
                 </div>
             </div>

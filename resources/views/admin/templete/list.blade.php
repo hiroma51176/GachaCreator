@@ -37,7 +37,7 @@
                                     <tr>
                                         <td>{{ $templete->id }}</td>
                                         <td>{{ $templete->prize_name }}</td>
-                                        <td>{{ $templete->rarity->rarity_name }}</td>
+                                        <td>{{ $templete->rarity_name }}</td>
                                     </tr>
                                 @endforeach
                             </tbody>

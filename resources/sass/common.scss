@@ -60,3 +60,15 @@ footer li {
     width: 20px;
     height: 20px;
 }
+
+// footer固定
+body,
+#app {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+footer {
+    margin-top: auto;
+}

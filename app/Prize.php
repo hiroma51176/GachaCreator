@@ -9,8 +9,8 @@ class Prize extends Model
     protected $guarded = array('id');
     
     public static $rules = array(
-        'prize_name' => 'required | max: 60',
-        'rarity_id' => 'required',
+        'prize_name' => 'required | max: 30',
+        'rarity_name' => 'required',
         );
         
     public function gacha()
@@ -18,10 +18,10 @@ class Prize extends Model
         return $this->belongsTo('App\Gacha');
     }
     
-    public function rarity()
-    {
-        return $this->belongsTo('App\Rarity');
-    }
+    // public function rarity()
+    // {
+    //     return $this->belongsTo('App\Rarity');
+    // }
     
     public function gacha_histories()
     {

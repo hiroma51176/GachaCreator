@@ -54,7 +54,7 @@
                                     @foreach($prizes as $prize)
                                         <tr>
                                             <td><a href="{{ action('User\PrizeController@edit', ['prize_id' => $prize->id, 'gacha_id' => $gacha_id, 'gacha_name' => $gacha_name]) }}">{{ $prize->prize_name }}</a></td>
-                                            <td>{{ $prize->rarity->rarity_name }}</td>
+                                            <td>{{ $prize->rarity_name }}</td>
                                             <td>
                                                 @if ($prize->image_path)
                                                     <img width="100px" height="100px" src="{{ asset('storage/image/' . $prize->image_path) }}"></img>

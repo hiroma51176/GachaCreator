@@ -45,7 +45,7 @@ class TempleteController extends Controller
         
         foreach($prizes as $prize){
             $templete = new Templete;
-            $templete->rarity_id = $prize->rarity_id;
+            $templete->rarity_name = $prize->rarity_name;
             $templete->prize_name = $prize->prize_name;
             $templete->save();
         }

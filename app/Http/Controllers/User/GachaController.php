@@ -8,7 +8,7 @@ use App\Http\Requests\CreateGacha;
 use App\Http\Requests\EditGacha;
 use App\Gacha;
 use Illuminate\Support\Facades\Auth;
-use App\Rarity;
+// use App\Rarity;
 use App\GachaHistory;
 use App\Templete;
 use App\Prize;
@@ -25,9 +25,8 @@ class GachaController extends Controller
         }else{
             $gachas = Gacha::where('user_id', Auth::id())->paginate(10);
         }
-        $rarities = Rarity::all();
         
-        return view('gacha_create.gacha.list', ['gachas' => $gachas, 'cond_gacha_name' => $cond_gacha_name, 'rarities' => $rarities]);
+        return view('gacha_create.gacha.list', ['gachas' => $gachas, 'cond_gacha_name' => $cond_gacha_name]);
     }
     
     
@@ -90,47 +89,32 @@ class GachaController extends Controller
             foreach($templetes as $templete){
                 $prize = new Prize;
                 $prize->gacha_id = $gacha_data->id;
-                $prize->rarity_id = $templete->rarity_id;
+                $prize->rarity_name = $templete->rarity_name;
                 $prize->prize_name = $templete->prize_name;
                 $prize->save();
             }
-            
-            // ガチャリストに戻るために必要なこと
-            // $cond_gacha_name = "";
-            // $gachas = Gacha::where('user_id', Auth::id())->paginate(10);
-            // $rarities = Rarity::all();
-            
-            // return view('gacha_create.gacha.list', ['gachas' => $gachas, 'cond_gacha_name' => $cond_gacha_name, 'rarities' => $rarities]);
             
         }else{
             // テンプレートとして選んだガチャのプライズを取り出す
             $templete_gacha = Gacha::find($request->templete);
             $templete_prizes = $templete_gacha->prizes;
-            \Debugbar::info($templete_prizes);
             
             // コピーする
             foreach($templete_prizes as $templete_prize){
                 $prize = new Prize;
                 $prize->gacha_id = $gacha_data->id;
-                $prize->rarity_id = $templete_prize->rarity_id;
+                $prize->rarity_name = $templete_prize->rarity_name;
                 $prize->prize_name = $templete_prize->prize_name;
                 $prize->save();
             }
             
-            // ガチャリストに戻るために必要なこと
-            // $cond_gacha_name = "";
-            // $gachas = Gacha::where('user_id', Auth::id())->paginate(10);
-            // $rarities = Rarity::all();
-            
-            // return view('gacha_create.gacha.list', ['gachas' => $gachas, 'cond_gacha_name' => $cond_gacha_name, 'rarities' => $rarities]);
         }
         
         // ガチャリストに戻るために必要なこと
             $cond_gacha_name = "";
             $gachas = Gacha::where('user_id', Auth::id())->paginate(10);
-            $rarities = Rarity::all();
             
-            return view('gacha_create.gacha.list', ['gachas' => $gachas, 'cond_gacha_name' => $cond_gacha_name, 'rarities' => $rarities]);
+            return view('gacha_create.gacha.list', ['gachas' => $gachas, 'cond_gacha_name' => $cond_gacha_name]);
             
         // return view('top');
     }
@@ -172,9 +156,8 @@ class GachaController extends Controller
         // ガチャリストに戻るために必要なこと
         $cond_gacha_name = "";
         $gachas = Gacha::where('user_id', Auth::id())->paginate(10);
-        $rarities = Rarity::all();
         
-        return view('gacha_create.gacha.list', ['gachas' => $gachas, 'cond_gacha_name' => $cond_gacha_name, 'rarities' => $rarities]);
+        return view('gacha_create.gacha.list', ['gachas' => $gachas, 'cond_gacha_name' => $cond_gacha_name]);
         
     }
     
@@ -183,8 +166,6 @@ class GachaController extends Controller
         // ガチャリストに戻るために必要なこと
         $cond_gacha_name = "";
         $gachas = Gacha::where('user_id', Auth::id())->paginate(10);
-        $rarities = Rarity::all();
-        
         
         // 削除機能ここから
         $gachas_id = $request->gacha_id;
@@ -192,7 +173,7 @@ class GachaController extends Controller
         
         //  何もチェックせずにボタンが押された場合の処理
         if($gachas_id == null){
-            return view('gacha_create.gacha.list', ['gachas' => $gachas, 'cond_gacha_name' => $cond_gacha_name, 'rarities' => $rarities]);
+            return view('gacha_create.gacha.list', ['gachas' => $gachas, 'cond_gacha_name' => $cond_gacha_name]);
         }
         
         $delete_count = count($gachas_id);
@@ -203,7 +184,7 @@ class GachaController extends Controller
             $gacha->delete();
         }
         
-        return view('gacha_create.gacha.list', ['gachas' => $gachas, 'cond_gacha_name' => $cond_gacha_name, 'rarities' => $rarities]);
+        return view('gacha_create.gacha.list', ['gachas' => $gachas, 'cond_gacha_name' => $cond_gacha_name]);
     }
     
     public function history()

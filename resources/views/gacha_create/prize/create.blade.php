@@ -30,7 +30,7 @@
                         <div class="form-group row">
                             <label class="col-md-3">プライズのレアリティ</label>
                             <div class="col-md-9">
-                                <select name="rarity_id">
+                                <select name="rarity_name">
                                     <option value="">選択してください</option>
                                     <option value="1">はずれ</option>
                                     <option value="2">当たり</option>
