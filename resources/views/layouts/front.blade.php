@@ -80,7 +80,7 @@
                                     <a class="dropdown-item" href="{{ action('PlayController@index') }}">ガチャを引く</a>
                                     <a class="dropdown-item" href="{{ action('User\GachaController@add') }}">ガチャを作成する</a>
                                     <a class="dropdown-item" href="{{ action('User\GachaController@index') }}">作成したガチャを確認する</a>
-                                    <a class="dropdown-item" href="{{ action('PlayController@viewSimulation') }}">シミュレーションを行う</a>
+                                    <a class="dropdown-item" href="{{ action('SimulationController@front') }}">シミュレーションを行う</a>
                                     <a class="dropdown-item" href="{{ action('User\GachaController@history') }}">ガチャ履歴を確認する</a>
                                     {{-- いずれ追加<a class="dropdown-item" href="{{ action('PlayController@viewCalculation') }}">期待値の計算を行う</a> --}}
                                 </div>
@@ -98,10 +98,10 @@
             <footer id="footer" class="footer">
                 <div class="container">
                     <ul class="list-group list-group-horizontal">
-                        <li class="list-inline-item flex-fill"><a class="text-reset" href="">ガチャを引く</a></li>
-                        <li class="list-inline-item flex-fill"><a class="text-reset" href="">ガチャを作成する</a></li>
-                        <li class="list-inline-item flex-fill"><a class="text-reset" href="">ガチャのシミュレーションを行う</a></li>
-                        {{-- <li class="list-inline-item flex-fill"><a class="text-reset" href="">期待値の計算を行う</a></li> --}}
+                        <li class="list-inline-item flex-fill"><a class="text-reset" href="{{ action('PlayController@index') }}">ガチャを引く</a></li>
+                        <li class="list-inline-item flex-fill"><a class="text-reset" href="{{ action('User\GachaController@add') }}">ガチャを作成する</a></li>
+                        <li class="list-inline-item flex-fill"><a class="text-reset" href="{{ action('SimulationController@front') }}">ガチャのシミュレーションを行う</a></li>
+                        {{-- <li class="list-inline-item flex-fill"><a class="text-reset" href="{{ action('PlayController@viewCalculation') }}">期待値の計算を行う</a></li> --}}
                     </ul>
                 </div>
             </footer>

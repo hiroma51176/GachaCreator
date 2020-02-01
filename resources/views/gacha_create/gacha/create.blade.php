@@ -48,25 +48,30 @@
                         <div class="form-group row mb-5">
                             <label class="col-md-3">「１回引く」の金額設定（必須）</label>
                             <div class="col-md-2">
-                                <input type="text" class="form-control" name="play_price" value="{{ old('play_price') }}">
+                                <input type="text" class="form-control input-number input-price" maxlength="5" name="play_price" value="{{ old('play_price') }}">
+                                <font color="red"><p class="mb-0"></p></font>
                             </div>
                             <label class="col-md-3">円</label>
                         </div>
                         
                         <h3>ガチャの排出率</h3>
                         <p>大当たり、当たり、はずれで合計１００になるように、半角で整数を入力してください。</p>
+                        
                         <div class="form-group row">
                             <label class="col-md-3">大当たり（必須）</label>
                             <div class="col-md-2">
-                                <input type="text" class="form-control" name="jackpot_rate" value="{{ old('jackpot_rate') }}">
+                                <input id="jackpot" type="text" class="form-control input-number input-gacha-rate" maxlength="3" name="jackpot_rate" value="{{ old('jackpot_rate') }}">
+                                <font color="red"><p class="mb-0"></p></font>
                             </div>
                             <label class="col-md-3">%</label>
+                            
                         </div>
                         
                         <div class="form-group row">
                             <label class="col-md-3">当たり（必須）</label>
                             <div class="col-md-2">
-                                <input type="text" class="form-control" name="hit_rate" value="{{ old('hit_rate') }}">
+                                <input id="hit" type="text" class="form-control input-number input-gacha-rate" maxlength="3" name="hit_rate" value="{{ old('hit_rate') }}">
+                                <font color="red"><p class="mb-0"></p></font>
                             </div>
                             <label class="col-md-3">%</label>
                         </div>
@@ -74,10 +79,13 @@
                         <div class="form-group row">
                             <label class="col-md-3">はずれ（必須）</label>
                             <div class="col-md-2">
-                                <input type="text" class="form-control" name="miss_rate" value="{{ old('miss_rate') }}">
+                                <input id="miss" type="text" class="form-control input-number input-gacha-rate" maxlength="3" name="miss_rate" value="{{ old('miss_rate') }}">
+                                <font color="red"><p class="mb-0"></p></font>
                             </div>
                             <label class="col-md-3">%</label>
+                            
                         </div>
+                        <font color="red"><p id="rate-alert"></p></font>
                         
                         <h3 class=" mt-5">ガチャのプライズ</h3>
                         <p class="mb-1">テンプレートを使用するかどうか選択してください。また、自分が作成したガチャのプライズをコピーすることもできます。</p>

@@ -25,8 +25,8 @@ Route::group(['prefix' => 'gacha_play'], function(){
 });
 
 // // シミュレーション関係
-Route::get('simulation', 'PlayController@viewSimulation');
-Route::post('simulation', 'PlayController@runSimulation');
+Route::get('simulation', 'SimulationController@front');
+Route::post('simulation', 'SimulationController@run');
 
 // 期待値計算関係 いずれ追加
 // Route::get('calculation', 'PlayController@viewCalculation');
@@ -66,11 +66,11 @@ Route::get('/home', 'HomeController@index')->name('home');
 
 Route::group(['prefix' => 'admin', 'middleware' => 'auth'], function(){
     // レアリティ関係
-    Route::get('rarity/list', 'Admin\RarityController@index');
-    Route::get('rarity/create', 'Admin\RarityController@add');
-    Route::post('rarity/create', 'Admin\RarityController@create');
-    Route::get('rarity/edit', 'Admin\RarityController@edit');
-    Route::post('rarity/edit', 'Admin\RarityController@update');
+    // Route::get('rarity/list', 'Admin\RarityController@index');
+    // Route::get('rarity/create', 'Admin\RarityController@add');
+    // Route::post('rarity/create', 'Admin\RarityController@create');
+    // Route::get('rarity/edit', 'Admin\RarityController@edit');
+    // Route::post('rarity/edit', 'Admin\RarityController@update');
     
     // テンプレート関係
     Route::get('templete/list', 'Admin\TempleteController@index');

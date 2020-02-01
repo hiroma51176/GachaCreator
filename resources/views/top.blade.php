@@ -22,7 +22,7 @@
             <p>※アカウントの登録が必要です。</p>
         </div>
         <div class="gacha-simulation content">
-            <a class="content-title btn btn-primary" role="button"  href="{{ action('PlayController@viewSimulation') }}">ガチャのシミュレーションを行う</a>
+            <a class="content-title btn btn-primary" role="button"  href="{{ action('SimulationController@front') }}">ガチャのシミュレーションを行う</a>
             <p>ガチャのシミュレーションができます。</p>
         </div>
         {{-- いずれ追加<div class="gacha-calculation content"> --}}

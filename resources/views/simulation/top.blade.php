@@ -14,7 +14,7 @@
             <div class="row">
                 <div class="col-md-6">
                     <h3>シミュレーション内容</h3>
-                    <form action="{{ action('PlayController@runSimulation') }}" method="post">
+                    <form action="{{ action('SimulationController@run') }}" method="post">
                         @if (count($errors) > 0)
                             <ul>
                                 @foreach($errors->all() as $e)
@@ -24,25 +24,28 @@
                         @endif
                         <div class="form-group row">
                             <label class="col-md-5 pt-2 font-weight-bold">１回あたりの設定金額</label>
-                            <div class="col-md-2">
+                            <div class="col-md-3">
                                 @if (isset($play_price))
-                                    <input type="text" class="form-control" name="play_price" value="{{ $play_price }}">
+                                    <input type="text" class="form-control input-number input-price" maxlength="5" name="play_price" value="{{ $play_price }}">
                                 @else
-                                    <input type="text" class="form-control" name="play_price" value="{{ old('play_price') }}">
+                                    <input type="text" class="form-control input-number input-price" maxlength="5" name="play_price" value="{{ old('play_price') }}">
                                 @endif
+                                <font color="red"><p class="mb-0"></p></font>
                             </div>
+                            
                             <label class="pt-2">円</label>
-                            <label class="pl-4">※1～1000までの整数を半角で入力してください。</label>
+                            <label class="pl-4">※1～10000までの整数を半角で入力してください。</label>
                         </div>
                         
                         <div class="form-group row">
                             <label class="col-md-5 pt-2 font-weight-bold">最大試行回数</label>
-                            <div class="col-md-2">
+                            <div class="col-md-3">
                                 @if (isset($max_play_count))
-                                    <input type="text" class="form-control" name="max_play_count" value="{{ $max_play_count }}">
+                                    <input type="text" class="form-control input-number input-count" maxlength="4" name="max_play_count" value="{{ $max_play_count }}">
                                 @else
-                                    <input type="text" class="form-control" name="max_play_count" value="{{ old('max_play_count') }}">
+                                    <input type="text" class="form-control input-number input-count" maxlength="4" name="max_play_count" value="{{ old('max_play_count') }}">
                                 @endif
+                                <font color="red"><p class="mb-0"></p></font>
                             </div>
                             <label class="pt-2">回</label>
                             <label class="pl-4">※1～1000までの整数を半角で入力してください。</label>
@@ -50,12 +53,13 @@
                         
                         <div class="form-group row">
                             <label class="col-md-5 pt-2 font-weight-bold">排出率</label>
-                            <div class="col-md-2">
-                                @if (isset($jackpot_rate))
-                                    <input type="text" class="form-control" name="rate" value="{{ $rate }}">
+                            <div class="col-md-3">
+                                @if (isset($rate))
+                                    <input type="text" class="form-control input-number input-rate" maxlength="3" name="rate" value="{{ $rate }}">
                                 @else
-                                    <input type="text" class="form-control" name="rate" value="{{ old('rate') }}">
+                                    <input type="text" class="form-control input-number input-rate" maxlength="3" name="rate" value="{{ old('rate') }}">
                                 @endif
+                                <font color="red"><p class="mb-0"></p></font>
                             </div>
                             <label class="pt-2">%</label>
                             <label class="pl-4">※1～100までの整数を半角で入力してください。</label>
@@ -77,7 +81,7 @@
                             <p class="font-weight-bold pb-1 mt-3 mb-5">実際の排出率： {{ $result['real_rate'] }}％</p>
                         </div>
                         
-                        <form action="{{ action('PlayController@runSimulation') }}" method="post">
+                        <form action="{{ action('SimulationController@run') }}" method="post">
                             <input type="hidden" name="play_price" value="{{ $play_price }}">
                             <input type="hidden" name="rate" value="{{ $rate }}">
                             <input type="hidden" name="max_play_count" value="{{ $max_play_count }}">
