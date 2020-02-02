@@ -132,7 +132,7 @@ class PrizeController extends Controller
             unset($form['image']);
         }elseif(isset($request->remove)){
             $prize->image_path =null;
-            unset($form['image']);
+            unset($form['remove']);
         }
         unset($form['_token']);
         unset($form['gacha_id']);

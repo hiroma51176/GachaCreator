@@ -30,7 +30,7 @@
                                 @else
                                     <input type="text" class="form-control input-number input-price" maxlength="5" name="play_price" value="{{ old('play_price') }}">
                                 @endif
-                                <font color="red"><p class="mb-0"></p></font>
+                                <font color="red"><p class="mb-0 alert"></p></font>
                             </div>
                             
                             <label class="pt-2">円</label>
@@ -45,7 +45,7 @@
                                 @else
                                     <input type="text" class="form-control input-number input-count" maxlength="4" name="max_play_count" value="{{ old('max_play_count') }}">
                                 @endif
-                                <font color="red"><p class="mb-0"></p></font>
+                                <font color="red"><p class="mb-0 alert"></p></font>
                             </div>
                             <label class="pt-2">回</label>
                             <label class="pl-4">※1～1000までの整数を半角で入力してください。</label>
@@ -59,7 +59,7 @@
                                 @else
                                     <input type="text" class="form-control input-number input-rate" maxlength="3" name="rate" value="{{ old('rate') }}">
                                 @endif
-                                <font color="red"><p class="mb-0"></p></font>
+                                <font color="red"><p class="mb-0 alert"></p></font>
                             </div>
                             <label class="pt-2">%</label>
                             <label class="pl-4">※1～100までの整数を半角で入力してください。</label>

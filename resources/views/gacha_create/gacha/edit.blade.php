@@ -29,16 +29,28 @@
                             </ul>
                         @endif
                         <div class="form-group row">
-                            <label class="col-md-3">ガチャの名前（必須）</label>
+                            <label class="col-md-3">
+                                <strong>ガチャの名前（必須）</strong>
+                                <p class="mb-0">30文字以下にしてください。</p>
+                                <p class="mb-0">※半角は1、全角は2文字判定です。</p>
+                            </label>
                             <div class="col-md-9">
-                                <input type="text" class="form-control" name="gacha_name" value="{{ $gacha->gacha_name }}">
+                                <input type="text" class="form-control input-gacha-name" name="gacha_name" value="{{ $gacha->gacha_name }}">
+                                <font color="red"><p id="name-alert-ng" class="mb-0"></p></font>
+                                <font color="blue"><p id="name-alert-ok" class="mb-0"></p></font>
                             </div>
                         </div>
                         
                         <div class="form-group row">
-                            <label class="col-md-3">ガチャの説明</label>
+                            <label class="col-md-3">
+                                <strong>ガチャの説明</strong>
+                                <p class="mb-0">60文字以下にしてください。</p>
+                                <p class="mb-0">※半角は1、全角は2文字判定です。</p>
+                            </label>
                             <div class="col-md-9">
-                                <textarea class="form-control" name="gacha_description" rows="2">{{ $gacha->gacha_description }}</textarea>
+                                <textarea class="form-control input-gacha-description" name="gacha_description" rows="2">{{ $gacha->gacha_description }}</textarea>
+                                <font color="red"><p id="description-alert-ng" class="mb-0"></p></font>
+                                <font color="blue"><p id="description-alert-ok" class="mb-0"></p></font>
                             </div>
                         </div>
                         
@@ -63,7 +75,8 @@
                         <div class="form-group row">
                             <label class="col-md-3">「１回引く」の金額設定（必須）</label>
                             <div class="col-md-2">
-                                <input type="text" class="form-control" name="play_price" value="{{ $gacha->play_price }}">
+                                <input type="text" class="form-control input-number input-price" name="play_price" value="{{ $gacha->play_price }}">
+                                <font color="red"><p class="mb-0"></p></font>
                             </div>
                             <label class="col-md-3">円</label>
                         </div>
@@ -73,7 +86,8 @@
                         <div class="form-group row">
                             <label class="col-md-3">大当たり（必須）</label>
                             <div class="col-md-2">
-                                <input type="text" class="form-control" name="jackpot_rate" value="{{ $gacha->jackpot_rate }}">
+                                <input id="jackpot" type="text" class="form-control input-number input-gacha-rate" name="jackpot_rate" value="{{ $gacha->jackpot_rate }}">
+                                <font color="red"><p class="mb-0"></p></font>
                             </div>
                             <label class="col-md-3">%</label>
                         </div>
@@ -81,7 +95,8 @@
                         <div class="form-group row">
                             <label class="col-md-3">当たり（必須）</label>
                             <div class="col-md-2">
-                                <input type="text" class="form-control" name="hit_rate" value="{{ $gacha->hit_rate }}">
+                                <input id="hit" type="text" class="form-control input-number input-gacha-rate" name="hit_rate" value="{{ $gacha->hit_rate }}">
+                                <font color="red"><p class="mb-0"></p></font>
                             </div>
                             <label class="col-md-3">%</label>
                         </div>
@@ -89,9 +104,14 @@
                         <div class="form-group row">
                             <label class="col-md-3">はずれ（必須）</label>
                             <div class="col-md-2">
-                                <input type="text" class="form-control" name="miss_rate" value="{{ $gacha->miss_rate }}">
+                                <input id="miss" type="text" class="form-control input-number input-gacha-rate" name="miss_rate" value="{{ $gacha->miss_rate }}">
+                                <font color="red"><p class="mb-0"></p></font>
                             </div>
                             <label class="col-md-3">%</label>
+                        </div>
+                        <div class="col-md-9 ml-auto px-2">
+                            <font color="red"><p id="rate-alert-ng"></p></font>
+                            <font color="blue"><p id="rate-alert-ok"></p></font>
                         </div>
                         
                         <input type="hidden" name="id" value="{{ $gacha->id }}">

@@ -21,17 +21,30 @@
                                 @endforeach
                             </ul>
                         @endif
+                        
                         <div class="form-group row">
-                            <label class="col-md-3">ガチャの名前（必須）</label>
+                            <label class="col-md-3">
+                                <strong>ガチャの名前（必須）</strong>
+                                <p class="mb-0">30文字以下にしてください。</p>
+                                <p class="mb-0">※半角は1、全角は2文字判定です。</p>
+                            </label>
                             <div class="col-md-9">
-                                <input type="text" class="form-control" name="gacha_name" value="{{ old('gacha_name') }}">
+                                <input type="text" class="form-control input-gacha-name" name="gacha_name" value="{{ old('gacha_name') }}">
+                                <font color="red"><p id="name-alert-ng" class="mb-0"></p></font>
+                                <font color="blue"><p id="name-alert-ok" class="mb-0"></p></font>
                             </div>
                         </div>
                         
                         <div class="form-group row">
-                            <label class="col-md-3">ガチャの説明</label>
+                            <label class="col-md-3">
+                                <strong>ガチャの説明</strong>
+                                <p class="mb-0">60文字以下にしてください。</p>
+                                <p class="mb-0">※半角は1、全角は2文字判定です。</p>
+                            </label>
                             <div class="col-md-9">
-                                <textarea class="form-control" name="gacha_description" rows="2">{{ old('gacha_description') }}</textarea>
+                                <textarea class="form-control input-gacha-description" name="gacha_description" rows="2">{{ old('gacha_description') }}</textarea>
+                                <font color="red"><p id="description-alert-ng" class="mb-0"></p></font>
+                                <font color="blue"><p id="description-alert-ok" class="mb-0"></p></font>
                             </div>
                         </div>
                         
@@ -83,9 +96,11 @@
                                 <font color="red"><p class="mb-0"></p></font>
                             </div>
                             <label class="col-md-3">%</label>
-                            
                         </div>
-                        <font color="red"><p id="rate-alert"></p></font>
+                        <div class="col-md-9 ml-auto px-2">
+                            <font color="red"><p id="rate-alert-ng"></p></font>
+                            <font color="blue"><p id="rate-alert-ok"></p></font>
+                        </div>
                         
                         <h3 class=" mt-5">ガチャのプライズ</h3>
                         <p class="mb-1">テンプレートを使用するかどうか選択してください。また、自分が作成したガチャのプライズをコピーすることもできます。</p>

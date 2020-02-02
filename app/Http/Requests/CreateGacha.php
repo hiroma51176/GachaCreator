@@ -26,6 +26,7 @@ class CreateGacha extends FormRequest
         return [
             'gacha_name' => 'required | max: 30',
             'gacha_describe' => 'max: 60',
+            'image' => 'image | max: 2000',
             'jackpot_rate' => 'required | integer | max: 100',
             'hit_rate' => 'required | integer | max: 100',
             'miss_rate' => 'required | integer | max: 100',

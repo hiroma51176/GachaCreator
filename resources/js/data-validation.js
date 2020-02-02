@@ -1,4 +1,4 @@
-// 矢印キーとバックスペースキーとデリートキーとテンキー（数字）は入力可能
+// 矢印キーとバックスペースキーとデリートキーとテンキー（数字）は入力可能----------------
 $(document).on('keydown', '.input-number', function(e){
     let k = e.keyCode;
     let str = String.fromCharCode(k);
@@ -6,8 +6,9 @@ $(document).on('keydown', '.input-number', function(e){
         return false;
     }
 });
+// --------------------------------------------------------------------------------------
 
-// 全角文字入力不可
+// 全角文字入力不可----------------------------------------------------------------------
 $(document).on('keyup', '.input-number', function(){
     this.value =this.value.replace(/[^0-9]+/i,'');
 });
@@ -15,68 +16,180 @@ $(document).on('keyup', '.input-number', function(){
 $(document).on('blur', '.input-number', function(){
     this.value = this.value.replace(/[^0-9]+/i,'');
 });
+// --------------------------------------------------------------------------------------
 
-// 設定金額を入力時、入力された値が指定範囲外の場合
+// 設定金額を入力時、入力された値が指定範囲外の場合--------------------------------------
 $(function(){
     $('.input-price').blur(function(){
-        if(!($(this).val() >= 0 && $(this).val() <= 10000)){
-            $(this).next().text('0～10000の値を入力してください');
+        if($(this).val() == ''){
+            $(this).next().text('入力が必要です');
+        }else if(!(0 <= $(this).val() && $(this).val() <= 10000)){
+            $(this).next().text('1～10000の値を入力してください');
         }else{
             $(this).next().text('');
         }
     });
 });
+// -----------------------------------------------------------------------------------
 
-// 最大試行回数を入力時、入力された値が指定範囲外の場合
+// 最大試行回数を入力時、入力された値が指定範囲外の場合-------------------------------
 $(function(){
     $('.input-count').blur(function(){
-        if(!($(this).val() > 0 && $(this).val() <= 1000)){
+        if($(this).val() == ''){
+            $(this).next().text('入力が必要です');
+        }else if(!(0 < $(this).val() && $(this).val() <= 1000)){
             $(this).next().text('1～1000の値を入力してください');
         }else{
             $(this).next().text('');
         }
     });
 });
+// -----------------------------------------------------------------------------------
 
-// 排出率（シミュレーション）を入力時、入力された値が指定範囲外の場合
+// 排出率（シミュレーション）を入力時、入力された値が指定範囲外の場合-----------------
 $(function(){
     $('.input-rate').blur(function(){
-        if(!($(this).val() > 0 && $(this).val() <= 100)){
+        if($(this).val() == ''){
+            $(this).next().text('入力が必要です');
+        }else if(!(0 < $(this).val() && $(this).val() <= 100)){
             $(this).next().text('1～100の値を入力してください');
         }else{
             $(this).next().text('');
         }
     });
 });
+// --------------------------------------------------------------------------------------
 
-// 排出率（ガチャの作成、編集）を入力時、入力された値が指定範囲外の場合
+// 排出率（ガチャの作成、編集）を入力時、入力された値が指定範囲外の場合------------------
 $(function(){
     $('.input-gacha-rate').blur(function(){
-        if(!($(this).val() >= 0 && $(this).val() <= 100)){
+        if($(this).val() == ''){
+            $(this).next().text('入力が必要です');
+        }else if(!(0 <= $(this).val() && $(this).val() <= 100)){
             $(this).next().text('0～100の値を入力してください');
         }else{
             $(this).next().text('');
         }
     });
 });
+// ------------------------------------------------------------------------------------
 
+// ガチャの作成、編集の排出率を入力時、3つの値の合計を出力する-------------------------
 $(function(){
     $('.input-gacha-rate').blur(function(){
-        if($('#jackpot').val() + $('#hit').val() + $('#miss').val() != 100){
-            $('#rate-alert').text('排出率の合計は100ではありません');
+        var jackpot = $('#jackpot').val() | 0;
+        var hit = $('#hit').val() | 0;
+        var miss = $('#miss').val() | 0;
+        sum = parseInt(jackpot) + parseInt(hit) + parseInt(miss);
+        
+        if(sum == 100){
+            $('#rate-alert-ok').text('排出率の合計は100です');
+            $('#rate-alert-ng').text('');
         }else{
-            $('#rate-alert').text('排出率の合計は100です');
+            $('#rate-alert-ng').text('排出率の合計は' + sum + 'です。合計100にしてください');
+            $('#rate-alert-ok').text('');
         }
     });
 });
+// --------------------------------------------------------------------------------------
 
-// 入力フォームが空白でフォーカスが外れたらアラート発生
+// // 入力フォームが空白でフォーカスが外れたらアラート発生
+// $(function(){
+//     $('.input-gacha-name').blur(function(){
+//         if($(this).val() == ''){
+//             $(this).next().text('入力が必要です');
+//         }else{
+//             $(this).next().text('');
+//         }
+//     });
+// });
+
+// ----------------------------------------------------------------------------------------
+
+// ガチャの名前（ガチャの作成、編集）入力時のイベント--------------------------------------
 $(function(){
-    $('.input-number').blur(function(){
-        if($(this).val() == ''){
-            $(this).next().text('入力が必要です');
+    // 入力フォームが空白の時のイベント
+    $(function(){
+        $('.input-gacha-name').blur(function(){
+            if($(this).val() == ''){
+                $('#name-alert-ng').text('入力が必要です');
+            }else{
+                $('#name-alert-ng').text('');
+            }
+        });
+    });
+    // 入力時のイベント
+    $('.input-gacha-name').on('input', function(){
+        // 文字数を取得
+        var count = 0;
+        for(var i=0; i < $(this).val().length; i++){
+            // 入力された文字を文字コードに変換
+            var char = $(this).val().charCodeAt(i);
+            if((char >= 0x00 && char < 0x81) ||
+                (char === 0xf8f0) ||
+                (char >= 0xff61 && char < 0xffa0) ||
+                (char >= 0xf8f1 && char < 0xf8f4)){
+                // 半角文字の場合は1を加算
+                count += 1;
+            }else{
+                // それ以外の文字の場合は2を加算
+                count += 2;
+            }
+        }
+        //var count = $(this).val().length;
+        // 現在の文字数を表示
+        $('.now-count').text(count);
+        if(0 < count && count <= 30){
+            // 1文字以上かつ30字以内の場合はＯＫ表示
+            $('#name-alert-ok').text('現在' + count + '文字です。問題ありません');
+            $('#name-alert-ng').text('');
         }else{
-            $(this).next().text('');
+            // 0文字または30文字を超える場合はＮＧ表示
+            $('#name-alert-ng').text('現在' + count + '文字です。1～30文字以内にしてください');
+            $('#name-alert-ok').text('');
         }
     });
+    
+    // リロード時に文字が入っていた時の対策
+    //$('.input-gacha-name').trigger('input');
 });
+// ----------------------------------------------------------------------------------------------
+
+// ガチャの説明（ガチャの作成、編集）入力時のイベント--------------------------------------------
+$(function(){
+    // 入力時のイベント
+    $('.input-gacha-description').on('input', function(){
+        // 文字数を取得
+        var count = 0;
+        for(var i=0; i < $(this).val().length; i++){
+            // 入力された文字を文字コードに変換
+            var char = $(this).val().charCodeAt(i);
+            if((char >= 0x00 && char < 0x81) ||
+                (char === 0xf8f0) ||
+                (char >= 0xff61 && char < 0xffa0) ||
+                (char >= 0xf8f1 && char < 0xf8f4)){
+                // 半角文字の場合は1を加算
+                count += 1;
+            }else{
+                // それ以外の文字の場合は2を加算
+                count += 2;
+            }
+        }
+        //var count = $(this).val().length;
+        // 現在の文字数を表示
+        $('.now-count').text(count);
+        if(0 <= count && count <= 60){
+            // 1文字以上かつ60字以内の場合はＯＫ表示
+            $('#description-alert-ok').text('現在' + count + '文字です。問題ありません');
+            $('#description-alert-ng').text('');
+        }else{
+            // 0文字または60文字を超える場合はＮＧ表示
+            $('#description-alert-ng').text('現在' + count + '文字です。60文字以下にしてください');
+            $('#description-alert-ok').text('');
+        }
+    });
+    
+    // リロード時に文字が入っていた時の対策
+    //$('.input-gacha-name').trigger('input');
+});
+//---------------------------------------------------------------------------------------------------

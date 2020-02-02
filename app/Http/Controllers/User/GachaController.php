@@ -45,7 +45,6 @@ class GachaController extends Controller
             }
         }
         
-        
         return view('gacha_create.gacha.create', ['gachas' => $gacha_templetes]);
     }
     
@@ -147,7 +146,7 @@ class GachaController extends Controller
             unset($form['image']);
         }elseif(isset($request->remove)){
             $gacha->image_path =null;
-            unset($form['image']);
+            unset($form['remove']);
         }
         unset($form['_token']);
         
