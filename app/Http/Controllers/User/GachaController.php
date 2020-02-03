@@ -26,6 +26,7 @@ class GachaController extends Controller
             $gachas = Gacha::where('user_id', Auth::id())->paginate(10);
         }
         
+        
         return view('gacha_create.gacha.list', ['gachas' => $gachas, 'cond_gacha_name' => $cond_gacha_name]);
     }
     
@@ -127,6 +128,11 @@ class GachaController extends Controller
             return('top');
         }
         
+        // 作成者以外のユーザーのガチャにアクセスできないようにする
+        if(Auth::id() != $gacha->user_id){
+            return view('top');
+        }
+        
         return view('gacha_create.gacha.edit', ['gacha' => $gacha]);
     }
     
@@ -190,8 +196,9 @@ class GachaController extends Controller
     {
         $gacha_histories = GachaHistory::where('user_id', Auth::id())->latest()->limit(10)->get();
         
+        $draw_count = GachaHistory::where('user_id', Auth::id())->count();
         $price_used = GachaHistory::where('user_id', Auth::id())->select('play_price')->sum('play_price');
         // \Debugbar::info($price_used);
-        return view('history', ['gacha_histories' => $gacha_histories, 'price_used' => $price_used]);
+        return view('history', ['gacha_histories' => $gacha_histories, 'price_used' => $price_used, 'draw_count' => $draw_count]);
     }
 }

@@ -22,13 +22,21 @@
                             </ul>
                         @endif
                         <div class="form-group row">
-                            <label class="col-md-3">プライズの名前（必須）</label>
+                            <label class="col-md-3">
+                                <strong>プライズの名前（必須）</strong>
+                                <p class="mb-0">30文字以下にしてください。</p>
+                                <p class="mb-0">※半角は1、全角は2文字判定です。</p>
+                            </label>
                             <div class="col-md-9">
-                                <input type="text" class="form-control" name="prize_name" value=" {{ old('prize_name') }}">
+                                <input type="text" class="form-control input-prize-name" name="prize_name" value=" {{ old('prize_name') }}">
+                                <font color="red"><p id="name-alert-ng" class="mb-0"></p></font>
+                                <font color="blue"><p id="name-alert-ok" class="mb-0"></p></font>
                             </div>
                         </div>
                         <div class="form-group row">
-                            <label class="col-md-3">プライズのレアリティ</label>
+                            <label class="col-md-3">
+                                <strong>プライズのレアリティ（必須）</strong>
+                            </label>
                             <div class="col-md-9">
                                 <select name="rarity_name">
                                     <option value="">選択してください</option>
@@ -39,9 +47,14 @@
                             </div>
                         </div>
                         <div class="form-group row">
-                            <label class="col-md-3">プライズの画像</label>
+                            <label class="col-md-3">
+                                <strong>プライズの画像</strong>
+                                <p class="mb-0">2MB以下にしてください。</p>
+                            </label>
                             <div class="col-md-9">
-                                <input type="file" class="form-control-file" name="image">
+                                <input type="file" class="form-control-file image-file" name="image">
+                                <font color="red"><p id="image-alert-ng" class="mb-0"></p></font>
+                                <font color="blue"><p id="image-alert-ok" class="mb-0"></p></font>
                             </div>
                         </div>
                         <div class="col-md-9 ml-auto mb-5">

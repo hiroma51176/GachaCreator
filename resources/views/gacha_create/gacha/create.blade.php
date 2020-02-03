@@ -48,18 +48,25 @@
                             </div>
                         </div>
                         
-                        <div class="form-group row">
-                            <label class="col-md-3">ガチャの画像</label>
+                        <div class="form-group row mb-0">
+                            <label class="col-md-3">
+                                <strong>ガチャの画像</strong>
+                                <p class="mb-0">2MB以下にしてください。</p>
+                            </label>
                             <div class="col-md-9">
-                                <input type="file" class="form-control-file" name="image">
+                                <input type="file" class="form-control-file image-file" name="image">
+                                <font color="red"><p id="image-alert-ng" class="mb-0"></p></font>
+                                <font color="blue"><p id="image-alert-ok" class="mb-0"></p></font>
                             </div>
                         </div>
-                        <div class="col-md-9 ml-auto mb-3">
+                        <div class="col-md-9 ml-auto mb-5">
                         <p>著作権を侵害するような画像は控えてください。過度に性的、または暴力的な表現を含む場合、削除する場合があります。ご了承ください。</p>
                         </div>
                         
                         <div class="form-group row mb-5">
-                            <label class="col-md-3">「１回引く」の金額設定（必須）</label>
+                            <label class="col-md-3">
+                                <strong>「１回引く」の金額設定（必須）</strong>
+                            </label>
                             <div class="col-md-2">
                                 <input type="text" class="form-control input-number input-price" maxlength="5" name="play_price" value="{{ old('play_price') }}">
                                 <font color="red"><p class="mb-0"></p></font>
@@ -71,7 +78,9 @@
                         <p>大当たり、当たり、はずれで合計１００になるように、半角で整数を入力してください。</p>
                         
                         <div class="form-group row">
-                            <label class="col-md-3">大当たり（必須）</label>
+                            <label class="col-md-3">
+                                <strong>大当たり（必須）</strong>
+                            </label>
                             <div class="col-md-2">
                                 <input id="jackpot" type="text" class="form-control input-number input-gacha-rate" maxlength="3" name="jackpot_rate" value="{{ old('jackpot_rate') }}">
                                 <font color="red"><p class="mb-0"></p></font>
@@ -81,7 +90,9 @@
                         </div>
                         
                         <div class="form-group row">
-                            <label class="col-md-3">当たり（必須）</label>
+                            <label class="col-md-3">
+                                <strong>当たり（必須）</strong>
+                            </label>
                             <div class="col-md-2">
                                 <input id="hit" type="text" class="form-control input-number input-gacha-rate" maxlength="3" name="hit_rate" value="{{ old('hit_rate') }}">
                                 <font color="red"><p class="mb-0"></p></font>
@@ -90,7 +101,9 @@
                         </div>
                         
                         <div class="form-group row">
-                            <label class="col-md-3">はずれ（必須）</label>
+                            <label class="col-md-3">
+                                <strong>はずれ（必須）</strong>
+                            </label>
                             <div class="col-md-2">
                                 <input id="miss" type="text" class="form-control input-number input-gacha-rate" maxlength="3" name="miss_rate" value="{{ old('miss_rate') }}">
                                 <font color="red"><p class="mb-0"></p></font>
@@ -106,7 +119,9 @@
                         <p class="mb-1">テンプレートを使用するかどうか選択してください。また、自分が作成したガチャのプライズをコピーすることもできます。</p>
                         <p>使用しない場合は、プライズの新規作成に移ります。</p>
                         <div class="form-group row mb-5">
-                            <label class="col-md-3">テンプレート使用について（必須）</label>
+                            <label class="col-md-3">
+                                <strong>テンプレート使用について（必須）</strong>
+                            </label>
                             <div class="col-md-9">
                                 <p><input class="mr-2" type="radio" name="templete" value="0">使用しない</p>
                                 <p><input class="mr-2" type="radio" name="templete" value="-1">テンプレートを使用する</p>

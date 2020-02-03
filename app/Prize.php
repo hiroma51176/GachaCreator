@@ -11,6 +11,7 @@ class Prize extends Model
     public static $rules = array(
         'prize_name' => 'required | max: 30',
         'rarity_name' => 'required',
+        'image' => 'image | max: 2000',
         );
         
     public function gacha()

@@ -27,10 +27,10 @@ class EditGacha extends FormRequest
             'gacha_name' => 'required | max: 30',
             'gacha_describe' => 'max: 60',
             'image' => 'image | max: 2000',
+            'play_price' => 'required | integer | max: 10000',
             'jackpot_rate' => 'required | integer | max: 100',
             'hit_rate' => 'required | integer | max: 100',
             'miss_rate' => 'required | integer | max: 100',
-            'play_price' => 'required | integer | max: 10000',
         ];
     }
     

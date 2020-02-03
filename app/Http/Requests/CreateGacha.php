@@ -27,11 +27,11 @@ class CreateGacha extends FormRequest
             'gacha_name' => 'required | max: 30',
             'gacha_describe' => 'max: 60',
             'image' => 'image | max: 2000',
+            'play_price' => 'required | integer | max: 10000',
             'jackpot_rate' => 'required | integer | max: 100',
             'hit_rate' => 'required | integer | max: 100',
             'miss_rate' => 'required | integer | max: 100',
-            'play_price' => 'required | integer | max: 10000',
-            'templete' => 'required',
+            //'templete' => 'required',
         ];
     }
     
@@ -42,6 +42,9 @@ class CreateGacha extends FormRequest
                 // $validator->errors()->add('field', '排出率には整数を半角で入力してください');
             }elseif($this->jackpot_rate + $this->hit_rate + $this->miss_rate != 100){
                 $validator->errors()->add('field', '排出率が合計で100になるように入力してください');
+            }
+            if($this->templete == ""){
+                $validator->errors()->add('field', 'テンプレートの使用について選択してください');
             }
         });
     }

@@ -9,9 +9,19 @@
             <p>あなたが引いたガチャと引いたプライズが最新10件まで表示されます。</p>
         </div>
         <div class="mt-5">
-            <p>あなたはこれまでに「{{ $price_used }}円」分のガチャを引きました。</p>
+            <h2>累計金額および回数</h2>
+            <h5>あなたがこれまでにガチャを引いた金額：「{{ number_format($price_used) }}円分」</h5>
+            <h5>あなたがこれまでにガチャを引いた回数：「{{ $draw_count }}回」</h5>
         </div>
         
+        <div class="row mt-5">
+            <div class="col-md-6">
+                <h2>最新１０件のプライズ獲得履歴</h2>
+            </div>
+            <div class="col-md-6 text-right">
+                <a class="btn btn-lg btn-secondary mx-5" role="button" href="{{ action('PlayController@index') }}">ガチャリストへ移動</a>
+            </div>
+        </div>
         @foreach ($gacha_histories as $gacha_history)
             <div class="row bg-white mt-3">
                 <div class="col-md-1 mr-3">

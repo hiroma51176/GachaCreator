@@ -14,9 +14,9 @@ class PrizeController extends Controller
     public function index(Request $request)
     {
         
-        $gacha_id = $request->gacha_id;
-        $gacha_name = $request->gacha_name;
-        $gacha = Gacha::find($gacha_id);
+        // $gacha_id = $request->gacha_id;
+        // $gacha_name = $request->gacha_name;
+        $gacha = Gacha::find($request->gacha_id);
         
         // 作成者以外のユーザーのプライズにアクセスできないようにする
         if(Auth::id() != $gacha->user_id){
@@ -32,18 +32,26 @@ class PrizeController extends Controller
             $prizes = Prize::where('gacha_id', $request->gacha_id)->paginate(5);
         }
         
-        return view('gacha_create.prize.list', ['prizes' => $prizes, 'cond_prize_name' => $cond_prize_name, 'gacha_id' => $gacha_id, 'gacha_name' => $gacha_name]);
+        return view('gacha_create.prize.list', ['prizes' => $prizes, 'cond_prize_name' => $cond_prize_name, 'gacha_id' => $gacha->id, 'gacha_name' => $gacha->gacha_name]);
     }
     
     public function add(Request $request)
     {
-        $gacha_id = $request->gacha_id;
-        $gacha_name = $request->gacha_name;
+        $gacha = Gacha::find($request->gacha_id);
         
-        if(empty($gacha_id)){
+        // 作成者以外のユーザーのプライズにアクセスできないようにする
+        if(Auth::id() != $gacha->user_id){
             return view('top');
         }
-        return view('gacha_create.prize.create', ['gacha_id' => $gacha_id, 'gacha_name' => $gacha_name]);
+        
+        //$gacha_id = $request->gacha_id;
+        //$gacha_name = $request->gacha_name;
+        
+        // URLで直接飛んできたとき
+        if(empty($gacha->id)){
+            return view('top');
+        }
+        return view('gacha_create.prize.create', ['gacha_id' => $gacha->id, 'gacha_name' => $gacha->gacha_name]);
     }
     
     public function create(Request $request)
@@ -112,10 +120,17 @@ class PrizeController extends Controller
             return('top');
         }
         
-        $gacha_id = $request->gacha_id;
-        $gacha_name = $request->gacha_name;
+        //$gacha_id = $request->gacha_id;
+        $gacha = Gacha::find($request->gacha_id);
         
-        return view('gacha_create.prize.edit', ['prize' => $prize, 'gacha_id' => $gacha_id, 'gacha_name' => $gacha_name]);
+        // 作成者以外のユーザーのプライズにアクセスできないようにする
+        if(Auth::id() != $gacha->user_id){
+            return view('top');
+        }
+        
+        //$gacha_name = $request->gacha_name;
+        
+        return view('gacha_create.prize.edit', ['prize' => $prize, 'gacha_id' => $gacha->id, 'gacha_name' => $gacha->gacha_name]);
     }
     
     public function update(Request $request)
