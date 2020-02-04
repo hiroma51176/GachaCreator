@@ -42,7 +42,7 @@
                                         <td>{{ $gacha->play_price }}円</td>
                                         <td>
                                             @if ($gacha->image_path)
-                                                <img width="100px" height="100px" src="{{ asset('storage/image/' . $gacha->image_path) }}"></img>
+                                                <img width="100px" height="100px" src="{{ $gacha->image_path }}"></img>
                                             @endif
                                         </td>
                                         

@@ -57,7 +57,7 @@
                                             <td>{{ $prize->rarity_name }}</td>
                                             <td>
                                                 @if ($prize->image_path)
-                                                    <img width="100px" height="100px" src="{{ asset('storage/image/' . $prize->image_path) }}"></img>
+                                                    <img width="100px" height="100px" src="{{ $prize->image_path }}"></img>
                                                 @endif
                                             </td>
                                             <td class="align-middle text-center">

@@ -26,7 +26,7 @@
             <div class="row bg-white mt-3">
                 <div class="col-md-1 mr-3">
                     @if ($gacha_history->prize->image_path)
-                        <img width="100px" height="100px" src="{{ asset('storage/image/' . $gacha_history->prize->image_path) }}"></img>
+                        <img width="100px" height="100px" src="{{ $gacha_history->prize->image_path }}"></img>
                     @endif
                 </div>
                 <div class="col-md-10 py-3 align-middle">

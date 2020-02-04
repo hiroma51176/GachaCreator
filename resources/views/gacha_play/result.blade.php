@@ -23,7 +23,7 @@
                         <div class="result col-md-10 bg-white mx-auto py-3">
                             <h2>{{ $result_one_shot->rarity_name }}の「{{ $result_one_shot->prize_name }}」が出ました！</h2>
                             @if ($result_one_shot->image_path)
-                                <img width="100px" height="100px" src="{{ asset('storage/image/' . $result_one_shot->image_path) }}"></img>
+                                <img width="100px" height="100px" src="{{ $result_one_shot->image_path }}"></img>
                             @endif
                         </div>
                     </div>

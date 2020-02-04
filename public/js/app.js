@@ -49713,8 +49713,7 @@ $(function () {
     $('.input-gacha-name, .input-prize-name').blur(function () {
       if ($(this).val() == '') {
         $('#name-alert-ng').text('入力が必要です');
-      } else {
-        $('#name-alert-ng').text('');
+      } else {//$('#name-alert-ng').text('');
       }
     });
   }); // 入力時のイベント
@@ -49840,7 +49839,7 @@ function getFileSize(file_size) {
   }
 
   return str;
-}
+} // ----------------------------------------------------------------------------------------------------
 
 /***/ }),
 

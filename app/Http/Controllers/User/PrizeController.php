@@ -8,6 +8,9 @@ use App\Prize;
 // use App\Rarity;
 use App\Gacha;
 use Illuminate\Support\Facades\Auth;
+use Storage;
+use Intervention\Image\Facades\Image;
+use Carbon\Carbon;
 
 class PrizeController extends Controller
 {
@@ -65,8 +68,20 @@ class PrizeController extends Controller
         $prize->gacha_id = $request->gacha_id;
         
         if(isset($form['image'])){
-            $path = $request->file('image')->store('public/image');
-            $prize->image_path = basename($path);
+            $image_file = $request->file('image');
+            $now = date_format(Carbon::now(), 'YmdHis');
+            // アップロードされたファイル名を取得
+            $name = $image_file->getClientOriginalName();
+            $storePath = Auth::id() . '_' . $request->gacha_id . '_prize_' . $now . '_' . $name;
+            // 画像を横幅は300px、縦幅はアスペクト比維持の自動サイズへリサイズ
+            $image = Image::make($image_file)->resize(300, null, function($constraint) {$constraint->aspectRatio(); });
+            // s3へ保存
+            $path = Storage::disk('s3')->put($storePath, (string)$image->encode(), 'public');
+            $prize->image_path = Storage::disk('s3')->url($storePath);
+            // $path = Storage::disk('s3')->putFile('/', $form['image'], 'public');
+            // $prize->image_path = Storage::disk('s3')->url($path);
+            // $path = $request->file('image')->store('public/image');
+            // $prize->image_path = basename($path);
         }else{
             $prize->image_path = null;
         }
@@ -142,8 +157,20 @@ class PrizeController extends Controller
         $form = $request->all();
         
         if(isset($form['image'])){
-            $path = $request->file('image')->store('public/image');
-            $prize->image_path = basename($path);
+            $image_file = $request->file('image');
+            $now = date_format(Carbon::now(), 'YmdHis');
+            // アップロードされたファイル名を取得
+            $name = $image_file->getClientOriginalName();
+            $storePath = Auth::id() . '_' . $request->gacha_id . '_prize_' . $now . '_' . $name;
+            // 画像を横幅は300px、縦幅はアスペクト比維持の自動サイズへリサイズ
+            $image = Image::make($image_file)->resize(300, null, function($constraint) {$constraint->aspectRatio(); });
+            // s3へ保存
+            $path = Storage::disk('s3')->put($storePath, (string)$image->encode(), 'public');
+            $prize->image_path = Storage::disk('s3')->url($storePath);
+            // $path = Storage::disk('s3')->putFile('/', $form['image'], 'public');
+            // $prize->image_path = Storage::disk('s3')->url($path);
+            // $path = $request->file('image')->store('public/image');
+            // $prize->image_path = basename($path);
             unset($form['image']);
         }elseif(isset($request->remove)){
             $prize->image_path =null;

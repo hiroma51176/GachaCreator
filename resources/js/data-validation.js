@@ -114,7 +114,7 @@ $(function(){
             if($(this).val() == ''){
                 $('#name-alert-ng').text('入力が必要です');
             }else{
-                $('#name-alert-ng').text('');
+                //$('#name-alert-ng').text('');
             }
         });
     });
