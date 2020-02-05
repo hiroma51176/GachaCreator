@@ -12,17 +12,19 @@
                 <p>ガチャクリエイターは完全無料のサービスで、ガチャを引いたり、オリジナルのガチャを作成したり、ガチャのシミュレーションを行うことが出来ます。</p>
             </div>
         </div>
-        <div class="gacha-play content">
-            <a class="content-title btn btn-primary" role="button" href="{{ action('PlayController@index') }}">ガチャを引く</a>
-            <p>作成されたガチャを引くことができます。</p>
+        <div class="row text-center">
+            <div class="col-md-5 gacha-play content mx-auto p-2">
+                <a class="content-title btn btn-info" role="button" href="{{ action('PlayController@index') }}">ガチャを引く</a>
+                <p>作成されたガチャを引くことができます。</p>
+            </div>
+            <div class="col-md-5 gacha-create content mx-auto p-2">
+                <a class="content-title btn btn-success" role="button" href="{{ action('User\GachaController@add') }}">ガチャを作成する</a>
+                <p>オリジナルのガチャを作成することが出来ます。</p>
+                <p>※ユーザー登録が必要です。</p>
+            </div>
         </div>
-        <div class="gacha-create content">
-            <a class="content-title btn btn-primary" role="button" href="{{ action('User\GachaController@add') }}">ガチャを作成する</a>
-            <p>オリジナルのガチャを作成することが出来ます。</p>
-            <p>※アカウントの登録が必要です。</p>
-        </div>
-        <div class="gacha-simulation content">
-            <a class="content-title btn btn-primary" role="button"  href="{{ action('SimulationController@front') }}">ガチャのシミュレーションを行う</a>
+        <div class="col-md-5 gacha-simulation content mx-auto p-2 text-center">
+            <a class="content-title btn btn-secondary" role="button"  href="{{ action('SimulationController@front') }}">シミュレーションを行う</a>
             <p>ガチャのシミュレーションができます。</p>
         </div>
         {{-- いずれ追加<div class="gacha-calculation content"> --}}

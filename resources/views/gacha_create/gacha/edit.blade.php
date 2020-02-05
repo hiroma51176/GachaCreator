@@ -17,7 +17,8 @@
                             <h3>ガチャの概要</h3>
                         </div>
                         <div class="col-md-6 text-right">
-                            <a class="btn btn-primary" role="button" href="{{ action('User\PrizeController@index', ['gacha_id' => $gacha->id, 'gacha_name' => $gacha->gacha_name]) }}">プライズの編集を行う</a>
+                            <a class="btn btn-primary mx-2" role="button" href="{{ action('User\PrizeController@index', ['gacha_id' => $gacha->id, 'gacha_name' => $gacha->gacha_name]) }}">プライズを確認する</a>
+                            <a class="btn btn-secondary" role="button" href="{{ action('User\GachaController@index') }}">ガチャリストへ戻る</a>
                         </div>
                     </div>
                     <form action="{{ action('User\GachaController@update') }}" method="post" enctype="multipart/form-data">

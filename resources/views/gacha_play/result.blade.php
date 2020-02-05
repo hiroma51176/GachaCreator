@@ -45,7 +45,7 @@
                                         <td>
                                             <h5>{{ $result->rarity_name }}の「{{ $result->prize_name }}」が出ました！</h5>
                                             @if($result->image_path)
-                                                <p><img width="100px" height="100px" src="{{ asset('storage/image/' . $result->image_path) }}"></p>
+                                                <p><img width="100px" height="100px" src="{{ $result->image_path }}"></p>
                                             @endif
                                         </td>
                                     @endforeach

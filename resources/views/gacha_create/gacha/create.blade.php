@@ -12,7 +12,15 @@
         <div class="content">
             <div class="row">
                 <div class="col-md-12">
-                    <h3>ガチャの概要</h3>
+                    <div class="row mb-2">
+                        <div class="col-md-6">
+                            <h3>ガチャの概要</h3>
+                        </div>
+                        <div class="col-md-6 text-right">
+                            <a class="btn btn-secondary" role="button" href="{{ action('User\GachaController@index') }}">ガチャリストに移動</a>
+                        </div>
+                    </div>
+                    
                     <form action="{{ action('User\GachaController@create') }}" method="post" enctype="multipart/form-data">
                         @if (count($errors) > 0)
                             <ul>
@@ -48,7 +56,7 @@
                             </div>
                         </div>
                         
-                        <div class="form-group row mb-0">
+                        <div class="form-group row mb-5">
                             <label class="col-md-3">
                                 <strong>ガチャの画像</strong>
                                 <p class="mb-0">2MB以下にしてください。</p>
@@ -58,10 +66,13 @@
                                 <font color="red"><p id="image-alert-ng" class="mb-0"></p></font>
                                 <font color="blue"><p id="image-alert-ok" class="mb-0"></p></font>
                             </div>
+                            <div class="col-md-9 ml-auto">
+                            <p>著作権を侵害するような画像は控えてください。過度に性的、または暴力的な表現を含む場合、削除する場合があります。ご了承ください。</p>
+                            </div>
                         </div>
-                        <div class="col-md-9 ml-auto mb-5">
-                        <p>著作権を侵害するような画像は控えてください。過度に性的、または暴力的な表現を含む場合、削除する場合があります。ご了承ください。</p>
-                        </div>
+                        
+                        
+                        
                         
                         <div class="form-group row mb-5">
                             <label class="col-md-3">
@@ -116,7 +127,7 @@
                         </div>
                         
                         <h3 class=" mt-5">ガチャのプライズ</h3>
-                        <p class="mb-1">テンプレートを使用するかどうか選択してください。また、自分が作成したガチャのプライズをコピーすることもできます。</p>
+                        <p class="mb-1">テンプレートを使用するかどうか選択してください。また、自分が作成したガチャのプライズをコピーすることもできます。（プライズが０種のガチャは表示されません）</p>
                         <p>使用しない場合は、プライズの新規作成に移ります。</p>
                         <div class="form-group row mb-5">
                             <label class="col-md-3">

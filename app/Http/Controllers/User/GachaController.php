@@ -83,6 +83,8 @@ class GachaController extends Controller
         unset($form['_token']);
         unset($form['image']);
         unset($form['templete']);
+        unset($form['gacha_name_count']);
+        unset($form['gacha_description_count']);
         
         $gacha->user_id = Auth::id();
         
@@ -183,6 +185,8 @@ class GachaController extends Controller
             unset($form['remove']);
         }
         unset($form['_token']);
+        unset($form['gacha_name_count']);
+        unset($form['gacha_description_count']);
         
         $gacha->fill($form)->save();
         

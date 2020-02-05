@@ -12,7 +12,14 @@
         <div class="content">
             <div class="row">
                 <div class="col-md-12">
-                    <h3>プライズの編集</h3>
+                    <div class="row mb-3">
+                        <div class="col-md-6">
+                            <h3>プライズの編集</h3>
+                        </div>
+                        <div class="col-md-6 text-right">
+                            <a class="btn btn-secondary" role="button py-5" href="{{ action('User\PrizeController@index', ['gacha_id' => $gacha_id, 'gacha_name' => $gacha_name]) }}">プライズリストへ戻る</a>
+                        </div>
+                    </div>
                     <form action="{{ action('User\PrizeController@update') }}" method="post" enctype="multipart/form-data">
                         @if (count($errors) > 0)
                             <ul>
@@ -66,15 +73,18 @@
                             </div>
                         </div>
                         <div class="col-md-9 ml-auto mb-5">
-                        <p>著作権を侵害するような画像は控えてください。過度に性的、または暴力的な表現を含む場合、削除する場合があります。ご了承ください。</p>
+                            <p>著作権を侵害するような画像は控えてください。過度に性的、または暴力的な表現を含む場合、削除する場合があります。ご了承ください。</p>
                         </div>
                     
                         {{ csrf_field() }}
+                        <div class="row">
                         <div class="col-md-9 pl-1 ml-auto">
                             <input type="hidden" name="gacha_id" value="{{ $gacha_id }}">
                             <input type="hidden" name="gacha_name" value="{{ $gacha_name }}">
                             <input type="hidden" name="id" value="{{ $prize->id }}">
                             <input type="submit" class="btn-lg btn-primary w-50" value="上書きする">
+                            
+                            </div>
                         </div>
                     </form>
                 </div>

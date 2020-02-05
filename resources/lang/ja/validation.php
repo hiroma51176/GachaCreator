@@ -113,7 +113,7 @@ return [
     'string' => 'The :attribute must be a string.',
     'timezone' => 'The :attribute must be a valid zone.',
     'unique' => 'The :attribute has already been taken.',
-    'uploaded' => 'The :attribute のアップロードに失敗しました',
+    'uploaded' => ':attribute のアップロードに失敗しました',
     'url' => 'The :attribute format is invalid.',
     'uuid' => 'The :attribute must be a valid UUID.',
 
@@ -155,8 +155,9 @@ return [
         'hit_rate' => '排出率の当たり',
         'miss_rate' => '排出率のはずれ',
         'prize_name' => 'プライズの名前',
-        'rarity_id' => 'プライズのレアリティ',
-        'templete' => 'テンプレートの使用'
+        'rarity_name' => 'プライズのレアリティ',
+        'templete' => 'テンプレートの使用',
+        'image' => '画像',
         ],
 
 ];
