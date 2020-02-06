@@ -183,6 +183,16 @@ class PlayController extends Controller
         return view('gacha_play.result', ['gacha' => $gacha, 'result_one_shot' => $result_one_shot, 'results_ten_shot' => $results_ten_shot]);
     }
     
+    public function terms()
+    {
+        return view('terms_of_service');
+    }
+    
+    public function policy()
+    {
+        return view('privacy_policy');
+    }
+    
     
     // public function viewCalculation()
     // {

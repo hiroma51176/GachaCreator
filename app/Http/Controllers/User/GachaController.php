@@ -233,4 +233,6 @@ class GachaController extends Controller
         // \Debugbar::info($price_used);
         return view('history', ['gacha_histories' => $gacha_histories, 'price_used' => $price_used, 'draw_count' => $draw_count]);
     }
+    
+    
 }

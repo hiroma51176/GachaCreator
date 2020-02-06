@@ -78,3 +78,10 @@ Route::group(['prefix' => 'admin', 'middleware' => 'auth'], function(){
     Route::post('templete/create', 'Admin\TempleteController@create');
 });
 
+
+
+Route::get('terms', 'PlayController@terms');
+Route::get('policy', 'PlayController@policy');
+
+Route::get('profile', 'User\UserController@edit');
+Route::post('profile', 'User\UserController@update');

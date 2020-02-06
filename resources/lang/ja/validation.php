@@ -112,7 +112,7 @@ return [
     'starts_with' => 'The :attribute must start with one of the following: :values',
     'string' => 'The :attribute must be a string.',
     'timezone' => 'The :attribute must be a valid zone.',
-    'unique' => 'The :attribute has already been taken.',
+    'unique' => ':attribute は既に使われています',
     'uploaded' => ':attribute のアップロードに失敗しました',
     'url' => 'The :attribute format is invalid.',
     'uuid' => 'The :attribute must be a valid UUID.',
@@ -158,6 +158,10 @@ return [
         'rarity_name' => 'プライズのレアリティ',
         'templete' => 'テンプレートの使用',
         'image' => '画像',
+        'name' => 'ユーザー名',
+        'emai' => 'メールアドレス',
+        'current_password' => '現在のパスワード',
+        'new_password' => '新しいパスワード',
         ],
 
 ];

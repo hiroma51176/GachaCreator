@@ -49929,6 +49929,17 @@ $(window).on('load', function () {
 
 /***/ }),
 
+/***/ "./resources/sass/terms.scss":
+/*!***********************************!*\
+  !*** ./resources/sass/terms.scss ***!
+  \***********************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+// removed by extract-text-webpack-plugin
+
+/***/ }),
+
 /***/ "./resources/sass/top.scss":
 /*!*********************************!*\
   !*** ./resources/sass/top.scss ***!
@@ -49941,9 +49952,9 @@ $(window).on('load', function () {
 /***/ }),
 
 /***/ 0:
-/*!*************************************************************************************************************************************************!*\
-  !*** multi ./resources/js/app.js ./resources/sass/app.scss ./resources/sass/common.scss ./resources/sass/top.scss ./resources/sass/result.scss ***!
-  \*************************************************************************************************************************************************/
+/*!*****************************************************************************************************************************************************************************!*\
+  !*** multi ./resources/js/app.js ./resources/sass/app.scss ./resources/sass/common.scss ./resources/sass/top.scss ./resources/sass/result.scss ./resources/sass/terms.scss ***!
+  \*****************************************************************************************************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -49951,7 +49962,8 @@ __webpack_require__(/*! /home/ec2-user/environment/GachaCreator/resources/js/app
 __webpack_require__(/*! /home/ec2-user/environment/GachaCreator/resources/sass/app.scss */"./resources/sass/app.scss");
 __webpack_require__(/*! /home/ec2-user/environment/GachaCreator/resources/sass/common.scss */"./resources/sass/common.scss");
 __webpack_require__(/*! /home/ec2-user/environment/GachaCreator/resources/sass/top.scss */"./resources/sass/top.scss");
-module.exports = __webpack_require__(/*! /home/ec2-user/environment/GachaCreator/resources/sass/result.scss */"./resources/sass/result.scss");
+__webpack_require__(/*! /home/ec2-user/environment/GachaCreator/resources/sass/result.scss */"./resources/sass/result.scss");
+module.exports = __webpack_require__(/*! /home/ec2-user/environment/GachaCreator/resources/sass/terms.scss */"./resources/sass/terms.scss");
 
 
 /***/ })

@@ -33,6 +33,7 @@
                                 </a>
                                 
                                 <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                    <a class="dropdown-item" href="{{ action('User\UserController@edit') }}">ユーザー情報を編集する</a>
                                     <a class="dropdown-item" href="#"
                                     onclick="event.preventDefault();
                                         document.getElementById('logout-form').submit();">

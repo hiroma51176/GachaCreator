@@ -46,4 +46,11 @@ class User extends Authenticatable
     {
         return $this->hasmany('App\GachaHistory');
     }
+    
+    public static $rules = array(
+        'name' => 'required | string | max:255',
+        'email' => 'required | string | email | max:255 | unique:users',
+        'current_password' => 'required',
+        'new_password' => 'required | string | min:8 | confirmed',
+        );
 }
