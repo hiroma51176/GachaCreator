@@ -80,7 +80,7 @@
                             </label>
                             <div class="col-md-2">
                                 <input type="text" class="form-control input-number input-price" maxlength="5" name="play_price" value="{{ old('play_price') }}">
-                                <font color="red"><p class="mb-0"></p></font>
+                                <font color="red"><p id="price-alert-ng"></p></font>
                             </div>
                             <label class="col-md-3">円</label>
                         </div>
@@ -151,7 +151,9 @@
                         
                     
                         {{ csrf_field() }}
-                        <input type="submit" class="btn-lg btn-primary w-50" value="ガチャを作成する">
+                        <input id="submit-create" type="submit" class="btn-lg btn-primary w-50" value="ガチャを作成する" disabled>
+                        <p id="error"></p>
+                        <p id="ans"></p>
                     </form>
                 </div>
             </div>

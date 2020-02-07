@@ -9,7 +9,8 @@
                 <h1>ガチャクリエイター</h1>
             </div>
             <div class="col-md-10 mx-auto">
-                <p>ガチャクリエイターは完全無料のサービスで、ガチャを引いたり、オリジナルのガチャを作成したり、ガチャのシミュレーションを行うことが出来ます。</p>
+                <p class="mb-0">ガチャクリエイターは完全無料のサービスです。</p>
+                <p>ガチャを引いたり、オリジナルのガチャを作成したり、ガチャのシミュレーションを行うことが出来ます。</p>
             </div>
         </div>
         <div class="row text-center">
@@ -20,7 +21,7 @@
             <div class="col-md-5 gacha-create content mx-auto p-2">
                 <a class="content-title btn btn-success" role="button" href="{{ action('User\GachaController@add') }}">ガチャを作成する</a>
                 <p>オリジナルのガチャを作成することが出来ます。</p>
-                <p>※ユーザー登録が必要です。</p>
+                <p>※アカウントの登録が必要です。</p>
             </div>
         </div>
         <div class="col-md-5 gacha-simulation content mx-auto p-2 text-center">
