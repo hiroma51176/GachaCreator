@@ -60,8 +60,8 @@
             </div>
             <div class="row">
                 <div class="col-md-12 text-center mb-5">
-                    <a class="btn-lg btn-primary mx-5" role="button" href="{{ action('PlayController@playOneShot', ['gacha_id' => $gacha->id]) }}">１回引く</a>
-                    <a class="btn-lg btn-primary mx-5" role="button" href="{{ action('PlayController@playTenShot', ['gacha_id' => $gacha->id]) }}">１０回引く</a>
+                    <a class="btn btn-lg btn-primary mx-5 w-25" role="button" href="{{ action('PlayController@playOneShot', ['gacha_id' => $gacha->id]) }}">１回引く</a>
+                    <a class="btn btn-lg btn-primary mx-5 w-25" role="button" href="{{ action('PlayController@playTenShot', ['gacha_id' => $gacha->id]) }}">１０回引く</a>
                 </div>
             </div>
         </div>

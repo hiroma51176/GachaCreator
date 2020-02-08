@@ -49630,13 +49630,13 @@ $(function () {
   $('.input-price').blur(function () {
     if ($(this).val() == '') {
       $(this).next().text('入力が必要です');
-      $('#price-alert-ng').val('error');
+      $('#price-alert-ng').val(1);
     } else if (!(0 <= $(this).val() && $(this).val() <= 10000)) {
       $(this).next().text('1～10000の値を入力してください');
-      $('#price-alert-ng').val('error');
+      $('#price-alert-ng').val(1);
     } else {
       $(this).next().text('');
-      $('#price-alert-ng').val('');
+      $('#price-alert-ng').val(0);
     }
   });
 }); // -----------------------------------------------------------------------------------
@@ -49667,18 +49667,66 @@ $(function () {
   });
 }); // --------------------------------------------------------------------------------------
 // 排出率（ガチャの作成、編集）を入力時、入力された値が指定範囲外の場合------------------
+// $(function(){
+//     $('.input-gacha-rate').blur(function(){
+//         if($(this).val() == ''){
+//             $(this).next().text('入力が必要です');
+//             $('#rate-alert-ng').val('error');
+//         }else if(!(0 <= $(this).val() && $(this).val() <= 100)){
+//             $(this).next().text('0～100の値を入力してください');
+//             $('#rate-alert-ng').val('error');
+//         }else{
+//             $(this).next().text('');
+//             $('#rate-alert-ng').val('');
+//         }
+//     });
+// });
+// ------------------------------------------------------------------------------------
+// 大当たりの排出率（ガチャの作成、編集）を入力時、入力された値が指定範囲外の場合------------------
 
 $(function () {
-  $('.input-gacha-rate').blur(function () {
+  $('#jackpot').blur(function () {
     if ($(this).val() == '') {
       $(this).next().text('入力が必要です');
-      $('#rate-alert-ng').val('error');
+      $('#jackpot-alert').val(1);
     } else if (!(0 <= $(this).val() && $(this).val() <= 100)) {
       $(this).next().text('0～100の値を入力してください');
-      $('#rate-alert-ng').val('error');
+      $('#jackpot-alert').val(1);
     } else {
       $(this).next().text('');
-      $('#rate-alert-ng').val('');
+      $('#jackpot-alert').val(0);
+    }
+  });
+}); // ------------------------------------------------------------------------------------
+// 当たりの排出率（ガチャの作成、編集）を入力時、入力された値が指定範囲外の場合------------------
+
+$(function () {
+  $('#hit').blur(function () {
+    if ($(this).val() == '') {
+      $(this).next().text('入力が必要です');
+      $('#hit-alert').val(1);
+    } else if (!(0 <= $(this).val() && $(this).val() <= 100)) {
+      $(this).next().text('0～100の値を入力してください');
+      $('#hit-alert').val(1);
+    } else {
+      $(this).next().text('');
+      $('#hit-alert').val(0);
+    }
+  });
+}); // ------------------------------------------------------------------------------------
+// はずれの排出率（ガチャの作成、編集）を入力時、入力された値が指定範囲外の場合------------------
+
+$(function () {
+  $('#miss').blur(function () {
+    if ($(this).val() == '') {
+      $(this).next().text('入力が必要です');
+      $('#miss-alert').val(1);
+    } else if (!(0 <= $(this).val() && $(this).val() <= 100)) {
+      $(this).next().text('0～100の値を入力してください');
+      $('#miss-alert').val(1);
+    } else {
+      $(this).next().text('');
+      $('#miss-alert').val(0);
     }
   });
 }); // ------------------------------------------------------------------------------------
@@ -49694,11 +49742,11 @@ $(function () {
     if (sum == 100) {
       $('#rate-alert-ok').text('排出率の合計は100です');
       $('#rate-alert-ng').text('');
-      $('#rate-alert-ng').val(''); // $('#submit-create').prop('disabled', false);
+      $('#rate-alert-ng').val(0); // $('#submit-create').prop('disabled', false);
     } else {
       $('#rate-alert-ng').text('排出率の合計は' + sum + 'です。合計100にしてください');
       $('#rate-alert-ok').text('');
-      $('#rate-alert-ng').val('error'); // $('#submit-create').prop('disabled', true);
+      $('#rate-alert-ng').val(1); // $('#submit-create').prop('disabled', true);
     }
   });
 }); // --------------------------------------------------------------------------------------
@@ -49721,9 +49769,9 @@ $(function () {
     $('.input-gacha-name, .input-prize-name').blur(function () {
       if ($(this).val() == '') {
         $('#name-alert-ng').text('入力が必要です');
-        $('#name-alert-ng').val('error');
+        $('#name-alert-ng').val(1);
       } else {
-        $('#name-alert-ng').val('');
+        $('#name-alert-ng').val(0);
       }
     });
   }); // 入力時のイベント
@@ -49763,12 +49811,12 @@ $(function () {
       // 1文字以上かつ30字以内の場合はＯＫ表示
       $('#name-alert-ok').text('現在' + count + '文字です。問題ありません');
       $('#name-alert-ng').text('');
-      $('#name-alert-ng').val(''); // $('#submit-create').prop('disabled', false);
+      $('#name-alert-ng').val(0); // $('#submit-create').prop('disabled', false);
     } else {
       // 0文字または30文字を超える場合はＮＧ表示
       $('#name-alert-ng').text('現在' + count + '文字です。1～30文字以内にしてください');
       $('#name-alert-ok').text('');
-      $('#name-alert-ng').val('error'); // $('#submit-create').prop('disabled', true);
+      $('#name-alert-ng').val(1); // $('#submit-create').prop('disabled', true);
     }
   }); // リロード時に文字が入っていた時の対策
   //$('.input-gacha-name').trigger('input');
@@ -49802,12 +49850,12 @@ $(function () {
       // 1文字以上かつ60字以内の場合はＯＫ表示
       $('#description-alert-ok').text('現在' + count + '文字です。問題ありません');
       $('#description-alert-ng').text('');
-      $('#description-alert-ng').val(''); // $('#submit-create').prop('disabled', false);
+      $('#description-alert-ng').val(0); // $('#submit-create').prop('disabled', false);
     } else {
       // 0文字または60文字を超える場合はＮＧ表示
       $('#description-alert-ng').text('現在' + count + '文字です。60文字以下にしてください');
       $('#description-alert-ok').text('');
-      $('#description-alert-ng').val('error'); // $('#submit-create').prop('disabled', true);
+      $('#description-alert-ng').val(1); // $('#submit-create').prop('disabled', true);
     }
   }); // リロード時に文字が入っていた時の対策
   //$('.input-gacha-name').trigger('input');
@@ -49824,11 +49872,11 @@ $(function () {
     if (image_size < 2048000) {
       $('#image-alert-ok').text('画像サイズは' + getFileSize(file.size) + 'です。問題ありません');
       $('#image-alert-ng').text('');
-      $('#image-alert-ng').val(''); // $('#submit-create').prop('disabled', false);
+      $('#image-alert-ng').val(0); // $('#submit-create').prop('disabled', false);
     } else {
       $('#image-alert-ng').text('画像サイズは' + getFileSize(file.size) + 'です。2MB以下の画像を選択してください');
       $('#image-alert-ok').text('');
-      $('#image-alert-ng').val('error'); // $('#submit-create').prop('disabled', true);
+      $('#image-alert-ng').val(1); // $('#submit-create').prop('disabled', true);
     }
   });
 });
@@ -49868,30 +49916,29 @@ function getFileSize(file_size) {
 } // ----------------------------------------------------------------------------------------------------
 // ガチャ作成・編集画面とプライズ作成・編集画面で、入力フォームに不備があるときはボタンを押せないようにしたい-------------
 // 問題：ガチャ名について、エラーがあってもそのほかのフォームを入力するとなぜかエラーが消える
-// 問題：設定金額について、undefined
-// $(function(){
-//     $('.input-gacha-name, .input-gacha-description, .image-file, .input-price, .input-gacha-rate').blur(function(){
-//         var name = $('#name-alert-ng').val();
-//         var des = $('#description-alert-ng').val();
-//         var image = $('#image-alert-ng').val();
-//         var price = $('#price-alert-ng').val();
-//         var rate = $('#rate-alert-ng').val();
-//         if(
-//         $('#name-alert-ng').val() == '' &&
-//         $('#description-alert-ng').val() == '' &&
-//         $('#image-alert-ng').val() == '' &&
-//         $('#price-alert-ng').val() == '' &&
-//         $('#rate-alert-ng').val() == ''
-//         ){
-//             $('#submit-create').prop('disabled', false);
-//             $('#error').text('name：' + name + '。des：' +  des + '。rate：' + rate + '。image：' + image + '。price：' + price + '。OK');
-//         }else{
-//             $('#submit-create').prop('disabled', true);
-//             $('#error').text('name：' + name + '。des：' +  des + '。rate：' + rate + '。image：' + image + '。price：' + price + '。入力フォームにエラーが発生しています。修正してください');
-//         }
-//     });
-// });
-//-------------------------------------------------------------------------------------------------------------------------------------
+// 問題：price,jackpot,hit,missについて、undefined
+
+
+$(function () {
+  $('.input-gacha-name, .input-gacha-description, .image-file, .input-price, .input-gacha-rate').blur(function () {
+    var name = $('#name-alert-ng').val();
+    var des = $('#description-alert-ng').val();
+    var image = $('#image-alert-ng').val();
+    var price = $('#price-alert-ng').val();
+    var jackpot = $('#jackpot-alert').val();
+    var hit = $('#hit-alert').val();
+    var miss = $('#miss-alert').val();
+    var rate = $('#rate-alert-ng').val();
+
+    if ($('#name-alert-ng').val() == 0 && $('#description-alert-ng').val() == 0 && $('#image-alert-ng').val() == 0 && $('#price-alert-ng').val() == 0 && $('#jackpot-alert').val() == 0 && $('#hit-alert').val() == 0 && $('#miss-alert').val() == 0 && $('#rate-alert-ng').val() == 0) {
+      $('#submit-create').prop('disabled', false);
+      $('#error').text('name：' + name + '。des：' + des + '。image：' + image + '。price：' + price + '。jackpot：' + jackpot + '。hit：' + hit + '。miss：' + miss + '。rate：' + rate + '。OK');
+    } else {
+      $('#submit-create').prop('disabled', true);
+      $('#error').text('name：' + name + '。des：' + des + '。image：' + image + '。price：' + price + '。jackpot：' + jackpot + '。hit：' + hit + '。miss：' + miss + '。rate：' + rate + '。入力フォームにエラーが発生しています。修正してください');
+    }
+  });
+}); //-------------------------------------------------------------------------------------------------------------------------------------
 
 /***/ }),
 

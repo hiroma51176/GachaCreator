@@ -8,7 +8,7 @@
             <div class="col-md-12 mx-auto">
                 <h1>ガチャクリエイター</h1>
             </div>
-            <div class="col-md-10 mx-auto">
+            <div class="col-md-12 mx-auto">
                 <p class="mb-0">ガチャクリエイターは完全無料のサービスです。</p>
                 <p>ガチャを引いたり、オリジナルのガチャを作成したり、ガチャのシミュレーションを行うことが出来ます。</p>
             </div>

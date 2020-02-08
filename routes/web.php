@@ -20,8 +20,8 @@ Route::group(['prefix' => 'gacha_play'], function(){
     
     Route::get('list', 'PlayController@index');
     Route::get('play', 'PlayController@viewPlay');
-    Route::get('play/result_OneShot', 'PlayController@playOneShot');
-    Route::get('play/result_TenShot', 'PlayController@playTenShot');
+    Route::get('play/result_one_shot', 'PlayController@playOneShot');
+    Route::get('play/result_ten_shot', 'PlayController@playTenShot');
 });
 
 // // シミュレーション関係
@@ -65,7 +65,7 @@ Auth::routes();
 Route::get('/home', 'HomeController@index')->name('home');
 
 Route::group(['prefix' => 'admin', 'middleware' => 'auth'], function(){
-    // レアリティ関係
+    // レアリティ関係、不使用
     // Route::get('rarity/list', 'Admin\RarityController@index');
     // Route::get('rarity/create', 'Admin\RarityController@add');
     // Route::post('rarity/create', 'Admin\RarityController@create');

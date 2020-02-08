@@ -38,7 +38,7 @@
                             </label>
                             <div class="col-md-9">
                                 <input type="text" class="form-control input-gacha-name" name="gacha_name" value="{{ old('gacha_name') }}">
-                                <font color="red"><p id="name-alert-ng" class="mb-0"></p></font>
+                                <font color="red"><p id="name-alert-ng" class="mb-0" value="1"></p></font>
                                 <font color="blue"><p id="name-alert-ok" class="mb-0"></p></font>
                             </div>
                         </div>
@@ -51,7 +51,7 @@
                             </label>
                             <div class="col-md-9">
                                 <textarea class="form-control input-gacha-description" name="gacha_description" rows="2">{{ old('gacha_description') }}</textarea>
-                                <font color="red"><p id="description-alert-ng" class="mb-0"></p></font>
+                                <font color="red"><p id="description-alert-ng" class="mb-0" value="0"></p></font>
                                 <font color="blue"><p id="description-alert-ok" class="mb-0"></p></font>
                             </div>
                         </div>
@@ -80,7 +80,7 @@
                             </label>
                             <div class="col-md-2">
                                 <input type="text" class="form-control input-number input-price" maxlength="5" name="play_price" value="{{ old('play_price') }}">
-                                <font color="red"><p id="price-alert-ng"></p></font>
+                                <font color="red"><p id="price-alert-ng" value="1"></p></font>
                             </div>
                             <label class="col-md-3">円</label>
                         </div>
@@ -94,7 +94,7 @@
                             </label>
                             <div class="col-md-2">
                                 <input id="jackpot" type="text" class="form-control input-number input-gacha-rate" maxlength="3" name="jackpot_rate" value="{{ old('jackpot_rate') }}">
-                                <font color="red"><p class="mb-0"></p></font>
+                                <font color="red"><p id="jackpot-alert" class="mb-0" value="1"></p></font>
                             </div>
                             <label class="col-md-3">%</label>
                             
@@ -106,7 +106,7 @@
                             </label>
                             <div class="col-md-2">
                                 <input id="hit" type="text" class="form-control input-number input-gacha-rate" maxlength="3" name="hit_rate" value="{{ old('hit_rate') }}">
-                                <font color="red"><p class="mb-0"></p></font>
+                                <font color="red"><p id="hit-alert" class="mb-0" value="1"></p></font>
                             </div>
                             <label class="col-md-3">%</label>
                         </div>
@@ -117,12 +117,12 @@
                             </label>
                             <div class="col-md-2">
                                 <input id="miss" type="text" class="form-control input-number input-gacha-rate" maxlength="3" name="miss_rate" value="{{ old('miss_rate') }}">
-                                <font color="red"><p class="mb-0"></p></font>
+                                <font color="red"><p id="miss-alert" class="mb-0" value="1"></p></font>
                             </div>
                             <label class="col-md-3">%</label>
                         </div>
                         <div class="col-md-9 ml-auto px-2">
-                            <font color="red"><p id="rate-alert-ng"></p></font>
+                            <font color="red"><p id="rate-alert-ng" value="1"></p></font>
                             <font color="blue"><p id="rate-alert-ok"></p></font>
                         </div>
                         
@@ -146,6 +146,7 @@
                                         @endforeach
                                     @endif
                                 </select>
+                                <font color="red"><p id="templete-alert-ng" value="1"></p></font>
                             </div>
                         </div>
                         
