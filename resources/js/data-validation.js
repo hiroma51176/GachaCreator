@@ -25,7 +25,7 @@ $(function(){
             $(this).next().text('入力が必要です');
             $('#price-alert-ng').val(1);
         }else if(!(0 <= $(this).val() && $(this).val() <= 10000)){
-            $(this).next().text('1～10000の値を入力してください');
+            $(this).next().text('0～10000の値を入力してください');
             $('#price-alert-ng').val(1);
         }else{
             $(this).next().text('');
@@ -40,10 +40,13 @@ $(function(){
     $('.input-count').blur(function(){
         if($(this).val() == ''){
             $(this).next().text('入力が必要です');
+            $(this).next().val('error');
         }else if(!(0 < $(this).val() && $(this).val() <= 1000)){
             $(this).next().text('1～1000の値を入力してください');
+            $(this).next().val('error');
         }else{
             $(this).next().text('');
+            $(this).next().val('');
         }
     });
 });
@@ -63,32 +66,15 @@ $(function(){
 });
 // --------------------------------------------------------------------------------------
 
-// 排出率（ガチャの作成、編集）を入力時、入力された値が指定範囲外の場合------------------
-// $(function(){
-//     $('.input-gacha-rate').blur(function(){
-//         if($(this).val() == ''){
-//             $(this).next().text('入力が必要です');
-//             $('#rate-alert-ng').val('error');
-//         }else if(!(0 <= $(this).val() && $(this).val() <= 100)){
-//             $(this).next().text('0～100の値を入力してください');
-//             $('#rate-alert-ng').val('error');
-//         }else{
-//             $(this).next().text('');
-//             $('#rate-alert-ng').val('');
-//         }
-//     });
-// });
-// ------------------------------------------------------------------------------------
-
 // 大当たりの排出率（ガチャの作成、編集）を入力時、入力された値が指定範囲外の場合------------------
 $(function(){
     $('#jackpot').blur(function(){
         if($(this).val() == ''){
             $(this).next().text('入力が必要です');
-            $('#jackpot-alert').val(1);
+            $('#jackpot-alert').val('error');
         }else if(!(0 <= $(this).val() && $(this).val() <= 100)){
             $(this).next().text('0～100の値を入力してください');
-            $('#jackpot-alert').val(1);
+            $('#jackpot-alert').val('error');
         }else{
             $(this).next().text('');
             $('#jackpot-alert').val(0);
@@ -103,10 +89,10 @@ $(function(){
     $('#hit').blur(function(){
         if($(this).val() == ''){
             $(this).next().text('入力が必要です');
-            $('#hit-alert').val(1);
+            $('#hit-alert').val('error');
         }else if(!(0 <= $(this).val() && $(this).val() <= 100)){
             $(this).next().text('0～100の値を入力してください');
-            $('#hit-alert').val(1);
+            $('#hit-alert').val('error');
         }else{
             $(this).next().text('');
             $('#hit-alert').val(0);
@@ -121,10 +107,10 @@ $(function(){
     $('#miss').blur(function(){
         if($(this).val() == ''){
             $(this).next().text('入力が必要です');
-            $('#miss-alert').val(1);
+            $('#miss-alert').val('error');
         }else if(!(0 <= $(this).val() && $(this).val() <= 100)){
             $(this).next().text('0～100の値を入力してください');
-            $('#miss-alert').val(1);
+            $('#miss-alert').val('error');
         }else{
             $(this).next().text('');
             $('#miss-alert').val(0);
@@ -150,25 +136,13 @@ $(function(){
         }else{
             $('#rate-alert-ng').text('排出率の合計は' + sum + 'です。合計100にしてください');
             $('#rate-alert-ok').text('');
-            $('#rate-alert-ng').val(1);
+            $('#rate-alert-ng').val('error');
             // $('#submit-create').prop('disabled', true);
         }
     });
 });
 // --------------------------------------------------------------------------------------
 
-// // 入力フォームが空白でフォーカスが外れたらアラート発生
-// $(function(){
-//     $('.input-gacha-name').blur(function(){
-//         if($(this).val() == ''){
-//             $(this).next().text('入力が必要です');
-//         }else{
-//             $(this).next().text('');
-//         }
-//     });
-// });
-
-// ----------------------------------------------------------------------------------------
 
 // ガチャの名前（ガチャの作成、編集）入力時のイベント--------------------------------------
 $(function(){
@@ -177,7 +151,7 @@ $(function(){
         $('.input-gacha-name, .input-prize-name').blur(function(){
             if($(this).val() == ''){
                 $('#name-alert-ng').text('入力が必要です');
-                $('#name-alert-ng').val(1);
+                $('#name-alert-ng').val('error');
             }else{
                 $('#name-alert-ng').val(0);
             }
@@ -227,7 +201,7 @@ $(function(){
             // 0文字または30文字を超える場合はＮＧ表示
             $('#name-alert-ng').text('現在' + count + '文字です。1～30文字以内にしてください');
             $('#name-alert-ok').text('');
-            $('#name-alert-ng').val(1);
+            $('#name-alert-ng').val('error');
             // $('#submit-create').prop('disabled', true);
         }
     });
@@ -270,7 +244,7 @@ $(function(){
             // 0文字または60文字を超える場合はＮＧ表示
             $('#description-alert-ng').text('現在' + count + '文字です。60文字以下にしてください');
             $('#description-alert-ok').text('');
-            $('#description-alert-ng').val(1);
+            $('#description-alert-ng').val('error');
             // $('#submit-create').prop('disabled', true);
         }
     });
@@ -295,7 +269,7 @@ $(function(){
         }else{
             $('#image-alert-ng').text('画像サイズは' + getFileSize(file.size) + 'です。2MB以下の画像を選択してください');
             $('#image-alert-ok').text('');
-            $('#image-alert-ng').val(1);
+            $('#image-alert-ng').val('');
             // $('#submit-create').prop('disabled', true);
         }
         
@@ -336,7 +310,10 @@ function getFileSize(file_size){
 // 問題：ガチャ名について、エラーがあってもそのほかのフォームを入力するとなぜかエラーが消える
 // 問題：price,jackpot,hit,missについて、undefined
 $(function(){
-    $('.input-gacha-name, .input-gacha-description, .image-file, .input-price, .input-gacha-rate').blur(function(){
+    // それぞれの入力フォームに変化があったら発火
+    $('.input-gacha-name, .input-gacha-description, .image-file, .input-price, .input-gacha-rate').on('change', function(){
+        
+        // それぞれの入力フォームにエラーがあった場合にエラーメッセージを表示するタグのvalue値を確認するための変数
         var name = $('#name-alert-ng').val();
         var des = $('#description-alert-ng').val();
         var image = $('#image-alert-ng').val();
@@ -346,26 +323,64 @@ $(function(){
         var miss = $('#miss-alert').val();
         var rate = $('#rate-alert-ng').val();
         
+        // エラーがない場合はvalue値が0
         if(
         $('#name-alert-ng').val() == 0 &&
         $('#description-alert-ng').val() == 0 &&
         $('#image-alert-ng').val() == 0 &&
-        $('#price-alert-ng').val() == 0 &&
+        $('#price-alert-ng').val() == 0 && 
         $('#jackpot-alert').val() == 0 &&
         $('#hit-alert').val() == 0 &&
         $('#miss-alert').val() == 0 &&
         $('#rate-alert-ng').val() == 0
         ){
+            //エラーがない場合はボタンが押せる
             $('#submit-create').prop('disabled', false);
-            $('#error').text('name：' + name + '。des：' +  des + '。image：' + image + '。price：'
-                + price + '。jackpot：' + jackpot + '。hit：' + hit + '。miss：' + miss + '。rate：' + rate + '。OK');
+            // それぞれに何が入っているか確認用
+            $('#error').text(
+                            'name：' + name 
+                            + '。des：' +  des 
+                            + '。image：' + image 
+                            + '。price：' + price 
+                            + '。jackpot：' + jackpot 
+                            + '。hit：' + hit 
+                            + '。miss：' + miss 
+                            + '。rate：' + rate 
+                            + '。OK'
+                            );
             
         }else{
+            //エラーがある場合はボタンが押せない
             $('#submit-create').prop('disabled', true);
-            $('#error').text('name：' + name + '。des：' +  des + '。image：' + image + '。price：' 
-                + price + '。jackpot：' + jackpot + '。hit：' + hit + '。miss：' + miss + '。rate：' + rate + '。入力フォームにエラーが発生しています。修正してください');
+            // それぞれに何が入っているか確認用
+            $('#error').text(
+                            'name：' + name 
+                            + '。des：' +  des 
+                            + '。image：' + image 
+                            + '。price：' + price 
+                            + '。jackpot：' + jackpot 
+                            + '。hit：' + hit 
+                            + '。miss：' + miss 
+                            + '。rate：' + rate 
+                            + '。入力フォームにエラーが発生しています。修正してください'
+                            );
         }
     });
     
 });
 //-------------------------------------------------------------------------------------------------------------------------------------
+
+// // シミュレーションでエラーがあるときは実行するボタン押せないようにする----------------------------------------------
+// $(function(){
+//     $('.input-price, .input-count, .input-rate').blur(function(){
+        
+//         $('.input-price, .input-count, .input-rate').each(function(){
+//             if($(this).next().text() ===''){
+//                 $('#submit-sim').prop('disabled', false);
+//             }else{
+//                 $('#submit-sim').prop('disabled', true);
+//             }
+//         });
+//     });
+    
+// });

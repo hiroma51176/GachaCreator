@@ -34,7 +34,7 @@
                             </div>
                             
                             <label class="pt-2">円</label>
-                            <label class="pl-4">※1～10000までの整数を半角で入力してください。</label>
+                            <label class="pl-4 mb-0">※0～10000までの整数を半角で入力してください。</label>
                         </div>
                         
                         <div class="form-group row">
@@ -48,7 +48,7 @@
                                 <font color="red"><p class="mb-0 alert"></p></font>
                             </div>
                             <label class="pt-2">回</label>
-                            <label class="pl-4">※1～1000までの整数を半角で入力してください。</label>
+                            <label class="pl-4 mb-0">※1～1000までの整数を半角で入力してください。</label>
                         </div>
                         
                         <div class="form-group row">
@@ -62,12 +62,12 @@
                                 <font color="red"><p class="mb-0 alert"></p></font>
                             </div>
                             <label class="pt-2">%</label>
-                            <label class="pl-4">※1～100までの整数を半角で入力してください。</label>
+                            <label class="pl-4 mb-0">※1～100までの整数を半角で入力してください。</label>
                         </div>
                         
                         {{ csrf_field() }}
                         <div class="col-md-12 pl-2 mb-5">
-                            <input type="submit" name="new_sim" class="btn btn-primary w-50" value="シミュレーションを実行する">
+                            <input id="submit-sim" type="submit" name="new_sim" class="btn btn-primary w-50" value="シミュレーションを実行する" disabled>
                         </div>
                     </form>
                     
@@ -76,9 +76,12 @@
                     <div class="col-md-4">
                         <div class="result pl-3">
                             <h3>シミュレーション結果</h3>
-                            <p class="font-weight-bold pb-3 mt-3 mb-5">使用金額： {{ number_format($result['total_price']) }}円</p>
-                            <p class="font-weight-bold pb-3 mt-3 mb-5">引いた回数： {{ $result['total_play_count'] }}回</p>
-                            <p class="font-weight-bold pb-1 mt-3 mb-5">実際の排出率： {{ $result['real_rate'] }}％</p>
+                            <p class="font-weight-bold mt-3 pb-3">使用金額： {{ number_format($result['total_price']) }}円</p>
+                            <label class=""></label>
+                            <p class="font-weight-bold pb-1 mt-3">引いた回数： {{ $result['total_play_count'] }}回</p>
+                            <label class=""></label>
+                            <p class="font-weight-bold pb-3 mt-5 mb-4">実際の排出率： {{ $result['real_rate'] }}％</p>
+                            <label class=""></label>
                         </div>
                         
                         <form action="{{ action('SimulationController@run') }}" method="post">
