@@ -68,6 +68,7 @@
                         {{ csrf_field() }}
                         <div class="col-md-12 pl-2 mb-5">
                             <input id="submit-sim" type="submit" name="new_sim" class="btn btn-primary w-50" value="シミュレーションを実行する" disabled>
+                            <p id="check_val">ここだよ</p>
                         </div>
                     </form>
                     
