@@ -336,22 +336,12 @@ function getFileSize(file_size){
 }
 // ----------------------------------------------------------------------------------------------------
 
-// ガチャの作成画面で入力に不備があるときは作成ボタン押せないようにしたい-------------------------------
-// $(function(){
-//     $('input[name=templete]').on('change', function(){
-//         var temp = $(this).val();
-//         $('#check_val').text(temp);
-//     });
-// });
-
-$(function(){
-    $('.input-gacha-name, .input-gacha-description, .image-file, .input-gacha-price, .input-gacha-rate, input[name=templete]').on('blur change', function(){
-        
-        var price = $('.input-gacha-price').val();
+function check(){
+    var price = $('.input-gacha-price').val();
         var jackpot = $('#jackpot').val() | 0;
         var hit = $('#hit').val() | 0;
         var miss = $('#miss').val() | 0;
-        var sum = parseInt(jackpot, 10) + parseInt(hit, 10) + parseInt(miss, 10);
+        var sum = parseInt($('#jackpot').val() | 0, 10) + parseInt(hit, 10) + parseInt(miss, 10);
         
         var char_name = $('.input-gacha-name').val();
         var count_name = char_count(char_name);
@@ -359,33 +349,63 @@ $(function(){
         var char_desc = $('.input-gacha-description').val();
         var count_desc = char_count(char_desc);
         
-        if($('.image-file').prop('files')[0] != null){
-            var file = $('.image-file').prop('files')[0];
-            var file_size = file.size;
-        }else{
-            var file_size = null;
-        }
         
-        var temp = $('input[name=templete]').val();
         
         if(0 < count_name && count_name <= 30 
             && count_desc <= 60
-            && file_size < 2048000
             && $('.input-gacha-price').val() <= 10000
             && $('#jackpot').val() <= 100
             && $('#hit').val() <= 100
             && $('#miss').val() <= 100
             && sum == 100
-            && $('#jackpot').val() != '' && $('#hit').val() != '' && $('#miss').val() != ''
         ){
             $('#submit-create').prop('disabled', false);
-            $('#check_val').text(count_name + 'name|' + count_desc + '|' + price + '|' + jackpot + '｜' + hit + '|' + miss + '|' + sum + 'file' + file_size);
+            $('#check_val').text(count_name + 'name|' + count_desc + '|' + price + '|' + jackpot + '｜' + hit + '|' + miss + '|' + sum);
+            // $('#check_val').text(count_name + 'name|' + count_desc + '|' + file_size + '|' + price + '|' + jackpot + '｜' + hit + '|' + miss + '|' + sum);
         }else{
             $('#submit-create').prop('disabled', true);
-            $('#check_val').text(count_name + 'name|' + count_desc + '|' + price + '|' + jackpot + '｜' + hit + '|' + miss + '|' + sum + 'file' + file_size);
+            $('#check_val').text(count_name + 'name|' + count_desc + '|' + price + '|' + jackpot + '｜' + hit + '|' + miss + '|' + sum);
         }
-    });
+}
+
+$(function(){
+    $('.input-gacha-name, .input-gacha-description, .input-gacha-price, .input-gacha-rate').blur(check())
 });
+
+// $(function(){
+//     $('.input-gacha-name, .input-gacha-description, .input-gacha-price, .input-gacha-rate').blur(function(){
+        
+//         var price = $('.input-gacha-price').val();
+//         var jackpot = $('#jackpot').val() | 0;
+//         var hit = $('#hit').val() | 0;
+//         var miss = $('#miss').val() | 0;
+//         var sum = parseInt($('#jackpot').val() | 0, 10) + parseInt(hit, 10) + parseInt(miss, 10);
+        
+//         var char_name = $('.input-gacha-name').val();
+//         var count_name = char_count(char_name);
+        
+//         var char_desc = $('.input-gacha-description').val();
+//         var count_desc = char_count(char_desc);
+        
+        
+        
+//         if(0 < count_name && count_name <= 30 
+//             && count_desc <= 60
+//             && $('.input-gacha-price').val() <= 10000
+//             && $('#jackpot').val() <= 100
+//             && $('#hit').val() <= 100
+//             && $('#miss').val() <= 100
+//             && sum == 100
+//         ){
+//             $('#submit-create').prop('disabled', false);
+//             $('#check_val').text(count_name + 'name|' + count_desc + '|' + price + '|' + jackpot + '｜' + hit + '|' + miss + '|' + sum + '|' + templete);
+//             // $('#check_val').text(count_name + 'name|' + count_desc + '|' + file_size + '|' + price + '|' + jackpot + '｜' + hit + '|' + miss + '|' + sum);
+//         }else{
+//             $('#submit-create').prop('disabled', true);
+//             $('#check_val').text(count_name + 'name|' + count_desc + '|' + price + '|' + jackpot + '｜' + hit + '|' + miss + '|' + sum + '|' + templete);
+//         }
+//     });
+// });
 
 
 //-------------------------------------------------------------------------------------------------------------------------------------

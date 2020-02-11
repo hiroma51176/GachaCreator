@@ -79,7 +79,7 @@
                                 <strong>「１回引く」の金額設定（必須）</strong>
                             </label>
                             <div class="col-md-2">
-                                <input type="text" class="form-control input-number input-price" maxlength="5" name="play_price" value="{{ old('play_price') }}">
+                                <input type="text" class="form-control input-number input-gacha-price" maxlength="5" name="play_price" value="{{ old('play_price') }}">
                                 <font color="red"><p id="price-alert-ng"></p></font>
                             </div>
                             <label class="col-md-3">円</label>
@@ -134,10 +134,10 @@
                                 <strong>テンプレート使用について（必須）</strong>
                             </label>
                             <div class="col-md-9">
-                                <p><input class="mr-2" type="radio" name="templete" value="0">使用しない</p>
-                                <p><input class="mr-2" type="radio" name="templete" value="-1">テンプレートを使用する</p>
-                                <input class="mr-2" type="radio" id="created" name="templete" value="">作成したガチャのプライズをコピーする
-                                <select class="mx-2 px-2" id="created_select" name="templete" disabled>
+                                <p><input class="mr-2 templete" type="radio" name="templete" value="0">使用しない</p>
+                                <p><input class="mr-2 templete" type="radio" name="templete" value="-1">テンプレートを使用する</p>
+                                <input class="mr-2 templete" type="radio" id="created" name="templete" value="">作成したガチャのプライズをコピーする
+                                <select class="mx-2 px-2 templete" id="created_select" name="templete" disabled>
                                     <option value="">選択してください</option>
                                     {{-- いずれユーザーが作成したガチャを使えるようにしたい --}}
                                     @if ($gachas != null)
@@ -152,9 +152,8 @@
                         
                     
                         {{ csrf_field() }}
-                        <input id="submit-create" type="submit" class="btn-lg btn-primary w-50" value="ガチャを作成する">
-                        <p id="error"></p>
-                        <p id="ans"></p>
+                        <input id="submit-create" type="submit" class="btn-lg btn-primary w-50" value="ガチャを作成する" disabled>
+                        <p id="check_val"></p>
                     </form>
                 </div>
             </div>

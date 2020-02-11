@@ -64,7 +64,7 @@ Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
 
-Route::group(['prefix' => 'admin', 'middleware' => 'auth'], function(){
+// Route::group(['prefix' => 'admin', 'middleware' => 'auth'], function(){
     // レアリティ関係、不使用
     // Route::get('rarity/list', 'Admin\RarityController@index');
     // Route::get('rarity/create', 'Admin\RarityController@add');
@@ -73,10 +73,10 @@ Route::group(['prefix' => 'admin', 'middleware' => 'auth'], function(){
     // Route::post('rarity/edit', 'Admin\RarityController@update');
     
     // テンプレート関係
-    Route::get('templete/list', 'Admin\TempleteController@index');
-    Route::get('templete/create', 'Admin\TempleteController@add');
-    Route::post('templete/create', 'Admin\TempleteController@create');
-});
+    // Route::get('templete/list', 'Admin\TempleteController@index');
+    // Route::get('templete/create', 'Admin\TempleteController@add');
+    // Route::post('templete/create', 'Admin\TempleteController@create');
+// });
 
 
 

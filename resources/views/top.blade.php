@@ -20,7 +20,7 @@
             </div>
             <div class="col-md-5 gacha-create content mx-auto p-2">
                 <a class="content-title btn btn-success" role="button" href="{{ action('User\GachaController@add') }}">ガチャを作成する</a>
-                <p>オリジナルのガチャを作成することが出来ます。</p>
+                <p>オリジナルのガチャを作成することができます。</p>
                 <p>※アカウントの登録が必要です。</p>
             </div>
         </div>

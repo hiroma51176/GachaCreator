@@ -6,7 +6,7 @@
     <div class="container">
         <div class="main-title">
             <h1>ガチャのシミュレーション</h1>
-            <p class="mb-0">ガチャのシミュレーションを行うことが出来ます。</p>
+            <p class="mb-0">ガチャのシミュレーションを行うことができます。</p>
             <p class="mb-0">当たりを引くまでガチャを引き続けます。</p>
         </div>
         
@@ -23,7 +23,7 @@
                             </ul>
                         @endif
                         <div class="form-group row">
-                            <label class="col-md-5 pt-2 font-weight-bold">１回あたりの設定金額</label>
+                            <label class="col-md-5 pt-2 font-weight-bold">１回あたりの金額設定</label>
                             <div class="col-md-3">
                                 @if (isset($play_price))
                                     <input type="text" class="form-control input-number input-price" maxlength="5" name="play_price" value="{{ $play_price }}">
@@ -68,7 +68,7 @@
                         {{ csrf_field() }}
                         <div class="col-md-12 pl-2 mb-5">
                             <input id="submit-sim" type="submit" name="new_sim" class="btn btn-primary w-50" value="シミュレーションを実行する" disabled>
-                            <p id="check_val">ここだよ</p>
+                            <p id="check_val"></p>
                         </div>
                     </form>
                     
