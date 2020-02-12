@@ -1,5 +1,15 @@
 @extends('layouts.common')
 
+{{-- 追加のJavaScriptファイルを読み込ませる --}}
+@section('script')
+    <script src="{{ secure_asset('js/data-validation/gacha-create.js') }}" defer></script>
+@endsection
+
+{{-- 追加のCSSファイルを読み込ませる --}}
+@section('css')
+    <link rel="stylesheet" href="{{ secure_asset('css/common.css') }}">
+@endsection
+
 @section('title', 'ガチャ新規作成')
 
 @section('content')
@@ -134,7 +144,7 @@
                                 <strong>テンプレート使用について（必須）</strong>
                             </label>
                             <div class="col-md-9">
-                                <p><input class="mr-2 templete" type="radio" name="templete" value="0">使用しない</p>
+                                <p><input class="mr-2 templete" type="radio" name="templete" value="0" checked>使用しない</p>
                                 <p><input class="mr-2 templete" type="radio" name="templete" value="-1">テンプレートを使用する</p>
                                 <input class="mr-2 templete" type="radio" id="created" name="templete" value="">作成したガチャのプライズをコピーする
                                 <select class="mx-2 px-2 templete" id="created_select" name="templete" disabled>

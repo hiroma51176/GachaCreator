@@ -1,5 +1,15 @@
 @extends('layouts.common')
 
+{{-- 追加のJavaScriptファイルを読み込ませる --}}
+@section('script')
+
+@endsection
+
+{{-- 追加のCSSファイルを読み込ませる --}}
+@section('css')
+    <link rel="stylesheet" href="{{ secure_asset('css/common.css') }}">
+@endsection
+
 @section('title', 'ガチャリスト')
 
 @section('content')
@@ -13,7 +23,7 @@
             <div class="row">
                 <div class="col-md-8">
                     <h2>作成されたガチャ一覧</h2>
-                    <p>※プライズが０種のガチャは引くことができない為、ご注意ください</p>
+                    <p>※プライズが０種のガチャは引くことができない為、ご注意ください。</p>
                 </div>
             </div>
             <div class="row">
@@ -48,7 +58,7 @@
                                     <th width="25%">説明</th>
                                     <th width="8%">設定金額</th>
                                     <th width="10%">画像</th>
-                                    <th width="15%">プライズ内訳</th>
+                                    <th width="15%">排出率とプライズ内訳</th>
                                     <th width="8%">回数</th>
                                     <th width="10%">操作</th>
                                 </tr>

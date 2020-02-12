@@ -1,5 +1,15 @@
 @extends('layouts.common')
 
+{{-- 追加のJavaScriptファイルを読み込ませる --}}
+@section('script')
+    <script src="{{ secure_asset('js/data-validation/simulation.js') }}" defer></script>
+@endsection
+
+{{-- 追加のCSSファイルを読み込ませる --}}
+@section('css')
+    <link rel="stylesheet" href="{{ secure_asset('css/common.css') }}">
+@endsection
+
 @section('title', 'シミュレーション')
 
 @section('content')

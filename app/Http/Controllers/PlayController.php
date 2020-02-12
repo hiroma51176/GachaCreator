@@ -39,7 +39,7 @@ class PlayController extends Controller
         
         
         // URLにガチャidを直接入力して飛んできて、存在しないidの場合はトップページに遷移させる
-        if($gacha == null){
+        if(empty($gacha)){
             return view('top');
         }
         
@@ -57,8 +57,19 @@ class PlayController extends Controller
     {
         $results_ten_shot = null;
         
+        
+        
         $gacha = Gacha::find($request->gacha_id);
-        // \Debugbar::info($gacha);
+        
+        // URLを直接入力し、gacha_idがないときはトップページへ移動する
+        if(empty($gacha)){
+            return view('top');
+        }
+        
+        // URLにガチャidを直接入力して飛んできて、プライズが０種のガチャの場合はトップページに遷移させる
+        if($gacha->prizes->isEmpty()){
+            return view('top');
+        }
         
         // プライズを取り出す
         $prizes = $gacha->prizes;
@@ -121,9 +132,20 @@ class PlayController extends Controller
         $results = null;
         $gacha = Gacha::find($request->gacha_id);
         
+        // URLを直接入力し、gacha_idがないときはトップページへ移動する
+        if(empty($gacha)){
+            return view('top');
+        }
+        
+        // URLにガチャidを直接入力して飛んできて、プライズが０種のガチャの場合はトップページに遷移させる
+        if($gacha->prizes->isEmpty()){
+            return view('top');
+        }
         
         // プライズを取り出す
         $prizes = $gacha->prizes;
+        
+        
         
         $miss = $gacha->prizes->where('rarity_name', "はずれ");
         $hit = $gacha->prizes->where('rarity_name', "当たり");

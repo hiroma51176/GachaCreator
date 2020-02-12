@@ -12,6 +12,7 @@
         
         <!-- scripts -->
         <script src="{{ secure_asset('js/app.js') }}" defer></script>
+        @yield('script')
         
         <!-- Fonts -->
         <link rel="dns-prefetch" href="https://fonts.gstatic.com">
@@ -19,7 +20,8 @@
         
         <!-- Styles -->
         <link rel="stylesheet" href="{{ secure_asset('css/app.css') }}">
-        <link rel="stylesheet" href="{{ secure_asset('css/common.css') }}">
+        @yield('css')
+        
     </head>
     
     @extends('layouts.body')

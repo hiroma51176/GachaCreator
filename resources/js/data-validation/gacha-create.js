@@ -1,3 +1,16 @@
+// ガチャの作成画面で、「作成したガチャのプライズをコピーする」を選択した場合のみプルダウンを使えるようにする
+$(function(){
+    $('[name="templete"]:radio').change( function(){
+        if($('#created').prop('checked')){
+            $('#created_select').prop('disabled', false);
+        }else{
+            $('#created_select').prop('disabled', true);
+        }
+    });
+});
+
+// ---------------------------------------------------------------------------------------------------------------
+
 // 矢印キーとバックスペースキーとデリートキーとテンキー（数字）以外は入力不可----------------
 $(document).on('keydown', '.input-number', function(e){
     let k = e.keyCode;
@@ -18,48 +31,6 @@ $(document).on('blur', '.input-number', function(){
 });
 // --------------------------------------------------------------------------------------
 
-// シミュレーションで設定金額を入力時、入力された値が指定範囲外の場合--------------------------------------
-$(function(){
-    $('.input-price').blur(function(){
-        if($(this).val() == ''){
-            $(this).next().text('入力が必要です');
-        }else if(!(0 <= $(this).val() && $(this).val() <= 10000)){
-            $(this).next().text('0～10000の値を入力してください');
-        }else{
-            $(this).next().text('');
-        }
-    });
-});
-// -----------------------------------------------------------------------------------
-
-// シミュレーションで最大試行回数を入力時、入力された値が指定範囲外の場合-------------------------------
-$(function(){
-    $('.input-count').blur(function(){
-        if($(this).val() == ''){
-            $(this).next().text('入力が必要です');
-        }else if(!(0 < $(this).val() && $(this).val() <= 1000)){
-            $(this).next().text('1～1000の値を入力してください');
-        }else{
-            $(this).next().text('');
-        }
-    });
-});
-// -----------------------------------------------------------------------------------
-
-// シミュレーションで排出率を入力時、入力された値が指定範囲外の場合-----------------
-$(function(){
-    $('.input-rate').blur(function(){
-        if($(this).val() == ''){
-            $(this).next().text('入力が必要です');
-        }else if(!(0 < $(this).val() && $(this).val() <= 100)){
-            $(this).next().text('1～100の値を入力してください');
-        }else{
-            $(this).next().text('');
-        }
-    });
-});
-// --------------------------------------------------------------------------------------
-
 // 設定金額（ガチャの作成・編集）を入力時、入力された値が指定範囲外の場合--------------------------------------
 $(function(){
     $('.input-gacha-price').blur(function(){
@@ -72,25 +43,7 @@ $(function(){
         }
     });
 });
-
-// function priceCheck(price){
-//     if(price == ''){
-//             $('.input-gacha-price').next().text('入力が必要です');
-//         }else if(!(0 <= price && price <= 10000)){
-//             $('.input-gacha-price').next().text('0～10000の値を入力してください');
-//         }else{
-//             $('.input-gacha-price').next().text('');
-//         }
-// }
-
-// $(function(){
-//     $('.input-gacha-price').blur(function(){
-//         var price = $(this).val();
-//         priceCheck(price);
-//     });
-// });
-// -----------------------------------------------------------------------------------
-
+// -------------------------------------------------------------------------------------------------
 
 // 大当たりの排出率（ガチャの作成、編集）を入力時、入力された値が指定範囲外の場合------------------
 $(function(){
@@ -135,7 +88,6 @@ $(function(){
     });
 });
 // ------------------------------------------------------------------------------------
-
 
 // ガチャの作成、編集の排出率を入力時、3つの値の合計を出力する-------------------------
 $(function(){
@@ -193,38 +145,9 @@ $(function(){
         });
     });
     // 入力時のイベント
-    $('.input-gacha-name, .input-prize-name').on('input', function(){
-        // 文字数を取得
-        // var count = 0;
-        // for(var i=0; i < $(this).val().length; i++){
-        //     // 入力された文字を文字コードに変換
-        //     var char = $(this).val().charCodeAt(i);
-        //     if((char >= 0x00 && char < 0x81) ||
-        //         (char === 0xf8f0) ||
-        //         (char >= 0xff61 && char < 0xffa0) ||
-        //         (char >= 0xf8f1 && char < 0xf8f4)){
-        //         // 半角文字の場合は1を加算
-        //         count += 1;
-        //     }else{
-        //         // それ以外の文字の場合は2を加算
-        //         count += 2;
-        //     }
-        // }
-        
+    $('.input-gacha-name').on('input', function(){
         var char_name = $(this).val();
         var count_name = char_count(char_name);
-        
-        
-        // // 入力された文字が30以上の時は文字入力できない（全角除く）
-        // $('.input-gacha-name').on('keydown', function(e){
-        //     let k = e.keyCode;
-        //     let str = String.fromCharCode(k);
-        //     if(count >= 30){
-        //         if(!(k === 8 || (37 <= k && k <= 40) || k === 46)){
-        //             return false;
-        //         }
-        //     }
-        // });
         
         // 現在の文字数を表示
         $('.now-count').text(count_name);
@@ -249,22 +172,6 @@ $(function(){
 $(function(){
     // 入力時のイベント
     $('.input-gacha-description').on('input', function(){
-        // 文字数を取得
-        // var count = 0;
-        // for(var i=0; i < $(this).val().length; i++){
-        //     // 入力された文字を文字コードに変換
-        //     var char = $(this).val().charCodeAt(i);
-        //     if((char >= 0x00 && char < 0x81) ||
-        //         (char === 0xf8f0) ||
-        //         (char >= 0xff61 && char < 0xffa0) ||
-        //         (char >= 0xf8f1 && char < 0xf8f4)){
-        //         // 半角文字の場合は1を加算
-        //         count += 1;
-        //     }else{
-        //         // それ以外の文字の場合は2を加算
-        //         count += 2;
-        //     }
-        // }
         
         var char_desc = $(this).val();
         var count_desc = char_count(char_desc);
@@ -290,7 +197,7 @@ $(function(){
 // 画像ファイル選択時（ガチャ作成、編集、プライズ作成、編集）のイベント
 $(function(){
     // inputタグから取得
-    $('.image-file').bind('change', function(){
+    $('.image-file').on('change', function(){
         var image_size = this.files[0].size;
         var file = $(this).prop('files')[0];
         if(image_size < 2048000){
@@ -336,31 +243,26 @@ function getFileSize(file_size){
 // ----------------------------------------------------------------------------------------------------
 
 // ガチャの作成画面で入力に不備があるときは作成ボタン押せないようにしたい-------------------------------
-// $(function(){
-//     $('[name="templete"]').on('change', function(){
-//         var temp = $('[name="templete"]:checked').val();
-//         if(temp == ''){
-//             temp = $('[name="templete"] option:selected').val();
-//         }
-//         $('#check_val').text(temp);
-//     });
-// });
-
 $(function(){
     $('.input-gacha-name, .input-gacha-description, .image-file, .input-gacha-price, .input-gacha-rate, [name="templete"]').on('blur change', function(){
         
         var price = $('.input-gacha-price').val();
+        
+        // 排出率の合計算出
         var jackpot = $('#jackpot').val() | 0;
         var hit = $('#hit').val() | 0;
         var miss = $('#miss').val() | 0;
         var sum = parseInt(jackpot, 10) + parseInt(hit, 10) + parseInt(miss, 10);
         
+        // ガチャの名前の文字数をカウント
         var char_name = $('.input-gacha-name').val();
         var count_name = char_count(char_name);
         
+        // ガチャの説明の文字数をカウント
         var char_desc = $('.input-gacha-description').val();
         var count_desc = char_count(char_desc);
         
+        // 画像ファイルのサイズを確認
         if($('.image-file').prop('files')[0] != null){
             var file = $('.image-file').prop('files')[0];
             var file_size = file.size;
@@ -368,11 +270,13 @@ $(function(){
             var file_size = null;
         }
         
+        // テンプレートに使用について確認
         var temp = $('[name="templete"]:checked').val();
         if(temp == ''){
             temp = $('[name="templete"] option:selected').val();
         }
         
+        // 入力に問題ないならボタンを押せるようにする
         if(0 < count_name && count_name <= 30 
             && count_desc <= 60
             && file_size < 2048000
@@ -386,38 +290,15 @@ $(function(){
         ){
             $('#submit-create').prop('disabled', false);
             // $('#check_val').text(count_name + 'name|' + count_desc + '|' + price + '|' + jackpot + '｜' + hit + '|' + miss + '|' + sum + 'file' + file_size + 'temp' + temp);
-            $('#check_val').text('temp' + temp);
+            $('#check_val').text('');
         }else{
             $('#submit-create').prop('disabled', true);
             // $('#check_val').text(count_name + 'name|' + count_desc + '|' + price + '|' + jackpot + '｜' + hit + '|' + miss + '|' + sum + 'file' + file_size + 'temp' + temp);
-            $('#check_val').text('temp' + temp);
+            $('#check_val').text('入力欄に不備があります。ご確認ください。');
+            // $('#check_val').text(temp);
         }
     });
 });
 
 
 //-------------------------------------------------------------------------------------------------------------------------------------
-
-// シミュレーションでエラーがあるときは実行するボタン押せないようにする----------------------------------------------
-$(function(){
-    $('.input-price, .input-count, .input-rate').blur(function(){
-        // // 各数値が取得できているか確認の為
-        // var pri = $('.input-price').val();
-        // var cou = $('.input-count').val();
-        // var ra = $('.input-rate').val();
-        
-        if($('.input-price').val() <= 10000 
-            && 0 < $('.input-count').val() && $('.input-count').val() <= 1000 
-            && 0 < $('.input-rate').val() && $('.input-rate').val() <= 100 
-        ){
-            $('#submit-sim').prop('disabled', false);
-            // 各数値確認用
-            // $('#check_val').text(pri + '｜' + cou + '|' + ra);
-        }else{
-            $('#submit-sim').prop('disabled', true);
-            // 各数値確認用
-            // $('#check_val').text(pri + '｜' + cou + '|' + ra);
-        }
-    });
-});
-// ------------------------------------------------------------------------------------------------------------------

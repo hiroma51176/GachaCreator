@@ -7,8 +7,8 @@
 require('./bootstrap');
 
 // チェックボックスの為、追加
-require('./my-file');
-require('./data-validation');
+// require('./my-file');
+// require('./data-validation');
 
 window.Vue = require('vue');
 

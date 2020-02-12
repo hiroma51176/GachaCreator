@@ -1,4 +1,12 @@
-@extends('layouts.result')
+@extends('layouts.common')
+
+@section('script')
+    <script src="{{ secure_asset('js/result-animation.js') }}" defer></script>
+@endsection
+
+@section('css')
+    <link rel="stylesheet" href="{{ secure_asset('css/result.css') }}">
+@endsection
 
 @section('title', 'ガチャ結果')
 
@@ -6,7 +14,7 @@
     <div class="container">
         <div class="main-title">
             <h1>ガチャ結果</h1>
-            <p>ガチャを引いた結果が表示されます</p>
+            <p>ガチャを引いた結果が表示されます。</p>
         </div>
         
         <div id="curtainLeft"></div>

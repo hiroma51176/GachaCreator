@@ -1,5 +1,15 @@
 @extends('layouts.common')
 
+{{-- 追加のJavaScriptファイルを読み込ませる --}}
+@section('script')
+    <script src="{{ secure_asset('js/data-validation/gacha-edit.js') }}" defer></script>
+@endsection
+
+{{-- 追加のCSSファイルを読み込ませる --}}
+@section('css')
+    <link rel="stylesheet" href="{{ secure_asset('css/common.css') }}">
+@endsection
+
 @section('title', 'ガチャの編集')
 
 @section('content')
@@ -83,7 +93,7 @@
                                 <strong>「１回引く」の金額設定（必須）</strong>
                             </label>
                             <div class="col-md-2">
-                                <input type="text" class="form-control input-number input-price" name="play_price" value="{{ $gacha->play_price }}">
+                                <input type="text" class="form-control input-number input-gacha-price" name="play_price" value="{{ $gacha->play_price }}">
                                 <font color="red"><p class="mb-0"></p></font>
                             </div>
                             <label class="col-md-3">円</label>
@@ -130,7 +140,7 @@
                         
                         <input type="hidden" name="id" value="{{ $gacha->id }}">
                         {{ csrf_field() }}
-                        <input type="submit" class="btn-lg btn-primary w-50 mt-3" value="この内容で上書きする">
+                        <input id="submit-edit" type="submit" class="btn-lg btn-primary w-50 mt-3" value="この内容で上書きする" disabled>
                     </form>
                 </div>
             </div>

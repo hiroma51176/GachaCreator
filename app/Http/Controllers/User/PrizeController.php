@@ -132,7 +132,7 @@ class PrizeController extends Controller
         
         // ＵＲＬ直接入力したとき、プライズが存在しない場合
         if(empty($prize)){
-            return('top');
+            return view('top');
         }
         
         //$gacha_id = $request->gacha_id;
