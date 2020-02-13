@@ -45,7 +45,7 @@
                                 <p class="mb-0">※半角は1、全角は2文字判定です。</p>
                             </label>
                             <div class="col-md-9">
-                                <input type="text" class="form-control input-prize-name" name="prize_name" value=" {{ $prize->prize_name }}">
+                                <input type="text" class="form-control input-prize-name" name="prize_name" value="{{ $prize->prize_name }}">
                                 <font color="red"><p id="name-alert-ng" class="mb-0"></p></font>
                                 <font color="blue"><p id="name-alert-ok" class="mb-0"></p></font>
                             </div>

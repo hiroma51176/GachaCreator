@@ -2,7 +2,7 @@
 
 {{-- 追加のJavaScriptファイルを読み込ませる --}}
 @section('script')
-
+    <script src="{{ secure_asset('js/list-delete-check.js') }}" defer></script>
 @endsection
 
 {{-- 追加のCSSファイルを読み込ませる --}}
@@ -23,7 +23,7 @@
             <div class="row">
                 <div class="col-md-8">
                     <h2>作成したガチャ一覧</h2>
-                    <p>※プライズが０種のガチャは引くことができない為、ご注意ください</p>
+                    <p>※プライズが０種のガチャは引くことができない為、ご注意ください。</p>
                 </div>
             </div>
             <div class="row">
@@ -35,7 +35,11 @@
                         <div class="form-group row">
                             <label class="col-md-3 d-flex align-items-end">ガチャ名で検索</label>
                             <div class="col-md-7">
-                                <input type="text" class="form-control" name="cond_gacha_name" value="{{ $cond_gacha_name }}">
+                                @if (isset($cond_gacha_name))
+                                    <input type="text" class="form-control" name="cond_gacha_name" value="{{ $cond_gacha_name }}">
+                                @else
+                                    <input type="text" class="form-control" name="cond_gacha_name" value="">
+                                @endif
                             </div>
                             <div class="col-md-2">
                                 {{ csrf_field() }}

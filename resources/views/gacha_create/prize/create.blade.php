@@ -2,7 +2,7 @@
 
 {{-- 追加のJavaScriptファイルを読み込ませる --}}
 @section('script')
-
+    <script src="{{ secure_asset('js/data-validation/prize-create.js') }}" defer></script>
 @endsection
 
 {{-- 追加のCSSファイルを読み込ませる --}}
@@ -38,7 +38,7 @@
                                 <p class="mb-0">※半角は1、全角は2文字判定です。</p>
                             </label>
                             <div class="col-md-9">
-                                <input type="text" class="form-control input-prize-name" name="prize_name" value=" {{ old('prize_name') }}">
+                                <input type="text" class="form-control input-prize-name" name="prize_name" value="{{ old('prize_name') }}">
                                 <font color="red"><p id="name-alert-ng" class="mb-0"></p></font>
                                 <font color="blue"><p id="name-alert-ok" class="mb-0"></p></font>
                             </div>
@@ -76,8 +76,9 @@
                             {{-- リンク先のcreateアクションでデータ保存してから分岐させる --}}
                             <input type="hidden" name="gacha_id" value="{{ $gacha_id }}">
                             <input type="hidden" name="gacha_name" value="{{ $gacha_name }}">
-                            <input type="submit" class="btn btn-primary mr-4" name="to_list" value="追加してプライズリストへ">
-                            <input type="submit" class="btn btn-primary ml-4" name="cont" value="続けて追加する">
+                            <input type="submit" class="btn btn-primary mr-4 submit-btn" name="to_list" value="追加してプライズリストへ" disabled>
+                            <input type="submit" class="btn btn-primary ml-4 submit-btn" name="cont" value="続けて追加する" disabled>
+                            <p id="check_val"></p>
                         </div>
                     </form>
                 </div>

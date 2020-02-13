@@ -221,7 +221,8 @@ class GachaController extends Controller
             $gacha->delete();
         }
         
-        return view('gacha_create.gacha.list', ['gachas' => $gachas, 'cond_gacha_name' => $cond_gacha_name]);
+        return redirect('gacha_create/gacha/list');
+        // return view('gacha_create.gacha.list', ['gachas' => $gachas, 'cond_gacha_name' => $cond_gacha_name]);
     }
     
     public function history()

@@ -87,6 +87,8 @@
                         <div class="form-group row mb-5">
                             <label class="col-md-3">
                                 <strong>「１回引く」の金額設定（必須）</strong>
+                                <p class="mb-0">0～10000までの整数を、</p>
+                                <p class="mb-0">半角で入力してください。</p>
                             </label>
                             <div class="col-md-2">
                                 <input type="text" class="form-control input-number input-gacha-price" maxlength="5" name="play_price" value="{{ old('play_price') }}">
@@ -96,7 +98,7 @@
                         </div>
                         
                         <h3>ガチャの排出率</h3>
-                        <p>大当たり、当たり、はずれで合計１００になるように、半角で整数を入力してください。</p>
+                        <p>大当たり、当たり、はずれで合計100になるように、それぞれ100以下の整数を半角で入力してください。</p>
                         
                         <div class="form-group row">
                             <label class="col-md-3">

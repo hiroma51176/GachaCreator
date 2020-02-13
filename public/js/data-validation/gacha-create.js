@@ -217,7 +217,7 @@ function char_count(char_length) {
 $(function () {
   // 入力フォームが空白の時のイベント
   $(function () {
-    $('.input-gacha-name, .input-prize-name').blur(function () {
+    $('.input-gacha-name').blur(function () {
       if ($(this).val() == '') {
         $('#name-alert-ng').text('入力が必要です');
         $('#name-alert-ng').val('error');

@@ -132,7 +132,7 @@ $(function(){
         });
     });
     // 入力時のイベント
-    $('.input-gacha-name, .input-prize-name').on('input', function(){
+    $('.input-gacha-name').on('input', function(){
         var char_name = $(this).val();
         var count_name = char_count(char_name);
         

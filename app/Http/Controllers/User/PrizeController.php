@@ -21,6 +21,11 @@ class PrizeController extends Controller
         // $gacha_name = $request->gacha_name;
         $gacha = Gacha::find($request->gacha_id);
         
+        // URLを入力し、直接アクセスしてきた場合の処理
+        if(empty($gacha)){
+            return view('top');
+        }
+        
         // 作成者以外のユーザーのプライズにアクセスできないようにする
         if(Auth::id() != $gacha->user_id){
             return view('top');
@@ -231,6 +236,7 @@ class PrizeController extends Controller
             $prize->delete();
         }
         
-        return view('gacha_create.prize.list', ['gacha_id' => $gacha_id, 'gacha_name' => $gacha_name, 'cond_prize_name' => $cond_prize_name, 'prizes' => $prizes]);
+        return redirect('gacha_create/gacha/list');
+        // return view('gacha_create.prize.list', ['gacha_id' => $gacha_id, 'gacha_name' => $gacha_name, 'cond_prize_name' => $cond_prize_name, 'prizes' => $prizes]);
     }
 }
