@@ -130,11 +130,11 @@ $(function(){
             && file_size < 2048000
             && rarity != ''
         ){
-            $('.submit-btn').prop('disabled', false);
+            $('#submit-btn').prop('disabled', false);
             // $('#check_val').text(count_name + 'name|' + count_desc + '|' + price + '|' + jackpot + '｜' + hit + '|' + miss + '|' + sum + 'file' + file_size + 'temp' + temp);
             $('#check_val').text('');
         }else{
-            $('.submit-btn').prop('disabled', true);
+            $('#submit-btn').prop('disabled', true);
             // $('#check_val').text(count_name + 'name|' + count_desc + '|' + price + '|' + jackpot + '｜' + hit + '|' + miss + '|' + sum + 'file' + file_size + 'temp' + temp);
             $('#check_val').text('入力欄に不備があります。ご確認ください。');
         }
@@ -143,3 +143,28 @@ $(function(){
 
 
 //-------------------------------------------------------------------------------------------------------------------------------------
+
+// ３１文字以上入力禁止
+// $(document).on('keydown keyup blur', '.input-prize-name', function(e){
+//     let k = e.keyCode;
+//     // let str = String.fromCharCode(k);
+//     var char_name = $(this).val();
+//     var count_name = char_count(char_name);
+//     if(count_name >= 30){
+//         if(!(k === 8 || (37 <= k && k <= 40) || k === 46)){
+//             removeFullwidth(this);
+//             return false;
+        
+//         }
+//     }
+// });
+
+
+// function removeFullwidth(obj){
+//     var noSbcRegex = /[^\x00-\x7E]+/g;
+//     var target =$(obj);
+//     if(!target.val().match(noSbcRegex))return;
+//     window.setTimeout(function(){
+//         target.val(target.val().replace(noSbcRegex, ''));
+//     },1);
+// }

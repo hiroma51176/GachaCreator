@@ -16,7 +16,7 @@
     <div class="container">
         <div class="main-title">
             <h1>ガチャ「{{ $gacha->gacha_name }}」の編集</h1>
-            <p>ガチャの編集ができます</p>
+            <p>ガチャの編集ができます。</p>
         </div>
         
         <div class="content">
@@ -91,22 +91,24 @@
                         <div class="form-group row">
                             <label class="col-md-3">
                                 <strong>「１回引く」の金額設定（必須）</strong>
+                                <p class="mb-0">0～10000までの整数を、</p>
+                                <p class="mb-0">半角で入力してください。</p>
                             </label>
                             <div class="col-md-2">
-                                <input type="text" class="form-control input-number input-gacha-price" name="play_price" value="{{ $gacha->play_price }}">
+                                <input type="text" class="form-control input-number input-gacha-price" maxlength="5" name="play_price" value="{{ $gacha->play_price }}">
                                 <font color="red"><p class="mb-0"></p></font>
                             </div>
                             <label class="col-md-3">円</label>
                         </div>
                         
                         <h3>ガチャの排出率</h3>
-                        <p>大当たり、当たり、はずれで合計１００になるように、半角で整数を入力してください。</p>
+                        <p>大当たり、当たり、はずれで合計100になるように、それぞれ100以下の整数を半角で入力してください。</p>
                         <div class="form-group row">
                             <label class="col-md-3">
                                 <strong>大当たり（必須）</strong>
                             </label>
                             <div class="col-md-2">
-                                <input id="jackpot" type="text" class="form-control input-number input-gacha-rate" name="jackpot_rate" value="{{ $gacha->jackpot_rate }}">
+                                <input id="jackpot" type="text" class="form-control input-number input-gacha-rate" maxlength="3" name="jackpot_rate" value="{{ $gacha->jackpot_rate }}">
                                 <font color="red"><p class="mb-0"></p></font>
                             </div>
                             <label class="col-md-3">%</label>
@@ -117,7 +119,7 @@
                                 <strong>当たり（必須）</strong>
                             </label>
                             <div class="col-md-2">
-                                <input id="hit" type="text" class="form-control input-number input-gacha-rate" name="hit_rate" value="{{ $gacha->hit_rate }}">
+                                <input id="hit" type="text" class="form-control input-number input-gacha-rate" maxlength="3" name="hit_rate" value="{{ $gacha->hit_rate }}">
                                 <font color="red"><p class="mb-0"></p></font>
                             </div>
                             <label class="col-md-3">%</label>
@@ -128,7 +130,7 @@
                                 <strong>はずれ（必須）</strong>
                             </label>
                             <div class="col-md-2">
-                                <input id="miss" type="text" class="form-control input-number input-gacha-rate" name="miss_rate" value="{{ $gacha->miss_rate }}">
+                                <input id="miss" type="text" class="form-control input-number input-gacha-rate" maxlength="3" name="miss_rate" value="{{ $gacha->miss_rate }}">
                                 <font color="red"><p class="mb-0"></p></font>
                             </div>
                             <label class="col-md-3">%</label>
@@ -140,7 +142,8 @@
                         
                         <input type="hidden" name="id" value="{{ $gacha->id }}">
                         {{ csrf_field() }}
-                        <input id="submit-edit" type="submit" class="btn-lg btn-primary w-50 mt-3" value="この内容で上書きする" disabled>
+                        <input id="submit-edit" type="submit" class="btn btn-lg btn-primary w-50 mt-3" value="この内容で上書きする" disabled>
+                        <p id="check_val"></p>
                     </form>
                 </div>
             </div>

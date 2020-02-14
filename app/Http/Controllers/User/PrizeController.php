@@ -11,6 +11,8 @@ use Illuminate\Support\Facades\Auth;
 use Storage;
 use Intervention\Image\Facades\Image;
 use Carbon\Carbon;
+use App\Http\Requests\CreatePrize;
+use App\Http\Requests\EditPrize;
 
 class PrizeController extends Controller
 {
@@ -47,6 +49,11 @@ class PrizeController extends Controller
     {
         $gacha = Gacha::find($request->gacha_id);
         
+        // URLを入力し、直接アクセスしてきた場合の処理
+        if(empty($gacha)){
+            return view('top');
+        }
+        
         // 作成者以外のユーザーのプライズにアクセスできないようにする
         if(Auth::id() != $gacha->user_id){
             return view('top');
@@ -62,10 +69,11 @@ class PrizeController extends Controller
         return view('gacha_create.prize.create', ['gacha_id' => $gacha->id, 'gacha_name' => $gacha->gacha_name]);
     }
     
-    public function create(Request $request)
+    public function create(CreatePrize $request)
     {
         // バリデーションをかける
-        $this->validate($request, Prize::$rules);
+        $validated = $request->validated();
+        // $this->validate($request, Prize::$rules);
         
         $prize = new Prize;
         $form = $request->all();
@@ -96,6 +104,7 @@ class PrizeController extends Controller
         unset($form['gacha_name']);
         unset($form['to_list']);
         unset($form['cont']);
+        unset($form[('prize_name_count')]);
         
         $prize->fill($form);
         
@@ -153,10 +162,11 @@ class PrizeController extends Controller
         return view('gacha_create.prize.edit', ['prize' => $prize, 'gacha_id' => $gacha->id, 'gacha_name' => $gacha->gacha_name]);
     }
     
-    public function update(Request $request)
+    public function update(EditPrize $request)
     {
         // バリデーションをかける
-        $this->validate($request, Prize::$rules);
+        $validated = $request->validated();
+        // $this->validate($request, Prize::$rules);
         
         $prize = Prize::find($request->id);
         $form = $request->all();
@@ -184,6 +194,7 @@ class PrizeController extends Controller
         unset($form['_token']);
         unset($form['gacha_id']);
         unset($form['gacha_name']);
+        unset($form['prize_name_count']);
         
         $prize->fill($form);
         

@@ -81,15 +81,15 @@
 /******/
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 6);
+/******/ 	return __webpack_require__(__webpack_require__.s = 7);
 /******/ })
 /************************************************************************/
 /******/ ({
 
-/***/ "./resources/js/data-validation/prize-create.js":
-/*!******************************************************!*\
-  !*** ./resources/js/data-validation/prize-create.js ***!
-  \******************************************************/
+/***/ "./resources/js/data-validation/prize-edit.js":
+/*!****************************************************!*\
+  !*** ./resources/js/data-validation/prize-edit.js ***!
+  \****************************************************/
 /*! no static exports found */
 /***/ (function(module, exports) {
 
@@ -217,27 +217,48 @@ $(function () {
     // 入力に問題ないならボタンを押せるようにする
 
     if (0 < count_name && count_name <= 30 && file_size < 2048000 && rarity != '') {
-      $('.submit-btn').prop('disabled', false); // $('#check_val').text(count_name + 'name|' + count_desc + '|' + price + '|' + jackpot + '｜' + hit + '|' + miss + '|' + sum + 'file' + file_size + 'temp' + temp);
+      $('#submit-btn').prop('disabled', false); // $('#check_val').text(count_name + 'name|' + count_desc + '|' + price + '|' + jackpot + '｜' + hit + '|' + miss + '|' + sum + 'file' + file_size + 'temp' + temp);
 
       $('#check_val').text('');
     } else {
-      $('.submit-btn').prop('disabled', true); // $('#check_val').text(count_name + 'name|' + count_desc + '|' + price + '|' + jackpot + '｜' + hit + '|' + miss + '|' + sum + 'file' + file_size + 'temp' + temp);
+      $('#submit-btn').prop('disabled', true); // $('#check_val').text(count_name + 'name|' + count_desc + '|' + price + '|' + jackpot + '｜' + hit + '|' + miss + '|' + sum + 'file' + file_size + 'temp' + temp);
 
       $('#check_val').text('入力欄に不備があります。ご確認ください。');
     }
   });
 }); //-------------------------------------------------------------------------------------------------------------------------------------
+// ３１文字以上入力禁止
+// $(document).on('keydown keyup blur', '.input-prize-name', function(e){
+//     let k = e.keyCode;
+//     // let str = String.fromCharCode(k);
+//     var char_name = $(this).val();
+//     var count_name = char_count(char_name);
+//     if(count_name >= 30){
+//         if(!(k === 8 || (37 <= k && k <= 40) || k === 46)){
+//             removeFullwidth(this);
+//             return false;
+//         }
+//     }
+// });
+// function removeFullwidth(obj){
+//     var noSbcRegex = /[^\x00-\x7E]+/g;
+//     var target =$(obj);
+//     if(!target.val().match(noSbcRegex))return;
+//     window.setTimeout(function(){
+//         target.val(target.val().replace(noSbcRegex, ''));
+//     },1);
+// }
 
 /***/ }),
 
-/***/ 6:
-/*!************************************************************!*\
-  !*** multi ./resources/js/data-validation/prize-create.js ***!
-  \************************************************************/
+/***/ 7:
+/*!**********************************************************!*\
+  !*** multi ./resources/js/data-validation/prize-edit.js ***!
+  \**********************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(/*! /home/ec2-user/environment/GachaCreator/resources/js/data-validation/prize-create.js */"./resources/js/data-validation/prize-create.js");
+module.exports = __webpack_require__(/*! /home/ec2-user/environment/GachaCreator/resources/js/data-validation/prize-edit.js */"./resources/js/data-validation/prize-edit.js");
 
 
 /***/ })

@@ -164,7 +164,7 @@
                         
                     
                         {{ csrf_field() }}
-                        <input id="submit-create" type="submit" class="btn-lg btn-primary w-50" value="ガチャを作成する" disabled>
+                        <input id="submit-create" type="submit" class="btn btn-lg btn-primary w-50" value="ガチャを作成する" disabled>
                         <p id="check_val"></p>
                     </form>
                 </div>

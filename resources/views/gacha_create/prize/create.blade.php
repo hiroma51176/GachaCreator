@@ -16,13 +16,22 @@
     <div class="container">
         <div class="main-title">
             <h1>ガチャ「{{ $gacha_name }}」のプライズを追加</h1>
-            <p>あなたが作成したガチャ「{{ $gacha_name }}」へ追加するプライズを新規作成します</p>
+            <p>あなたが作成したガチャ「{{ $gacha_name }}」へ追加するプライズを新規作成します。</p>
         </div>
         
         <div class="content">
             <div class="row">
                 <div class="col-md-12">
-                    <h3>プライズの新規作成</h3>
+                    <div class="row mb-3">
+                        <div class="col-md-6">
+                            <h3>プライズの新規作成</h3>
+                        </div>
+                        <div class="col-md-6 text-right">
+                            <a class="btn btn-primary mx-2" role="button" href="{{ action('User\PrizeController@index', ['gacha_id' => $gacha_id, 'gacha_name' => $gacha_name]) }}">プライズリストへ移動</a>
+                            <a class="btn btn-secondary" role="button" href="{{ action('User\GachaController@index') }}">ガチャリストへ移動</a>
+                        </div>
+                    </div>
+                    
                     <form action="{{ action('User\PrizeController@create') }}" method="post" enctype="multipart/form-data">
                         @if (count($errors) > 0)
                             <ul>

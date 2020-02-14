@@ -8,6 +8,7 @@
     "/js/data-validation/gacha-create.js": "/js/data-validation/gacha-create.js",
     "/js/data-validation/gacha-edit.js": "/js/data-validation/gacha-edit.js",
     "/js/data-validation/prize-create.js": "/js/data-validation/prize-create.js",
+    "/js/data-validation/prize-edit.js": "/js/data-validation/prize-edit.js",
     "/js/data-validation/simulation.js": "/js/data-validation/simulation.js",
     "/js/list-delete-check.js": "/js/list-delete-check.js",
     "/js/result-animation.js": "/js/result-animation.js"

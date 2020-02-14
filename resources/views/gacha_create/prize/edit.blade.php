@@ -2,7 +2,7 @@
 
 {{-- 追加のJavaScriptファイルを読み込ませる --}}
 @section('script')
-
+    <script src="{{ secure_asset('js/data-validation/prize-edit.js') }}" defer></script>
 @endsection
 
 {{-- 追加のCSSファイルを読み込ませる --}}
@@ -16,7 +16,7 @@
     <div class="container">
         <div class="main-title">
             <h1>プライズ「{{ $prize->prize_name }}」を編集</h1>
-            <p>あなたが作成したプライズの編集ができます</p>
+            <p>あなたが作成したプライズの編集ができます。</p>
         </div>
         
         <div class="content">
@@ -92,7 +92,7 @@
                             <input type="hidden" name="gacha_id" value="{{ $gacha_id }}">
                             <input type="hidden" name="gacha_name" value="{{ $gacha_name }}">
                             <input type="hidden" name="id" value="{{ $prize->id }}">
-                            <input type="submit" class="btn-lg btn-primary w-50" value="上書きする">
+                            <input id="submit-btn" type="submit" class="btn btn-lg btn-primary w-50" value="上書きする" disabled>
                             
                             </div>
                         </div>

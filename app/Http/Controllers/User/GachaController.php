@@ -142,7 +142,7 @@ class GachaController extends Controller
         $gacha = Gacha::find($request->gacha_id);
         
         if(empty($gacha)){
-            return('top');
+            return view('top');
         }
         
         // 作成者以外のユーザーのガチャにアクセスできないようにする
@@ -162,6 +162,10 @@ class GachaController extends Controller
         
         
         $form = $request->all();
+        
+        \Debugbar::info($request->jackpot_rate);
+        \Debugbar::info($request->hit_rate);
+        \Debugbar::info($request->miss_rate);
         
         if(isset($form['image'])){
             $image_file = $request->file('image');

@@ -24,9 +24,9 @@ class EditGacha extends FormRequest
     public function rules()
     {
         return [
-            'gacha_name' => 'required | max: 30',
+            'gacha_name' => 'required',
             'gacha_name_count' => 'required | integer | max: 30',
-            'gacha_description' => 'max: 60',
+            // 'gacha_description' => 'max: 60',
             'gacha_description_count' => 'integer | max: 60',
             'image' => 'image | max: 2000',
             'play_price' => 'required | integer | max: 10000',
@@ -55,10 +55,14 @@ class EditGacha extends FormRequest
     public function withValidator($validator)
     {
         $validator->after(function ($validator){
-            if(is_string($this->jackpot_rate) || is_string($this->hit_rate) || is_string($this->miss_rate)){
+            // if(is_int($this->jackpot_rate) || is_int($this->hit_rate) || is_int($this->miss_rate)){
+            if(preg_match('/^[0-9]+$/', $this->jackpot_rate) && preg_match('/^[0-9]+$/', $this->hit_rate) && preg_match('/^[0-9]+$/', $this->miss_rate)){
                 // $validator->errors()->add('field', '排出率には整数を半角で入力してください');
-            }elseif($this->jackpot_rate + $this->hit_rate + $this->miss_rate != 100){
-                $validator->errors()->add('field', '排出率が合計で100になるように入力してください');
+                if($this->jackpot_rate + $this->hit_rate + $this->miss_rate != 100){
+                    $validator->errors()->add('field', '排出率が合計で100になるように入力してください');
+                }
+            }else{
+                $validator->errors()->add('field', '排出率には整数を半角で入力してください');
             }
         });
     }
