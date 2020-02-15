@@ -52,6 +52,39 @@ $(function(){
             $('#name-alert-ok').text('');
         }
     });
+    // ペースト禁止
+    // $('.input-prize-name').on('paste', function(e){
+    //     e.preventDefault();
+    // });
+    
+    // 入力時のイベント、３０文字以上入力禁止ver.
+    // $('.input-prize-name').on('input keydown keyup blur', function(e){
+    //     var char_name = $(this).val();
+    //     var count_name = char_count(char_name);
+        
+    //     let k = e.keyCode;
+    //     if(count_name > 30){
+    //         if(!(k === 8 || (37 <= k && k <= 40) || k === 46)){
+    //             removeFullwidth(this);
+    //             return false;
+    //         }
+    //     }
+        
+    //     // 現在の文字数を表示
+    //     $('.now-count').text(count_name);
+    //     if(0 < count_name && count_name <= 30){
+    //         // 1文字以上かつ30字以内の場合はＯＫ表示
+    //         $('#name-alert-ok').text('現在' + count_name + '文字です。問題ありません');
+    //         $('#name-alert-ng').text('');
+            
+    //     }else{
+    //         // 0文字または30文字を超える場合はＮＧ表示
+    //         $('#name-alert-ng').text('現在' + count_name + '文字です。1～30文字以内にしてください');
+    //         $('#name-alert-ok').text('');
+    //     }
+    // });
+    
+    
     
     // リロード時に文字が入っていた時の対策
     //$('.input-gacha-name').trigger('input');
@@ -144,7 +177,7 @@ $(function(){
 
 //-------------------------------------------------------------------------------------------------------------------------------------
 
-// ３１文字以上入力禁止
+//３１文字以上入力禁止
 // $(document).on('keydown keyup blur', '.input-prize-name', function(e){
 //     let k = e.keyCode;
 //     // let str = String.fromCharCode(k);
@@ -154,12 +187,11 @@ $(function(){
 //         if(!(k === 8 || (37 <= k && k <= 40) || k === 46)){
 //             removeFullwidth(this);
 //             return false;
-        
 //         }
 //     }
 // });
 
-
+// 全角を全て削除する
 // function removeFullwidth(obj){
 //     var noSbcRegex = /[^\x00-\x7E]+/g;
 //     var target =$(obj);

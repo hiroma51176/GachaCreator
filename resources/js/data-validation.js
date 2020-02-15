@@ -421,3 +421,60 @@ $(function(){
     });
 });
 // ------------------------------------------------------------------------------------------------------------------
+
+// プライズの名前（プライズの作成、編集）入力時のイベント（３１文字以上入力禁止）--------------------------------------
+// $(function(){
+//     // 入力フォームが空白の時のイベント
+//     $(function(){
+//         $('.input-prize-name').blur(function(){
+//             if($(this).val() == ''){
+//                 $('#name-alert-ng').text('入力が必要です');
+//                 $('#name-alert-ng').val('error');
+//             }else{
+//                 $('#name-alert-ng').val(0);
+//             }
+//         });
+//     });
+//     // ペースト禁止
+//     $('.input-prize-name').on('paste', function(e){
+//         e.preventDefault();
+//     });
+    
+//     // 入力時のイベント、３０文字以上入力禁止ver.
+//     $('.input-prize-name').on('input keydown keyup blur', function(e){
+//         var char_name = $(this).val();
+//         var count_name = char_count(char_name);
+        
+//         let k = e.keyCode;
+//         if(count_name > 30){
+//             if(!(k === 8 || (37 <= k && k <= 40) || k === 46)){
+//                 removeFullwidth(this);
+//                 return false;
+//             }
+//         }
+        
+//         // 現在の文字数を表示
+//         $('.now-count').text(count_name);
+//         if(0 < count_name && count_name <= 30){
+//             // 1文字以上かつ30字以内の場合はＯＫ表示
+//             $('#name-alert-ok').text('現在' + count_name + '文字です。問題ありません');
+//             $('#name-alert-ng').text('');
+            
+//         }else{
+//             // 0文字または30文字を超える場合はＮＧ表示
+//             $('#name-alert-ng').text('現在' + count_name + '文字です。1～30文字以内にしてください');
+//             $('#name-alert-ok').text('');
+//         }
+//     });
+    
+// });
+
+// // 全角を全て削除する関数
+// function removeFullwidth(obj){
+//     var noSbcRegex = /[^\x00-\x7E]+/g;
+//     var target =$(obj);
+//     if(!target.val().match(noSbcRegex))return;
+//     window.setTimeout(function(){
+//         target.val(target.val().replace(noSbcRegex, ''));
+//     },1);
+// }
