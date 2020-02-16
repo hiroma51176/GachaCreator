@@ -33,6 +33,13 @@
                                 @endforeach
                             </ul>
                         @endif
+                        @if(session('change_password_error'))
+                            <div class="container mt-2">
+                                <div class="alert">
+                                    {{ session('change_password_error') }}
+                                </div>
+                            </div>
+                        @endif
                         <div class="form-group row">
                             <label class="col-md-3">
                                 <strong>ユーザー名</strong>

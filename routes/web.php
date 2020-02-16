@@ -83,5 +83,5 @@ Route::get('/home', 'HomeController@index')->name('home');
 Route::get('terms', 'PlayController@terms');
 Route::get('policy', 'PlayController@policy');
 
-Route::get('profile', 'User\UserController@edit');
-Route::post('profile', 'User\UserController@update');
+Route::get('profile', 'User\UserController@edit')->middleware('auth');
+Route::post('profile', 'User\UserController@update')->middleware('auth');
