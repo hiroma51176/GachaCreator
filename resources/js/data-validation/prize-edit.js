@@ -177,26 +177,4 @@ $(function(){
 
 //-------------------------------------------------------------------------------------------------------------------------------------
 
-//３１文字以上入力禁止
-// $(document).on('keydown keyup blur', '.input-prize-name', function(e){
-//     let k = e.keyCode;
-//     // let str = String.fromCharCode(k);
-//     var char_name = $(this).val();
-//     var count_name = char_count(char_name);
-//     if(count_name >= 30){
-//         if(!(k === 8 || (37 <= k && k <= 40) || k === 46)){
-//             removeFullwidth(this);
-//             return false;
-//         }
-//     }
-// });
 
-// 全角を全て削除する
-// function removeFullwidth(obj){
-//     var noSbcRegex = /[^\x00-\x7E]+/g;
-//     var target =$(obj);
-//     if(!target.val().match(noSbcRegex))return;
-//     window.setTimeout(function(){
-//         target.val(target.val().replace(noSbcRegex, ''));
-//     },1);
-// }

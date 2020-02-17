@@ -16,7 +16,7 @@
     <div class="container">
         <div class="main-title">
             <h1>ガチャを作成する</h1>
-            <p>ガチャを作成します</p>
+            <p>ガチャを作成します。</p>
         </div>
         
         <div class="content">
