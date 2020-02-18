@@ -2,12 +2,10 @@
 
 {{-- 追加のJavaScriptファイルを読み込ませる --}}
 @section('script')
-
 @endsection
 
 {{-- 追加のCSSファイルを読み込ませる --}}
 @section('css')
-    <link rel="stylesheet" href="{{ secure_asset('css/common.css') }}">
 @endsection
 
 @section('title', 'ガチャを引く')

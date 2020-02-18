@@ -1,7 +1,7 @@
 @extends('layouts.common')
 
 @section('script')
-    <script src="{{ secure_asset('js/result-animation.js') }}" defer></script>
+    <script src="{{ secure_asset('js/animation/result.js') }}" defer></script>
 @endsection
 
 @section('css')

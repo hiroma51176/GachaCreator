@@ -2,12 +2,13 @@
 
 {{-- 追加のJavaScriptファイルを読み込ませる --}}
 @section('script')
-    <script src="{{ secure_asset('js/data-validation/prize-create.js') }}" defer></script>
+    <script src="{{ secure_asset('js/data-validation/submit-prize.js') }}" defer></script>
+    <script src="{{ secure_asset('js/message/input-name.js') }}" defer></script>
+    <script src="{{ secure_asset('js/message/select-image.js') }}" defer></script>
 @endsection
 
 {{-- 追加のCSSファイルを読み込ませる --}}
 @section('css')
-    <link rel="stylesheet" href="{{ secure_asset('css/common.css') }}">
 @endsection
 
 @section('title', 'プライズ新規作成')

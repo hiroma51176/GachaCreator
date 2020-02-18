@@ -2,12 +2,11 @@
 
 {{-- 追加のJavaScriptファイルを読み込ませる --}}
 @section('script')
-    <script src="{{ secure_asset('js/list-delete-check.js') }}" defer></script>
+    <script src="{{ secure_asset('js/data-validation/list-delete-check.js') }}" defer></script>
 @endsection
 
 {{-- 追加のCSSファイルを読み込ませる --}}
 @section('css')
-    <link rel="stylesheet" href="{{ secure_asset('css/common.css') }}">
 @endsection
 
 @section('title', 'プライズリスト')
@@ -34,7 +33,11 @@
                         <div class="form-group row">
                             <label class="col-md-4 d-flex align-items-end">プライズ名で検索</label>
                             <div class="col-md-6">
-                                <input type="text" class="form-control" name="cond_prize_name" value="{{ $cond_prize_name }}">
+                                @if (isset($cond_gacha_name))
+                                    <input type="text" class="form-control" name="cond_prize_name" value="{{ $cond_prize_name }}">
+                                @else
+                                    <input type="text" class="form-control" name="cond_prize_name" value="">
+                                @endif
                             </div>
                             <div class="col-md-2">
                                 {{ csrf_field() }}

@@ -1,15 +1,20 @@
 {
+    "/js/animation/result.js": "/js/animation/result.js",
     "/js/app.js": "/js/app.js",
     "/css/app.css": "/css/app.css",
     "/css/common.css": "/css/common.css",
     "/css/top.css": "/css/top.css",
     "/css/result.css": "/css/result.css",
     "/css/terms.css": "/css/terms.css",
-    "/js/data-validation/gacha-create.js": "/js/data-validation/gacha-create.js",
-    "/js/data-validation/gacha-edit.js": "/js/data-validation/gacha-edit.js",
-    "/js/data-validation/prize-create.js": "/js/data-validation/prize-create.js",
-    "/js/data-validation/prize-edit.js": "/js/data-validation/prize-edit.js",
-    "/js/data-validation/simulation.js": "/js/data-validation/simulation.js",
-    "/js/list-delete-check.js": "/js/list-delete-check.js",
-    "/js/result-animation.js": "/js/result-animation.js"
+    "/js/data-validation/list-delete-check.js": "/js/data-validation/list-delete-check.js",
+    "/js/data-validation/pulldown-control.js": "/js/data-validation/pulldown-control.js",
+    "/js/data-validation/submit-gacha-create.js": "/js/data-validation/submit-gacha-create.js",
+    "/js/data-validation/submit-gacha-edit.js": "/js/data-validation/submit-gacha-edit.js",
+    "/js/data-validation/submit-prize.js": "/js/data-validation/submit-prize.js",
+    "/js/data-validation/submit-simulation.js": "/js/data-validation/submit-simulation.js",
+    "/js/message/input-name.js": "/js/message/input-name.js",
+    "/js/message/input-price.js": "/js/message/input-price.js",
+    "/js/message/input-rate.js": "/js/message/input-rate.js",
+    "/js/message/input-simulation.js": "/js/message/input-simulation.js",
+    "/js/message/select-image.js": "/js/message/select-image.js"
 }

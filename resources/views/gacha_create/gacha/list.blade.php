@@ -2,12 +2,11 @@
 
 {{-- 追加のJavaScriptファイルを読み込ませる --}}
 @section('script')
-    <script src="{{ secure_asset('js/list-delete-check.js') }}" defer></script>
+    <script src="{{ secure_asset('js/data-validation/list-delete-check.js') }}" defer></script>
 @endsection
 
 {{-- 追加のCSSファイルを読み込ませる --}}
 @section('css')
-    <link rel="stylesheet" href="{{ secure_asset('css/common.css') }}">
 @endsection
 
 @section('title', '作成したガチャリスト')

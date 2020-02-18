@@ -2,12 +2,16 @@
 
 {{-- 追加のJavaScriptファイルを読み込ませる --}}
 @section('script')
-    <script src="{{ secure_asset('js/data-validation/gacha-edit.js') }}" defer></script>
+    <script src="{{ secure_asset('js/data-validation/number-only.js') }}" defer></script>
+    <script src="{{ secure_asset('js/data-validation/submit-gacha-edit.js') }}" defer></script>
+    <script src="{{ secure_asset('js/message/input-name.js') }}" defer></script>
+    <script src="{{ secure_asset('js/message/input-price.js') }}" defer></script>
+    <script src="{{ secure_asset('js/message/input-rate.js') }}" defer></script>
+    <script src="{{ secure_asset('js/message/select-image.js') }}" defer></script>
 @endsection
 
 {{-- 追加のCSSファイルを読み込ませる --}}
 @section('css')
-    <link rel="stylesheet" href="{{ secure_asset('css/common.css') }}">
 @endsection
 
 @section('title', 'ガチャの編集')

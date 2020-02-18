@@ -131,11 +131,11 @@ function char_count(char_length){
 
 // ---------------------------------------------------------------------------------------
 
-// ガチャの名前（ガチャの作成、編集）入力時のイベント--------------------------------------
+// ガチャとプライズの名前（作成、編集）入力時のイベント--------------------------------------
 $(function(){
     // 入力フォームが空白の時のイベント
     $(function(){
-        $('.input-gacha-name').blur(function(){
+        $('.input-gacha-name, .input-prize-name').blur(function(){
             if($(this).val() == ''){
                 $('#name-alert-ng').text('入力が必要です');
                 $('#name-alert-ng').val('error');

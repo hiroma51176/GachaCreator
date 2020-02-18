@@ -128,10 +128,11 @@ class GachaController extends Controller
         }
         
         // ガチャリストに戻るために必要なこと
-            $cond_gacha_name = "";
-            $gachas = Gacha::where('user_id', Auth::id())->paginate(10);
-            
-            return view('gacha_create.gacha.list', ['gachas' => $gachas, 'cond_gacha_name' => $cond_gacha_name]);
+        // $cond_gacha_name = "";
+        // $gachas = Gacha::where('user_id', Auth::id())->paginate(10);
+        
+        // return view('gacha_create.gacha.list', ['gachas' => $gachas, 'cond_gacha_name' => $cond_gacha_name]);
+        return redirect('gacha_create/gacha/list');
             
         // return view('top');
     }
@@ -195,18 +196,17 @@ class GachaController extends Controller
         $gacha->fill($form)->save();
         
         // ガチャリストに戻るために必要なこと
-        $cond_gacha_name = "";
-        $gachas = Gacha::where('user_id', Auth::id())->paginate(10);
+        // $cond_gacha_name = "";
+        // $gachas = Gacha::where('user_id', Auth::id())->paginate(10);
         
-        return view('gacha_create.gacha.list', ['gachas' => $gachas, 'cond_gacha_name' => $cond_gacha_name]);
+        // return view('gacha_create.gacha.list', ['gachas' => $gachas, 'cond_gacha_name' => $cond_gacha_name]);
+        return redirect('gacha_create/gacha/list');
         
     }
     
     public function delete(Request $request)
     {
-        // ガチャリストに戻るために必要なこと
-        $cond_gacha_name = "";
-        $gachas = Gacha::where('user_id', Auth::id())->paginate(10);
+        
         
         // 削除機能ここから
         $gachas_id = $request->gacha_id;
@@ -224,6 +224,10 @@ class GachaController extends Controller
             $gacha = Gacha::find($gachas_id[$i]);
             $gacha->delete();
         }
+        
+        // ガチャリストに戻るために必要なこと
+        // $cond_gacha_name = "";
+        // $gachas = Gacha::where('user_id', Auth::id())->paginate(10);
         
         return redirect('gacha_create/gacha/list');
         // return view('gacha_create.gacha.list', ['gachas' => $gachas, 'cond_gacha_name' => $cond_gacha_name]);
