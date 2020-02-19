@@ -2,7 +2,6 @@
 
 {{-- 追加のJavaScriptファイルを読み込ませる --}}
 @section('script')
-
 @endsection
 
 {{-- 追加のCSSファイルを読み込ませる --}}

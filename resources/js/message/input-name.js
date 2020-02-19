@@ -26,6 +26,7 @@ $(function(){
     // 入力フォームが空白の時のイベント
     $(function(){
         $('.input-gacha-name, .input-prize-name').blur(function(){
+        // $('.input-gacha-name, .input-prize-name').blur(function(){
             if($(this).val() == ''){
                 $('#name-alert-ng').text('入力が必要です');
                 $('#name-alert-ng').val('error');
@@ -35,7 +36,7 @@ $(function(){
         });
     });
     // 入力時のイベント
-    $('.input-gacha-name').on('input', function(){
+    $('.input-gacha-name, .input-prize-name').on('input', function(){
         var char_name = $(this).val();
         var count_name = char_count(char_name);
         

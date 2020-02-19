@@ -39,6 +39,7 @@ class GachaController extends Controller
         $gacha_templetes = null;
         $gachas = Gacha::where('user_id', Auth::id())->get();
         
+        // 「作成したガチャをコピーする」項目を表示する為の処理
         if($gachas != null){
             foreach($gachas as $gacha){
                 $prizes = $gacha->prizes;
@@ -164,9 +165,9 @@ class GachaController extends Controller
         
         $form = $request->all();
         
-        \Debugbar::info($request->jackpot_rate);
-        \Debugbar::info($request->hit_rate);
-        \Debugbar::info($request->miss_rate);
+        // \Debugbar::info($request->jackpot_rate);
+        // \Debugbar::info($request->hit_rate);
+        // \Debugbar::info($request->miss_rate);
         
         if(isset($form['image'])){
             $image_file = $request->file('image');
@@ -184,12 +185,12 @@ class GachaController extends Controller
             // \Debugbar::info($gacha->image_path);
             // $path = $request->file('image')->store('public/image');
             // $gacha->image_path = basename($path);
-            unset($form['image']);
         }elseif(isset($request->remove)){
             $gacha->image_path =null;
             unset($form['remove']);
         }
         unset($form['_token']);
+        unset($form['image']);
         unset($form['gacha_name_count']);
         unset($form['gacha_description_count']);
         

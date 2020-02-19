@@ -16,5 +16,6 @@
     "/js/message/input-price.js": "/js/message/input-price.js",
     "/js/message/input-rate.js": "/js/message/input-rate.js",
     "/js/message/input-simulation.js": "/js/message/input-simulation.js",
-    "/js/message/select-image.js": "/js/message/select-image.js"
+    "/js/message/select-image.js": "/js/message/select-image.js",
+    "/js/run-view/create-prize.js": "/js/run-view/create-prize.js"
 }
