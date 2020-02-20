@@ -2,6 +2,7 @@
 
 {{-- 追加のJavaScriptファイルを読み込ませる --}}
 @section('script')
+    <script src="{{ secure_asset('js/my-function.js') }}" defer></script>
     <script src="{{ secure_asset('js/message/input-name.js') }}" defer></script>
     <script src="{{ secure_asset('js/message/select-image.js') }}" defer></script>
     <script src="{{ secure_asset('js/data-validation/submit-prize.js') }}" defer></script>

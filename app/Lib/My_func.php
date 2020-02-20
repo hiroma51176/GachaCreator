@@ -5,6 +5,7 @@ use Intervention\Image\Facades\Image;
 use Carbon\Carbon;
 use App\GachaHistory;
 use Storage;
+use App\Templete;
 
 class My_func
 {
@@ -28,6 +29,13 @@ class My_func
     public static function zeroPrize($gacha)
     {
         if($gacha->prizes->isEmpty()){
+            return view('top');
+        }
+    }
+    
+    public static function notExistPrize($prize)
+    {
+        if(empty($prize)){
             return view('top');
         }
     }
@@ -98,6 +106,17 @@ class My_func
         return $result;
     }
     
+    // テンプレートを使用するときの処理
+    public static function useTemplete($gacha_id, $templete)
+    {
+        $prize = new Prize;
+        $prize->gacha_id = $gacha_id;
+        $prize->rarity_name = $templete->rarity_name;
+        $prize->prize_name = $templete->prize_name;
+        $prize->image_path = $templete->image_path;
+        $prize->save();
+    }
+    
     // s3へ画像を保存するときの処理（ガチャver）
     public static function saveImageGacha($request)
     {
@@ -111,6 +130,8 @@ class My_func
         // s3へ保存
         $path = Storage::disk('s3')->put($storePath, (string)$image->encode(), 'public');
         $gacha->image_path = Storage::disk('s3')->url($storePath);
+        
+        return $gacha->image_path;
     }
     
     public static function saveImagePrize($request, $prize)
@@ -125,6 +146,9 @@ class My_func
         // s3へ保存
         $path = Storage::disk('s3')->put($storePath, (string)$image->encode(), 'public');
         $prize->image_path = Storage::disk('s3')->url($storePath);
+        
+        // return array($path, $prize->image_path);
+        return $prize->image_path;
     }
     
     public static function rarityName($rarity_num)

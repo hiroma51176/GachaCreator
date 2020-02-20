@@ -2,9 +2,10 @@
 
 {{-- 追加のJavaScriptファイルを読み込ませる --}}
 @section('script')
+    <script src="{{ secure_asset('js/my-function.js') }}" defer></script>
     <script src="{{ secure_asset('js/data-validation/number-only.js') }}" defer></script>
-    <script src="{{ secure_asset('js/data-validation/submit-simulation.js') }}" defer></script>
     <script src="{{ secure_asset('js/message/input-simulation.js') }}" defer></script>
+    <script src="{{ secure_asset('js/data-validation/submit-simulation.js') }}" defer></script>
 @endsection
 
 {{-- 追加のCSSファイルを読み込ませる --}}
@@ -77,7 +78,7 @@
                         
                         {{ csrf_field() }}
                         <div class="col-md-12 pl-2 mb-5">
-                            <input id="submit-sim" type="submit" name="new_sim" class="btn btn-primary w-50" value="シミュレーションを実行する" disabled>
+                            <input id="submit-sim" type="submit" name="new_sim" class="btn btn-primary w-50 submit-btn" value="シミュレーションを実行する" disabled>
                             <p id="check_val"></p>
                             <a class="btn btn-secondary mt-3" href="{{ url('/') }}">トップへ戻る</a>
                         </div>

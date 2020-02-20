@@ -81,7 +81,7 @@
 /******/
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 5);
+/******/ 	return __webpack_require__(__webpack_require__.s = 7);
 /******/ })
 /************************************************************************/
 /******/ ({
@@ -108,6 +108,7 @@ $(function () {
 
     var char_desc = $('.input-gacha-description').val();
     var count_desc = char_count(char_desc); // 画像ファイルのサイズを確認
+    // var file_size = checkImageSize();
 
     if ($('.image-file').prop('files')[0] != null) {
       var file = $('.image-file').prop('files')[0];
@@ -118,11 +119,13 @@ $(function () {
 
 
     if (0 < count_name && count_name <= 30 && count_desc <= 60 && file_size < 2048000 && $('.input-gacha-price').val() <= 10000 && $('#jackpot').val() <= 100 && $('#hit').val() <= 100 && $('#miss').val() <= 100 && sum == 100 && $('#jackpot').val() != '' && $('#hit').val() != '' && $('#miss').val() != '') {
-      $('#submit-edit').prop('disabled', false); // $('#check_val').text(count_name + 'name|' + count_desc + '|' + price + '|' + jackpot + '｜' + hit + '|' + miss + '|' + sum + 'file' + file_size + 'temp' + temp);
+      // btnAbled();
+      $('.submit-btn').prop('disabled', false); // $('#check_val').text(count_name + 'name|' + count_desc + '|' + price + '|' + jackpot + '｜' + hit + '|' + miss + '|' + sum + 'file' + file_size + 'temp' + temp);
 
-      $('#check_val').text('');
+      $('#check_val').text('問題ありません。');
     } else {
-      $('#submit-edit').prop('disabled', true); // $('#check_val').text(count_name + 'name|' + count_desc + '|' + price + '|' + jackpot + '｜' + hit + '|' + miss + '|' + sum + 'file' + file_size + 'temp' + temp);
+      // btnDisabled();
+      $('.submit-btn').prop('disabled', true); // $('#check_val').text(count_name + 'name|' + count_desc + '|' + price + '|' + jackpot + '｜' + hit + '|' + miss + '|' + sum + 'file' + file_size + 'temp' + temp);
 
       $('#check_val').text('入力欄に不備があります。ご確認ください。');
     }
@@ -136,7 +139,7 @@ $(window).on('load', function () {
 
 /***/ }),
 
-/***/ 5:
+/***/ 7:
 /*!*****************************************************************!*\
   !*** multi ./resources/js/data-validation/submit-gacha-edit.js ***!
   \*****************************************************************/

@@ -11,6 +11,7 @@ class Templete extends Model
     public static $rules = array(
         'rarity_id' => 'required',
         'prize_name' => 'required',
+        'image' => 'image | max: 2000',
         );
         
     // public function rarity()

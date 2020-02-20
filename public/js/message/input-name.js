@@ -81,7 +81,7 @@
 /******/
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 8);
+/******/ 	return __webpack_require__(__webpack_require__.s = 10);
 /******/ })
 /************************************************************************/
 /******/ ({
@@ -94,27 +94,27 @@
 /***/ (function(module, exports) {
 
 // 半角を１、全角を２でカウントする関数---------------------------------------------------
-function char_count(char_length) {
-  var count = 0;
-
-  for (var i = 0; i < char_length.length; i++) {
-    // 入力された文字を文字コードに変換
-    var _char = char_length.charCodeAt(i);
-
-    if (_char >= 0x00 && _char < 0x81 || _char === 0xf8f0 || _char >= 0xff61 && _char < 0xffa0 || _char >= 0xf8f1 && _char < 0xf8f4) {
-      // 半角文字の場合は1を加算
-      count += 1;
-    } else {
-      // それ以外の文字の場合は2を加算
-      count += 2;
-    }
-  }
-
-  return count;
-} // ---------------------------------------------------------------------------------------
+// function char_count(char_length){
+//     var count = 0;
+//     for(var i=0; i < char_length.length; i++){
+//         // 入力された文字を文字コードに変換
+//         var char = char_length.charCodeAt(i);
+//         if((char >= 0x00 && char < 0x81) ||
+//             (char === 0xf8f0) ||
+//             (char >= 0xff61 && char < 0xffa0) ||
+//             (char >= 0xf8f1 && char < 0xf8f4)){
+//             // 半角文字の場合は1を加算
+//             count += 1;
+//         }else{
+//             // それ以外の文字の場合は2を加算
+//             count += 2;
+//         }
+//     }
+//     return count;
+// }
+// ---------------------------------------------------------------------------------------
+// require('../my-function');
 // ガチャとプライズの名前（作成、編集）入力時のイベント--------------------------------------
-
-
 $(function () {
   // 入力フォームが空白の時のイベント
   $(function () {
@@ -122,9 +122,6 @@ $(function () {
       // $('.input-gacha-name, .input-prize-name').blur(function(){
       if ($(this).val() == '') {
         $('#name-alert-ng').text('入力が必要です');
-        $('#name-alert-ng').val('error');
-      } else {
-        $('#name-alert-ng').val(0);
       }
     });
   }); // 入力時のイベント
@@ -170,7 +167,7 @@ $(function () {
 
 /***/ }),
 
-/***/ 8:
+/***/ 10:
 /*!**************************************************!*\
   !*** multi ./resources/js/message/input-name.js ***!
   \**************************************************/

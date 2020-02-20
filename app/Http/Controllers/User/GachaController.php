@@ -33,7 +33,6 @@ class GachaController extends Controller
         return view('gacha_create.gacha.list', ['gachas' => $gachas, 'cond_gacha_name' => $cond_gacha_name]);
     }
     
-    
     public function add()
     {
         $gacha_templetes = null;
@@ -43,7 +42,7 @@ class GachaController extends Controller
         if($gachas != null){
             foreach($gachas as $gacha){
                 $prizes = $gacha->prizes;
-                // \Debugbar::info($prizes);
+                // プライズが存在するガチャを$gacha_templeteに格納する
                 if($prizes->isNotEmpty()){
                     $gacha_templetes[] = $gacha;
                 }
@@ -63,16 +62,17 @@ class GachaController extends Controller
         
         
         if(isset($form['image'])){
-            $image_file = $request->file('image');
-            $now = date_format(Carbon::now(), 'YmdHis');
-            // アップロードされたファイル名を取得
-            $name = $image_file->getClientOriginalName();
-            $storePath = Auth::id() . '_gacha_' . $now . '_' . $name;
-            // 画像を横幅は300px、縦幅はアスペクト比維持の自動サイズへリサイズ
-            $image = Image::make($image_file)->resize(300, null, function($constraint) {$constraint->aspectRatio(); });
-            // s3へ保存
-            $path = Storage::disk('s3')->put($storePath, (string)$image->encode(), 'public');
-            $gacha->image_path = Storage::disk('s3')->url($storePath);
+            $gacha->image_path = My_func::saveImageGacha($request);
+            // $image_file = $request->file('image');
+            // $now = date_format(Carbon::now(), 'YmdHis');
+            // // アップロードされたファイル名を取得
+            // $name = $image_file->getClientOriginalName();
+            // $storePath = Auth::id() . '_gacha_' . $now . '_' . $name;
+            // // 画像を横幅は300px、縦幅はアスペクト比維持の自動サイズへリサイズ
+            // $image = Image::make($image_file)->resize(300, null, function($constraint) {$constraint->aspectRatio(); });
+            // // s3へ保存
+            // $path = Storage::disk('s3')->put($storePath, (string)$image->encode(), 'public');
+            // $gacha->image_path = Storage::disk('s3')->url($storePath);
             //$path = $request->file('image')->store('public/image');
             // $path = Storage::disk('s3')->putFile('/', $form['image'], 'public');
             // $gacha->image_path = Storage::disk('s3')->url($path);
@@ -105,11 +105,12 @@ class GachaController extends Controller
             
             // テンプレートのプライズをコピーする
             foreach($templetes as $templete){
-                $prize = new Prize;
-                $prize->gacha_id = $gacha_data->id;
-                $prize->rarity_name = $templete->rarity_name;
-                $prize->prize_name = $templete->prize_name;
-                $prize->save();
+                My_func::useTemplete($gacha_data->id, $templete);
+                // $prize = new Prize;
+                // $prize->gacha_id = $gacha_data->id;
+                // $prize->rarity_name = $templete->rarity_name;
+                // $prize->prize_name = $templete->prize_name;
+                // $prize->save();
             }
             
         }else{
@@ -119,11 +120,12 @@ class GachaController extends Controller
             
             // コピーする
             foreach($templete_prizes as $templete_prize){
-                $prize = new Prize;
-                $prize->gacha_id = $gacha_data->id;
-                $prize->rarity_name = $templete_prize->rarity_name;
-                $prize->prize_name = $templete_prize->prize_name;
-                $prize->save();
+                My_func::useTemplete($gacha_data->id, $templete_prize);
+                // $prize = new Prize;
+                // $prize->gacha_id = $gacha_data->id;
+                // $prize->rarity_name = $templete_prize->rarity_name;
+                // $prize->prize_name = $templete_prize->prize_name;
+                // $prize->save();
             }
             
         }
@@ -170,16 +172,17 @@ class GachaController extends Controller
         // \Debugbar::info($request->miss_rate);
         
         if(isset($form['image'])){
-            $image_file = $request->file('image');
-            $now = date_format(Carbon::now(), 'YmdHis');
-            // アップロードされたファイル名を取得
-            $name = $image_file->getClientOriginalName();
-            $storePath = Auth::id() . '_gacha_' . $now . '_' . $name;
-            // 画像を横幅は300px、縦幅はアスペクト比維持の自動サイズへリサイズ
-            $image = Image::make($image_file)->resize(300, null, function($constraint) {$constraint->aspectRatio(); });
-            // s3へ保存
-            $path = Storage::disk('s3')->put($storePath, (string)$image->encode(), 'public');
-            $gacha->image_path = Storage::disk('s3')->url($storePath);
+            $gacha->image_path = My_func::saveImageGacha($request);
+            // $image_file = $request->file('image');
+            // $now = date_format(Carbon::now(), 'YmdHis');
+            // // アップロードされたファイル名を取得
+            // $name = $image_file->getClientOriginalName();
+            // $storePath = Auth::id() . '_gacha_' . $now . '_' . $name;
+            // // 画像を横幅は300px、縦幅はアスペクト比維持の自動サイズへリサイズ
+            // $image = Image::make($image_file)->resize(300, null, function($constraint) {$constraint->aspectRatio(); });
+            // // s3へ保存
+            // $path = Storage::disk('s3')->put($storePath, (string)$image->encode(), 'public');
+            // $gacha->image_path = Storage::disk('s3')->url($storePath);
             // $path = Storage::disk('s3')->putFile('/', $form['image'], 'public');
             // $gacha->image_path = Storage::disk('s3')->url($path);
             // \Debugbar::info($gacha->image_path);
@@ -236,9 +239,12 @@ class GachaController extends Controller
     
     public function history()
     {
+        // 最新１０件のプライズ獲得履歴を取り出す
         $gacha_histories = GachaHistory::where('user_id', Auth::id())->latest()->limit(10)->get();
         
+        // ガチャを引いた数の累計
         $draw_count = GachaHistory::where('user_id', Auth::id())->count();
+        // ガチャを引いた金額の累計
         $price_used = GachaHistory::where('user_id', Auth::id())->select('play_price')->sum('play_price');
         // \Debugbar::info($price_used);
         return view('history', ['gacha_histories' => $gacha_histories, 'price_used' => $price_used, 'draw_count' => $draw_count]);

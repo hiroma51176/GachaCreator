@@ -81,67 +81,46 @@
 /******/
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 13);
+/******/ 	return __webpack_require__(__webpack_require__.s = 4);
 /******/ })
 /************************************************************************/
 /******/ ({
 
-/***/ "./resources/js/message/input-simulation.js":
-/*!**************************************************!*\
-  !*** ./resources/js/message/input-simulation.js ***!
-  \**************************************************/
+/***/ "./resources/js/data-validation/number-only.js":
+/*!*****************************************************!*\
+  !*** ./resources/js/data-validation/number-only.js ***!
+  \*****************************************************/
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-// シミュレーションで設定金額を入力時、入力された値が指定範囲外の場合--------------------------------------
-$(function () {
-  $('.input-price').blur(function () {
-    if ($(this).val() == '') {
-      $(this).next().text('入力が必要です');
-    } else if (!(0 <= $(this).val() && $(this).val() <= 10000)) {
-      $(this).next().text('0～10000の値を入力してください');
-    } else {
-      $(this).next().text('');
-    }
-  });
-}); // -----------------------------------------------------------------------------------
-// シミュレーションで最大試行回数を入力時、入力された値が指定範囲外の場合-------------------------------
+// 矢印キーとバックスペースキーとデリートキーとテンキー（数字）以外は入力不可----------------
+$(document).on('keydown', '.input-number', function (e) {
+  var k = e.keyCode;
+  var str = String.fromCharCode(k);
 
-$(function () {
-  $('.input-count').blur(function () {
-    if ($(this).val() == '') {
-      $(this).next().text('入力が必要です');
-    } else if (!(0 < $(this).val() && $(this).val() <= 1000)) {
-      $(this).next().text('1～1000の値を入力してください');
-    } else {
-      $(this).next().text('');
-    }
-  });
-}); // -----------------------------------------------------------------------------------
-// シミュレーションで排出率を入力時、入力された値が指定範囲外の場合-----------------
+  if (!(str.match(/[0-9]/) || 37 <= k && k <= 40 || k === 8 || k === 46 || 96 <= k && k <= 105)) {
+    return false;
+  }
+}); // --------------------------------------------------------------------------------------
+// 全角文字入力不可----------------------------------------------------------------------
 
-$(function () {
-  $('.input-rate').blur(function () {
-    if ($(this).val() == '') {
-      $(this).next().text('入力が必要です');
-    } else if (!(0 < $(this).val() && $(this).val() <= 100)) {
-      $(this).next().text('1～100の値を入力してください');
-    } else {
-      $(this).next().text('');
-    }
-  });
+$(document).on('keyup', '.input-number', function () {
+  this.value = this.value.replace(/[^0-9]+/i, '');
+});
+$(document).on('blur', '.input-number', function () {
+  this.value = this.value.replace(/[^0-9]+/i, '');
 }); // --------------------------------------------------------------------------------------
 
 /***/ }),
 
-/***/ 13:
-/*!********************************************************!*\
-  !*** multi ./resources/js/message/input-simulation.js ***!
-  \********************************************************/
+/***/ 4:
+/*!***********************************************************!*\
+  !*** multi ./resources/js/data-validation/number-only.js ***!
+  \***********************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(/*! /home/ec2-user/environment/GachaCreator/resources/js/message/input-simulation.js */"./resources/js/message/input-simulation.js");
+module.exports = __webpack_require__(/*! /home/ec2-user/environment/GachaCreator/resources/js/data-validation/number-only.js */"./resources/js/data-validation/number-only.js");
 
 
 /***/ })

@@ -2,9 +2,10 @@
 
 {{-- 追加のJavaScriptファイルを読み込ませる --}}
 @section('script')
-    <script src="{{ secure_asset('js/data-validation/submit-prize.js') }}" defer></script>
+    <script src="{{ secure_asset('js/my-function.js') }}" defer></script>
     <script src="{{ secure_asset('js/message/input-name.js') }}" defer></script>
     <script src="{{ secure_asset('js/message/select-image.js') }}" defer></script>
+    <script src="{{ secure_asset('js/data-validation/submit-prize.js') }}" defer></script>
 @endsection
 
 {{-- 追加のCSSファイルを読み込ませる --}}
@@ -93,8 +94,8 @@
                             <input type="hidden" name="gacha_id" value="{{ $gacha_id }}">
                             <input type="hidden" name="gacha_name" value="{{ $gacha_name }}">
                             <input type="hidden" name="id" value="{{ $prize->id }}">
-                            <input id="submit-btn" type="submit" class="btn btn-lg btn-primary w-50" value="上書きする" disabled>
-                            
+                            <input id="submit-btn" type="submit" class="btn btn-lg btn-primary w-50 submit-btn" value="上書きする" disabled>
+                            <p id="check_val"></p>
                             </div>
                         </div>
                     </form>

@@ -19,6 +19,7 @@ $(function(){
         var count_desc = char_count(char_desc);
         
         // 画像ファイルのサイズを確認
+        // var file_size = checkImageSize();
         if($('.image-file').prop('files')[0] != null){
             var file = $('.image-file').prop('files')[0];
             var file_size = file.size;
@@ -44,10 +45,12 @@ $(function(){
             && $('#jackpot').val() != '' && $('#hit').val() != '' && $('#miss').val() != ''
             && temp != ''
         ){
-            $('#submit-create').prop('disabled', false);
-            $('#check_val').text('');
+            // btnAbled();
+            $('.submit-btn').prop('disabled', false);
+            $('#check_val').text('問題ありません。');
         }else{
-            $('#submit-create').prop('disabled', true);
+            // btnDisabled();
+            $('.submit-btn').prop('disabled', true);
             $('#check_val').text('入力欄に不備があります。ご確認ください。');
         }
     });

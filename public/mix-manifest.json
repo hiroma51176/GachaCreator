@@ -7,6 +7,7 @@
     "/css/result.css": "/css/result.css",
     "/css/terms.css": "/css/terms.css",
     "/js/data-validation/list-delete-check.js": "/js/data-validation/list-delete-check.js",
+    "/js/data-validation/number-only.js": "/js/data-validation/number-only.js",
     "/js/data-validation/pulldown-control.js": "/js/data-validation/pulldown-control.js",
     "/js/data-validation/submit-gacha-create.js": "/js/data-validation/submit-gacha-create.js",
     "/js/data-validation/submit-gacha-edit.js": "/js/data-validation/submit-gacha-edit.js",
@@ -17,5 +18,5 @@
     "/js/message/input-rate.js": "/js/message/input-rate.js",
     "/js/message/input-simulation.js": "/js/message/input-simulation.js",
     "/js/message/select-image.js": "/js/message/select-image.js",
-    "/js/run-view/create-prize.js": "/js/run-view/create-prize.js"
+    "/js/my-function.js": "/js/my-function.js"
 }

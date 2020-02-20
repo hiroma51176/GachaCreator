@@ -2,13 +2,14 @@
 
 {{-- 追加のJavaScriptファイルを読み込ませる --}}
 @section('script')
+    <script src="{{ secure_asset('js/my-function.js') }}" defer></script>
     <script src="{{ secure_asset('js/data-validation/number-only.js') }}" defer></script>
     <script src="{{ secure_asset('js/data-validation/pulldown-control.js') }}" defer></script>
-    <script src="{{ secure_asset('js/data-validation/submit-gacha-create.js') }}" defer></script>
     <script src="{{ secure_asset('js/message/input-name.js') }}" defer></script>
     <script src="{{ secure_asset('js/message/input-price.js') }}" defer></script>
     <script src="{{ secure_asset('js/message/input-rate.js') }}" defer></script>
     <script src="{{ secure_asset('js/message/select-image.js') }}" defer></script>
+    <script src="{{ secure_asset('js/data-validation/submit-gacha-create.js') }}" defer></script>
 @endsection
 
 {{-- 追加のCSSファイルを読み込ませる --}}
@@ -169,7 +170,7 @@
                         
                     
                         {{ csrf_field() }}
-                        <input id="submit-create" type="submit" class="btn btn-lg btn-primary w-50" value="ガチャを作成する" disabled>
+                        <input id="submit-create" type="submit" class="btn btn-lg btn-primary w-50 submit-btn" value="ガチャを作成する" disabled>
                         <p id="check_val"></p>
                     </form>
                 </div>
