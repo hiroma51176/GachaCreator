@@ -1,13 +1,12 @@
-@extends('layouts.terms')
+@extends('layouts.common')
 
 {{-- 追加のJavaScriptファイルを読み込ませる --}}
 @section('script')
-
 @endsection
 
 {{-- 追加のCSSファイルを読み込ませる --}}
 @section('css')
-    <link rel="stylesheet" href="{{ secure_asset('css/common.css') }}">
+    <link rel="stylesheet" href="{{ secure_asset('css/terms.css') }}">
 @endsection
 
 @section('title', 'プライバシーポリシー')

@@ -40,7 +40,8 @@
                     <div class="collapse navbar-collapse" id="navbarSupportedContent">
                         <!-- Left Side Of Navbar -->
                         <ul class="navbar-nav mr-auto">
-                        
+                            <li><a class="nav-link" href="{{ url('/terms') }}">利用規約</a></li>
+                            <li><a class="nav-link" href="{{ url('/policy') }}">プライバシーポリシー</a></li>
                         </ul>
                     
                         <!-- Right Side Of Navbar -->
@@ -105,7 +106,6 @@
                         <li class="list-inline-item flex-fill"><a class="text-reset" href="{{ action('PlayController@index') }}">ガチャを引く</a></li>
                         <li class="list-inline-item flex-fill"><a class="text-reset" href="{{ action('User\GachaController@add') }}">ガチャを作成する</a></li>
                         <li class="list-inline-item flex-fill"><a class="text-reset" href="{{ action('SimulationController@front') }}">シミュレーションを行う</a></li>
-                        {{-- <li class="list-inline-item flex-fill"><a class="text-reset" href="{{ action('PlayController@viewCalculation') }}">期待値の計算を行う</a></li> --}}
                     </ul>
                 </div>
             </footer>

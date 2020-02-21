@@ -2,12 +2,11 @@
 
 {{-- 追加のJavaScriptファイルを読み込ませる --}}
 @section('script')
-
+    <script src="{{ secure_asset('js/data-validation/list-delete-check.js') }}" defer></script>
 @endsection
 
 {{-- 追加のCSSファイルを読み込ませる --}}
 @section('css')
-    <link rel="stylesheet" href="{{ secure_asset('css/common.css') }}">
 @endsection
 
 @section('title', 'ユーザー登録')
@@ -72,10 +71,16 @@
                                 <input id="password-confirm" type="password" class="form-control" name="password_confirmation" required autocomplete="new-password">
                             </div>
                         </div>
+                        
+                        <div class="form-group row">
+                            <div class="col-md-6 offset-md-4">
+                                <input type="checkbox"> 利用規約に同意します　<a href="{{ url('/terms') }}" target="newtab">利用規約</a>
+                            </div>
+                        </div>
 
                         <div class="form-group row mb-0">
                             <div class="col-md-6 offset-md-4">
-                                <button type="submit" class="btn btn-primary">
+                                <button id="submit-btn" type="submit" class="btn btn-primary" disabled>
                                     {{ __('messages.Register') }}
                                 </button>
                             </div>
