@@ -130,14 +130,8 @@ class GachaController extends Controller
             
         }
         
-        // ガチャリストに戻るために必要なこと
-        // $cond_gacha_name = "";
-        // $gachas = Gacha::where('user_id', Auth::id())->paginate(10);
-        
-        // return view('gacha_create.gacha.list', ['gachas' => $gachas, 'cond_gacha_name' => $cond_gacha_name]);
         return redirect('gacha_create/gacha/list');
-            
-        // return view('top');
+        
     }
     
     
@@ -145,14 +139,16 @@ class GachaController extends Controller
     {
         $gacha = Gacha::find($request->gacha_id);
         
-        if(empty($gacha)){
-            return view('top');
-        }
+        My_func::emptyGachaId($gacha);
+        // if(empty($gacha)){
+        //     return view('top');
+        // }
         
         // 作成者以外のユーザーのガチャにアクセスできないようにする
-        if(Auth::id() != $gacha->user_id){
-            return view('top');
-        }
+        My_func::differentUserId($gacha);
+        // if(Auth::id() != $gacha->user_id){
+        //     return view('top');
+        // }
         
         return view('gacha_create.gacha.edit', ['gacha' => $gacha]);
     }
@@ -164,12 +160,7 @@ class GachaController extends Controller
         
         $gacha = Gacha::find($request->id);
         
-        
         $form = $request->all();
-        
-        // \Debugbar::info($request->jackpot_rate);
-        // \Debugbar::info($request->hit_rate);
-        // \Debugbar::info($request->miss_rate);
         
         if(isset($form['image'])){
             $gacha->image_path = My_func::saveImageGacha($request);
@@ -210,9 +201,6 @@ class GachaController extends Controller
     
     public function delete(Request $request)
     {
-        
-        
-        // 削除機能ここから
         $gachas_id = $request->gacha_id;
         
         
@@ -229,12 +217,7 @@ class GachaController extends Controller
             $gacha->delete();
         }
         
-        // ガチャリストに戻るために必要なこと
-        // $cond_gacha_name = "";
-        // $gachas = Gacha::where('user_id', Auth::id())->paginate(10);
-        
         return redirect('gacha_create/gacha/list');
-        // return view('gacha_create.gacha.list', ['gachas' => $gachas, 'cond_gacha_name' => $cond_gacha_name]);
     }
     
     public function history()

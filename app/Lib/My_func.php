@@ -134,6 +134,7 @@ class My_func
         return $gacha->image_path;
     }
     
+    // s3へ画像を保存するときの処理（プライズver）
     public static function saveImagePrize($request, $prize)
     {
         $image_file = $request->file('image');

@@ -64,13 +64,6 @@ class PrizeController extends Controller
         //     return view('top');
         // }
         
-        //$gacha_id = $request->gacha_id;
-        //$gacha_name = $request->gacha_name;
-        
-        // // URLで直接飛んできたとき
-        // if(empty($gacha->id)){
-        //     return view('top');
-        // }
         return view('gacha_create.prize.create', ['gacha_id' => $gacha->id, 'gacha_name' => $gacha->gacha_name]);
     }
     

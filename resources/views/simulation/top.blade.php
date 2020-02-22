@@ -2,10 +2,11 @@
 
 {{-- 追加のJavaScriptファイルを読み込ませる --}}
 @section('script')
+    <script src="{{ secure_asset('js/data-validation/submit-simulation.js') }}" defer></script>
     <script src="{{ secure_asset('js/my-function.js') }}" defer></script>
     <script src="{{ secure_asset('js/data-validation/number-only.js') }}" defer></script>
     <script src="{{ secure_asset('js/message/input-simulation.js') }}" defer></script>
-    <script src="{{ secure_asset('js/data-validation/submit-simulation.js') }}" defer></script>
+    
 @endsection
 
 {{-- 追加のCSSファイルを読み込ませる --}}
