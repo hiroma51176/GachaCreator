@@ -190,11 +190,6 @@ class GachaController extends Controller
         
         $gacha->fill($form)->save();
         
-        // ガチャリストに戻るために必要なこと
-        // $cond_gacha_name = "";
-        // $gachas = Gacha::where('user_id', Auth::id())->paginate(10);
-        
-        // return view('gacha_create.gacha.list', ['gachas' => $gachas, 'cond_gacha_name' => $cond_gacha_name]);
         return redirect('gacha_create/gacha/list');
         
     }

@@ -36,13 +36,13 @@
                         @endif
                         <div class="form-group row">
                             <label class="col-md-5 pt-2 font-weight-bold">１回あたりの金額設定</label>
-                            <div class="col-md-3">
+                            <div class="col-md-4">
                                 @if (isset($play_price))
                                     <input type="text" class="form-control input-number input-price" maxlength="5" name="play_price" value="{{ $play_price }}">
                                 @else
                                     <input type="text" class="form-control input-number input-price" maxlength="5" name="play_price" value="{{ old('play_price') }}">
                                 @endif
-                                <font color="red"><p class="mb-0 alert"></p></font>
+                                <font color="red"><p class="pb-1 mb-0 alert"></p></font>
                             </div>
                             
                             <label class="pt-2">円</label>
@@ -51,7 +51,7 @@
                         
                         <div class="form-group row">
                             <label class="col-md-5 pt-2 font-weight-bold">最大試行回数</label>
-                            <div class="col-md-3">
+                            <div class="col-md-4">
                                 @if (isset($max_play_count))
                                     <input type="text" class="form-control input-number input-count" maxlength="4" name="max_play_count" value="{{ $max_play_count }}">
                                 @else
@@ -60,12 +60,12 @@
                                 <font color="red"><p class="mb-0 alert"></p></font>
                             </div>
                             <label class="pt-2">回</label>
-                            <label class="pl-4 mb-0">※1～1000までの整数を半角で入力してください。</label>
+                            <label class="pl-4 pb-3 mb-0">※1～1000までの整数を半角で入力してください。</label>
                         </div>
                         
                         <div class="form-group row">
                             <label class="col-md-5 pt-2 font-weight-bold">排出率</label>
-                            <div class="col-md-3">
+                            <div class="col-md-4">
                                 @if (isset($rate))
                                     <input type="text" class="form-control input-number input-rate" maxlength="3" name="rate" value="{{ $rate }}">
                                 @else

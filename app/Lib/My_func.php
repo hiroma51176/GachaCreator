@@ -33,6 +33,7 @@ class My_func
         }
     }
     
+    // プライズが存在しない場合、トップページに遷移する
     public static function notExistPrize($prize)
     {
         if(empty($prize)){
@@ -74,7 +75,8 @@ class My_func
             }else{
                 $result = $prizes->random();
             }
-            
+        
+        // 当たりの場合
         }elseif($rand <= $gacha->hit_rate){
             if($hit->isNotEmpty()){
                 $result = $hit->random();
@@ -82,6 +84,7 @@ class My_func
                 $result = $prizes->random();
             }
             
+        // はずれの場合
         }else{
             if($miss->isNotEmpty()){
                 $result = $miss->random();
@@ -152,6 +155,7 @@ class My_func
         return $prize->image_path;
     }
     
+    // レアリティを決める関数
     public static function rarityName($rarity_num)
     {
         switch ($rarity_num){
