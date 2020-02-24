@@ -5,10 +5,10 @@ $(function(){
         var image_size = this.files[0].size;
         var file = $(this).prop('files')[0];
         if(image_size < 2048000){
-            $('#image-alert-ok').text('画像サイズは' + getFileSize(file.size) + 'です。問題ありません');
+            $('#image-alert-ok').text('画像サイズは' + window.myLib.getFileSize(file.size) + 'です。問題ありません');
             $('#image-alert-ng').text('');
         }else{
-            $('#image-alert-ng').text('画像サイズは' + getFileSize(file.size) + 'です。2MB以下の画像を選択してください');
+            $('#image-alert-ng').text('画像サイズは' + window.myLib.getFileSize(file.size) + 'です。2MB以下の画像を選択してください');
             $('#image-alert-ok').text('');
         }
         

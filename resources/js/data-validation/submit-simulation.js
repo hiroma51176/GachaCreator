@@ -5,11 +5,13 @@ $(function(){
             && 0 < $('.input-count').val() && $('.input-count').val() <= 1000 
             && 0 < $('.input-rate').val() && $('.input-rate').val() <= 100 
         ){
-            btnAbled();
+            window.myLib.btnAbled();
+            // btnAbled();
             // $('.submit-btn').prop('disabled', false);
             // $('#check_val').text('問題ありません。');
         }else{
-            btnDisabled();
+            window.myLib.btnDisabled();
+            // btnDisabled();
             // $('.submit-btn').prop('disabled', true);
             // $('#check_val').text('入力欄に不備があります。ご確認ください。');
         }
