@@ -6,6 +6,7 @@ use Carbon\Carbon;
 use App\GachaHistory;
 use Storage;
 use App\Templete;
+use App\Prize;
 
 class My_func
 {
@@ -121,7 +122,7 @@ class My_func
     }
     
     // s3へ画像を保存するときの処理（ガチャver）
-    public static function saveImageGacha($request)
+    public static function saveImageGacha($request, $gacha)
     {
         $image_file = $request->file('image');
         $now = date_format(Carbon::now(), 'YmdHis');

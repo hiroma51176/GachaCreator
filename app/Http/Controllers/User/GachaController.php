@@ -15,6 +15,7 @@ use App\Prize;
 use Storage;
 use Intervention\Image\Facades\Image;
 use Carbon\Carbon;
+use App\Lib\My_func;
 
 class GachaController extends Controller
 {
@@ -62,7 +63,7 @@ class GachaController extends Controller
         
         
         if(isset($form['image'])){
-            $gacha->image_path = My_func::saveImageGacha($request);
+            $gacha->image_path = My_func::saveImageGacha($request, $gacha);
             // $image_file = $request->file('image');
             // $now = date_format(Carbon::now(), 'YmdHis');
             // // アップロードされたファイル名を取得
