@@ -17,6 +17,8 @@ return [
     'Before proceeding, please check your email for a verification link.' => 'メールに記載されているリンクをクリックして、登録手続きを完了してください。',
     'If you did not receive the email' => 'メールが届いていなければ、',
     'click here to request another' => 'こちらをクリックして再送信してください。',
-    'Send Password Reset Link' => 'パスワードリセットのリンクを送信'
+    'Send Password Reset Link' => 'パスワードリセットのリンクを送信',
+    'Click link below and reset password.' => '下記のURLにアクセスして、パスワードを再設定してください。',
+    'If you did not request a password reset, no further action is required.' => 'このメールに心当たりがない場合は、このまま削除してください。',
     ];
 ?>

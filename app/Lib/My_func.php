@@ -74,7 +74,7 @@ class My_func
                 $result = $jackpot->random();
             // 空の場合、全てのプライズから引く
             }else{
-                $result = $prizes->random();
+                $result = $gacha->prizes->random();
             }
         
         // 当たりの場合
@@ -82,7 +82,7 @@ class My_func
             if($hit->isNotEmpty()){
                 $result = $hit->random();
             }else{
-                $result = $prizes->random();
+                $result = $gacha->prizes->random();
             }
             
         // はずれの場合
@@ -90,7 +90,7 @@ class My_func
             if($miss->isNotEmpty()){
                 $result = $miss->random();
             }else{
-                $result = $prizes->random();
+                $result = $gacha->prizes->random();
             }
         }
         $gacha->total_play_count += 1;

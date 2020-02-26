@@ -33,13 +33,17 @@
         @foreach ($gacha_histories as $gacha_history)
             <div class="row bg-white mt-3">
                 <div class="col-md-1 mr-3">
-                    @if ($gacha_history->prize->image_path)
+                    @if (!empty($gacha_history->prize->image_path))
                         <img width="100px" height="100px" src="{{ $gacha_history->prize->image_path }}"></img>
                     @endif
                 </div>
                 <div class="col-md-10 py-3 align-middle">
-                    <h4 class="mb-3">{{ $gacha_history->prize->rarity_name }}の「{{ $gacha_history->prize->prize_name }}」が出ました！</h4>
-                    <p class="mb-0">引いたガチャ：<a href="{{ action('PlayController@viewPlay', ['gacha_id' => $gacha_history->gacha_id]) }}">「{{ $gacha_history->gacha->gacha_name }}」</a></p>
+                    @if (!empty($gacha_history->prize->rarity_name))
+                        <h4 class="mb-3">{{ $gacha_history->prize->rarity_name }}の「{{ $gacha_history->prize->prize_name }}」が出ました！</h4>
+                        <p class="mb-0">引いたガチャ：<a href="{{ action('PlayController@viewPlay', ['gacha_id' => $gacha_history->gacha_id]) }}">「{{ $gacha_history->gacha->gacha_name }}」</a></p>
+                    @else
+                        <h4 class="mb-3">引いたガチャ、または獲得したプライズが削除されています。</h4>
+                    @endif
                 </div>
             </div>
         @endforeach

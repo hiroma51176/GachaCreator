@@ -209,7 +209,16 @@ class GachaController extends Controller
         
         // テーブルからガチャを削除する
         for($i = 0; $i < $delete_count; $i++){
+            // チェックしたガチャを取得
             $gacha = Gacha::find($gachas_id[$i]);
+            
+            // チェックしたガチャのプライズを取得して削除
+            $prizes = Prize::where('gacha_id', $gachas_id[$i])->get();
+            foreach($prizes as $prize){
+                $prize->delete();
+            }
+            
+            // ガチャを削除
             $gacha->delete();
         }
         
@@ -220,6 +229,7 @@ class GachaController extends Controller
     {
         // 最新１０件のプライズ獲得履歴を取り出す
         $gacha_histories = GachaHistory::where('user_id', Auth::id())->latest()->limit(10)->get();
+        // \Debugbar::info($gacha_histories);
         
         // ガチャを引いた数の累計
         $draw_count = GachaHistory::where('user_id', Auth::id())->count();

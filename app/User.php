@@ -5,6 +5,7 @@ namespace App;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
+use App\Notifications\CustomPasswordReset;
 
 class User extends Authenticatable
 {
@@ -53,4 +54,11 @@ class User extends Authenticatable
         'current_password' => 'required',
         'new_password' => 'required | string | min:8 | confirmed',
         );
+        
+    // パスワードリセット通知の送信
+    public function sendPasswordResetNotification($token)
+    {
+        $this->notify(new CustomPasswordReset($token));
+    }
 }
+

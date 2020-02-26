@@ -241,10 +241,8 @@ class PrizeController extends Controller
         // $gacha_id = $request->gacha_id;
         // $gacha_name = $request->gacha_name;
         // $cond_prize_name = "";
-        $prizes = Prize::where('gacha_id', $gacha_id)->paginate(10);
+        $prizes = Prize::where('gacha_id', $request->gacha_id)->paginate(10);
         
-        
-        // 削除機能ここから
         $prizes_id = $request->prize_id;
         // \Debugbar::info($prizes_id);
         
