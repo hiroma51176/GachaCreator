@@ -96,7 +96,6 @@ class PlayController extends Controller
         
         // 配列$resultsを5個ずつ分割する
         $results_ten_shot = array_chunk($results, 2);
-        // \Debugbar::info($results_ten_shot);
         
         return view('gacha_play.result', ['gacha' => $gacha, 'result_one_shot' => $result_one_shot, 'results_ten_shot' => $results_ten_shot]);
     }

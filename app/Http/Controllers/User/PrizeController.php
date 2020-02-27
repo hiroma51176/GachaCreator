@@ -59,7 +59,7 @@ class PrizeController extends Controller
         // $this->validate($request, Prize::$rules);
         
         $prize = new Prize;
-        \Debugbar::info($prize->id);
+        // \Debugbar::info($prize->id);
         $form = $request->all();
         $gacha_name = $request->gacha_name;
         $prize->prize_name = $request->prize_name;
@@ -145,7 +145,6 @@ class PrizeController extends Controller
         $prizes = Prize::where('gacha_id', $request->gacha_id)->paginate(10);
         
         $prizes_id = $request->prize_id;
-        // \Debugbar::info($prizes_id);
         
         // 何もチェックせずにボタンが押された場合の処理
         if($prizes_id == null){

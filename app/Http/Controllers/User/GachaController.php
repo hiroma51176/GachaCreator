@@ -186,13 +186,12 @@ class GachaController extends Controller
     {
         // 最新１０件のプライズ獲得履歴を取り出す
         $gacha_histories = GachaHistory::where('user_id', Auth::id())->latest()->limit(10)->get();
-        // \Debugbar::info($gacha_histories);
         
         // ガチャを引いた数の累計
         $draw_count = GachaHistory::where('user_id', Auth::id())->count();
         // ガチャを引いた金額の累計
         $price_used = GachaHistory::where('user_id', Auth::id())->select('play_price')->sum('play_price');
-        // \Debugbar::info($price_used);
+        
         return view('history', ['gacha_histories' => $gacha_histories, 'price_used' => $price_used, 'draw_count' => $draw_count]);
     }
     
