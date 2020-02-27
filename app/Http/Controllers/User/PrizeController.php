@@ -66,7 +66,8 @@ class PrizeController extends Controller
         $prize->gacha_id = $request->gacha_id;
         
         if(isset($form['image'])){
-            $prize->image_path = My_func::saveImagePrize($request, $prize);
+            // $prize->image_path = My_func::saveImagePrize($request, $prize);
+            $prize->image_path = My_func::saveImage($request);
             
         }else{
             $prize->image_path = null;
@@ -120,7 +121,8 @@ class PrizeController extends Controller
         
         
         if(isset($form['image'])){
-            $prize->image_path = My_func::saveImagePrize($request, $prize);
+            // $prize->image_path = My_func::saveImagePrize($request, $prize);
+            $prize->image_path = My_func::saveImage($request);
             
         }elseif(isset($request->remove)){
             $prize->image_path =null;

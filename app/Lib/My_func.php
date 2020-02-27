@@ -114,40 +114,49 @@ class My_func
         $prize->save();
     }
     
-    // s3へ画像を保存するときの処理（ガチャver）
-    public static function saveImageGacha($request, $gacha)
+    // s3へ画像を保存するときの処理
+    public static function saveImage($request)
     {
-        $image_file = $request->file('image');
-        $now = date_format(Carbon::now(), 'YmdHis');
-        // アップロードされたファイル名を取得
-        $name = $image_file->getClientOriginalName();
-        $storePath = 'gacha_image_' . 'user_id_' . Auth::id() . '_' . $now . '_' . $name;
-        // 画像を横幅は300px、縦幅はアスペクト比維持の自動サイズへリサイズ
-        $image = Image::make($image_file)->resize(300, null, function($constraint) {$constraint->aspectRatio(); });
-        // s3へ保存
-        $path = Storage::disk('s3')->put($storePath, (string)$image->encode(), 'public');
-        $gacha->image_path = Storage::disk('s3')->url($storePath);
+        $path = Storage::disk('s3')->putFile('/', $request->file('image'), 'public');
+        $image_path = Storage::disk('s3')->url($path);
         
-        return $gacha->image_path;
+        return $image_path;
     }
     
-    // s3へ画像を保存するときの処理（プライズver）
-    public static function saveImagePrize($request, $prize)
-    {
-        $image_file = $request->file('image');
-        $now = date_format(Carbon::now(), 'YmdHis');
-        // アップロードされたファイル名を取得
-        $name = $image_file->getClientOriginalName();
-        $storePath = 'prize_image_' . 'user_id_' . Auth::id() . '_gacha_id_' . $prize->gacha_id . '_' . $now . '_' . $name;
-        // 画像を横幅は300px、縦幅はアスペクト比維持の自動サイズへリサイズ
-        $image = Image::make($image_file)->resize(300, null, function($constraint) {$constraint->aspectRatio(); });
-        // s3へ保存
-        $path = Storage::disk('s3')->put($storePath, (string)$image->encode(), 'public');
-        $prize->image_path = Storage::disk('s3')->url($storePath);
+    // s3へ画像を保存するときの処理（ガチャver）
+    // public static function saveImageGacha($request, $gacha)
+    // public static function saveImageGacha($request)
+    // {
+    //     $image_file = $request->file('image');
+    //     $now = date_format(Carbon::now(), 'YmdHis');
+    //     // アップロードされたファイル名を取得
+    //     $name = $image_file->getClientOriginalName();
+    //     $storePath = 'gacha_image_' . 'user_id_' . Auth::id() . '_' . $now . '_' . $name;
+    //     // 画像を横幅は300px、縦幅はアスペクト比維持の自動サイズへリサイズ
+    //     $image = Image::make($image_file)->resize(300, null, function($constraint) {$constraint->aspectRatio(); });
+    //     // s3へ保存
+    //     $path = Storage::disk('s3')->put($storePath, (string)$image->encode(), 'public');
+    //     $gacha->image_path = Storage::disk('s3')->url($storePath);
         
-        // return array($path, $prize->image_path);
-        return $prize->image_path;
-    }
+    //     return $gacha->image_path;
+    // }
+    
+    // s3へ画像を保存するときの処理（プライズver）
+    // public static function saveImagePrize($request, $prize)
+    // {
+    //     $image_file = $request->file('image');
+    //     $now = date_format(Carbon::now(), 'YmdHis');
+    //     // アップロードされたファイル名を取得
+    //     $name = $image_file->getClientOriginalName();
+    //     $storePath = 'prize_image_' . 'user_id_' . Auth::id() . '_gacha_id_' . $prize->gacha_id . '_' . $now . '_' . $name;
+    //     // 画像を横幅は300px、縦幅はアスペクト比維持の自動サイズへリサイズ
+    //     $image = Image::make($image_file)->resize(300, null, function($constraint) {$constraint->aspectRatio(); });
+    //     // s3へ保存
+    //     $path = Storage::disk('s3')->put($storePath, (string)$image->encode(), 'public');
+    //     $prize->image_path = Storage::disk('s3')->url($storePath);
+        
+    //     return $prize->image_path;
+    // }
     
     // レアリティを決める関数
     public static function rarityName($rarity_num)

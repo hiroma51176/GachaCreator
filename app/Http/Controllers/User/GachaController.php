@@ -63,7 +63,8 @@ class GachaController extends Controller
         
         
         if(isset($form['image'])){
-            $gacha->image_path = My_func::saveImageGacha($request, $gacha);
+            // $gacha->image_path = My_func::saveImageGacha($request, $gacha);
+            $gacha->image_path = My_func::saveImage($request);
             
         }else{
             $gacha->image_path = null;
@@ -135,7 +136,8 @@ class GachaController extends Controller
         $form = $request->all();
         
         if(isset($form['image'])){
-            $gacha->image_path = My_func::saveImageGacha($request);
+            // $gacha->image_path = My_func::saveImageGacha($request);
+            $gacha->image_path = My_func::saveImage($request);
             
         }elseif(isset($request->remove)){
             $gacha->image_path =null;
