@@ -57,13 +57,6 @@ class My_func
     // ガチャを引くときの処理
     public static function drawGacha($gacha, $miss, $hit, $jackpot)
     {
-        // プライズを取り出す
-        // $prizes = $gacha->prizes;
-        
-        // $miss = $gacha->prizes->where('rarity_name', "はずれ");
-        // $hit = $gacha->prizes->where('rarity_name', "当たり");
-        // $jackpot = $gacha->prizes->where('rarity_name', "大当たり");
-        
         // ガチャを引く
         $rand = mt_rand(1, 100);
         

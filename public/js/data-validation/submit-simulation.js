@@ -97,28 +97,12 @@
 $(function () {
   $('.input-price, .input-count, .input-rate').blur(function () {
     if ($('.input-price').val() <= 10000 && 0 < $('.input-count').val() && $('.input-count').val() <= 1000 && 0 < $('.input-rate').val() && $('.input-rate').val() <= 100) {
-      window.myLib.btnAbled(); // btnAbled();
-      // $('.submit-btn').prop('disabled', false);
-      // $('#check_val').text('問題ありません。');
+      window.myLib.btnAbled();
     } else {
-      window.myLib.btnDisabled(); // btnDisabled();
-      // $('.submit-btn').prop('disabled', true);
-      // $('#check_val').text('入力欄に不備があります。ご確認ください。');
+      window.myLib.btnDisabled();
     }
   });
 }); // ------------------------------------------------------------------------------------------------------------------
-// 実行ボタンのOKの場合--------------------------------------------------------------------------------
-// function btnAbled(){
-//     $('.submit-btn').prop('disabled', false);
-//     $('#check_val').text('問題ありません。');
-// }
-// // ----------------------------------------------------------------------------------------------------
-// // 実行ボタンのNGの場合--------------------------------------------------------------------------------
-// function btnDisabled(){
-//     $('.submit-btn').prop('disabled', true);
-//     $('#check_val').text('入力欄に不備があります。ご確認ください。');
-// }
-// ----------------------------------------------------------------------------------------------------
 
 /***/ }),
 

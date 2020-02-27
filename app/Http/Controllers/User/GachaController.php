@@ -64,20 +64,7 @@ class GachaController extends Controller
         
         if(isset($form['image'])){
             $gacha->image_path = My_func::saveImageGacha($request, $gacha);
-            // $image_file = $request->file('image');
-            // $now = date_format(Carbon::now(), 'YmdHis');
-            // // アップロードされたファイル名を取得
-            // $name = $image_file->getClientOriginalName();
-            // $storePath = Auth::id() . '_gacha_' . $now . '_' . $name;
-            // // 画像を横幅は300px、縦幅はアスペクト比維持の自動サイズへリサイズ
-            // $image = Image::make($image_file)->resize(300, null, function($constraint) {$constraint->aspectRatio(); });
-            // // s3へ保存
-            // $path = Storage::disk('s3')->put($storePath, (string)$image->encode(), 'public');
-            // $gacha->image_path = Storage::disk('s3')->url($storePath);
-            //$path = $request->file('image')->store('public/image');
-            // $path = Storage::disk('s3')->putFile('/', $form['image'], 'public');
-            // $gacha->image_path = Storage::disk('s3')->url($path);
-            //$gacha->image_path = basename($path);
+            
         }else{
             $gacha->image_path = null;
         }
@@ -107,11 +94,6 @@ class GachaController extends Controller
             // テンプレートのプライズをコピーする
             foreach($templetes as $templete){
                 My_func::useTemplete($gacha_data->id, $templete);
-                // $prize = new Prize;
-                // $prize->gacha_id = $gacha_data->id;
-                // $prize->rarity_name = $templete->rarity_name;
-                // $prize->prize_name = $templete->prize_name;
-                // $prize->save();
             }
             
         }else{
@@ -122,11 +104,6 @@ class GachaController extends Controller
             // コピーする
             foreach($templete_prizes as $templete_prize){
                 My_func::useTemplete($gacha_data->id, $templete_prize);
-                // $prize = new Prize;
-                // $prize->gacha_id = $gacha_data->id;
-                // $prize->rarity_name = $templete_prize->rarity_name;
-                // $prize->prize_name = $templete_prize->prize_name;
-                // $prize->save();
             }
             
         }
@@ -141,15 +118,9 @@ class GachaController extends Controller
         $gacha = Gacha::find($request->gacha_id);
         
         My_func::emptyGachaId($gacha);
-        // if(empty($gacha)){
-        //     return view('top');
-        // }
         
         // 作成者以外のユーザーのガチャにアクセスできないようにする
         My_func::differentUserId($gacha);
-        // if(Auth::id() != $gacha->user_id){
-        //     return view('top');
-        // }
         
         return view('gacha_create.gacha.edit', ['gacha' => $gacha]);
     }
@@ -165,21 +136,7 @@ class GachaController extends Controller
         
         if(isset($form['image'])){
             $gacha->image_path = My_func::saveImageGacha($request);
-            // $image_file = $request->file('image');
-            // $now = date_format(Carbon::now(), 'YmdHis');
-            // // アップロードされたファイル名を取得
-            // $name = $image_file->getClientOriginalName();
-            // $storePath = Auth::id() . '_gacha_' . $now . '_' . $name;
-            // // 画像を横幅は300px、縦幅はアスペクト比維持の自動サイズへリサイズ
-            // $image = Image::make($image_file)->resize(300, null, function($constraint) {$constraint->aspectRatio(); });
-            // // s3へ保存
-            // $path = Storage::disk('s3')->put($storePath, (string)$image->encode(), 'public');
-            // $gacha->image_path = Storage::disk('s3')->url($storePath);
-            // $path = Storage::disk('s3')->putFile('/', $form['image'], 'public');
-            // $gacha->image_path = Storage::disk('s3')->url($path);
-            // \Debugbar::info($gacha->image_path);
-            // $path = $request->file('image')->store('public/image');
-            // $gacha->image_path = basename($path);
+            
         }elseif(isset($request->remove)){
             $gacha->image_path =null;
             unset($form['remove']);

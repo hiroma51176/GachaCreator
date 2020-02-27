@@ -6,10 +6,6 @@ $(function(){
         
         // 排出率の合計算出
         var sum = window.myLib.sumRate();
-        // var jackpot = $('#jackpot').val() | 0;
-        // var hit = $('#hit').val() | 0;
-        // var miss = $('#miss').val() | 0;
-        // var sum = parseInt(jackpot, 10) + parseInt(hit, 10) + parseInt(miss, 10);
         
         // ガチャの名前の文字数をカウント
         var char_name = $('.input-gacha-name').val();
@@ -21,12 +17,6 @@ $(function(){
         
         // 画像ファイルのサイズを確認
         var file_size = window.myLib.checkImageSize();
-        // if($('.image-file').prop('files')[0] != null){
-        //     var file = $('.image-file').prop('files')[0];
-        //     var file_size = file.size;
-        // }else{
-        //     var file_size = null;
-        // }
         
         // 入力に問題ないならボタンを押せるようにする
         if(0 < count_name && count_name <= 30 
@@ -40,14 +30,10 @@ $(function(){
             && $('#jackpot').val() != '' && $('#hit').val() != '' && $('#miss').val() != ''
         ){
             window.myLib.btnAbled();
-            // $('.submit-btn').prop('disabled', false);
-            // $('#check_val').text(count_name + 'name|' + count_desc + '|' + price + '|' + jackpot + '｜' + hit + '|' + miss + '|' + sum + 'file' + file_size + 'temp' + temp);
-            // $('#check_val').text('問題ありません。');
+            
         }else{
             window.myLib.btnDisabled();
-            // $('.submit-btn').prop('disabled', true);
-            // $('#check_val').text(count_name + 'name|' + count_desc + '|' + price + '|' + jackpot + '｜' + hit + '|' + miss + '|' + sum + 'file' + file_size + 'temp' + temp);
-            // $('#check_val').text('入力欄に不備があります。ご確認ください。');
+            
         }
     });
 });

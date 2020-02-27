@@ -19,22 +19,13 @@ class PrizeController extends Controller
 {
     public function index(Request $request)
     {
-        
-        // $gacha_id = $request->gacha_id;
-        // $gacha_name = $request->gacha_name;
         $gacha = Gacha::find($request->gacha_id);
         
         // URLを入力し、直接アクセスしてきた場合の処理
         My_func::emptyGachaId($gacha);
-        // if(empty($gacha)){
-        //     return view('top');
-        // }
         
         // 作成者以外のユーザーのプライズにアクセスできないようにする
         My_func::differentUserId($gacha);
-        // if(Auth::id() != $gacha->user_id){
-        //     return view('top');
-        // }
         
         // 検索機能
         $cond_prize_name = $request->cond_prize_name;
@@ -54,15 +45,9 @@ class PrizeController extends Controller
         
         // URLを入力し、直接アクセスしてきた場合の処理
         My_func::emptyGachaId($gacha);
-        // if(empty($gacha)){
-        //     return view('top');
-        // }
         
         // 作成者以外のユーザーのプライズにアクセスできないようにする
         My_func::differentUserId($gacha);
-        // if(Auth::id() != $gacha->user_id){
-        //     return view('top');
-        // }
         
         return view('gacha_create.prize.create', ['gacha_id' => $gacha->id, 'gacha_name' => $gacha->gacha_name]);
     }
@@ -81,49 +66,14 @@ class PrizeController extends Controller
         $prize->gacha_id = $request->gacha_id;
         
         if(isset($form['image'])){
-            // list($path, $prize->image_path) = My_func::saveImagePrize($request, $prize);
             $prize->image_path = My_func::saveImagePrize($request, $prize);
-            // \Debugbar::info($prize->image_path);
-            // $image_file = $request->file('image');
-            // $now = date_format(Carbon::now(), 'YmdHis');
-            // // アップロードされたファイル名を取得
-            // $name = $image_file->getClientOriginalName();
-            // $storePath = Auth::id() . '_' . $request->gacha_id . '_prize_' . $now . '_' . $name;
-            // // 画像を横幅は300px、縦幅はアスペクト比維持の自動サイズへリサイズ
-            // $image = Image::make($image_file)->resize(300, null, function($constraint) {$constraint->aspectRatio(); });
-            // // s3へ保存
-            // $path = Storage::disk('s3')->put($storePath, (string)$image->encode(), 'public');
-            // $prize->image_path = Storage::disk('s3')->url($storePath);
-            // // $path = Storage::disk('s3')->putFile('/', $form['image'], 'public');
-            // // $prize->image_path = Storage::disk('s3')->url($path);
-            // // $path = $request->file('image')->store('public/image');
-            // // $prize->image_path = basename($path);
+            
         }else{
             $prize->image_path = null;
         }
         
-        // unset($form['_token']);
-        // unset($form['image']);
-        // unset($form['gacha_name']);
-        // unset($form['to_list']);
-        // unset($form['cont']);
-        // unset($form[('prize_name_count')]);
-        
-        // $prize->fill($form);
-        
         // レアリティの処理
         $prize->rarity_name = My_func::rarityName($request->rarity_name);
-        // switch ($request->rarity_name){
-        //     case 1:
-        //         $prize->rarity_name = "はずれ";
-        //         break;
-        //     case 2:
-        //         $prize->rarity_name = "当たり";
-        //         break;
-        //     case 3:
-        //         $prize->rarity_name = "大当たり";
-        //         break;
-        // }
         
         $prize->save();
         
@@ -131,11 +81,8 @@ class PrizeController extends Controller
         
         // 追加してリストに戻る場合
         if(isset($request->to_list)){
-            // リストに戻るために必要なこと
-            // $cond_prize_name = null;
             $prizes = Prize::where('gacha_id', $prize->gacha_id)->paginate(10);
             return view('gacha_create.prize.list', ['gacha_id' => $gacha_id, 'gacha_name' => $gacha_name, 'prizes' => $prizes]);
-            // return view('gacha_create.prize.list', ['gacha_id' => $gacha_id, 'gacha_name' => $gacha_name, 'cond_prize_name' => $cond_prize_name, 'prizes' => $prizes]);
         }
             
         // 続けて追加する場合
@@ -152,20 +99,11 @@ class PrizeController extends Controller
         
         // ＵＲＬ直接入力したとき、プライズが存在しない場合
         My_func::notExistPrize($prize);
-        // if(empty($prize)){
-        //     return view('top');
-        // }
         
-        //$gacha_id = $request->gacha_id;
         $gacha = Gacha::find($request->gacha_id);
         
         // 作成者以外のユーザーのプライズにアクセスできないようにする
         My_func::differentUserId($gacha);
-        // if(Auth::id() != $gacha->user_id){
-        //     return view('top');
-        // }
-        
-        //$gacha_name = $request->gacha_name;
         
         return view('gacha_create.prize.edit', ['prize' => $prize, 'gacha_id' => $gacha->id, 'gacha_name' => $gacha->gacha_name]);
     }
@@ -183,64 +121,27 @@ class PrizeController extends Controller
         
         if(isset($form['image'])){
             $prize->image_path = My_func::saveImagePrize($request, $prize);
-            // $image_file = $request->file('image');
-            // $now = date_format(Carbon::now(), 'YmdHis');
-            // // アップロードされたファイル名を取得
-            // $name = $image_file->getClientOriginalName();
-            // $storePath = Auth::id() . '_' . $request->gacha_id . '_prize_' . $now . '_' . $name;
-            // // 画像を横幅は300px、縦幅はアスペクト比維持の自動サイズへリサイズ
-            // $image = Image::make($image_file)->resize(300, null, function($constraint) {$constraint->aspectRatio(); });
-            // // s3へ保存
-            // $path = Storage::disk('s3')->put($storePath, (string)$image->encode(), 'public');
-            // $prize->image_path = Storage::disk('s3')->url($storePath);
-            // $path = Storage::disk('s3')->putFile('/', $form['image'], 'public');
-            // $prize->image_path = Storage::disk('s3')->url($path);
-            // $path = $request->file('image')->store('public/image');
-            // $prize->image_path = basename($path);
-            // unset($form['image']);
+            
         }elseif(isset($request->remove)){
             $prize->image_path =null;
             unset($form['remove']);
         }
-        // unset($form['_token']);
-        // unset($form['image']);
-        // unset($form['gacha_id']);
-        // unset($form['gacha_name']);
-        // unset($form['prize_name_count']);
-        
-        // $prize->fill($form);
         
         $prize->rarity_name = My_func::rarityName($request->rarity_name);
-        // switch ($request->rarity_name){
-        //     case 1:
-        //         $prize->rarity_name = "はずれ";
-        //         break;
-        //     case 2:
-        //         $prize->rarity_name = "当たり";
-        //         break;
-        //     case 3:
-        //         $prize->rarity_name = "大当たり";
-        //         break;
-        // }
         
         $prize->save();
         
         // プライズリストに戻るために必要なこと
         $gacha_id = $request->gacha_id;
         $gacha_name = $request->gacha_name;
-        // $cond_prize_name = "";
+        
         $prizes = Prize::where('gacha_id', $request->gacha_id)->paginate(10);
         
         return view('gacha_create.prize.list', ['prizes' => $prizes, 'prize' => $prize, 'gacha_id' => $gacha_id, 'gacha_name' => $gacha_name]);
-        // return view('gacha_create.prize.list', ['prizes' => $prizes, 'cond_prize_name' => $cond_prize_name, 'prize' => $prize, 'gacha_id' => $gacha_id, 'gacha_name' => $gacha_name]);
     }
     
     public function delete(Request $request)
     {
-        // プライズリストに戻るために必要なこと
-        // $gacha_id = $request->gacha_id;
-        // $gacha_name = $request->gacha_name;
-        // $cond_prize_name = "";
         $prizes = Prize::where('gacha_id', $request->gacha_id)->paginate(10);
         
         $prizes_id = $request->prize_id;
@@ -249,7 +150,6 @@ class PrizeController extends Controller
         // 何もチェックせずにボタンが押された場合の処理
         if($prizes_id == null){
             return redirect('gacha_create/gacha/list');
-            // return view('gacha_create.prize.list', ['gacha_id' => $gacha_id, 'gacha_name' => $gacha_name, 'cond_prize_name' => $cond_prize_name, 'prizes' => $prizes]);
         }
         
         $delete_count = count($prizes_id);
@@ -261,6 +161,5 @@ class PrizeController extends Controller
         }
         
         return redirect('gacha_create/gacha/list');
-        // return view('gacha_create.prize.list', ['gacha_id' => $gacha_id, 'gacha_name' => $gacha_name, 'cond_prize_name' => $cond_prize_name, 'prizes' => $prizes]);
     }
 }

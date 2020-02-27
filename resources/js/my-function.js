@@ -31,36 +31,6 @@ $(function(){
         return count;
     }
 
-    // ファイルサイズの単位--------------------------------------------------------------------------
-    // function getFileSize(file_size){
-    //     // 単位を設定
-    //     var unit = ['byte', 'KB', 'MB', 'GB', 'TB'];
-    
-    //     for(var i = 0; i < unit.length; i++){
-    //         if(file_size < 1024 || i == unit.length - 1){
-    //             if(i == 0){
-    //                 // カンマ付与
-    //                 var integer = file_size.toString().replace(/([0-9]{1,3})(?=(?:[0-9]{3})+$)/g, '$1,');
-    //                 str = integer + unit[i];
-    //             }else{
-    //                 // 小数点第2位は切り捨て
-    //                 file_size = Math.floor(file_size * 100) / 100;
-    //                 // 整数と少数に分割
-    //                 var num = file_size.toString().split('.');
-    //                 // カンマ付与
-    //                 var integer = num[0].replace(/([0-9]{1,3})(?=(?:[0-9]{3})+$)/g, '$1,');
-    //                 if(num[1]){
-    //                     file_size = integer + '.' + num[1];
-    //                 }
-    //                 str = file_size + unit[i];
-    //             }
-    //             break;
-    //         }
-    //         file_size = file_size / 1024;
-    //     }
-    //     return str;
-    // }
-
 
     // 実行ボタンのOKの場合--------------------------------------------------------------------------------
     function btnAbled(){
@@ -75,17 +45,6 @@ $(function(){
         $('#check_val').text('入力欄に不備があります。ご確認ください。');
     }
     
-    // window.myLib.btnAbled = btnAbled;
-    // window.myLib.btnDisabled = btnDisabled;
-
-
-
-
-// function btnDisabled(){
-//     $('.submit-btn').prop('disabled', true);
-//     $('#check_val').text('入力欄に不備があります。ご確認ください。');
-// }
-
     // 画像ファイルのサイズを確認--------------------------------------------------------------------------
     function checkImageSize(){
         if($('.image-file').prop('files')[0] != null){
@@ -102,14 +61,8 @@ $(function(){
     window.myLib = {
         sumRate : sumRate,
         charCount : charCount,
-        // getFileSize : getFileSize,
         btnAbled : btnAbled,
         btnDisabled : btnDisabled,
         checkImageSize : checkImageSize,
         };
 });
-// $(function(){
-//     $('.input-price').blur(function(){
-//         $('#check_val').text('読み込めています。');
-//     });
-// });
