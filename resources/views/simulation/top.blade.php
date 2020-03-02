@@ -36,7 +36,7 @@
                         @endif
                         <div class="form-group row">
                             <label class="col-md-5 pt-2 font-weight-bold">１回あたりの金額設定</label>
-                            <div class="col-md-4">
+                            <div class="col-4">
                                 @if (isset($play_price))
                                     <input type="text" class="form-control input-number input-price" maxlength="5" name="play_price" value="{{ $play_price }}">
                                 @else
@@ -51,7 +51,7 @@
                         
                         <div class="form-group row">
                             <label class="col-md-5 pt-2 font-weight-bold">最大試行回数</label>
-                            <div class="col-md-4">
+                            <div class="col-4">
                                 @if (isset($max_play_count))
                                     <input type="text" class="form-control input-number input-count" maxlength="4" name="max_play_count" value="{{ $max_play_count }}">
                                 @else
@@ -65,7 +65,7 @@
                         
                         <div class="form-group row">
                             <label class="col-md-5 pt-2 font-weight-bold">排出率</label>
-                            <div class="col-md-4">
+                            <div class="col-4">
                                 @if (isset($rate))
                                     <input type="text" class="form-control input-number input-rate" maxlength="3" name="rate" value="{{ $rate }}">
                                 @else

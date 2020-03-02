@@ -49,8 +49,8 @@
                 </div>
             </div>
             
-            {{-- 画面サイズがmd以上の時に表示 --}}
-            <div class="row d-none d-md-block">
+            {{-- 画面サイズがlg以上の時に表示 --}}
+            <div class="row d-none d-lg-block">
                 <div class="list col-md-12 mx-auto">
                     <form action="{{ action('User\GachaController@delete') }}" method="post">
                         <div class="row">
@@ -61,8 +61,8 @@
                                         <th width="25%">説明</th>
                                         <th width="10%">設定金額</th>
                                         <th width="10%">画像</th>
-                                        <th width="15%">排出率とプライズ内訳</th>
-                                        <th width="10%">回数</th>
+                                        <th width="18%">排出率とプライズ内訳</th>
+                                        <th width="7%">回数</th>
                                         <th width="10%">操作</th>
                                         {{-- いずれ天井枠追加したい --}}
                                         <th width="5%">削除</th>
@@ -112,29 +112,27 @@
                 </div>
             </div>
             
-            {{-- 画面サイズがsmの時に表示 --}}
-            <div class="d-block d-md-none">
+            {{-- 画面サイズがlgより小さい時に表示 --}}
+            <div class="d-block d-lg-none">
                 <div class="col-md-12">
                     <form action="{{ action('User\GachaController@delete') }}" method="post">
                         @foreach($gachas as $gacha)
-                            <div class="row mb-3 bg-white">
+                            <div class="row mb-3 bg-white pt-2">
                                 <div class="col-3 mr-3">
+                                    @if ($gacha->prizes->count() != 0)
+                                        <a class="btn btn-success mb-3" role="button" href="{{ action('PlayController@viewPlay', ['gacha_id' => $gacha->id, 'gacha_name' => $gacha->gacha_name]) }}">ガチャを引く</a>
+                                    @else
+                                        <a class="btn btn-dark mb-3" role="button" href="#">ガチャを引く</a>
+                                    @endif
                                     @if ($gacha->image_path)
                                         <img width="100px" height="100px" src="{{ $gacha->image_path }}"></img>
                                     @endif
-                                    <div class="align-middle">
-                                        @if ($gacha->prizes->count() != 0)
-                                            <a class="btn btn-success mb-3" role="button" href="{{ action('PlayController@viewPlay', ['gacha_id' => $gacha->id, 'gacha_name' => $gacha->gacha_name]) }}">ガチャを引く</a>
-                                        @else
-                                            <a class="btn btn-dark mb-3" role="button" href="#">ガチャを引く</a>
-                                        @endif
-                                    </div>
                                 </div>
                                 <div class="col-8">
-                                    <p class="m-0">
+                                    <h4 class="mb-2">
                                     <input id="{{ $gacha->id }}" class="checkbox" type="checkbox" name="gacha_id[]" value="{{ $gacha->id }}">
                                     <a href="{{ action('User\GachaController@edit', ['gacha_id' => $gacha->id, 'gacha_name' => $gacha->gacha_name]) }}">{{ $gacha->gacha_name }}</a>
-                                    </p>
+                                    </h4>
                                     <p class="m-0">　ガチャの説明：{{ $gacha->gacha_description }}</p>
                                     <p class="m-0">
                                         　設定金額：{{ $gacha->play_price }}円<br>
