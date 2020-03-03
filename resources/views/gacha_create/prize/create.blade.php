@@ -28,9 +28,17 @@
                         <div class="col-md-6">
                             <h3>プライズの新規作成</h3>
                         </div>
-                        <div class="col-md-6 text-right">
-                            <a class="btn btn-primary mx-2" role="button" href="{{ action('User\PrizeController@index', ['gacha_id' => $gacha_id, 'gacha_name' => $gacha_name]) }}">プライズリストへ移動</a>
-                            <a class="btn btn-secondary" role="button" href="{{ action('User\GachaController@index') }}">ガチャリストへ移動</a>
+                        
+                        {{-- 画面サイズがmd以上の時に表示 --}}
+                        <div class="col-md-6 text-right d-none d-md-block">
+                            <a class="btn btn-primary mb-2" role="button" href="{{ action('User\PrizeController@index', ['gacha_id' => $gacha_id, 'gacha_name' => $gacha_name]) }}">プライズリストへ移動</a>
+                            <a class="btn btn-secondary ml-2 mb-2" role="button" href="{{ action('User\GachaController@index') }}">ガチャリストへ移動</a>
+                        </div>
+                        
+                        {{-- 画面サイズがmdより小さい時に表示 --}}
+                        <div class="col-md-6 text-left d-block d-md-none">
+                            <a class="btn btn-primary mb-2" role="button" href="{{ action('User\PrizeController@index', ['gacha_id' => $gacha_id, 'gacha_name' => $gacha_name]) }}">プライズリストへ移動</a>
+                            <a class="btn btn-secondary ml-2 mb-2" role="button" href="{{ action('User\GachaController@index') }}">ガチャリストへ移動</a>
                         </div>
                     </div>
                     

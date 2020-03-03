@@ -22,6 +22,7 @@
             <div class="row">
                 <div class="col-md-8">
                     <h2>{{ $gacha_name }}のプライズ一覧</h2>
+                    <p>プライズ名をクリックすると、編集画面に移動します。</p>
                 </div>
             </div>
             <div class="row">

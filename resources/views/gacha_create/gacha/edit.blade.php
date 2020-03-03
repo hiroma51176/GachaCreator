@@ -31,8 +31,16 @@
                         <div class="col-md-6">
                             <h3>ガチャの概要</h3>
                         </div>
-                        <div class="col-md-6 text-right">
+                        
+                        {{-- 画面サイズがmd以上の時に表示 --}}
+                        <div class="col-md-6 text-right d-none d-md-block">
                             <a class="btn btn-primary mx-2" role="button" href="{{ action('User\PrizeController@index', ['gacha_id' => $gacha->id, 'gacha_name' => $gacha->gacha_name]) }}">プライズを確認する</a>
+                            <a class="btn btn-secondary" role="button" href="{{ action('User\GachaController@index') }}">ガチャリストへ戻る</a>
+                        </div>
+                        
+                        {{-- 画面サイズがmdより小さい時に表示 --}}
+                        <div class="col-md-6 text-left d-block d-md-none">
+                            <a class="btn btn-primary mr-2" role="button" href="{{ action('User\PrizeController@index', ['gacha_id' => $gacha->id, 'gacha_name' => $gacha->gacha_name]) }}">プライズを確認する</a>
                             <a class="btn btn-secondary" role="button" href="{{ action('User\GachaController@index') }}">ガチャリストへ戻る</a>
                         </div>
                     </div>
@@ -99,11 +107,11 @@
                                 <p class="mb-0">0～10000までの整数を、</p>
                                 <p class="mb-0">半角で入力してください。</p>
                             </label>
-                            <div class="col-md-2">
+                            <div class="col-md-2 col-4">
                                 <input type="text" class="form-control input-number input-gacha-price" maxlength="5" name="play_price" value="{{ $gacha->play_price }}">
                                 <font color="red"><p class="mb-0"></p></font>
                             </div>
-                            <label class="col-md-3">円</label>
+                            <label class="">円</label>
                         </div>
                         
                         <h3>ガチャの排出率</h3>
@@ -112,33 +120,33 @@
                             <label class="col-md-3">
                                 <strong>大当たり（必須）</strong>
                             </label>
-                            <div class="col-md-2">
+                            <div class="col-md-2 col-4">
                                 <input id="jackpot" type="text" class="form-control input-number input-gacha-rate" maxlength="3" name="jackpot_rate" value="{{ $gacha->jackpot_rate }}">
                                 <font color="red"><p class="mb-0"></p></font>
                             </div>
-                            <label class="col-md-3">%</label>
+                            <label class="">%</label>
                         </div>
                         
                         <div class="form-group row">
                             <label class="col-md-3">
                                 <strong>当たり（必須）</strong>
                             </label>
-                            <div class="col-md-2">
+                            <div class="col-md-2 col-4">
                                 <input id="hit" type="text" class="form-control input-number input-gacha-rate" maxlength="3" name="hit_rate" value="{{ $gacha->hit_rate }}">
                                 <font color="red"><p class="mb-0"></p></font>
                             </div>
-                            <label class="col-md-3">%</label>
+                            <label class="">%</label>
                         </div>
                         
                         <div class="form-group row">
                             <label class="col-md-3">
                                 <strong>はずれ（必須）</strong>
                             </label>
-                            <div class="col-md-2">
+                            <div class="col-md-2 col-4">
                                 <input id="miss" type="text" class="form-control input-number input-gacha-rate" maxlength="3" name="miss_rate" value="{{ $gacha->miss_rate }}">
                                 <font color="red"><p class="mb-0"></p></font>
                             </div>
-                            <label class="col-md-3">%</label>
+                            <label class="">%</label>
                         </div>
                         <div class="col-md-9 ml-auto px-2">
                             <font color="red"><p id="rate-alert-ng"></p></font>
