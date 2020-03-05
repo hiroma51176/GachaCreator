@@ -1,6 +1,6 @@
 # ガチャクリエイター
-ガチャクリエイターは自分だけのオリジナルガチャを作成したり、誰かが作成したガチャを無料で引くことができます。<br>
-[ホームページ](https://infinite-reef-31165.herokuapp.com/)
+ガチャクリエイターは自分だけのオリジナルガチャを作成したり、みんなが作成したガチャを引くことができます。<br>
+ホームページ： https://infinite-reef-31165.herokuapp.com/
 
 ## 機能一覧
 - ガチャを引く
@@ -13,5 +13,5 @@
 ## 技術一覧
 - 使用言語： HTML、CSS、JavaScript、PHP
 - フレームワーク、ライブラリ： Laravel、jQuery
-- ツール： AWS、Amazon S3
+- ツール： Amazon EC2、Amazon S3
 - デプロイ： Heroku
