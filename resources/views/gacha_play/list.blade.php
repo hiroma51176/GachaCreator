@@ -100,14 +100,14 @@
                 <div class="col-md-12">
                     @foreach($gachas as $gacha)
                         <div class="row mb-3 bg-white pt-2">
-                            <div class="col-3 mr-3">
+                            <div class="col-3 mr-3 pr-0">
                                 @if ($gacha->prizes->count() != 0)
-                                    <a class="btn btn-success mb-3" role="button" href="{{ action('PlayController@viewPlay', ['gacha_id' => $gacha->id, 'gacha_name' => $gacha->gacha_name]) }}">ガチャを引く</a>
+                                    <a class="btn btn-success mb-3 px-1" role="button" href="{{ action('PlayController@viewPlay', ['gacha_id' => $gacha->id, 'gacha_name' => $gacha->gacha_name]) }}">ガチャを引く</a>
                                 @else
-                                    <a class="btn btn-dark mb-3" role="button" href="#">ガチャを引く</a>
+                                    <a class="btn btn-dark mb-3 px-1" role="button" href="#">ガチャを引く</a>
                                 @endif
                                 @if ($gacha->image_path)
-                                    <img width="100px" height="100px" src="{{ $gacha->image_path }}"></img>
+                                    <img width="85px" height="85px" src="{{ $gacha->image_path }}"></img>
                                 @endif
                             </div>
                             <div class="col-8">

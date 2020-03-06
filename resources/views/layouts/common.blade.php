@@ -65,7 +65,7 @@
                                         <a class="dropdown-item" href="#"
                                             onclick="event.preventDefault();
                                             document.getElementById('logout-form').submit();">
-                                            {{__('messages.Logout') }}
+                                            {{ __('messages.Logout') }}
                                         </a>
                                     
                                         <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
@@ -87,7 +87,6 @@
                                     <a class="dropdown-item" href="{{ action('User\GachaController@index') }}">作成したガチャを確認する</a>
                                     <a class="dropdown-item" href="{{ action('SimulationController@front') }}">シミュレーションを行う</a>
                                     <a class="dropdown-item" href="{{ action('User\GachaController@history') }}">ガチャ履歴を確認する</a>
-                                    {{-- いずれ追加<a class="dropdown-item" href="{{ action('PlayController@viewCalculation') }}">期待値の計算を行う</a> --}}
                                 </div>
                             </li>
                         </ul>
@@ -103,9 +102,9 @@
             <footer id="footer" class="footer">
                 <div class="container">
                     <ul class="list-group list-group-horizontal">
-                        <li class="list-inline-item flex-fill"><a class="text-reset" href="{{ action('PlayController@index') }}">ガチャを引く</a></li>
-                        <li class="list-inline-item flex-fill"><a class="text-reset" href="{{ action('User\GachaController@add') }}">ガチャを作成する</a></li>
-                        <li class="list-inline-item flex-fill"><a class="text-reset" href="{{ action('SimulationController@front') }}">シミュレーションを行う</a></li>
+                        <li class="list-inline-item flex-fill mx-0"><a class="text-reset" href="{{ action('PlayController@index') }}">ガチャを引く</a></li>
+                        <li class="list-inline-item flex-fill mx-0"><a class="text-reset" href="{{ action('User\GachaController@add') }}">ガチャを作成する</a></li>
+                        <li class="list-inline-item flex-fill mx-0"><a class="text-reset" href="{{ action('SimulationController@front') }}">シミュレーションを行う</a></li>
                     </ul>
                 </div>
             </footer>

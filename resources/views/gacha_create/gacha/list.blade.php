@@ -121,14 +121,14 @@
                     <form action="{{ action('User\GachaController@delete') }}" method="post">
                         @foreach($gachas as $gacha)
                             <div class="row mb-3 bg-white pt-2">
-                                <div class="col-3 mr-3">
+                                <div class="col-3 mr-3 pr-0">
                                     @if ($gacha->prizes->count() != 0)
                                         <a class="btn btn-success mb-3 px-1" role="button" href="{{ action('PlayController@viewPlay', ['gacha_id' => $gacha->id, 'gacha_name' => $gacha->gacha_name]) }}">ガチャを引く</a>
                                     @else
                                         <a class="btn btn-dark mb-3 px-1" role="button" href="#">ガチャを引く</a>
                                     @endif
                                     @if ($gacha->image_path)
-                                        <img width="100px" height="100px" src="{{ $gacha->image_path }}"></img>
+                                        <img width="85px" height="85px" src="{{ $gacha->image_path }}"></img>
                                     @endif
                                 </div>
                                 <div class="col-8">
@@ -136,17 +136,17 @@
                                     <input id="{{ $gacha->id }}" class="checkbox" type="checkbox" name="gacha_id[]" value="{{ $gacha->id }}">
                                     <a href="{{ action('User\GachaController@edit', ['gacha_id' => $gacha->id, 'gacha_name' => $gacha->gacha_name]) }}">{{ $gacha->gacha_name }}</a>
                                     </h4>
-                                    <p class="m-0">　ガチャの説明：{{ $gacha->gacha_description }}</p>
+                                    <p class="m-0">ガチャの説明：{{ $gacha->gacha_description }}</p>
                                     <p class="m-0">
-                                        　設定金額：{{ $gacha->play_price }}円<br>
-                                        　回数：{{ $gacha->total_play_count }}回
+                                        設定金額：{{ $gacha->play_price }}円<br>
+                                        回数：{{ $gacha->total_play_count }}回
                                     </p>
                                     <p class="m-0">
-                                        　はずれ：{{ $gacha->miss_rate . '％' }}、 {{ $gacha->prizes->where('rarity_name', 'はずれ')->count() . '種'}}<br>
-                                        　当たり：{{ $gacha->hit_rate . '％' }}、 {{ $gacha->prizes->where('rarity_name', '当たり')->count() . '種'}}<br>
-                                        　大当たり：{{ $gacha->jackpot_rate . '％' }}、 {{ $gacha->prizes->where('rarity_name', '大当たり')->count() . '種'}}
+                                        はずれ：{{ $gacha->miss_rate . '％' }}、 {{ $gacha->prizes->where('rarity_name', 'はずれ')->count() . '種'}}<br>
+                                        当たり：{{ $gacha->hit_rate . '％' }}、 {{ $gacha->prizes->where('rarity_name', '当たり')->count() . '種'}}<br>
+                                        大当たり：{{ $gacha->jackpot_rate . '％' }}、 {{ $gacha->prizes->where('rarity_name', '大当たり')->count() . '種'}}
                                     </p>
-                                    <p class="m-0"><a href="{{ action('User\PrizeController@index', ['gacha_id' => $gacha->id, 'gacha_name' => $gacha->gacha_name]) }}">　プライズを確認</a></p>
+                                    <p class="m-0"><a href="{{ action('User\PrizeController@index', ['gacha_id' => $gacha->id, 'gacha_name' => $gacha->gacha_name]) }}">プライズを確認</a></p>
                                     
                                 </div>
                             </div>

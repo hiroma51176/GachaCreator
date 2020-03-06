@@ -22,9 +22,17 @@
                 <div class="col-md-8">
                     <h2>選択したガチャの概要</h2>
                 </div>
-                <div class="col-md-4 text-right mb-2">
+                
+                {{-- 画面サイズがmd以上の時に表示 --}}
+                <div class="col-md-4 text-right mb-2 d-none d-md-block">
                     <a role="button" class="btn btn-secondary" href="{{ action('PlayController@index') }}">ガチャリストへ戻る</a>
                 </div>
+                
+                {{-- 画面サイズがmdより小さい時に表示 --}}
+                <div class="col-md-4 text-left mb-2  d-block d-md-none">
+                    <a role="button" class="btn btn-secondary" href="{{ action('PlayController@index') }}">ガチャリストへ戻る</a>
+                </div>
+                
             </div>
             
             {{-- 画面サイズがlg以上の時に表示 --}}
