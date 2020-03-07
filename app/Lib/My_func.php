@@ -42,6 +42,16 @@ class My_func
         }
     }
     
+    public static function returnPrizeList($request)
+    {
+        $gacha_id = $request->gacha_id;
+        $gacha_name = $request->gacha_name;
+        
+        $prizes = Prize::where('gacha_id', $request->gacha_id)->paginate(10);
+        
+        return array($gacha_id, $gacha_name, $prizes);
+    }
+    
     // プライズを取り出すための処理
     public static function getPrize($gacha)
     {

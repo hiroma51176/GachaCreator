@@ -98,10 +98,22 @@
             <main class="py-4">
                 @yield('content')
             </main>
-        
-            <footer id="footer" class="footer">
+            
+            {{-- 画面サイズがmd以上の時に表示 --}}
+            <footer id="footer" class="footer d-none d-md-block">
                 <div class="container">
                     <ul class="list-group list-group-horizontal">
+                        <li class="list-inline-item flex-fill mx-0"><a class="text-reset" href="{{ action('PlayController@index') }}">ガチャを引く</a></li>
+                        <li class="list-inline-item flex-fill mx-0"><a class="text-reset" href="{{ action('User\GachaController@add') }}">ガチャを作成する</a></li>
+                        <li class="list-inline-item flex-fill mx-0"><a class="text-reset" href="{{ action('SimulationController@front') }}">シミュレーションを行う</a></li>
+                    </ul>
+                </div>
+            </footer>
+            
+            {{-- 画面サイズがmdより小さい時に表示 --}}
+            <footer id="footer" class="footer d-block d-md-none">
+                <div class="container">
+                    <ul class="list-group">
                         <li class="list-inline-item flex-fill mx-0"><a class="text-reset" href="{{ action('PlayController@index') }}">ガチャを引く</a></li>
                         <li class="list-inline-item flex-fill mx-0"><a class="text-reset" href="{{ action('User\GachaController@add') }}">ガチャを作成する</a></li>
                         <li class="list-inline-item flex-fill mx-0"><a class="text-reset" href="{{ action('SimulationController@front') }}">シミュレーションを行う</a></li>

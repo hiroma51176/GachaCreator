@@ -38,7 +38,6 @@ body {
 
 footer {
   background-color: #000;
-  height: 50px;
   line-height: 50px;
   margin-top: 50px;
 }
@@ -71,5 +70,15 @@ body,
 
 footer {
   margin-top: auto;
+}
+
+.br-sm {
+  display: none;
+}
+
+@media screen and (max-width: 576px) {
+  .br-sm {
+    display: inline-block;
+  }
 }
 

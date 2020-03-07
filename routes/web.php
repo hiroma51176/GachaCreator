@@ -46,7 +46,7 @@ Route::group(['prefix' => 'gacha_create', 'middleware' => 'auth'], function(){
     Route::post('gacha/delete', 'User\GachaController@delete');
     
     // ガチャのプライズ作成関係
-    Route::get('prize/list', 'User\PrizeController@index');
+    Route::get('prize/list', 'User\PrizeController@index')->name('prize_list');
     
     Route::get('prize/create', 'User\PrizeController@add');
     Route::post('prize/create', 'User\PrizeController@create');

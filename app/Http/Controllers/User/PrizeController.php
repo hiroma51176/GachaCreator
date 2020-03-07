@@ -23,6 +23,8 @@ class PrizeController extends Controller
         
         // URLを入力し、直接アクセスしてきた場合の処理
         My_func::emptyGachaId($gacha);
+        // \Debugbar::info($gacha);
+        
         
         // 作成者以外のユーザーのプライズにアクセスできないようにする
         My_func::differentUserId($gacha);
@@ -83,7 +85,10 @@ class PrizeController extends Controller
         // 追加してリストに戻る場合
         if(isset($request->to_list)){
             $prizes = Prize::where('gacha_id', $prize->gacha_id)->paginate(10);
-            return view('gacha_create.prize.list', ['gacha_id' => $gacha_id, 'gacha_name' => $gacha_name, 'prizes' => $prizes]);
+            
+            // return view('gacha_create.prize.list', ['gacha_id' => $gacha_id, 'gacha_name' => $gacha_name, 'prizes' => $prizes, 'data' => $data]);
+            // return redirect('gacha_create/gacha/list');
+            return redirect(route('prize_list',['prizes' => $prizes, 'gacha_id' => $gacha_id, 'gacha_name' => $gacha_name]));
         }
             
         // 続けて追加する場合
@@ -139,11 +144,15 @@ class PrizeController extends Controller
         
         $prizes = Prize::where('gacha_id', $request->gacha_id)->paginate(10);
         
-        return view('gacha_create.prize.list', ['prizes' => $prizes, 'prize' => $prize, 'gacha_id' => $gacha_id, 'gacha_name' => $gacha_name]);
+        // return view('gacha_create.prize.list', ['prizes' => $prizes, 'prize' => $prize, 'gacha_id' => $gacha_id, 'gacha_name' => $gacha_name]);
+        return redirect(route('prize_list',['prizes' => $prizes, 'gacha_id' => $gacha_id, 'gacha_name' => $gacha_name]));
     }
     
     public function delete(Request $request)
     {
+        $gacha_id = $request->gacha_id;
+        $gacha_name = $request->gacha_name;
+        
         $prizes = Prize::where('gacha_id', $request->gacha_id)->paginate(10);
         
         $prizes_id = $request->prize_id;
@@ -161,6 +170,7 @@ class PrizeController extends Controller
             $prize->delete();
         }
         
-        return redirect('gacha_create/gacha/list');
+        // return redirect('gacha_create/gacha/list');
+        return redirect(route('prize_list',['prizes' => $prizes, 'gacha_id' => $gacha_id, 'gacha_name' => $gacha_name]));
     }
 }
