@@ -95,7 +95,7 @@
             </nav>
             {{-- ここまでナビゲーションバー --}}
             
-            <main class="py-4">
+            <main class="">
                 @yield('content')
             </main>
             

@@ -12,7 +12,7 @@
 @section('title', 'プライバシーポリシー')
 
 @section('content')
-    <div class="container">
+    <div class="container main-body">
         <div class="main-title">
             <h1>プライバシーポリシー</h1>
         </div>

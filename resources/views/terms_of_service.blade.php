@@ -13,7 +13,7 @@
 @section('title', '利用規約')
 
 @section('content')
-    <div class="container">
+    <div class="container main-body">
         <div class="main-title">
             <h1>利用規約</h1>
         </div>

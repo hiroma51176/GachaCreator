@@ -1,7 +1,20 @@
 body {
-    background-repeat: no-repeat;
-    background-position: center;
-    background-color: #E6E7E8;
+    // background-repeat: no-repeat;
+    // background-position: center;
+    // background-color: #E6E7E8;
+    background: radial-gradient(circle, transparent 20%, slategray 20%, slategray 80%, transparent 80%, transparent),
+                radial-gradient(circle, transparent 20%, slategray 20%, slategray 80%, transparent 80%, transparent) 50px 50px,
+                // radial-gradient(#A8B1BB 8px, transparent 8px),
+                linear-gradient(to bottom, #A8B1BB, transparent);
+                // linear-gradient(90deg, #A8B1BB 8px, transparent 8px) -4px 0;
+    background-color: slategray;
+    // background-size: 100px 100px, 100px 100px, 50px 50px, 50px 50px;
+    background-size: 100px 100px, 100px 100px, 50px 50px;
+}
+
+.main-body {
+    padding: 24px 20px;
+    background-color: rgba(255, 255, 255, 0.8);
 }
 
 .navbar-laravel {
@@ -71,12 +84,3 @@ footer {
     margin-top: auto;
 }
 
-.br-sm {
-    display: none;
-}
-
-@media screen and (max-width: 576px) {
-    .br-sm {
-        display: inline-block;
-    }
-}
