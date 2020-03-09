@@ -11,7 +11,7 @@
 @section('title', 'ガチャを引く')
 
 @section('content')
-    <div class="container">
+    <div class="container main-body">
         <div class="main-title">
             <h1>ガチャを引く</h1>
             <p>選択したガチャを遊ぶことができます。</p>
@@ -105,8 +105,8 @@
             
             <div class="row">
                 <div class="col-md-12 text-center mb-5">
-                    <a class="btn btn-lg btn-primary mr-5 w-25 px-1" role="button" href="{{ action('PlayController@playOneShot', ['gacha_id' => $gacha->id]) }}">１回引く</a>
-                    <a class="btn btn-lg btn-primary ml-5 w-25 px-1" role="button" href="{{ action('PlayController@playTenShot', ['gacha_id' => $gacha->id]) }}">１０回引く</a>
+                    <a class="btn btn-lg btn-primary mr-5 px-1" role="button" href="{{ action('PlayController@playOneShot', ['gacha_id' => $gacha->id]) }}">１回引く</a>
+                    <a class="btn btn-lg btn-primary  px-1" role="button" href="{{ action('PlayController@playTenShot', ['gacha_id' => $gacha->id]) }}">１０回引く</a>
                 </div>
             </div>
         </div>

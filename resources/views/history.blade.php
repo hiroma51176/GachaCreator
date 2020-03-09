@@ -11,7 +11,7 @@
 @section('title', 'ガチャ履歴')
 
 @section('content')
-    <div class="container">
+    <div class="container main-body">
         <div class="main-title">
             <h1>ガチャ履歴</h1>
             <p>あなたが引いたガチャと引いたプライズが、最新10件まで表示されます。</p>

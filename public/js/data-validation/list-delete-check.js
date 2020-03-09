@@ -105,9 +105,9 @@ $(function () {
 function deleteCheck() {
   if ($(':checkbox').is(':checked')) {
     //if($("*[name=prize_id]").is(':checked')) {
-    $('#submit-btn').prop('disabled', false);
+    $('.submit-btn').prop('disabled', false);
   } else {
-    $('#submit-btn').prop('disabled', true);
+    $('.submit-btn').prop('disabled', true);
   }
 } // -------------------------------------------------------------------------------------------------------------
 

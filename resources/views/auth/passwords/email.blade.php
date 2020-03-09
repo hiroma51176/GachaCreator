@@ -3,7 +3,7 @@
 @section('title', 'パスワードの再設定')
 
 @section('content')
-<div class="container">
+<div class="container main-body">
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card">

@@ -15,7 +15,7 @@
 @section('title', 'プライズの編集')
 
 @section('content')
-    <div class="container">
+    <div class="container main-body">
         <div class="main-title">
             <h1>プライズ「{{ $prize->prize_name }}」を編集</h1>
             <p>あなたが作成したプライズの編集ができます。</p>
@@ -92,7 +92,7 @@
                             </div>
                         </div>
                         <div class="col-md-9 ml-auto mb-5">
-                            <p>著作権を侵害するような画像は控えてください。過度に性的、または暴力的な表現を含む場合、削除する場合があります。ご了承ください。</p>
+                            <p>著作権を侵害するような画像は<br class="br-sm">控えてください。過度に性的、<br class="br-sm">または暴力的な表現を含む場合、<br class="br-sm">削除する場合があります。<br class="br-sm">ご了承ください。</p>
                         </div>
                     
                         {{ csrf_field() }}

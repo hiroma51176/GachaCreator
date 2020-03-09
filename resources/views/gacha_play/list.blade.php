@@ -11,7 +11,7 @@
 @section('title', 'ガチャリスト')
 
 @section('content')
-    <div class="container">
+    <div class="container main-body">
         <div class="main-title">
             <h1>ガチャリスト</h1>
             <p>全ユーザーの作成したガチャを確認できます。</p>
@@ -25,14 +25,14 @@
                 </div>
             </div>
             <div class="row">
-                <div class="col-md-2 mb-3">
+                <div class="col-md-2 mb-3 mt-2">
                     <a href="{{ action('User\GachaController@add') }}" role="button" class="btn btn-primary">ガチャを作成する</a>
                 </div>
                 <div class="col-md-6 ml-auto">
                     <form action="{{ action('PlayController@index') }}" method="get">
                         <div class="form-group row">
                             <label class="col-md-3 text-right d-flex align-items-end">ガチャ名で検索</label>
-                            <div class="col-md-7">
+                            <div class="col-md-7 mt-2">
                                 <input type="text" class="form-control" name="cond_gacha_name" value="{{ $cond_gacha_name }}">
                             </div>
                             <div class="col-md-2 mt-2">

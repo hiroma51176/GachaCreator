@@ -19,7 +19,7 @@
 @section('title', 'ガチャ新規作成')
 
 @section('content')
-    <div class="container">
+    <div class="container main-body">
         <div class="main-title">
             <h1>ガチャを作成する</h1>
             <p>ガチャを作成します。</p>
@@ -90,7 +90,7 @@
                                 <font color="blue"><p id="image-alert-ok" class="mb-0"></p></font>
                             </div>
                             <div class="col-md-9 ml-auto">
-                            <p>著作権を侵害するような画像は控えてください。過度に性的、または暴力的な表現を含む場合、削除する場合があります。ご了承ください。</p>
+                            <p>著作権を侵害するような画像は控えてください。<br class="br-sm">過度に性的、または暴力的な表現を含む場合、<br class="br-sm">削除する場合があります。ご了承ください。</p>
                             </div>
                         </div>
                         
@@ -111,7 +111,7 @@
                         </div>
                         
                         <h3>ガチャの排出率</h3>
-                        <p>大当たり、当たり、はずれで合計100になるように、それぞれ100以下の整数を半角で入力してください。</p>
+                        <p>大当たり、当たり、はずれの合計が<br class="br-sm">100になるように、それぞれ100以下の<br class="br-sm">整数を半角で入力してください。</p>
                         
                         <div class="form-group row">
                             <label class="col-md-3">
@@ -152,8 +152,11 @@
                         </div>
                         
                         <h3 class=" mt-5">ガチャのプライズ</h3>
-                        <p class="mb-1">テンプレートを使用するかどうか選択してください。また、自分が作成したガチャのプライズをコピーすることもできます。（プライズが０種のガチャは表示されません）</p>
-                        <p>使用しない場合は、プライズの新規作成に移ります。</p>
+                        <p class="mb-1">
+                            テンプレートを使用するかどうか<br class="br-sm">選択してください。また、自分が作成したガチャの<br class="br-sm">プライズをコピーすることもできます。<br>
+                            （プライズが０種のガチャは表示されません）
+                        </p>
+                        <p>使用しない場合は、プライズの新規作成に<br class="br-sm">移ります。</p>
                         <div class="form-group row mb-5">
                             <label class="col-md-3">
                                 <strong>テンプレート使用について（必須）</strong>
@@ -177,7 +180,7 @@
                         
                     
                         {{ csrf_field() }}
-                        <input id="submit-create" type="submit" class="btn btn-lg btn-primary w-50 submit-btn" value="ガチャを作成する" disabled>
+                        <input id="submit-create" type="submit" class="btn btn-lg btn-primary submit-btn" value="ガチャを作成する" disabled>
                         <p id="check_val"></p>
                     </form>
                 </div>

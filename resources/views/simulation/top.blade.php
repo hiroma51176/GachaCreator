@@ -16,7 +16,7 @@
 @section('title', 'シミュレーション')
 
 @section('content')
-    <div class="container">
+    <div class="container main-body">
         <div class="main-title">
             <h1>ガチャのシミュレーション</h1>
             <p class="mb-0">ガチャのシミュレーションを行うことができます。</p>

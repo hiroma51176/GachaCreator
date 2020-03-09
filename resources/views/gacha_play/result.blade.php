@@ -11,7 +11,7 @@
 @section('title', 'ガチャ結果')
 
 @section('content')
-    <div class="container">
+    <div class="container main-body">
         <div class="main-title">
             <h1>ガチャ結果</h1>
             <p>ガチャを引いた結果が表示されます。</p>
@@ -77,8 +77,8 @@
         
         {{-- 画面サイズがlgより小さい時に表示 --}}
         <div class="d-block d-lg-none text-center">
-            <a class="btn btn-lg btn-primary mx-5 w-25 px-1 m-2" role="button" href="{{ action('PlayController@playOneShot', ['gacha_id' => $gacha->id]) }}">１回引く</a><br>
-            <a class="btn btn-lg btn-primary mx-5 w-25 px-1 m-2" role="button" href="{{ action('PlayController@playTenShot', ['gacha_id' => $gacha->id]) }}">１０回引く</a><br>
+            <a class="btn btn-lg btn-primary mx-5 px-1 m-2" role="button" href="{{ action('PlayController@playOneShot', ['gacha_id' => $gacha->id]) }}">１回引く</a><br>
+            <a class="btn btn-lg btn-primary mx-5 px-1 m-2" role="button" href="{{ action('PlayController@playTenShot', ['gacha_id' => $gacha->id]) }}">１０回引く</a><br>
             <a class="btn btn-lg btn-secondary mx-5 px-1 m-2" role="button" href="{{ action('PlayController@index') }}">ガチャリストへ戻る</a>
         </div>
     </div>

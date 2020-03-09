@@ -13,7 +13,7 @@
 @section('title', 'ユーザー情報編集')
 
 @section('content')
-    <div class="container">
+    <div class="container main-body">
         <div class="main-title">
             <h1>ユーザー情報の編集</h1>
         </div>

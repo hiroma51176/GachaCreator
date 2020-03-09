@@ -159,7 +159,7 @@ class PrizeController extends Controller
         
         // 何もチェックせずにボタンが押された場合の処理
         if($prizes_id == null){
-            return redirect('gacha_create/gacha/list');
+            return redirect(route('prize_list',['prizes' => $prizes, 'gacha_id' => $gacha_id, 'gacha_name' => $gacha_name]));
         }
         
         $delete_count = count($prizes_id);

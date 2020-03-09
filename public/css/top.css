@@ -29,16 +29,6 @@
   color: #000;
 }
 
-.br-sm {
-  display: none;
-}
-
-@media screen and (max-width: 576px) {
-  .br-sm {
-    display: inline-block;
-  }
-}
-
 .play-gacha {
   padding: 5px 20px;
   border: 2px solid deepskyblue;
@@ -127,10 +117,10 @@
 
 .play-sim {
   padding: 5px 20px;
-  border: 2px solid silver;
+  border: 2px solid orange;
   border-radius: 5px;
   display: inline-block;
-  background-color: silver;
+  background-color: orange;
   color: black;
   text-decoration: none;
   position: relative;
@@ -155,7 +145,7 @@
 }
 
 .play-sim:hover {
-  color: gray;
+  color: darkorange;
 }
 
 .play-sim:hover:after {

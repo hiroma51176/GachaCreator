@@ -15,7 +15,7 @@
 @section('title', 'プライズ新規作成')
 
 @section('content')
-    <div class="container">
+    <div class="container main-body">
         <div class="main-title">
             <h1>ガチャ「{{ $gacha_name }}」のプライズを追加</h1>
             <p>あなたが作成したガチャ「{{ $gacha_name }}」へ追加するプライズを新規作成します。</p>
@@ -38,7 +38,7 @@
                         {{-- 画面サイズがmdより小さい時に表示 --}}
                         <div class="col-md-6 text-left d-block d-md-none">
                             <a class="btn btn-primary mb-2" role="button" href="{{ action('User\PrizeController@index', ['gacha_id' => $gacha_id, 'gacha_name' => $gacha_name]) }}">プライズリストへ移動</a>
-                            <a class="btn btn-secondary ml-2 mb-2" role="button" href="{{ action('User\GachaController@index') }}">ガチャリストへ移動</a>
+                            <a class="btn btn-secondary mb-2" role="button" href="{{ action('User\GachaController@index') }}">ガチャリストへ移動</a>
                         </div>
                     </div>
                     
@@ -87,16 +87,16 @@
                             </div>
                         </div>
                         <div class="col-md-9 ml-auto mb-5">
-                        <p>著作権を侵害するような画像は控えてください。過度に性的、または暴力的な表現を含む場合、削除する場合があります。ご了承ください。</p>
+                        <p>著作権を侵害するような画像は<br class="br-sm">控えてください。過度に性的、<br class="br-sm">または暴力的な表現を含む場合、<br class="br-sm">削除する場合があります。<br class="br-sm">ご了承ください。</p>
                         </div>
                     
                         {{ csrf_field() }}
                         <div class="col-md-9 pl-1 ml-auto">
-                            {{-- リンク先のcreateアクションでデータ保存してから分岐させる --}}
                             <input type="hidden" name="gacha_id" value="{{ $gacha_id }}">
                             <input type="hidden" name="gacha_name" value="{{ $gacha_name }}">
-                            <input type="submit" class="btn btn-primary mr-4 submit-btn" name="to_list" value="追加してプライズリストへ" disabled>
-                            <input type="submit" class="btn btn-primary ml-4 submit-btn" name="cont" value="続けて追加する" disabled>
+                            {{-- リンク先のcreateアクションでデータ保存してから分岐させる --}}
+                            <input type="submit" class="btn btn-primary mr-4 mt-2 submit-btn" name="to_list" value="追加してプライズリストへ" disabled>
+                            <input type="submit" class="btn btn-primary mt-2 submit-btn" name="cont" value="続けて追加する" disabled>
                             <p id="check_val"></p>
                         </div>
                     </form>

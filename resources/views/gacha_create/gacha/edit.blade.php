@@ -18,7 +18,7 @@
 @section('title', 'ガチャの編集')
 
 @section('content')
-    <div class="container">
+    <div class="container main-body">
         <div class="main-title">
             <h1>ガチャ「{{ $gacha->gacha_name }}」の編集</h1>
             <p>ガチャの編集ができます。</p>
@@ -98,7 +98,7 @@
                             </div>
                         </div>
                         <div class="col-md-9 ml-auto mb-5">
-                        <p>著作権を侵害するような画像は控えてください。過度に性的、または暴力的な表現を含む場合、削除する場合があります。ご了承ください。</p>
+                        <p>著作権を侵害するような画像は<br class="br-sm">控えてください。過度に性的、<br class="br-sm">または暴力的な表現を含む場合、<br class="br-sm">削除する場合があります。<br class="br-sm">ご了承ください。</p>
                         </div>
                         
                         <div class="form-group row">
@@ -115,7 +115,7 @@
                         </div>
                         
                         <h3>ガチャの排出率</h3>
-                        <p>大当たり、当たり、はずれで合計100になるように、それぞれ100以下の整数を半角で入力してください。</p>
+                        <p>大当たり、当たり、はずれの合計が<br class="br-sm">100になるように、それぞれ100以下の<br class="br-sm">整数を半角で入力してください。</p>
                         <div class="form-group row">
                             <label class="col-md-3">
                                 <strong>大当たり（必須）</strong>
@@ -155,7 +155,7 @@
                         
                         <input type="hidden" name="id" value="{{ $gacha->id }}">
                         {{ csrf_field() }}
-                        <input id="submit-edit" type="submit" class="btn btn-lg btn-primary w-50 mt-3 submit-btn" value="この内容で上書きする" disabled>
+                        <input id="submit-edit" type="submit" class="btn btn-lg btn-primary mt-3 submit-btn" value="この内容で上書きする" disabled>
                         <p id="check_val"></p>
                     </form>
                 </div>

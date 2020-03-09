@@ -12,7 +12,7 @@
 @section('title', '作成したガチャリスト')
 
 @section('content')
-    <div class="container">
+    <div class="container main-body">
         <div class="main-title">
             <h1>作成ガチャリスト</h1>
             <p>{{ Auth::user()->name }}の作成したガチャを確認できます。</p>
@@ -23,8 +23,8 @@
                 <div class="col-md-8">
                     <h2>作成したガチャ一覧</h2>
                     <p>
-                        ガチャ名をクリックすると、編集画面に移動します。<br>
-                        ※プライズが０種のガチャは引くことができない為、ご注意ください。
+                        ガチャ名をクリックすると、<br class="br-sm">編集画面に移動します。<br>
+                        ※プライズが０種のガチャは<br class="br-sm">引くことができない為、ご注意ください。
                     </p>
                 </div>
             </div>
@@ -154,7 +154,7 @@
                         <div class="row">
                             <div class="col-md-4 ml-auto text-right">
                                 {{ csrf_field() }}
-                                <input id="submit-btn" type="submit" name="delete" class="btn btn-danger" value="チェックしたガチャを削除">
+                                <input id="submit-btn" type="submit" name="delete" class="btn btn-danger submit-btn" value="チェックしたガチャを削除">
                             </div>
                         </div>
                     </form>
