@@ -80,7 +80,7 @@
 
                         <div class="form-group row mb-0">
                             <div class="col-md-6 offset-md-4">
-                                <button id="submit-btn" type="submit" class="btn btn-primary" disabled>
+                                <button id="submit-btn" type="submit" class="btn btn-primary submit-btn" disabled>
                                     {{ __('messages.Register') }}
                                 </button>
                             </div>

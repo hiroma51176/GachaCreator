@@ -13,6 +13,11 @@ class UserController extends Controller
 {
     public function edit()
     {
+        // ゲスト用アカウントの場合は、トップページへリダイレクト
+        if(Auth::user()->email == 'hoge@example.com'){
+            return redirect('/');
+        }
+        
         return view('auth.profile');
     }
     
