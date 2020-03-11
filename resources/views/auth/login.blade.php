@@ -22,6 +22,15 @@
                 <div class="card-body">
                     <form method="POST" action="{{ route('login') }}">
                         @csrf
+                        
+                        <div class="col-md-9 offset-md-1 mx-auto mb-4 px-2 bg-light">
+                            <p>
+                                下記を入力することでGuestアカウントで<br class="br-sm">ログインできます。<br>
+                                ガチャクリエイターの機能確認等に<br class="br-sm">ご使用ください。<br>
+                                　メールアドレス：hoge@example.com<br>
+                                　　　パスワード：hogehoge
+                            </p>
+                        </div>
 
                         <div class="form-group row">
                             <label for="email" class="col-md-4 col-form-label text-md-right">{{ __('messages.E-Mail Address') }}</label>
@@ -77,6 +86,8 @@
                             </div>
                         </div>
                     </form>
+                    
+                    
                 </div>
             </div>
         </div>
