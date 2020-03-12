@@ -28,7 +28,10 @@ class PlayController extends Controller
             $gachas = Gacha::paginate(10);
         }
         
-        return view('gacha_play.list', ['gachas' => $gachas, 'cond_gacha_name' => $cond_gacha_name]);
+        return view('gacha_play.list', [
+            'gachas' => $gachas,
+            'cond_gacha_name' => $cond_gacha_name
+            ]);
     }
     
     public function viewPlay(Request $request)
@@ -45,7 +48,9 @@ class PlayController extends Controller
         // URLにガチャidを直接入力して飛んできて、プライズが０種のガチャの場合はトップページに遷移させる
         My_func::zeroPrize($gacha);
         
-        return view('gacha_play.play', ['gacha' => $gacha]);
+        return view('gacha_play.play', [
+            'gacha' => $gacha
+            ]);
     }
     
     // 「１回引く」
@@ -67,7 +72,11 @@ class PlayController extends Controller
         
         $result_one_shot = My_func::drawGacha($gacha, $miss, $hit, $jackpot);
         
-        return view('gacha_play.result', ['gacha' => $gacha, 'result_one_shot' => $result_one_shot, 'results_ten_shot' => $results_ten_shot]);
+        return view('gacha_play.result', [
+            'gacha' => $gacha,
+            'result_one_shot' => $result_one_shot,
+            'results_ten_shot' => $results_ten_shot
+            ]);
     }
     
     // 「１０回引く」
@@ -97,7 +106,11 @@ class PlayController extends Controller
         // 配列$resultsを5個ずつ分割する
         $results_ten_shot = array_chunk($results, 2);
         
-        return view('gacha_play.result', ['gacha' => $gacha, 'result_one_shot' => $result_one_shot, 'results_ten_shot' => $results_ten_shot]);
+        return view('gacha_play.result', [
+            'gacha' => $gacha,
+            'result_one_shot' => $result_one_shot,
+            'results_ten_shot' => $results_ten_shot
+            ]);
     }
     
     public function terms()

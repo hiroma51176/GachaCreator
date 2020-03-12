@@ -38,7 +38,12 @@ class PrizeController extends Controller
             $prizes = Prize::where('gacha_id', $request->gacha_id)->paginate(10);
         }
         
-        return view('gacha_create.prize.list', ['prizes' => $prizes, 'cond_prize_name' => $cond_prize_name, 'gacha_id' => $gacha->id, 'gacha_name' => $gacha->gacha_name]);
+        return view('gacha_create.prize.list', [
+            'prizes' => $prizes,
+            'cond_prize_name' => $cond_prize_name,
+            'gacha_id' => $gacha->id,
+            'gacha_name' => $gacha->gacha_name
+            ]);
     }
     
     public function add(Request $request)
@@ -51,7 +56,10 @@ class PrizeController extends Controller
         // 作成者以外のユーザーのプライズにアクセスできないようにする
         My_func::differentUserId($gacha);
         
-        return view('gacha_create.prize.create', ['gacha_id' => $gacha->id, 'gacha_name' => $gacha->gacha_name]);
+        return view('gacha_create.prize.create', [
+            'gacha_id' => $gacha->id,
+            'gacha_name' => $gacha->gacha_name
+            ]);
     }
     
     public function create(CreatePrize $request)
@@ -88,7 +96,11 @@ class PrizeController extends Controller
             
             // return view('gacha_create.prize.list', ['gacha_id' => $gacha_id, 'gacha_name' => $gacha_name, 'prizes' => $prizes, 'data' => $data]);
             // return redirect('gacha_create/gacha/list');
-            return redirect(route('prize_list',['prizes' => $prizes, 'gacha_id' => $gacha_id, 'gacha_name' => $gacha_name]));
+            return redirect(route('prize_list',[
+                'prizes' => $prizes,
+                'gacha_id' => $gacha_id,
+                'gacha_name' => $gacha_name
+                ]));
         }
             
         // 続けて追加する場合
@@ -111,7 +123,11 @@ class PrizeController extends Controller
         // 作成者以外のユーザーのプライズにアクセスできないようにする
         My_func::differentUserId($gacha);
         
-        return view('gacha_create.prize.edit', ['prize' => $prize, 'gacha_id' => $gacha->id, 'gacha_name' => $gacha->gacha_name]);
+        return view('gacha_create.prize.edit', [
+            'prize' => $prize,
+            'gacha_id' => $gacha->id,
+            'gacha_name' => $gacha->gacha_name
+            ]);
     }
     
     public function update(EditPrize $request)
@@ -145,7 +161,11 @@ class PrizeController extends Controller
         $prizes = Prize::where('gacha_id', $request->gacha_id)->paginate(10);
         
         // return view('gacha_create.prize.list', ['prizes' => $prizes, 'prize' => $prize, 'gacha_id' => $gacha_id, 'gacha_name' => $gacha_name]);
-        return redirect(route('prize_list',['prizes' => $prizes, 'gacha_id' => $gacha_id, 'gacha_name' => $gacha_name]));
+        return redirect(route('prize_list',[
+            'prizes' => $prizes,
+            'gacha_id' => $gacha_id,
+            'gacha_name' => $gacha_name
+            ]));
     }
     
     public function delete(Request $request)
@@ -159,7 +179,11 @@ class PrizeController extends Controller
         
         // 何もチェックせずにボタンが押された場合の処理
         if($prizes_id == null){
-            return redirect(route('prize_list',['prizes' => $prizes, 'gacha_id' => $gacha_id, 'gacha_name' => $gacha_name]));
+            return redirect(route('prize_list',[
+                'prizes' => $prizes,
+                'gacha_id' => $gacha_id,
+                'gacha_name' => $gacha_name
+                ]));
         }
         
         $delete_count = count($prizes_id);
@@ -171,6 +195,10 @@ class PrizeController extends Controller
         }
         
         // return redirect('gacha_create/gacha/list');
-        return redirect(route('prize_list',['prizes' => $prizes, 'gacha_id' => $gacha_id, 'gacha_name' => $gacha_name]));
+        return redirect(route('prize_list',[
+            'prizes' => $prizes,
+            'gacha_id' => $gacha_id,
+            'gacha_name' => $gacha_name
+            ]));
     }
 }

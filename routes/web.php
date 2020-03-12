@@ -73,9 +73,9 @@ Route::get('/home', 'HomeController@index')->name('home');
     // Route::post('rarity/edit', 'Admin\RarityController@update');
     
     // テンプレート関係
-    Route::get('templete/list', 'Admin\TempleteController@index');
-    Route::get('templete/create', 'Admin\TempleteController@add');
-    Route::post('templete/create', 'Admin\TempleteController@create');
+    // Route::get('templete/list', 'Admin\TempleteController@index');
+    // Route::get('templete/create', 'Admin\TempleteController@add');
+    // Route::post('templete/create', 'Admin\TempleteController@create');
 // });
 
 

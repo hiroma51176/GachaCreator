@@ -27,6 +27,7 @@
                             <p>
                                 下記を入力することでGuestアカウントで<br class="br-sm">ログインできます。<br>
                                 ガチャクリエイターの機能確認等に<br class="br-sm">ご使用ください。<br>
+                                ※パスワードの変更等、<br class="br-sm">ユーザーの編集はできません。<br>
                                 　メールアドレス：hoge@example.com<br>
                                 　　　パスワード：hogehoge
                             </p>
@@ -79,9 +80,9 @@
                                 </button>
 
                                 @if (Route::has('password.request'))
-                                    <a class="btn btn-link" href="{{ route('password.request') }}">
-                                        {{ __('messages.Forgot Your Password?') }}
-                                    </a>
+                                    {{-- <a class="btn btn-link" href="{{ route('password.request') }}"> --}}
+                                        {{-- __('messages.Forgot Your Password?') --}}
+                                    {{-- </a> --}}
                                 @endif
                             </div>
                         </div>

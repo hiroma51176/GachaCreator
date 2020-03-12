@@ -31,7 +31,10 @@ class GachaController extends Controller
         }
         
         
-        return view('gacha_create.gacha.list', ['gachas' => $gachas, 'cond_gacha_name' => $cond_gacha_name]);
+        return view('gacha_create.gacha.list', [
+            'gachas' => $gachas,
+            'cond_gacha_name' => $cond_gacha_name
+            ]);
     }
     
     public function add()
@@ -50,7 +53,9 @@ class GachaController extends Controller
             }
         }
         
-        return view('gacha_create.gacha.create', ['gachas' => $gacha_templetes]);
+        return view('gacha_create.gacha.create', [
+            'gachas' => $gacha_templetes
+            ]);
     }
     
     public function create(CreateGacha $request)
@@ -85,7 +90,10 @@ class GachaController extends Controller
         
         // テンプレートを使用しない場合はプライズ作成画面へ遷移
         if($request->templete == 0){
-            return view('gacha_create.prize.create', ['gacha_id' => $gacha_data->id, 'gacha_name' => $gacha_data->gacha_name]);
+            return view('gacha_create.prize.create', [
+                'gacha_id' => $gacha_data->id,
+                'gacha_name' => $gacha_data->gacha_name
+                ]);
             
         // 使用する場合はテンプレートの内容をコピーしてガチャリストへ遷移
         }elseif($request->templete == -1){
@@ -123,7 +131,9 @@ class GachaController extends Controller
         // 作成者以外のユーザーのガチャにアクセスできないようにする
         My_func::differentUserId($gacha);
         
-        return view('gacha_create.gacha.edit', ['gacha' => $gacha]);
+        return view('gacha_create.gacha.edit', [
+            'gacha' => $gacha
+            ]);
     }
     
     public function update(EditGacha $request)
@@ -161,7 +171,10 @@ class GachaController extends Controller
         
         //  何もチェックせずにボタンが押された場合の処理
         if($gachas_id == null){
-            return view('gacha_create.gacha.list', ['gachas' => $gachas, 'cond_gacha_name' => $cond_gacha_name]);
+            return view('gacha_create.gacha.list', [
+                'gachas' => $gachas,
+                'cond_gacha_name' => $cond_gacha_name
+                ]);
         }
         
         $delete_count = count($gachas_id);
@@ -194,7 +207,11 @@ class GachaController extends Controller
         // ガチャを引いた金額の累計
         $price_used = GachaHistory::where('user_id', Auth::id())->select('play_price')->sum('play_price');
         
-        return view('history', ['gacha_histories' => $gacha_histories, 'price_used' => $price_used, 'draw_count' => $draw_count]);
+        return view('history', [
+            'gacha_histories' => $gacha_histories,
+            'price_used' => $price_used,
+            'draw_count' => $draw_count
+            ]);
     }
     
     
