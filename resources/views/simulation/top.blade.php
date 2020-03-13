@@ -103,7 +103,7 @@
                             <input type="hidden" name="rate" value="{{ $rate }}">
                             <input type="hidden" name="max_play_count" value="{{ $max_play_count }}">
                             {{ csrf_field() }}
-                            <input type="submit" name="cont_sim" class="btn btn-primary" value="同じ条件で再度シミュレーションを行う">
+                            <input type="submit" name="cont_sim" class="btn btn-primary mt-3" value="同じ条件で再度シミュレーションを行う">
                         </form>
                     </div>
                 @endif
