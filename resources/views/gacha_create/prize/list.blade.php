@@ -95,12 +95,12 @@
                             
                             {{-- 画面サイズがmd以上の時に表示 --}}
                             <div class="col-md-4 ml-auto text-right d-none d-md-block">
-                                <input type="submit" class="btn btn-danger" value="チェックしたプライズを削除">
+                                <input type="submit" class="btn btn-danger submit-btn" value="チェックしたプライズを削除" disabled>
                             </div>
                             
                             {{-- 画面サイズがmdより小さい時に表示 --}}
                             <div class="col-md-4 text-left d-block d-md-none mt-2">
-                                <input type="submit" class="btn btn-danger submit-btn" value="チェックしたプライズを削除">
+                                <input type="submit" class="btn btn-danger submit-btn" value="チェックしたプライズを削除" disabled>
                             </div>
                         </div>
                         

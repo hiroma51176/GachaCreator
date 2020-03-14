@@ -28,9 +28,6 @@ Route::group(['prefix' => 'gacha_play'], function(){
 Route::get('simulation', 'SimulationController@front');
 Route::post('simulation', 'SimulationController@run');
 
-// 期待値計算関係 いずれ追加
-// Route::get('calculation', 'PlayController@viewCalculation');
-// Route::post('calculation', 'PlayController@runCalculation');
 
 // まとめて'middleware' => 'auth' にする
 Route::group(['prefix' => 'gacha_create', 'middleware' => 'auth'], function(){
@@ -78,10 +75,11 @@ Route::get('/home', 'HomeController@index')->name('home');
     // Route::post('templete/create', 'Admin\TempleteController@create');
 // });
 
-
-
 Route::get('terms', 'PlayController@terms');
 Route::get('policy', 'PlayController@policy');
 
-Route::get('profile', 'User\UserController@edit')->middleware('auth');
-Route::post('profile', 'User\UserController@update')->middleware('auth');
+Route::group(['middleware' => 'auth'], function(){
+    Route::get('profile', 'User\UserController@edit');
+    Route::post('profile', 'User\UserController@update');
+});
+

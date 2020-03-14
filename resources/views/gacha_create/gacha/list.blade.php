@@ -108,7 +108,7 @@
                         <div class="row">
                             <div class="col-md-4 ml-auto text-right">
                                 {{ csrf_field() }}
-                                <input id="submit-btn" type="submit" name="delete" class="btn btn-danger" value="チェックしたガチャを削除">
+                                <input id="submit-btn" type="submit" name="delete" class="btn btn-danger submit-btn" value="チェックしたガチャを削除" disabled>
                             </div>
                         </div>
                     </form>
@@ -154,7 +154,7 @@
                         <div class="row">
                             <div class="col-md-4 ml-auto text-right">
                                 {{ csrf_field() }}
-                                <input id="submit-btn" type="submit" name="delete" class="btn btn-danger submit-btn" value="チェックしたガチャを削除">
+                                <input id="submit-btn" type="submit" name="delete" class="btn btn-danger submit-btn" value="チェックしたガチャを削除" disabled>
                             </div>
                         </div>
                     </form>
