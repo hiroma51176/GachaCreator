@@ -2,6 +2,7 @@
 
 {{-- 追加のJavaScriptファイルを読み込ませる --}}
 @section('script')
+    
 @endsection
 
 {{-- 追加のCSSファイルを読み込ませる --}}
@@ -19,13 +20,14 @@
         
         <div class="content">
             <div class="row">
-                <div class="col-md-8">
+                <div class="col-md-6">
                     <h2>選択したガチャの概要</h2>
                 </div>
                 
                 {{-- 画面サイズがmd以上の時に表示 --}}
-                <div class="col-md-4 text-right mb-2 d-none d-md-block">
-                    <a role="button" class="btn btn-secondary" href="{{ action('PlayController@index') }}">ガチャリストへ戻る</a>
+                <div class="col-md-6 text-right mb-2 d-none d-md-block">
+                    <a href="https://twitter.com/share?url=https://infinite-reef-31165.herokuapp.com/gacha_play/play?gacha_id={{ $gacha->id }}&text=面白いガチャを見つけたよ！遊んでみてね！%0a" class="twitter-share-button btn btn-primary" data-show-count="false"  target="_blank" rel="noopener">このガチャをツイートする</a>
+                    <a role="button" class="btn btn-secondary ml-2" href="{{ action('PlayController@index') }}">ガチャリストへ戻る</a>
                 </div>
                 
                 {{-- 画面サイズがmdより小さい時に表示 --}}
