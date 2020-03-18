@@ -7,6 +7,7 @@
 
 {{-- 追加のCSSファイルを読み込ませる --}}
 @section('css')
+    <link href="https://use.fontawesome.com/releases/v5.6.1/css/all.css" rel="stylesheet">
 @endsection
 
 @section('title', 'ガチャを引く')
@@ -26,13 +27,14 @@
                 
                 {{-- 画面サイズがmd以上の時に表示 --}}
                 <div class="col-md-6 text-right mb-2 d-none d-md-block">
-                    <a href="https://twitter.com/share?url=https://infinite-reef-31165.herokuapp.com/gacha_play/play?gacha_id={{ $gacha->id }}&text=面白いガチャを見つけたよ！遊んでみてね！%0a" class="twitter-share-button btn btn-primary" data-show-count="false"  target="_blank" rel="noopener">このガチャをツイートする</a>
+                    <a href="https://twitter.com/share?url=https://infinite-reef-31165.herokuapp.com/gacha_play/play?gacha_id={{ $gacha->id }}&text=面白いガチャを見つけたよ！遊んでみてね！%0a" class="twitter-share-button btn btn-primary" data-show-count="false"  target="_blank" rel="noopener"><i class="fab fa-twitter mr-2"></i>このガチャをツイートする</a>
                     <a role="button" class="btn btn-secondary ml-2" href="{{ action('PlayController@index') }}">ガチャリストへ戻る</a>
                 </div>
                 
                 {{-- 画面サイズがmdより小さい時に表示 --}}
                 <div class="col-md-4 text-left mb-2  d-block d-md-none">
-                    <a role="button" class="btn btn-secondary" href="{{ action('PlayController@index') }}">ガチャリストへ戻る</a>
+                    <a href="https://twitter.com/share?url=https://infinite-reef-31165.herokuapp.com/gacha_play/play?gacha_id={{ $gacha->id }}&text=面白いガチャを見つけたよ！遊んでみてね！%0a" class="twitter-share-button btn btn-primary" data-show-count="false"  target="_blank" rel="noopener"><i class="fab fa-twitter mr-2"></i>このガチャをツイートする</a>
+                    <a role="button" class="btn btn-secondary mt-2" href="{{ action('PlayController@index') }}">ガチャリストへ戻る</a>
                 </div>
                 
             </div>
