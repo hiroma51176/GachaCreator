@@ -3,7 +3,6 @@
 {{-- 追加のJavaScriptファイルを読み込ませる --}}
 @section('script')
     <script src="{{ secure_asset('js/data-validation/list-delete-check.js') }}" defer></script>
-    <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
 @endsection
 
 {{-- 追加のCSSファイルを読み込ませる --}}
@@ -91,8 +90,6 @@
                                             </td>
                                             <td>{{ $gacha->total_play_count }}回</td>
                                             <td class="align-middle">
-                                                {{-- Twitterボタン --}}
-                                                <a href="https://twitter.com/share?ref_src=twsrc%5Etfw" class="twitter-share-button" data-show-count="false">Tweet</a>
                                                 {{-- プライズがない場合はガチャを引くボタンを押しても遷移しないようにする --}}
                                                 @if ($gacha->prizes->count() != 0)
                                                     <a class="btn btn-success" role="button" href="{{ action('PlayController@viewPlay', ['gacha_id' => $gacha->id, 'gacha_name' => $gacha->gacha_name]) }}">ガチャを引く</a>
