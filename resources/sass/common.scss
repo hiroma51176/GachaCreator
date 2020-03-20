@@ -1,6 +1,6 @@
-html {
-    height: 100%;
-}
+// html {
+//     height: 100%;
+// }
 
 body {
     // background-repeat: no-repeat;
@@ -14,7 +14,7 @@ body {
     background-color: slategray;
     // background-size: 100px 100px, 100px 100px, 50px 50px, 50px 50px;
     background-size: 100px 100px, 100px 100px, 50px 50px;
-    height: 100%;
+    // height: 100%;
     margin: 0;
     padding: 0;
 }
@@ -25,24 +25,24 @@ body {
 
 main {
     // height: 100%;
-    flex: 1;
+    // flex: 1;
+    margin: 20px 0;
 }
 
 .main-body {
     padding: 24px 20px;
     background-color: rgba(230, 231, 232, 0.8);
-    height: 100%;
-    min-height: 100%;
+    // height: 100%;
+    // min-height: 100%;
 }
 
-main > .main-body {
-    height: auto;
-}
+// main > .main-body {
+//     height: auto;
+// }
 
 .navbar-laravel {
     background-color: #000;
     box-shadow: 0 2px 4px rgba(0, 0 , 0, 0.04);
-    -webkit-appearance: none;
 }
 
 .navbar-brand {
@@ -96,7 +96,7 @@ footer li {
 
 // footer固定
 body,
-#app {
+#app, {
     display: flex;
     flex-direction: column;
     min-height: 100vh;
